@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Server &amp; Changelog: Infraestructura de Vanguardia — World of Warcraft Wrath of the lich king en CoRe Legacy</title>
+  <meta name="description" content="CoRe Legacy está alojado en hardware empresarial de élite, garantizando un servicio 24/7 ininterrumpido, latencia cero y capacidad para miles de jugadores simultáneos." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/info-changelog" />
+  <link rel="alternate" hreflang="es" href="https://corelegacy.gg/info-changelog" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/info-changelog" />
+
+  <meta property="og:title" content="Server & Changelog: Infraestructura de Vanguardia — World of Warcraft Wrath of the lich king en CoRe Legacy" />
+  <meta property="og:description" content="Hardware empresarial de élite, servicio 24/7, latencia cero y capacidad para miles de jugadores simultáneos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://corelegacy.gg/info-changelog" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/logotipo_corelegacy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Server & Changelog: Infraestructura de Vanguardia — World of Warcraft Wrath of the lich king en CoRe Legacy" />
+  <meta name="twitter:description" content="Hardware empresarial de élite, servicio 24/7, latencia cero y capacidad para miles de jugadores simultáneos." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/logotipo_corelegacy.webp" />
+
+  <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
+  <link rel="preconnect" href="https://accounts.corelegacy.gg" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-29RVG4TWST"></script>
+  <script defer>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29RVG4TWST');
+  </script>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CoRe Legacy" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "CoRe Legacy",
+    "description": "Servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a con inteligencia artificial, PvE, PvP y mundo vivo.",
+    "url": "https://corelegacy.gg/",
+    "image": "https://corelegacy.gg/assets/logotipo_corelegacy.webp",
+    "inLanguage": "es",
+    "genre": ["MMORPG", "RPG", "PvP", "PvE"],
+    "gamePlatform": "PC",
+    "playMode": ["MultiPlayer", "CoOp"],
+    "applicationCategory": "Game",
+    "author": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+    "publisher": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+    "datePublished": "2026-01-01",
+    "operatingSystem": "PC",
+    "contentRating": "PEGI 12",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CoRe Legacy",
+    "description": "Servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a con inteligencia artificial, PvE, PvP y mundo vivo.",
+    "url": "https://corelegacy.gg/",
+    "image": "https://corelegacy.gg/assets/logotipo_corelegacy.webp",
+    "inLanguage": "es",
+    "applicationCategory": "GameApplication",
+    "applicationSubCategory": "MMORPG",
+    "operatingSystem": "Windows",
+    "softwareVersion": "3.3.5a",
+    "author": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+    "publisher": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CoRe Legacy",
+    "url": "https://corelegacy.gg/",
+    "logo": "https://corelegacy.gg/assets/logotipo_corelegacy.webp",
+    "image": "https://corelegacy.gg/assets/logotipo_corelegacy.webp",
+    "description": "CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a con inteligencia artificial, PvE, PvP y mundo vivo.",
+    "foundingDate": "2026",
+    "sameAs": [
+      "https://www.facebook.com/corelegacygg"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://corelegacy.gg/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Server y Changelog",
+        "item": "https://corelegacy.gg/info-changelog"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <style>
+    /* ===== Cards (stacked) ===== */
+    .info-hang-card {
+      position: relative; z-index: 3; border-radius: 14px; overflow: hidden;
+      transition: box-shadow 0.4s ease, transform 0.3s ease;
+    }
+    .info-hang-card:hover { transform: translateY(-3px); }
+    .info-card-inner {
+      position: relative; padding: 1.75rem 1.75rem 2rem; min-height: 200px;
+    }
+    /* Gold variant */
+    .info-hang-card.gold {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 25px rgba(212,168,67,0.15), 0 0 50px rgba(240,140,40,0.08);
+    }
+    .info-hang-card.gold .info-card-inner {
+      background: linear-gradient(135deg, rgba(30,22,8,0.95) 0%, rgba(12,10,4,0.98) 100%);
+      border: 1px solid #d4a84344;
+    }
+    .info-hang-card.gold::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(240,200,80,0.4) 0%, rgba(212,168,67,0.15) 50%, rgba(180,120,30,0.3) 100%);
+      z-index: -1; opacity: 0.6; animation: goldPulse 3.5s ease-in-out infinite; pointer-events: none;
+    }
+    .info-hang-card.gold:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(240,200,80,0.35), 0 0 80px rgba(240,140,40,0.15);
+    }
+    .info-hang-card.gold:hover::before { opacity: 1; }
+    @keyframes goldPulse {
+      0%, 100% { opacity: 0.4; box-shadow: 0 0 20px rgba(240,200,80,0.2); }
+      50%      { opacity: 0.75; box-shadow: 0 0 35px rgba(240,200,80,0.35), 0 0 60px rgba(240,140,40,0.15); }
+    }
+    /* Frost variant */
+    .info-hang-card.frost {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 20px rgba(77,189,232,0.1);
+    }
+    .info-hang-card.frost .info-card-inner {
+      background: linear-gradient(135deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
+      border: 1px solid #4bbde844;
+    }
+    .info-hang-card.frost::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; animation: frostPulse 3.5s ease-in-out infinite; pointer-events: none;
+    }
+    .info-hang-card.frost:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(77,189,232,0.25);
+    }
+    .info-hang-card.frost:hover::before { opacity: 1; }
+    @keyframes frostPulse {
+      0%, 100% { opacity: 0.3; box-shadow: 0 0 16px rgba(77,189,232,0.15); }
+      50%      { opacity: 0.65; box-shadow: 0 0 28px rgba(77,189,232,0.3); }
+    }
+    /* Ice variant — blue/white, stable & cold */
+    .info-hang-card.ice {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 25px rgba(168,216,255,0.18), 0 0 50px rgba(77,189,232,0.08);
+    }
+    .info-hang-card.ice .info-card-inner {
+      background: linear-gradient(135deg, rgba(8,20,36,0.95) 0%, rgba(4,12,24,0.98) 100%);
+      border: 1px solid #a8d8ff44;
+    }
+    .info-hang-card.ice::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(212,240,255,0.4) 0%, rgba(168,216,255,0.15) 50%, rgba(77,159,232,0.3) 100%);
+      z-index: -1; opacity: 0.6; animation: icePulse 3.5s ease-in-out infinite; pointer-events: none;
+    }
+    .info-hang-card.ice:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(168,216,255,0.35), 0 0 80px rgba(77,189,232,0.15);
+    }
+    .info-hang-card.ice:hover::before { opacity: 1; }
+    @keyframes icePulse {
+      0%, 100% { opacity: 0.4; box-shadow: 0 0 20px rgba(168,216,255,0.2); }
+      50%      { opacity: 0.75; box-shadow: 0 0 35px rgba(168,216,255,0.35), 0 0 60px rgba(77,189,232,0.15); }
+    }
+    /* Matrix variant — neon green, NVIDIA/Matrix style */
+    .info-hang-card.matrix {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 25px rgba(57,255,20,0.15), 0 0 50px rgba(118,185,0,0.08);
+    }
+    .info-hang-card.matrix .info-card-inner {
+      background: linear-gradient(135deg, rgba(6,20,8,0.95) 0%, rgba(2,10,4,0.98) 100%);
+      border: 1px solid #39ff1444;
+    }
+    .info-hang-card.matrix::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(57,255,20,0.35) 0%, rgba(118,185,0,0.12) 50%, rgba(30,120,10,0.28) 100%);
+      z-index: -1; opacity: 0.6; animation: matrixPulse 3.5s ease-in-out infinite; pointer-events: none;
+    }
+    .info-hang-card.matrix:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px rgba(57,255,20,0.35), 0 0 80px rgba(118,185,0,0.15);
+    }
+    .info-hang-card.matrix:hover::before { opacity: 1; }
+    @keyframes matrixPulse {
+      0%, 100% { opacity: 0.4; box-shadow: 0 0 20px rgba(57,255,20,0.18); }
+      50%      { opacity: 0.75; box-shadow: 0 0 35px rgba(57,255,20,0.32), 0 0 60px rgba(118,185,0,0.12); }
+    }
+    .info-card-coin-deco {
+      position: absolute; bottom: -10px; right: -10px; width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,200,80,0.12) 0%, transparent 70%); pointer-events: none;
+    }
+    .info-hang-card.frost .info-card-coin-deco {
+      background: radial-gradient(circle, rgba(77,189,232,0.1) 0%, transparent 70%);
+    }
+    .info-hang-card.ice .info-card-coin-deco {
+      background: radial-gradient(circle, rgba(168,216,255,0.12) 0%, transparent 70%);
+    }
+    .info-hang-card.matrix .info-card-coin-deco {
+      background: radial-gradient(circle, rgba(57,255,20,0.12) 0%, transparent 70%);
+    }
+
+    /* ===== Changelog scroll panel (gold, fixed) ===== */
+    .changelog-panel {
+      position: relative;
+      border: 1px solid #d4a84344;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(30,22,8,0.92) 0%, rgba(12,10,4,0.96) 100%);
+      box-shadow: 0 0 25px rgba(212,168,67,0.12), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(240,200,80,0.04);
+      display: flex; flex-direction: column;
+      max-height: 1425px;
+    }
+    .changelog-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(240,200,80,0.3) 0%, rgba(212,168,67,0.1) 50%, rgba(180,120,30,0.2) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .changelog-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(212,168,67,0.18) 0%, rgba(20,14,4,0.3) 100%);
+      border-bottom: 1px solid #d4a84333;
+      flex-shrink: 0;
+    }
+    .changelog-panel-header img {
+      width: 36px; height: 36px; object-fit: cover; border-radius: 8px;
+      border: 1px solid #f0c85055; box-shadow: 0 0 10px rgba(240,200,80,0.2);
+    }
+    .changelog-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--gold-bright);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(212,168,67,0.3);
+    }
+    .changelog-panel-body {
+      padding: 1rem 1.25rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .changelog-entry {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #d4a84322;
+    }
+    .changelog-entry:last-child { border-bottom: none; }
+    .changelog-version {
+      font-family: 'Cinzel Decorative',Georgia,serif; font-weight: 700; font-size: 0.9rem;
+      color: var(--gold-bright); text-shadow: 0 0 8px rgba(212,168,67,0.3); margin-bottom: 0.25rem;
+    }
+    .changelog-date {
+      font-size: 0.7rem; color: #b8a060; letter-spacing: 0.05em;
+    }
+    .changelog-list { list-style: none; padding: 0; margin-top: 0.4rem; }
+    .changelog-list li {
+      font-size: 0.78rem; line-height: 1.5; color: #d4c080;
+      padding-left: 1rem; position: relative; margin-bottom: 0.2rem;
+    }
+    .changelog-list li::before {
+      content: '\2744'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem;
+    }
+    .cl-tag {
+      display: inline-block; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; padding: 1px 6px; border-radius: 4px; margin-right: 0.4rem; vertical-align: middle;
+    }
+    .cl-tag-prefix { background: rgba(212,168,67,0.15); color: #d4a843; border: 1px solid #d4a84344; }
+    .cl-scope {
+      display: inline-block; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; padding: 1px 5px; border-radius: 3px; margin-right: 0.3rem;
+      background: rgba(212,168,67,0.12); color: #c8a852; vertical-align: middle;
+    }
+    .changelog-loading {
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.85rem; color: #b8a060;
+      text-align: center; padding: 2rem 1rem; letter-spacing: 0.1em;
+    }
+    .changelog-error {
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.82rem; color: #ff9aa2;
+      text-align: center; padding: 1.5rem 1rem; text-shadow: 0 0 10px #ff5c6655;
+    }
+
+    /* ===== Status card (dark grey border, live pulse dots) ===== */
+    .info-hang-card.status-card {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    }
+    .info-hang-card.status-card .info-card-inner {
+      background: linear-gradient(135deg, rgba(14,18,24,0.96) 0%, rgba(8,10,14,0.98) 100%);
+      border: 1px solid #3a4452aa;
+    }
+    .info-hang-card.status-card::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(120,130,140,0.15) 0%, rgba(60,70,80,0.08) 100%);
+      z-index: -1; opacity: 0.4; pointer-events: none;
+    }
+    .status-row {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+    }
+    .status-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      margin-top: 4px; flex-shrink: 0; position: relative;
+    }
+    .status-dot-online {
+      background: #2ecc40;
+      box-shadow: 0 0 8px #2ecc40, 0 0 16px #2ecc4088;
+      animation: pulseGreen 2s ease-in-out infinite;
+    }
+    .status-dot-offline {
+      background: #ff4136;
+      box-shadow: 0 0 8px #ff4136, 0 0 16px #ff413688;
+      animation: pulseRed 2s ease-in-out infinite;
+    }
+    @keyframes pulseGreen {
+      0%, 100% { box-shadow: 0 0 6px #2ecc40, 0 0 12px #2ecc4066; }
+      50%      { box-shadow: 0 0 14px #2ecc40, 0 0 28px #2ecc40aa; }
+    }
+    @keyframes pulseRed {
+      0%, 100% { box-shadow: 0 0 6px #ff4136, 0 0 12px #ff413666; }
+      50%      { box-shadow: 0 0 14px #ff4136, 0 0 28px #ff4136aa; }
+    }
+    .status-row-text {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .status-row-title {
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.88rem; font-weight: 700;
+      color: #c8d4e0; letter-spacing: 0.03em;
+    }
+    .status-row-state {
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .status-row-state.online { color: #2ecc40; text-shadow: 0 0 8px #2ecc4066; }
+    .status-row-state.offline { color: #ff4136; text-shadow: 0 0 8px #ff413666; }
+    .status-row-state.loading { color: #8a9098; }
+    .status-row-desc {
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.72rem; color: #6a7888; line-height: 1.5;
+    }
+    @media (max-width: 880px) {
+      .reveal[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+      .snow-particle { display: none; }
+    }
+    .skip-link {
+      position: fixed; top: -100px; left: 1rem; z-index: 10000;
+      padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
+      color: #fff; font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 0 0 10px 10px;
+      border: 1px solid #7dd8f8; border-top: none; text-decoration: none;
+      transition: top 0.25s ease;
+    }
+    .skip-link:focus { top: 0; }
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid #7dd8f8; outline-offset: 2px; border-radius: 4px;
+    }
+    .reading-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 9999;
+      background: linear-gradient(90deg, #1a9fd4 0%, #7dd8f8 50%, #c8f0ff 100%);
+      box-shadow: 0 0 10px #56c8f088; transition: width 0.1s linear; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="#server-changelog" class="skip-link">Saltar al contenido</a>
+
+  <!-- ===== Snowfall ===== -->
+  <div id="snowContainer"></div>
+
+  <!-- ===== Header ===== -->
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="1352" height="1005" decoding="async" class="h-12 w-auto" style="filter: drop-shadow(0 0 8px #56c8f066);" />
+        </a>
+
+        <!-- Nav -->
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
+          <a class="nav-link" href="/#caracteristicas" data-section="caracteristicas">Características</a>
+          <a class="nav-link" href="/comunidad">Comunidad</a>
+          <a class="nav-link active" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        </nav>
+
+        <!-- CTA + Mobile toggle -->
+        <div class="flex items-center gap-3">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile nav -->
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
+        <a class="nav-link block" href="/">Inicio</a>
+        <a class="nav-link block" href="/#caracteristicas">Características</a>
+        <a class="nav-link block" href="/comunidad">Comunidad</a>
+        <a class="nav-link block active" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <!-- ===== Hero: framed citadel background ===== -->
+  <section id="server-changelog-hero" class="relative flex flex-col items-center justify-center overflow-hidden"
+    style="min-height: 70vh; background-image: url('/public/hero-citadel.webp'); background-size: cover; background-position: center; background-attachment: scroll;">
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, rgba(0,10,25,0.5) 0%, rgba(0,5,15,0.3) 40%, rgba(5,13,24,0.98) 100%);"></div>
+    <div class="max-w-7xl mx-auto relative z-10 w-full" style="padding: 8rem 1rem 3rem;">
+      <div class="text-center reveal">
+        <h1 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:900;
+          font-size: clamp(2rem,5.5vw,4.5rem); line-height:1.1;
+          background: linear-gradient(180deg,#fff 0%,#d4f0ff 15%,#8dd6f5 30%,#4bbde8 50%,#1a9fd4 70%,#0d6ea8 85%,#063d6b 100%);
+          -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+          animation: textGlow 3s ease-in-out infinite; margin-bottom:1rem;">Server &amp; Changelog: Infraestructura de Vanguardia</h1>
+        <div class="frost-divider" style="width:120px; margin:0 auto 2.5rem;"></div>
+        <div style="max-width:780px; margin:0 auto;">
+          <h2 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:clamp(1.1rem,2.5vw,1.6rem); font-weight:800; line-height:1.3; margin-bottom:1.5rem;
+            background: linear-gradient(180deg,#d4f0ff 0%,#8dd6f5 40%,#4bbde8 80%,#2a8ec8 100%);
+            -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+            text-shadow:0 0 24px rgba(77,189,232,0.2); letter-spacing:0.02em;">
+            El Corazón de Azeroth: Potencia Sin Compromisos
+          </h2>
+          <p style="font-family:'Cinzel',Georgia,serif; font-size:0.95rem; line-height:1.85; color:#b8d4e8;">
+            Para sostener un mundo vivo, con bots controlados por IA, subastas dinámicas y combates masivos sin un solo tirón, necesitas una infraestructura titánica. Nos hemos negado a escatimar en recursos. CoRe Legacy está alojado en hardware empresarial de élite, garantizando un servicio 24/7 ininterrumpido, latencia cero (0 lag) y capacidad para soportar a miles de jugadores simultáneos. Mientras tú conquistas Rasganorte, nuestros servidores trabajan a la velocidad de la luz para que tu inmersión sea absoluta.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Content: fixed gradient background (like caracteristicas) ===== -->
+  <section id="server-changelog" class="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(180deg, #050d18 0%, #081420 50%, #050d18 100%);">
+    <div class="max-w-7xl mx-auto">
+      <!-- ===== Two-column layout: cards left, changelog right ===== -->
+      <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start;">
+        <!-- Left column: 3 stacked cards -->
+        <div style="display:flex; flex-direction:column; gap:2rem;">
+          <!-- Card 1: Estado del Sistema en Vivo -->
+          <div class="info-hang-card status-card" style="width:100%;">
+            <div class="info-card-inner">
+              <div class="info-card-coin-deco"></div>
+              <h3 style="font-family:'Cinzel Decorative',Georgia,serif; font-size:1.25rem; font-weight:800; line-height:1.3; margin-bottom:0.75rem; position:relative; z-index:1;
+                background:linear-gradient(180deg,#e0e0e0 0%,#b0b8c0 50%,#8a9098 100%);
+                -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:0.02em;">
+                📡 Estado del Sistema en Vivo
+              </h3>
+              <p style="font-family:'Cinzel',Georgia,serif; font-size:0.82rem; line-height:1.7; color:#9aa4b0; margin-bottom:1.25rem; position:relative; z-index:1;">
+                Transparencia total 24 horas al día, 7 días a la semana. Comprueba en tiempo real la disponibilidad y latencia de nuestra infraestructura de red.
+              </p>
+              <div style="display:flex; flex-direction:column; gap:1rem; position:relative; z-index:1;" id="statusList">
+                <div class="status-row" id="statusLogin">
+                  <span class="status-dot status-dot-online"></span>
+                  <div class="status-row-text">
+                    <span class="status-row-title">Servidor de Login</span>
+                    <span class="status-row-state">Cargando…</span>
+                    <span class="status-row-desc">Sistema de autenticación y cuentas operativo</span>
+                  </div>
+                </div>
+                <div class="status-row" id="statusRealm">
+                  <span class="status-dot status-dot-online"></span>
+                  <div class="status-row-text">
+                    <span class="status-row-title">Reino CoRe Legacy</span>
+                    <span class="status-row-state">Cargando…</span>
+                    <span class="status-row-desc">Mundo activo, guardando progreso</span>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:1.25rem; padding:0.75rem 1rem; background:rgba(13,110,168,0.08); border:1px solid #1a3a5a44; border-radius:8px; position:relative; z-index:1;">
+                <span style="font-family:'Cinzel',Georgia,serif; font-size:0.7rem; color:#7a8a98; letter-spacing:0.12em; text-transform:uppercase; display:block; margin-bottom:0.35rem;">Realmlist</span>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <code id="realmlistValue" style="font-family:'Cinzel',Georgia,serif; font-size:0.88rem; color:#a8d8f0; letter-spacing:0.04em; word-break:break-all; flex:1;">logon.corelegacy.gg</code>
+                  <button id="copyRealmlistBtn" type="button" aria-label="Copiar realmlist" title="Copiar al portapapeles"
+                    style="flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border:1px solid #1a3a5a66; border-radius:6px; background:rgba(13,110,168,0.12); color:#a8d8f0; cursor:pointer; transition:background 0.2s ease, border-color 0.2s ease, color 0.2s ease;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  </button>
+                </div>
+              </div>
+              <div style="margin-top:1rem; font-size:0.68rem; color:#5a6878; letter-spacing:0.08em; position:relative; z-index:1;" id="statusMeta">
+                Actualizando en tiempo real…
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Motor del Mundo (Ice) -->
+          <div class="info-hang-card ice" style="width:100%;">
+            <div class="info-card-inner">
+              <div class="info-card-coin-deco"></div>
+              <h3 style="font-family:'Cinzel Decorative',Georgia,serif; font-size:1.25rem; font-weight:800; line-height:1.3; margin-bottom:1rem; position:relative; z-index:1;
+                background:linear-gradient(180deg,#ffffff 0%,#d4f0ff 50%,#4bbde8 100%);
+                -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:0.02em;">
+                ⚙️ Motor del Mundo (Main Server)
+              </h3>
+              <div style="font-family:'Cinzel',Georgia,serif; font-size:0.88rem; line-height:1.8; color:#a8c8e8; position:relative; z-index:1;">
+                <p style="margin-bottom:1rem;">La fuerza bruta que mantiene a Azeroth girando. Hemos elegido el procesador de gaming e infraestructura más potente del mercado actual para garantizar que las bandas de 25 personas y el PvP masivo fluyan con una suavidad extrema.</p>
+                <ul style="list-style:none; padding:0; margin:0;">
+                  <li style="margin-bottom:0.6rem; padding-left:1.25rem; position:relative;">
+                    <span style="position:absolute; left:0; color:#a8d8ff;">&#9670;</span>
+                    <strong style="color:#a8d8ff;">Cerebro:</strong> AMD Ryzen 9 9950X3D (16 Núcleos / 32 Hilos) – Rendimiento extremo para físicas y scripts complejos.
+                  </li>
+                  <li style="margin-bottom:0.6rem; padding-left:1.25rem; position:relative;">
+                    <span style="position:absolute; left:0; color:#a8d8ff;">&#9670;</span>
+                    <strong style="color:#a8d8ff;">Memoria:</strong> 192 GB RAM (3600 MHz) – Capacidad masiva para gestionar miles de conexiones y jugadores a la vez.
+                  </li>
+                  <li style="margin-bottom:0; padding-left:1.25rem; position:relative;">
+                    <span style="position:absolute; left:0; color:#a8d8ff;">&#9670;</span>
+                    <strong style="color:#a8d8ff;">Almacenamiento:</strong> 4× 960 GB SSD NVMe (Soft RAID) – Cargas de mundo instantáneas y guardado de datos ultrarrápido y ultra seguro para que nunca pierdas tu progreso.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Servidor de IA (Matrix green) -->
+          <div class="info-hang-card matrix" style="width:100%;">
+            <div class="info-card-inner">
+              <div class="info-card-coin-deco"></div>
+              <h3 style="font-family:'Cinzel Decorative',Georgia,serif; font-size:1.25rem; font-weight:800; line-height:1.3; margin-bottom:1rem; position:relative; z-index:1;
+                background:linear-gradient(180deg,#d4ffd4 0%,#39ff14 50%,#2ea810 100%);
+                -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:0.02em;">
+                🧠 Servidor de IA (El Cerebro)
+              </h3>
+              <div style="font-family:'Cinzel',Georgia,serif; font-size:0.88rem; line-height:1.8; color:#88d068; position:relative; z-index:1;">
+                <p style="margin-bottom:1rem;">Dar vida a nuestros Playerbots y procesar lenguaje natural en tiempo real no es magia, es potencia de cálculo puro. Contamos con un servidor dedicado exclusivamente a la Inteligencia Artificial para que los NPCs piensen y reaccionen al instante.</p>
+                <ul style="list-style:none; padding:0; margin:0;">
+                  <li style="margin-bottom:0.6rem; padding-left:1.25rem; position:relative;">
+                    <span style="position:absolute; left:0; color:#39ff14;">&#9670;</span>
+                    <strong style="color:#39ff14;">Acelerador Gráfico:</strong> NVIDIA L40S (Arquitectura Ada Lovelace) – Tecnología punta para procesar respuestas de chat y tácticas de combate en milisegundos.
+                  </li>
+                  <li style="margin-bottom:0.6rem; padding-left:1.25rem; position:relative;">
+                    <span style="position:absolute; left:0; color:#39ff14;">&#9670;</span>
+                    <strong style="color:#39ff14;">VRAM:</strong> 48 GB GDDR6 (ECC) – Memoria con corrección de errores para cálculos perfectos y sin fallos.
+                  </li>
+                  <li style="margin-bottom:0; padding-left:1.25rem; position:relative;">
+                    <span style="position:absolute; left:0; color:#39ff14;">&#9670;</span>
+                    <strong style="color:#39ff14;">Procesamiento:</strong> AMD EPYC 9124 (15 vCPUs) – Dedicado a coordinar los movimientos y el comportamiento hiperrealista de los bots.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: Changelog scroll panel -->
+        <div class="changelog-panel" style="width:100%;">
+          <div class="changelog-panel-header">
+            <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(240,200,80,0.5));">💡</span>
+            <span class="changelog-panel-title">Changelog de Correcciones</span>
+          </div>
+          <div class="changelog-panel-body" id="changelogBody">
+            <div class="changelog-loading" id="changelogLoading">Cargando changelog…</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-bg">
+      <div class="site-footer-content">
+        <p class="site-footer-disclaimer">
+          CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a.
+          Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.
+        </p>
+        <div class="site-footer-links">
+          <button class="site-footer-link" data-legal="tos">Términos de Servicio</button>
+          <span class="site-footer-sep">·</span>
+          <button class="site-footer-link" data-legal="privacy">Política de Privacidad</button>
+        </div>
+        <p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Legal Modals ===== -->
+  <div id="legalTosModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalTosTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <span class="legal-modal-title" id="legalTosTitle">Términos de Servicio</span>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Términos de Servicio</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+  <div id="legalPrivacyModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalPrivacyTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <span class="legal-modal-title" id="legalPrivacyTitle">Política de Privacidad</span>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Política de Privacidad</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/core.js"></script>
+  <script>
+    // ===== Changelog fetch =====
+    (function loadChangelog() {
+      var API_URL = 'https://apis.corelegacy.gg/changelog.php?locale=esES';
+      var body = document.getElementById('changelogBody');
+      var loading = document.getElementById('changelogLoading');
+
+      function escapeHtml(str) {
+        return String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      var monthNames = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        var parts = dateStr.split(' ');
+        var date = parts[0] || '';
+        var d = date.split('-');
+        if (d.length !== 3) return date;
+        return d[2] + ' ' + monthNames[parseInt(d[1], 10) - 1] + ' ' + d[0];
+      }
+
+      function parseCommitPrefix(commit) {
+        var match = commit.match(/^(\w+)\(([^)]+)\)/);
+        if (!match) return { prefix: '', scope: '', message: commit };
+        return { prefix: match[1], scope: match[2], message: commit.replace(/^\w+\([^)]+\):\s*/, '') };
+      }
+
+      fetch(API_URL)
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (response) {
+          var entries = response && response.data;
+          if (!Array.isArray(entries) || entries.length === 0) {
+            body.innerHTML = '<div class="changelog-loading">No hay entradas en el changelog todavía.</div>';
+            return;
+          }
+          entries = entries.filter(function (e) {
+            return !/NO PÚBLICO|NOT PUBLIC/i.test(e.commit || '');
+          });
+          if (entries.length === 0) {
+            body.innerHTML = '<div class="changelog-loading">No hay entradas en el changelog todavía.</div>';
+            return;
+          }
+          body.innerHTML = entries.map(function (e) {
+            var commit = (e.commit || '').replace(/\s*\(#[0-9]+\)\s*/g, ' ').trim();
+            var parsed = parseCommitPrefix(commit);
+            var scopeLabel = parsed.scope ? '<span class="cl-scope">' + escapeHtml(parsed.scope) + '</span> ' : '';
+            var prefixBadge = parsed.prefix ? '<span class="cl-tag cl-tag-prefix">' + escapeHtml(parsed.prefix) + '</span> ' : '';
+            return '<div class="changelog-entry">'
+              + '<div class="changelog-version">'
+              + prefixBadge + scopeLabel + escapeHtml(parsed.message)
+              + '</div>'
+              + '<div class="changelog-date">' + formatDate(e.dateadd) + '</div>'
+              + '</div>';
+          }).join('');
+        })
+        .catch(function (err) {
+          body.innerHTML = '<div class="changelog-error">No se pudo cargar el changelog. Inténtalo más tarde.</div>';
+        });
+    })();
+
+    // ===== Realm status live fetch =====
+    (function loadRealmStatus() {
+      var API_URL = 'https://apis.corelegacy.gg/realm_status.php?function=getstatus';
+      var loginRow = document.getElementById('statusLogin');
+      var realmRow = document.getElementById('statusRealm');
+      var meta = document.getElementById('statusMeta');
+
+      function setStatus(row, online, label) {
+        var dot = row.querySelector('.status-dot');
+        var state = row.querySelector('.status-row-state');
+        dot.className = 'status-dot ' + (online ? 'status-dot-online' : 'status-dot-offline');
+        state.className = 'status-row-state ' + (online ? 'online' : 'offline');
+        state.textContent = label;
+      }
+
+      function update() {
+        fetch(API_URL)
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function (res) {
+            var d = res.data || {};
+            var logonOnline = d.logon_status === 1;
+            var realmOnline = d.server_status === 1;
+            setStatus(loginRow, logonOnline, logonOnline ? 'ONLINE' : 'OFFLINE');
+            setStatus(realmRow, realmOnline, realmOnline ? 'ONLINE' : 'OFFLINE');
+            var now = new Date();
+            var hh = String(now.getHours()).padStart(2, '0');
+            var mm = String(now.getMinutes()).padStart(2, '0');
+            var ss = String(now.getSeconds()).padStart(2, '0');
+            meta.textContent = 'Última actualización: ' + hh + ':' + mm + ':' + ss + ' · Próxima en 60s';
+          })
+          .catch(function () {
+            setStatus(loginRow, false, 'ERROR');
+            setStatus(realmRow, false, 'ERROR');
+            meta.textContent = 'Error de conexión · Reintentando en 60s';
+          });
+      }
+
+      update();
+      setInterval(update, 60000);
+    })();
+
+    // ===== Copy realmlist to clipboard =====
+    (function copyRealmlist() {
+      var btn = document.getElementById('copyRealmlistBtn');
+      var value = document.getElementById('realmlistValue');
+      if (!btn || !value) return;
+      btn.addEventListener('click', function () {
+        var text = value.textContent.trim();
+        var done = function () {
+          btn.style.color = '#39ff14';
+          btn.style.borderColor = '#39ff1466';
+          btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+          setTimeout(function () {
+            btn.style.color = '';
+            btn.style.borderColor = '';
+            btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+          }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () {
+            var ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); done(); } catch (_) {}
+            document.body.removeChild(ta);
+          });
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text; document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); done(); } catch (_) {}
+          document.body.removeChild(ta);
+        }
+      });
+    })();
+  </script>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <button class="back-to-top" type="button" aria-label="Volver arriba">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+  <script>
+  (function () {
+    'use strict';
+    var bar = document.getElementById('readingProgress');
+    if (!bar) return;
+    function updateProgress() {
+      var st = window.scrollY || document.documentElement.scrollTop;
+      var sh = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = sh > 0 ? (st / sh) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  })();
+  </script>
+
+  <script src="/assets/legal.js"></script>
+</body>
+</html>

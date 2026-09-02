@@ -1,0 +1,380 @@
+[
+  {
+    "achievement_id": 457,
+    "name": "Primero del reino: Nivel 80",
+    "category": "general",
+    "icon": "achievement_level_80",
+    "icon_large": "/assets/icons/large/achievement_level_80.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_level_80.jpg",
+    "icon_small": "/assets/icons/small/achievement_level_80.jpg"
+  },
+  {
+    "achievement_id": 461,
+    "name": "Primero del reino: Caballero de la Muerte nivel 80",
+    "category": "class",
+    "icon": "spell_deathknight_classicon",
+    "icon_large": "/assets/icons/large/spell_deathknight_classicon.jpg",
+    "icon_medium": "/assets/icons/medium/spell_deathknight_classicon.jpg",
+    "icon_small": "/assets/icons/small/spell_deathknight_classicon.jpg"
+  },
+  {
+    "achievement_id": 460,
+    "name": "Primero del reino: Mago nivel 80",
+    "category": "class",
+    "icon": "classicon_mage",
+    "icon_large": "/assets/icons/large/classicon_mage.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_mage.jpg",
+    "icon_small": "/assets/icons/small/classicon_mage.jpg"
+  },
+  {
+    "achievement_id": 465,
+    "name": "Primero del reino: Paladín nivel 80",
+    "category": "class",
+    "icon": "classicon_paladin",
+    "icon_large": "/assets/icons/large/classicon_paladin.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_paladin.jpg",
+    "icon_small": "/assets/icons/small/classicon_paladin.jpg"
+  },
+  {
+    "achievement_id": 464,
+    "name": "Primero del reino: Sacerdote nivel 80",
+    "category": "class",
+    "icon": "classicon_priest",
+    "icon_large": "/assets/icons/large/classicon_priest.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_priest.jpg",
+    "icon_small": "/assets/icons/small/classicon_priest.jpg"
+  },
+  {
+    "achievement_id": 458,
+    "name": "Primero del reino: Pícaro nivel 80",
+    "category": "class",
+    "icon": "classicon_rogue",
+    "icon_large": "/assets/icons/large/classicon_rogue.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_rogue.jpg",
+    "icon_small": "/assets/icons/small/classicon_rogue.jpg"
+  },
+  {
+    "achievement_id": 467,
+    "name": "Primero del reino: Chamán nivel 80",
+    "category": "class",
+    "icon": "classicon_shaman",
+    "icon_large": "/assets/icons/large/classicon_shaman.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_shaman.jpg",
+    "icon_small": "/assets/icons/small/classicon_shaman.jpg"
+  },
+  {
+    "achievement_id": 463,
+    "name": "Primero del reino: Brujo nivel 80",
+    "category": "class",
+    "icon": "classicon_warlock",
+    "icon_large": "/assets/icons/large/classicon_warlock.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_warlock.jpg",
+    "icon_small": "/assets/icons/small/classicon_warlock.jpg"
+  },
+  {
+    "achievement_id": 459,
+    "name": "Primero del reino: Guerrero nivel 80",
+    "category": "class",
+    "icon": "classicon_warrior",
+    "icon_large": "/assets/icons/large/classicon_warrior.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_warrior.jpg",
+    "icon_small": "/assets/icons/small/classicon_warrior.jpg"
+  },
+  {
+    "achievement_id": 466,
+    "name": "Primero del reino: Druida nivel 80",
+    "category": "class",
+    "icon": "classicon_druid",
+    "icon_large": "/assets/icons/large/classicon_druid.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_druid.jpg",
+    "icon_small": "/assets/icons/small/classicon_druid.jpg"
+  },
+  {
+    "achievement_id": 462,
+    "name": "Primero del reino: Cazador nivel 80",
+    "category": "class",
+    "icon": "classicon_hunter",
+    "icon_large": "/assets/icons/large/classicon_hunter.jpg",
+    "icon_medium": "/assets/icons/medium/classicon_hunter.jpg",
+    "icon_small": "/assets/icons/small/classicon_hunter.jpg"
+  },
+  {
+    "achievement_id": 1406,
+    "name": "Primero del reino: Draenei nivel 80",
+    "category": "race",
+    "icon": "achievement_character_draenei_male",
+    "icon_large": "/assets/icons/large/achievement_character_draenei_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_draenei_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_draenei_male.jpg"
+  },
+  {
+    "achievement_id": 1405,
+    "name": "Primero del reino: Elfo de sangre nivel 80",
+    "category": "race",
+    "icon": "achievement_character_bloodelf_male",
+    "icon_large": "/assets/icons/large/achievement_character_bloodelf_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_bloodelf_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_bloodelf_male.jpg"
+  },
+  {
+    "achievement_id": 1407,
+    "name": "Primero del reino: Enano nivel 80",
+    "category": "race",
+    "icon": "achievement_character_dwarf_male",
+    "icon_large": "/assets/icons/large/achievement_character_dwarf_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_dwarf_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_dwarf_male.jpg"
+  },
+  {
+    "achievement_id": 1404,
+    "name": "Primero del reino: Gnomo nivel 80",
+    "category": "race",
+    "icon": "achievement_character_gnome_male",
+    "icon_large": "/assets/icons/large/achievement_character_gnome_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_gnome_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_gnome_male.jpg"
+  },
+  {
+    "achievement_id": 1408,
+    "name": "Primero del reino: Humano nivel 80",
+    "category": "race",
+    "icon": "achievement_character_human_male",
+    "icon_large": "/assets/icons/large/achievement_character_human_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_human_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_human_male.jpg"
+  },
+  {
+    "achievement_id": 1409,
+    "name": "Primero del reino: Elfo de la noche nivel 80",
+    "category": "race",
+    "icon": "achievement_character_nightelf_male",
+    "icon_large": "/assets/icons/large/achievement_character_nightelf_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_nightelf_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_nightelf_male.jpg"
+  },
+  {
+    "achievement_id": 1410,
+    "name": "Primero del reino: Orco nivel 80",
+    "category": "race",
+    "icon": "achievement_character_orc_male",
+    "icon_large": "/assets/icons/large/achievement_character_orc_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_orc_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_orc_male.jpg"
+  },
+  {
+    "achievement_id": 1411,
+    "name": "Primero del reino: Tauren nivel 80",
+    "category": "race",
+    "icon": "achievement_character_tauren_male",
+    "icon_large": "/assets/icons/large/achievement_character_tauren_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_tauren_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_tauren_male.jpg"
+  },
+  {
+    "achievement_id": 1412,
+    "name": "Primero del reino: Troll nivel 80",
+    "category": "race",
+    "icon": "achievement_character_troll_male",
+    "icon_large": "/assets/icons/large/achievement_character_troll_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_troll_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_troll_male.jpg"
+  },
+  {
+    "achievement_id": 1413,
+    "name": "Primero del reino: No-muerto nivel 80",
+    "category": "race",
+    "icon": "achievement_character_undead_male",
+    "icon_large": "/assets/icons/large/achievement_character_undead_male.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_character_undead_male.jpg",
+    "icon_small": "/assets/icons/small/achievement_character_undead_male.jpg"
+  },
+  {
+    "achievement_id": 1402,
+    "name": "Primero del reino: Conquistador de Naxxramas",
+    "category": "raids",
+    "icon": "inv_trinket_naxxramas06",
+    "icon_large": "/assets/icons/large/inv_trinket_naxxramas06.jpg",
+    "icon_medium": "/assets/icons/medium/inv_trinket_naxxramas06.jpg",
+    "icon_small": "/assets/icons/small/inv_trinket_naxxramas06.jpg"
+  },
+  {
+    "achievement_id": 1400,
+    "name": "Primero del reino: Buscador de magia",
+    "category": "raids",
+    "icon": "achievement_boss_malygos_01",
+    "icon_large": "/assets/icons/large/achievement_boss_malygos_01.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_boss_malygos_01.jpg",
+    "icon_small": "/assets/icons/small/achievement_boss_malygos_01.jpg"
+  },
+  {
+    "achievement_id": 456,
+    "name": "Primero del reino: Asesino de obsidiana",
+    "category": "raids",
+    "icon": "achievement_boss_sartharion_01",
+    "icon_large": "/assets/icons/large/achievement_boss_sartharion_01.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_boss_sartharion_01.jpg",
+    "icon_small": "/assets/icons/small/achievement_boss_sartharion_01.jpg"
+  },
+  {
+    "achievement_id": 3259,
+    "name": "Primero del reino: Defensor celestial",
+    "category": "raids",
+    "icon": "achievement_boss_algalon_01",
+    "icon_large": "/assets/icons/large/achievement_boss_algalon_01.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_boss_algalon_01.jpg",
+    "icon_small": "/assets/icons/small/achievement_boss_algalon_01.jpg"
+  },
+  {
+    "achievement_id": 3117,
+    "name": "Primero del reino: El fin de la muerte",
+    "category": "raids",
+    "icon": "achievement_boss_yoggsaron_01",
+    "icon_large": "/assets/icons/large/achievement_boss_yoggsaron_01.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_boss_yoggsaron_01.jpg",
+    "icon_small": "/assets/icons/small/achievement_boss_yoggsaron_01.jpg"
+  },
+  {
+    "achievement_id": 4078,
+    "name": "Primero del reino: Gran cruzado",
+    "category": "raids",
+    "icon": "achievement_boss_anubarak",
+    "icon_large": "/assets/icons/large/achievement_boss_anubarak.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_boss_anubarak.jpg",
+    "icon_small": "/assets/icons/small/achievement_boss_anubarak.jpg"
+  },
+  {
+    "achievement_id": 4576,
+    "name": "Primero del reino: La caída del Rey Exánime",
+    "category": "raids",
+    "icon": "achievement_boss_lichking",
+    "icon_large": "/assets/icons/large/achievement_boss_lichking.jpg",
+    "icon_medium": "/assets/icons/medium/achievement_boss_lichking.jpg",
+    "icon_small": "/assets/icons/small/achievement_boss_lichking.jpg"
+  },
+  {
+    "achievement_id": 1415,
+    "name": "Primero del reino: Alquimista gran maestro",
+    "category": "profession",
+    "icon": "trade_alchemy",
+    "icon_large": "/assets/icons/large/trade_alchemy.jpg",
+    "icon_medium": "/assets/icons/medium/trade_alchemy.jpg",
+    "icon_small": "/assets/icons/small/trade_alchemy.jpg"
+  },
+  {
+    "achievement_id": 1414,
+    "name": "Primero del reino: Forjador de armas/armaduras gran maestro",
+    "category": "profession",
+    "icon": "trade_blacksmithing",
+    "icon_large": "/assets/icons/large/trade_blacksmithing.jpg",
+    "icon_medium": "/assets/icons/medium/trade_blacksmithing.jpg",
+    "icon_small": "/assets/icons/small/trade_blacksmithing.jpg"
+  },
+  {
+    "achievement_id": 1416,
+    "name": "Primero del reino: Cocinero gran maestro",
+    "category": "profession",
+    "icon": "inv_misc_food_15",
+    "icon_large": "/assets/icons/large/inv_misc_food_15.jpg",
+    "icon_medium": "/assets/icons/medium/inv_misc_food_15.jpg",
+    "icon_small": "/assets/icons/small/inv_misc_food_15.jpg"
+  },
+  {
+    "achievement_id": 1417,
+    "name": "Primero del reino: Encantador gran maestro",
+    "category": "profession",
+    "icon": "trade_engraving",
+    "icon_large": "/assets/icons/large/trade_engraving.jpg",
+    "icon_medium": "/assets/icons/medium/trade_engraving.jpg",
+    "icon_small": "/assets/icons/small/trade_engraving.jpg"
+  },
+  {
+    "achievement_id": 1418,
+    "name": "Primero del reino: Ingeniero gran maestro",
+    "category": "profession",
+    "icon": "trade_engineering",
+    "icon_large": "/assets/icons/large/trade_engineering.jpg",
+    "icon_medium": "/assets/icons/medium/trade_engineering.jpg",
+    "icon_small": "/assets/icons/small/trade_engineering.jpg"
+  },
+  {
+    "achievement_id": 1419,
+    "name": "Primero del reino: Primeros auxilios gran maestro",
+    "category": "profession",
+    "icon": "spell_holy_sealofsacrifice",
+    "icon_large": "/assets/icons/large/spell_holy_sealofsacrifice.jpg",
+    "icon_medium": "/assets/icons/medium/spell_holy_sealofsacrifice.jpg",
+    "icon_small": "/assets/icons/small/spell_holy_sealofsacrifice.jpg"
+  },
+  {
+    "achievement_id": 1420,
+    "name": "Primero del reino: Pesca gran maestro",
+    "category": "profession",
+    "icon": "trade_fishing",
+    "icon_large": "/assets/icons/large/trade_fishing.jpg",
+    "icon_medium": "/assets/icons/medium/trade_fishing.jpg",
+    "icon_small": "/assets/icons/small/trade_fishing.jpg"
+  },
+  {
+    "achievement_id": 1421,
+    "name": "Primero del reino: Herborista gran maestro",
+    "category": "profession",
+    "icon": "spell_nature_naturetouchgrow",
+    "icon_large": "/assets/icons/large/spell_nature_naturetouchgrow.jpg",
+    "icon_medium": "/assets/icons/medium/spell_nature_naturetouchgrow.jpg",
+    "icon_small": "/assets/icons/small/spell_nature_naturetouchgrow.jpg"
+  },
+  {
+    "achievement_id": 1422,
+    "name": "Primero del reino: Inscriptor gran maestro",
+    "category": "profession",
+    "icon": "inv_inscription_tradeskill01",
+    "icon_large": "/assets/icons/large/inv_inscription_tradeskill01.jpg",
+    "icon_medium": "/assets/icons/medium/inv_inscription_tradeskill01.jpg",
+    "icon_small": "/assets/icons/small/inv_inscription_tradeskill01.jpg"
+  },
+  {
+    "achievement_id": 1427,
+    "name": "Primero del reino: Sastre gran maestro",
+    "category": "profession",
+    "icon": "trade_tailoring",
+    "icon_large": "/assets/icons/large/trade_tailoring.jpg",
+    "icon_medium": "/assets/icons/medium/trade_tailoring.jpg",
+    "icon_small": "/assets/icons/small/trade_tailoring.jpg"
+  },
+  {
+    "achievement_id": 1424,
+    "name": "Primero del reino: Peletero gran maestro",
+    "category": "profession",
+    "icon": "trade_leatherworking",
+    "icon_large": "/assets/icons/large/trade_leatherworking.jpg",
+    "icon_medium": "/assets/icons/medium/trade_leatherworking.jpg",
+    "icon_small": "/assets/icons/small/trade_leatherworking.jpg"
+  },
+  {
+    "achievement_id": 1425,
+    "name": "Primero del reino: Minero gran maestro",
+    "category": "profession",
+    "icon": "trade_mining",
+    "icon_large": "/assets/icons/large/trade_mining.jpg",
+    "icon_medium": "/assets/icons/medium/trade_mining.jpg",
+    "icon_small": "/assets/icons/small/trade_mining.jpg"
+  },
+  {
+    "achievement_id": 1426,
+    "name": "Primero del reino: Desuellador gran maestro",
+    "category": "profession",
+    "icon": "inv_misc_pelt_wolf_01",
+    "icon_large": "/assets/icons/large/inv_misc_pelt_wolf_01.jpg",
+    "icon_medium": "/assets/icons/medium/inv_misc_pelt_wolf_01.jpg",
+    "icon_small": "/assets/icons/small/inv_misc_pelt_wolf_01.jpg"
+  },
+  {
+    "achievement_id": 1463,
+    "name": "Primero del reino: Vanguardia de Rasganorte",
+    "category": "reputation",
+    "icon": "spell_misc_hellifrepvpcombatmorale",
+    "icon_large": "/assets/icons/large/spell_misc_hellifrepvpcombatmorale.jpg",
+    "icon_medium": "/assets/icons/medium/spell_misc_hellifrepvpcombatmorale.jpg",
+    "icon_small": "/assets/icons/small/spell_misc_hellifrepvpcombatmorale.jpg"
+  }
+]

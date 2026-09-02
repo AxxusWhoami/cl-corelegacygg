@@ -1,0 +1,25 @@
+# Permitir acceso general a motores de búsqueda y bots
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?q=
+
+# Permitir específicamente a OpenAI (ChatGPT / SearchGPT)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+# Permitir específicamente a Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+# Permitir específicamente a Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Permitir a Google para IA y resúmenes (Google-Extended)
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://corelegacy.gg/sitemap.xml

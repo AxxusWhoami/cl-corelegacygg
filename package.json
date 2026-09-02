@@ -1,0 +1,12 @@
+{
+  "name": "core-legacy",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npx tailwindcss -i ./assets/tailwind-input.css -o ./assets/tailwind.css --minify",
+    "dev": "npx serve . -p 5173"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

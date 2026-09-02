@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comunidad — Muro de Primeros del Reino &amp; Guías | World of Warcraft Wrath of the lich king en CoRe Legacy</title>
+  <meta name="description" content="Sigue en tiempo real los primeros hitos del reino de CoRe Legacy: primer nivel 80, maestros de profesión, jefes de banda y más. Además, encuentra guías de la comunidad." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/comunidad" />
+  <link rel="alternate" hreflang="es" href="https://corelegacy.gg/comunidad" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/comunidad" />
+
+  <meta property="og:title" content="Comunidad — Muro de Primeros del Reino & Guías | World of Warcraft Wrath of the lich king en CoRe Legacy" />
+  <meta property="og:description" content="Sigue en tiempo real los primeros hitos del reino y consulta las guías de la comunidad." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://corelegacy.gg/comunidad" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/logotipo_corelegacy.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Comunidad — Muro de Primeros del Reino & Guías | World of Warcraft Wrath of the lich king en CoRe Legacy" />
+  <meta name="twitter:description" content="Sigue en tiempo real los primeros hitos del reino y consulta las guías de la comunidad." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/logotipo_corelegacy.webp" />
+
+  <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/public/hero-citadel.webp" fetchpriority="high" />
+  <link rel="preconnect" href="https://accounts.corelegacy.gg" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-29RVG4TWST"></script>
+  <script defer>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29RVG4TWST');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Comunidad — CoRe Legacy",
+    "description": "Muro de Primeros del Reino y guías de la comunidad de CoRe Legacy.",
+    "url": "https://corelegacy.gg/comunidad",
+    "inLanguage": "es",
+    "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://corelegacy.gg/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Comunidad",
+        "item": "https://corelegacy.gg/comunidad"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CoRe Legacy" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <style>
+    /* ===== Nav ===== */
+    .nav-link {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ice-200);
+      padding: 0.6rem 1.2rem;
+      position: relative;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      color: var(--frost);
+      text-shadow: 0 0 12px var(--ice-300);
+      text-decoration: underline;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ice-300), transparent);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 80%;
+      left: 10%;
+    }
+    .nav-link.active {
+      color: var(--frost);
+      text-shadow: 0 0 12px var(--ice-300);
+    }
+    .nav-link.active::after {
+      width: 80%;
+      left: 10%;
+    }
+
+    /* ===== Section Title ===== */
+    .section-title {
+      font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+      font-weight: 900;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      background: linear-gradient(180deg, #ffffff 0%, #a8e4ff 40%, #1a9fd4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 24px #56c8f055;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Muro panel (gold, like changelog) ===== */
+    .muro-panel {
+      position: relative;
+      border: 1px solid #d4a84344;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(30,22,8,0.92) 0%, rgba(12,10,4,0.96) 100%);
+      box-shadow: 0 0 25px rgba(212,168,67,0.12), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(240,200,80,0.04);
+    }
+    .muro-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(240,200,80,0.3) 0%, rgba(212,168,67,0.1) 50%, rgba(180,120,30,0.2) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .muro-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(212,168,67,0.18) 0%, rgba(20,14,4,0.3) 100%);
+      border-bottom: 1px solid #d4a84333;
+    }
+    .muro-panel-header img {
+      width: 36px; height: 36px; object-fit: cover; border-radius: 8px;
+      border: 1px solid #f0c85055; box-shadow: 0 0 10px rgba(240,200,80,0.2);
+    }
+    .muro-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--gold-bright);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(212,168,67,0.3);
+    }
+    .muro-panel-body {
+      padding: 1.5rem 1.5rem 2rem;
+    }
+    .muro-intro {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.9rem; line-height: 1.8; color: #d4c080;
+      margin-bottom: 1.75rem;
+    }
+    .muro-intro strong {
+      color: #f0c850;
+      text-shadow: 0 0 8px rgba(240,200,80,0.2);
+    }
+
+    /* ===== Achievement card placeholder ===== */
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      max-height: 690px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: #d4a84355 transparent;
+    }
+    .achievement-grid::-webkit-scrollbar { width: 8px; }
+    .achievement-grid::-webkit-scrollbar-track { background: transparent; }
+    .achievement-grid::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #d4a84355, #8a6a2033);
+      border-radius: 4px;
+    }
+    .achievement-grid::-webkit-scrollbar-thumb:hover { background: #d4a84388; }
+    .achievement-card {
+      position: relative;
+      border: 1px solid #d4a84333;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(40,28,10,0.5) 0%, rgba(20,14,6,0.5) 100%);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .achievement-card:hover {
+      border-color: #f0c85066;
+      box-shadow: 0 0 16px rgba(212,168,67,0.12);
+      transform: translateY(-3px);
+    }
+    .achievement-card-placeholder {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.78rem;
+      color: #8a7a50;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+
+    /* ===== Achievement card filled ===== */
+    .achievement-card.filled {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 0.75rem 0.75rem;
+      min-height: auto;
+      text-align: center;
+      overflow: visible;
+    }
+    .achievement-card.filled .ach-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      border: 1px solid #f0c85055;
+      box-shadow: 0 0 10px rgba(240,200,80,0.18);
+      object-fit: cover;
+      flex-shrink: 0;
+      margin-bottom: 0.65rem;
+    }
+    .achievement-card.filled .ach-name {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--gold-bright);
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      text-shadow: 0 0 6px rgba(212,168,67,0.2);
+      margin-bottom: 0.3rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      min-height: 2.1em;
+    }
+    .achievement-card.filled .ach-character {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem;
+      color: #e8d8a0;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .achievement-card.filled .ach-date {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.66rem;
+      color: #8a7a50;
+      letter-spacing: 0.05em;
+      margin-top: 3px;
+    }
+    .achievement-card.filled.unclaimed {
+      opacity: 0.55;
+      filter: grayscale(0.6);
+    }
+    .achievement-card.filled.unclaimed:hover {
+      opacity: 0.85;
+      filter: grayscale(0.3);
+    }
+    .achievement-card.filled .ach-icon-locked {
+      filter: grayscale(0.7) brightness(0.7);
+    }
+    .achievement-card.filled .ach-vacant {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.68rem;
+      color: #6a5a3a;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+    }
+    .achievement-card.loading {
+      animation: achPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes achPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.7; }
+    }
+    .ach-error {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.78rem;
+      color: #a05050;
+      text-align: center;
+      padding: 2rem 1rem;
+      letter-spacing: 0.05em;
+    }
+    .ach-refresh-note {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.7rem;
+      color: #5a4a30;
+      letter-spacing: 0.05em;
+      text-align: right;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+
+    /* ===== Guías panel (frost) ===== */
+    .guias-panel {
+      border: 1px solid #4bbde844;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
+      box-shadow: 0 0 20px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .guias-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .guias-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid #4bbde833;
+    }
+    .guias-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--ice-100);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .guias-panel-body {
+      padding: 1.5rem 1.5rem 2rem;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .guias-panel-body.guias-populated {
+      text-align: left;
+    }
+    .guias-empty-icon {
+      font-size: 2.5rem;
+      filter: drop-shadow(0 0 12px rgba(77,189,232,0.3));
+      opacity: 0.6;
+      text-align: center;
+    }
+    .guias-empty-text {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.85rem;
+      color: #6a8a98;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+      max-width: 260px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    /* ===== Guía cards ===== */
+    .guia-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid #4bbde833;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8,22,36,0.6) 0%, rgba(4,12,22,0.6) 100%);
+      text-decoration: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .guia-card:hover {
+      border-color: #4bbde888;
+      box-shadow: 0 0 14px rgba(77,189,232,0.15);
+      transform: translateX(4px);
+    }
+    .guia-card-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(77,189,232,0.3));
+    }
+    .guia-card-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem;
+      color: var(--ice-100);
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+    .guia-card-arrow {
+      font-size: 1rem;
+      color: var(--ice-400);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .guia-card:hover .guia-card-arrow {
+      transform: translateX(4px);
+    }
+
+    /* ===== Guía modal ===== */
+    .guia-modal-backdrop {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(2,10,20,0.85);
+      backdrop-filter: blur(6px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .guia-modal-backdrop.open { opacity: 1; visibility: visible; }
+    .guia-modal {
+      position: relative;
+      width: min(720px, 92vw);
+      max-height: 85vh;
+      background: linear-gradient(180deg, #0a1828 0%, #050d18 100%);
+      border: 1px solid rgba(77,189,232,0.25);
+      border-radius: 14px;
+      box-shadow: 0 0 40px rgba(77,189,232,0.15), 0 20px 60px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.94);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .guia-modal-backdrop.open .guia-modal { transform: scale(1); }
+    .guia-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.12) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid rgba(77,189,232,0.2);
+    }
+    .guia-modal-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1.05rem; color: var(--ice-100);
+      letter-spacing: 0.04em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .guia-modal-close {
+      background: none; border: none; color: var(--ice-200);
+      font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;
+      line-height: 1; transition: color 0.3s ease;
+    }
+    .guia-modal-close:hover { color: var(--frost); }
+    .guia-modal-body {
+      padding: 1.75rem 2rem 2rem;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #4bbde855 transparent;
+    }
+    .guia-modal-body::-webkit-scrollbar { width: 8px; }
+    .guia-modal-body::-webkit-scrollbar-track { background: transparent; }
+    .guia-modal-body::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #4bbde855, #1a9fd433);
+      border-radius: 4px;
+    }
+    .guia-modal-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      border-top: 1px solid rgba(77,189,232,0.15);
+      background: rgba(4,10,20,0.5);
+    }
+    .guia-modal-note {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.7rem; color: #4a6580; letter-spacing: 0.08em;
+    }
+    .guia-modal-accept {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      color: var(--ice-100);
+      background: linear-gradient(135deg, rgba(77,189,232,0.2), rgba(26,159,212,0.15));
+      border: 1px solid rgba(77,189,232,0.35);
+      border-radius: 8px;
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .guia-modal-accept:hover {
+      background: linear-gradient(135deg, rgba(77,189,232,0.35), rgba(26,159,212,0.25));
+      border-color: rgba(77,189,232,0.6);
+    }
+
+    /* ===== Guía content ===== */
+    .guia-intro {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(77,189,232,0.12);
+    }
+    .guia-intro p {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.88rem; line-height: 1.8; color: #b8d4e8;
+    }
+    .guia-step-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.95rem;
+      color: var(--ice-100);
+      letter-spacing: 0.03em;
+      margin: 1.5rem 0 0.75rem;
+      text-shadow: 0 0 8px rgba(77,189,232,0.15);
+    }
+    .guia-step {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.85rem; line-height: 1.8; color: #a8c4d8;
+      margin-bottom: 0.5rem;
+    }
+    .guia-section {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.85rem; line-height: 1.8; color: #a8c4d8;
+      margin-bottom: 0.5rem;
+    }
+    .guia-section > p {
+      margin: 0.3rem 0;
+    }
+    .guia-section > p:first-of-type {
+      margin-top: 0.5rem;
+    }
+    .guia-substep {
+      margin: 0.35rem 0;
+      padding-left: 1rem;
+      border-left: 2px solid rgba(77,189,232,0.2);
+    }
+    .guia-note {
+      margin: 0.5rem 0 0;
+      font-size: 0.78rem;
+      color: #6a8a98;
+      font-style: italic;
+    }
+    .guia-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0;
+    }
+    .guia-list li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative;
+      font-size: 0.83rem;
+      line-height: 1.7;
+      color: #a8c4d8;
+    }
+    .guia-list li::before {
+      content: '❄';
+      position: absolute; left: 0; top: 0.55rem;
+      font-size: 0.7rem; color: var(--ice-400);
+    }
+    .guia-link {
+      color: var(--ice-300);
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    .guia-link:hover {
+      color: var(--frost);
+      text-shadow: 0 0 8px rgba(77,189,232,0.4);
+    }
+    .guia-table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-radius: 10px;
+      border: 1px solid rgba(77,189,232,0.18);
+    }
+    .guia-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+    .guia-table thead {
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,12,22,0.5) 100%);
+    }
+    .guia-table th,
+    .guia-table td {
+      padding: 0.7rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(77,189,232,0.1);
+    }
+    .guia-table thead th {
+      color: var(--ice-100);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 0.8rem;
+    }
+    .guia-table tbody th {
+      color: var(--frost);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .guia-table tbody td {
+      color: #a8c4d8;
+    }
+    .guia-table tbody tr:nth-child(even) {
+      background: rgba(8,22,36,0.3);
+    }
+    .guia-table tbody tr:hover {
+      background: rgba(77,189,232,0.06);
+    }
+    .guia-footer {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: 0.9rem;
+      color: var(--frost);
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(77,189,232,0.12);
+      text-shadow: 0 0 10px rgba(77,189,232,0.2);
+    }
+
+    /* ===== FAQ Accordion ===== */
+    .guia-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .guia-faq-item {
+      border: 1px solid rgba(77,189,232,0.18);
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,22,36,0.5) 0%, rgba(4,12,22,0.5) 100%);
+      transition: border-color 0.3s ease;
+    }
+    .guia-faq-item.open {
+      border-color: rgba(77,189,232,0.4);
+    }
+    .guia-faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem;
+      color: var(--ice-100);
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+      text-align: left;
+      transition: color 0.3s ease;
+    }
+    .guia-faq-question:hover {
+      color: var(--frost);
+    }
+    .guia-faq-icon {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      color: var(--ice-400);
+      margin-left: 0.75rem;
+      transition: transform 0.3s ease;
+      width: 1.2em;
+      text-align: center;
+    }
+    .guia-faq-item.open .guia-faq-icon {
+      transform: rotate(45deg);
+    }
+    .guia-faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .guia-faq-item.open .guia-faq-answer {
+      max-height: 500px;
+    }
+    .guia-faq-answer p {
+      padding: 0 1rem 0.85rem;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: #a8c4d8;
+    }
+
+    /* ===== Ayuda y soporte panel (frost, compact) ===== */
+    .ayuda-panel {
+      border: 1px solid #4bbde844;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
+      box-shadow: 0 0 20px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .ayuda-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .ayuda-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid #4bbde833;
+    }
+    .ayuda-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--ice-100);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .ayuda-panel-body {
+      padding: 2rem 1.5rem;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    .ayuda-empty-icon {
+      font-size: 2.5rem;
+      filter: drop-shadow(0 0 12px rgba(77,189,232,0.3));
+      opacity: 0.6;
+    }
+    .ayuda-empty-text {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.85rem;
+      color: #6a8a98;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+      max-width: 260px;
+    }
+
+    @media (max-width: 880px) {
+      .comunidad-layout { grid-template-columns: 1fr !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+      .snow-particle { display: none; }
+    }
+    .skip-link {
+      position: fixed; top: -100px; left: 1rem; z-index: 10000;
+      padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
+      color: #fff; font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 0 0 10px 10px;
+      border: 1px solid #7dd8f8; border-top: none; text-decoration: none;
+      transition: top 0.25s ease;
+    }
+    .skip-link:focus { top: 0; }
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid #7dd8f8; outline-offset: 2px; border-radius: 4px;
+    }
+    .reading-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 9999;
+      background: linear-gradient(90deg, #1a9fd4 0%, #7dd8f8 50%, #c8f0ff 100%);
+      box-shadow: 0 0 10px #56c8f088; transition: width 0.1s linear; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="#comunidad-content" class="skip-link">Saltar al contenido</a>
+
+  <!-- ===== Snowfall ===== -->
+  <div id="snowContainer"></div>
+
+  <!-- ===== Header ===== -->
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="1352" height="1005" decoding="async" class="h-12 w-auto" style="filter: drop-shadow(0 0 8px #56c8f066);" />
+        </a>
+
+        <!-- Nav -->
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
+          <a class="nav-link" href="/#caracteristicas" data-section="caracteristicas">Características</a>
+          <a class="nav-link active" href="/comunidad">Comunidad</a>
+          <a class="nav-link" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        </nav>
+
+        <!-- CTA + Mobile toggle -->
+        <div class="flex items-center gap-3">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile nav -->
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
+        <a class="nav-link block" href="/">Inicio</a>
+        <a class="nav-link block" href="/#caracteristicas">Características</a>
+        <a class="nav-link block active" href="/comunidad">Comunidad</a>
+        <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <!-- ===== Hero ===== -->
+  <section id="comunidad-hero" class="relative flex flex-col items-center justify-center overflow-hidden"
+    style="min-height: 70vh; background-image: url('/public/hero-citadel.webp'); background-size: cover; background-position: center; background-attachment: scroll;">
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, rgba(0,10,25,0.5) 0%, rgba(0,5,15,0.3) 40%, rgba(5,13,24,0.98) 100%);"></div>
+    <div class="max-w-7xl mx-auto relative z-10 w-full" style="padding: 8rem 1rem 3rem;">
+      <div class="text-center reveal">
+        <h1 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:900;
+          font-size: clamp(2rem,5.5vw,4.5rem); line-height:1.1;
+          background: linear-gradient(180deg,#fff 0%,#d4f0ff 15%,#8dd6f5 30%,#4bbde8 50%,#1a9fd4 70%,#0d6ea8 85%,#063d6b 100%);
+          -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+          animation: textGlow 3s ease-in-out infinite; margin-bottom:1rem;">Comunidad</h1>
+        <div class="frost-divider" style="width:120px; margin:0 auto 2.5rem;"></div>
+        <div style="max-width:780px; margin:0 auto;">
+          <h2 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:clamp(1.1rem,2.5vw,1.6rem); font-weight:800; line-height:1.3; margin-bottom:1.5rem;
+            background: linear-gradient(180deg,#d4f0ff 0%,#8dd6f5 40%,#4bbde8 80%,#2a8ec8 100%);
+            -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+            text-shadow:0 0 24px rgba(77,189,232,0.2); letter-spacing:0.02em;">
+            Donde los héroes dejan su huella
+          </h2>
+          <p style="font-family:'Cinzel',Georgia,serif; font-size:0.95rem; line-height:1.85; color:#b8d4e8;">
+            El reino abre sus puertas y cada hito está por escribirse. Sigue el progreso de los pioneros, consulta las guías de la comunidad y forma parte de la historia de CoRe Legacy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Content: two columns 70/30 ===== -->
+  <section id="comunidad-content" class="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(180deg, #050d18 0%, #081420 50%, #050d18 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal comunidad-layout" style="display:grid; grid-template-columns:7fr 3fr; gap:2.5rem; align-items:start;">
+
+        <!-- ===== Left column (70%): Muro de Primeros del Reino ===== -->
+        <div>
+          <div class="muro-panel" style="width:100%;">
+            <div class="muro-panel-header">
+              <img src="/public/muro.png" alt="Muro de Primeros" />
+              <span class="muro-panel-title">Muro de Primeros del Reino</span>
+            </div>
+            <div class="muro-panel-body">
+              <p class="muro-intro">
+                El servidor acaba de abrir sus puertas y el trono está vacío. Esta es tu oportunidad de dejar una marca imborrable en la comunidad. Desde el primer jugador en alcanzar el nivel 80 hasta el maestro indiscutible de cada profesión, los hitos de esta tabla están disponibles y buscan un nombre. Sigue el progreso en tiempo real, elige tu objetivo y demuestra tu dominio.
+              </p>
+              <p style="font-family:'Cinzel',Georgia,serif; font-size:0.82rem; line-height:1.7; color:#8a7a50; margin:0.75rem 0 0; text-align:center;">
+                Los personajes que utilizan la promoción no pueden conseguir los logros de Primero del Reino Nivel 80.
+              </p>
+
+              <!-- Achievement cards -->
+              <div class="achievement-grid" id="achievementGrid">
+                <div class="achievement-card loading">
+                  <div class="achievement-card-placeholder">Cargando...</div>
+                </div>
+              </div>
+              <div class="ach-refresh-note" id="achRefreshNote" style="display:none;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Right column (30%): Guías + Ayuda y soporte ===== -->
+        <div style="display:flex; flex-direction:column; gap:2rem;">
+          <div class="guias-panel" style="width:100%;">
+            <div class="guias-panel-header">
+              <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">📖</span>
+              <span class="guias-panel-title">Guías</span>
+            </div>
+            <div class="guias-panel-body" id="guiasBody">
+              <div class="guias-empty-icon">📖</div>
+              <div class="guias-empty-text">
+                Las guías de la comunidad aparecerán aquí muy pronto.
+              </div>
+            </div>
+          </div>
+
+          <div class="ayuda-panel" style="width:100%;">
+            <div class="ayuda-panel-header">
+              <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">🛡️</span>
+              <span class="ayuda-panel-title">Ayuda y soporte</span>
+            </div>
+            <div class="ayuda-panel-body" id="ayudaBody">
+              <div class="ayuda-empty-icon">🛡️</div>
+              <div class="ayuda-empty-text">
+                Próximamente encontrarás aquí recursos de ayuda y soporte.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-bg">
+      <div class="site-footer-content">
+        <p class="site-footer-disclaimer">
+          CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a.
+          Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.
+        </p>
+        <div class="site-footer-links">
+          <button class="site-footer-link" data-legal="tos">Términos de Servicio</button>
+          <span class="site-footer-sep">·</span>
+          <button class="site-footer-link" data-legal="privacy">Política de Privacidad</button>
+        </div>
+        <p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Guía Modal ===== -->
+  <div id="guiaModal" class="guia-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="guiaModalTitle">
+    <div class="guia-modal">
+      <div class="guia-modal-header">
+        <span class="guia-modal-title" id="guiaModalTitle"></span>
+        <button class="guia-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="guia-modal-body"></div>
+      <div class="guia-modal-footer">
+        <span class="guia-modal-note">CoRe Legacy — Guías de la comunidad</span>
+        <button class="guia-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Legal Modals ===== -->
+  <div id="legalTosModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalTosTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <span class="legal-modal-title" id="legalTosTitle">Términos de Servicio</span>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Términos de Servicio</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+  <div id="legalPrivacyModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalPrivacyTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <span class="legal-modal-title" id="legalPrivacyTitle">Política de Privacidad</span>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Política de Privacidad</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/core.js"></script>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <button class="back-to-top" type="button" aria-label="Volver arriba">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="/assets/legal.js"></script>
+  <script src="/assets/guias.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var bar = document.getElementById('readingProgress');
+    if (!bar) return;
+    function updateProgress() {
+      var st = window.scrollY || document.documentElement.scrollTop;
+      var sh = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = sh > 0 ? (st / sh) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  })();
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var CATEGORY_LABELS = {
+      general:    'General',
+      raids:      'Bandas',
+      class:      'Clase',
+      race:       'Raza',
+      profession: 'Profesión',
+      reputation: 'Reputación'
+    };
+
+    var grid = document.getElementById('achievementGrid');
+    var noteEl = document.getElementById('achRefreshNote');
+    if (!grid) return;
+
+    function escapeHtml(s) {
+      var d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function buildFilledCard(entry) {
+      var icon = entry.icon_medium || entry.icon_large || entry.icon_small || '';
+      var claimed = entry.claimed === true;
+      var dateStr = entry.date || '';
+      var parts = dateStr.split(/[- :]/);
+      if (parts.length >= 3) {
+        dateStr = parts[2] + '/' + parts[1] + '/' + parts[0];
+        if (parts[3]) dateStr += ' ' + parts[3] + ':' + (parts[4] || '00');
+      }
+
+      var cls = 'achievement-card filled' + (claimed ? '' : ' unclaimed');
+      var html = '<div class="' + cls + '">';
+      if (icon) {
+        html += '<img class="ach-icon' + (claimed ? '' : ' ach-icon-locked') + '" src="' + escapeHtml(icon) + '" alt="" loading="lazy" />';
+      }
+      html += '<div class="ach-name">' + escapeHtml(entry.name || entry.label || '') + '</div>';
+      if (claimed) {
+        html += '<div class="ach-character">' + escapeHtml(entry.character_name || '') + '</div>';
+        html += '<div class="ach-date">' + escapeHtml(dateStr) + '</div>';
+      } else {
+        html += '<div class="ach-vacant">Sin reclamar</div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function renderError(msg) {
+      grid.innerHTML = '<div class="ach-error">' + escapeHtml(msg || 'No se pudo cargar el muro.') + '</div>';
+    }
+
+    function renderData(data) {
+      var entries = data.entries || [];
+      if (entries.length === 0) {
+        grid.innerHTML = '<div class="achievement-card"><div class="achievement-card-placeholder">Aún no hay primeros del reino. ¡Sé el primero!</div></div>';
+        return;
+      }
+
+      // Show claimed achievements first, then unclaimed ones.
+      var claimed = [];
+      var unclaimed = [];
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].claimed === true) {
+          claimed.push(entries[i]);
+        } else {
+          unclaimed.push(entries[i]);
+        }
+      }
+      var sorted = claimed.concat(unclaimed);
+
+      var html = '';
+      for (var i = 0; i < sorted.length; i++) {
+        html += buildFilledCard(sorted[i]);
+      }
+      grid.innerHTML = html;
+
+      if (data.updated_at && noteEl) {
+        var d = data.updated_at;
+        var dp = d.split(/[- :]/);
+        var fmt = '';
+        if (dp.length >= 3) fmt = dp[2] + '/' + dp[1] + '/' + dp[0] + ' ' + (dp[3] || '') + ':' + (dp[4] || '00');
+        noteEl.textContent = 'Última actualización: ' + fmt;
+        noteEl.style.display = 'block';
+      }
+    }
+
+    function fetchRealmFirst() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/api/realmfirst.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status === 200) {
+          try {
+            var data = JSON.parse(xhr.responseText);
+            if (data && data.ok) {
+              renderData(data);
+              return;
+            }
+          } catch (e) {}
+          renderError();
+        } else {
+          renderError();
+        }
+      };
+      xhr.send();
+    }
+
+    fetchRealmFirst();
+  })();
+  </script>
+</body>
+</html>

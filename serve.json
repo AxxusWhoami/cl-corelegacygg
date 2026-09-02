@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/info-changelog", "destination": "/info-changelog.html" },
+    { "source": "/info-changelog/", "destination": "/info-changelog.html" },
+    { "source": "/comunidad", "destination": "/comunidad.html" },
+    { "source": "/comunidad/", "destination": "/comunidad.html" }
+  ]
+}

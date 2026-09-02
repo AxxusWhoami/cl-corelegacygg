@@ -1086,75 +1086,7 @@
       transform: translateY(-1px) scale(1.01);
     }
 
-    /* ===== Modal ===== */
-    @keyframes modalIn {
-      0% { opacity: 0; transform: translateY(24px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes overlayIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 50;
-      display: none; align-items: center; justify-content: center; padding: 1.5rem;
-      background: radial-gradient(circle at center, rgba(2,18,40,0.78) 0%, rgba(0,5,15,0.92) 100%);
-      backdrop-filter: blur(6px);
-    }
-    .modal-overlay.open {
-      display: flex;
-      animation: overlayIn 0.3s ease forwards;
-    }
-    .modal-card {
-      position: relative; width: 100%; max-width: 460px;
-      padding: 2.5rem 2rem 2.25rem;
-      border-radius: 18px;
-      border: 1px solid #7dd8f855;
-      background: linear-gradient(180deg, rgba(8,40,72,0.92) 0%, rgba(2,16,36,0.96) 100%);
-      box-shadow: 0 0 0 1px #0d6ea844, 0 0 40px #1a9fd455, inset 0 0 30px #56c8f01a, 0 24px 60px rgba(0,0,0,0.6);
-      animation: modalIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
-      text-align: center;
-    }
-    .modal-title {
-      font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
-      font-weight: 900; font-size: clamp(1.6rem, 5vw, 2.2rem); line-height: 1.2;
-      background: linear-gradient(180deg, #ffffff 0%, #a8e4ff 45%, #1a9fd4 100%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 24px #56c8f055;
-    }
-    .modal-text {
-      font-family: 'Cinzel', Georgia, serif; font-size: clamp(0.8rem, 2vw, 0.95rem); line-height: 1.5;
-      color: #a8d8f0; margin-top: 0.75rem;
-    }
-    .modal-input {
-      width: 100%; font-family: 'Cinzel', Georgia, serif; font-size: 0.95rem; color: #eaf8ff;
-      background: rgba(0,15,35,0.7); border: 1px solid #56c8f055; border-radius: 9999px;
-      padding: 0.85rem 1.3rem; outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .modal-input::placeholder { color: #6fa8c8; }
-    .modal-input:focus { border-color: #a8e4ff; box-shadow: 0 0 18px #56c8f066; }
-    .modal-submit {
-      width: 100%; font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: #02152e;
-      background: linear-gradient(180deg, #d4f0ff 0%, #7dd8f8 50%, #1a9fd4 100%);
-      border: none; border-radius: 9999px; padding: 0.9rem 1.5rem; cursor: pointer; font-weight: 600;
-      box-shadow: 0 0 24px #56c8f066; transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    }
-    .modal-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 0 34px #7dd8f8aa; }
-    .modal-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .modal-close {
-      position: absolute; top: 0.9rem; right: 1rem; width: 2.2rem; height: 2.2rem;
-      display: flex; align-items: center; justify-content: center; border-radius: 9999px;
-      border: 1px solid #56c8f044; background: rgba(0,15,35,0.6); color: #a8e4ff; font-size: 1.2rem; line-height: 1;
-      cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease;
-    }
-    .modal-close:hover { color: #ffffff; border-color: #a8e4ff; }
-    .modal-msg { font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem; min-height: 1.2rem; margin-top: 0.25rem; }
-    .modal-msg.error   { color: #ff9aa2; text-shadow: 0 0 10px #ff5c6655; }
-    .modal-msg.success { color: #8df5c4; text-shadow: 0 0 10px #56f0a855; }
-
-    /* ===== Audio Button ===== */
+/* ===== Audio Button ===== */
     /* ===== Feature masonry with chains ===== */
     .feature-masonry {
       column-count: 2;
@@ -2631,22 +2563,6 @@
     </div>
   </div>
 
-  <!-- ===== Newsletter Modal ===== -->
-  <div id="alertModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-card">
-      <button id="modalClose" class="modal-close" type="button" aria-label="Cerrar">&times;</button>
-      <div class="frost-divider" style="width:60%; margin:0 auto 1.25rem;"></div>
-      <h2 id="modalTitle" class="modal-title">Recibe la fecha de apertura</h2>
-      <p class="modal-text">Deja tu correo y serás de los primeros en conocer cuándo despertará el reino del hielo eterno.</p>
-      <form id="alertForm" novalidate style="margin-top:1.5rem; display:flex; flex-direction:column; gap:0.9rem;">
-        <input id="emailInput" class="modal-input" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" required />
-        <div id="modalMsg" class="modal-msg" aria-live="polite"></div>
-        <button id="submitBtn" class="modal-submit" type="submit">Avísame</button>
-      </form>
-      <div class="frost-divider" style="width:60%; margin:1.5rem auto 0;"></div>
-    </div>
-  </div>
-
   <script>
     // ===== Feature Data =====
     const FEATURES = [
@@ -2721,40 +2637,6 @@
       bars.forEach(function (bar) { obs.observe(bar); });
     })();
 
-    // ===== Newsletter modal + subscription =====
-    (function newsletter() {
-      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const modal = document.getElementById('alertModal');
-      const closeBtn = document.getElementById('modalClose');
-      const form = document.getElementById('alertForm');
-      const input = document.getElementById('emailInput');
-      const submitBtn = document.getElementById('submitBtn');
-      const msg = document.getElementById('modalMsg');
-
-      function setMsg(text, type) { msg.textContent = text; msg.className = 'modal-msg' + (type ? ' ' + type : ''); }
-      function openModal() { modal.classList.add('open'); setMsg('', ''); setTimeout(function () { input.focus(); }, 100); }
-      function closeModal() { modal.classList.remove('open'); }
-
-      closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
-
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const email = input.value.trim();
-        if (!EMAIL_RE.test(email) || email.length > 254) { setMsg('Introduce un correo electrónico válido.', 'error'); return; }
-        submitBtn.disabled = true;
-        setMsg('Enviando...', '');
-        try {
-          const res = await fetch('/api/subscribe.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) });
-          let data = {};
-          try { data = await res.json(); } catch (_) {}
-          if (res.ok && data.ok) { setMsg(data.message || 'Tu correo ha sido guardado.', 'success'); form.reset(); }
-          else { setMsg(data.message || 'No se pudo guardar tu correo. Inténtalo de nuevo.', 'error'); }
-        } catch (_) { setMsg('Error de conexión. Inténtalo de nuevo.', 'error'); }
-        finally { submitBtn.disabled = false; }
-      });
-    })();
   </script>
 
   <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>

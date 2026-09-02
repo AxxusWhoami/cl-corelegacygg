@@ -27,8 +27,7 @@ Sitio web del servidor privado de World of Warcraft: Wrath of the Lich King (Wot
 │
 ├── api/
 │   ├── proxy.php           # Proxy CORS para assets del visor 3D (Wowhead/ZAM)
-│   ├── realmfirst.php      # Logros "Realm First" con cache Redis
-│   └── subscribe.php      # Newsletter de lanzamiento
+│   └── realmfirst.php      # Logros "Realm First" con cache Redis
 │
 ├── assets/
 │   ├── core.css            # Estilos globales (fuentes, colores, animaciones)
@@ -94,9 +93,6 @@ Devuelve logros "Realm First" desde la base de datos `acore_characters`. Usa Red
   "updated_at": "2026-09-02T12:00:00Z"
 }
 ```
-
-### `api/subscribe.php`
-Suscripcion al newsletter de lanzamiento. Metodo POST con JSON `{"email":"..."}`. Auto-crea la tabla `launch_newsletter` si no existe. Registra pais del visitante via header de Cloudflare. Previene duplicados con `ON DUPLICATE KEY UPDATE`.
 
 ## JavaScript
 

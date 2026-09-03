@@ -711,6 +711,15 @@
     }
     .hl-msg.success { display: block; background: rgba(93,216,168,0.1); border: 1px solid #5dd8a844; color: #5dd8a8; }
     .hl-msg.error { display: block; background: rgba(160,80,80,0.1); border: 1px solid #a0505044; color: #a07070; }
+    .hl-input-error {
+      border-color: #a05050 !important;
+      box-shadow: 0 0 8px rgba(160,80,80,0.2) !important;
+    }
+    .hl-field-error {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.72rem; color: #e08080;
+      letter-spacing: 0.03em; margin-top: 0.15rem;
+    }
 
 
     /* ===== Guías panel (frost) ===== */
@@ -1487,14 +1496,10 @@
               <button type="button" class="hl-type-btn" data-type="video">Video de YouTube</button>
             </div>
           </div>
-          <div class="hl-field" id="hlUrlField">
-            <label for="hlMediaUrl" id="hlUrlLabel">URL de la imagen (opcional)</label>
-            <input type="url" id="hlMediaUrl" name="media_url" maxlength="512" placeholder="https://...jpg" />
-          </div>
           <div class="hl-field" id="hlFileField">
-            <label for="hlFile">O sube un archivo desde tu equipo</label>
+            <label for="hlFile">Sube tu archivo desde tu equipo</label>
             <div class="hl-file-area">
-              <input type="file" id="hlFile" name="media_file" accept="image/jpeg,image/png,image/gif,image/webp" />
+              <input type="file" id="hlFile" name="media_file" accept="image/jpeg,image/png,image/gif,image/webp" required />
               <span class="hl-file-hint" id="hlFileHint">JPG, PNG, GIF o WebP · máx. 10 MB</span>
             </div>
           </div>
@@ -1503,8 +1508,8 @@
             <input type="text" id="hlTitle" name="title" maxlength="120" required placeholder="Describe tu captura en pocas palabras" />
           </div>
           <div class="hl-field">
-            <label for="hlDescription">Descripción (opcional)</label>
-            <textarea id="hlDescription" name="description" maxlength="500" placeholder="Cuenta la historia detrás de la captura..."></textarea>
+            <label for="hlDescription">Descripción</label>
+            <textarea id="hlDescription" name="description" maxlength="500" required placeholder="Cuenta la historia detrás de la captura..."></textarea>
           </div>
           <button type="submit" class="hl-submit" id="hlSubmit">Enviar para revisión</button>
           <div class="hl-msg" id="hlMsg"></div>
@@ -1971,16 +1976,18 @@
     var form = document.getElementById('hlForm');
     var msgEl = document.getElementById('hlMsg');
     var submitBtn = document.getElementById('hlSubmit');
-    var urlLabel = document.getElementById('hlUrlLabel');
-    var urlInput = document.getElementById('hlMediaUrl');
     var fileInput = document.getElementById('hlFile');
     var fileHint = document.getElementById('hlFileHint');
-    var urlField = document.getElementById('hlUrlField');
     var fileField = document.getElementById('hlFileField');
     var typeBtns = document.querySelectorAll('.hl-type-btn');
     if (!openBtn || !modal || !form) return;
 
     var currentType = 'screenshot';
+    var MAX_SIZE = 10 * 1024 * 1024;
+    var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
+    var VID_ACCEPT = ['video/mp4','video/webm','video/quicktime'];
+    var IMG_HINT = 'JPG, PNG, GIF o WebP \u00b7 m\u00e1x. 10 MB';
+    var VID_HINT = 'MP4, WebM o MOV \u00b7 m\u00e1x. 10 MB';
 
     function openModal() {
       modal.classList.add('open');
@@ -1992,6 +1999,33 @@
       document.body.style.overflow = '';
       msgEl.className = 'hl-msg';
       msgEl.textContent = '';
+      clearErrors();
+    }
+
+    function showError(el, msg) {
+      el.classList.add('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (!hint) {
+        hint = document.createElement('span');
+        hint.className = 'hl-field-error';
+        el.parentNode.appendChild(hint);
+      }
+      hint.textContent = msg;
+    }
+
+    function clearError(el) {
+      el.classList.remove('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (hint) hint.remove();
+    }
+
+    function clearErrors() {
+      form.querySelectorAll('.hl-input-error').forEach(function (el) { el.classList.remove('hl-input-error'); });
+      form.querySelectorAll('.hl-field-error').forEach(function (el) { el.remove(); });
+    }
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     }
 
     openBtn.addEventListener('click', openModal);
@@ -2009,32 +2043,93 @@
         btn.classList.add('active');
         currentType = btn.getAttribute('data-type');
         if (currentType === 'video') {
-          urlLabel.textContent = 'URL del video de YouTube';
-          urlInput.placeholder = 'https://www.youtube.com/watch?v=...';
-          urlInput.required = true;
-          fileField.style.display = 'none';
+          fileInput.accept = VID_ACCEPT.join(',');
+          fileHint.textContent = VID_HINT;
         } else {
-          urlLabel.textContent = 'URL de la imagen (opcional)';
-          urlInput.placeholder = 'https://...jpg';
-          urlInput.required = false;
-          fileField.style.display = '';
+          fileInput.accept = IMG_ACCEPT.join(',');
+          fileHint.textContent = IMG_HINT;
         }
+        fileInput.value = '';
+        clearError(fileInput);
       });
     });
 
     fileInput.addEventListener('change', function () {
+      clearError(fileInput);
       if (fileInput.files && fileInput.files.length > 0) {
         var f = fileInput.files[0];
         fileHint.textContent = f.name + ' (' + Math.round(f.size / 1024) + ' KB)';
       } else {
-        fileHint.textContent = 'JPG, PNG, GIF o WebP \u00b7 m\u00e1x. 10 MB';
+        fileHint.textContent = currentType === 'video' ? VID_HINT : IMG_HINT;
       }
     });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      clearErrors();
       msgEl.className = 'hl-msg';
       msgEl.textContent = '';
+
+      var nameInput = document.getElementById('hlPlayerName');
+      var emailInput = document.getElementById('hlEmail');
+      var titleInput = document.getElementById('hlTitle');
+      var descInput = document.getElementById('hlDescription');
+      var valid = true;
+
+      if (!nameInput.value.trim()) {
+        showError(nameInput, 'Introduce el nombre de tu personaje.');
+        valid = false;
+      } else {
+        clearError(nameInput);
+      }
+
+      if (!emailInput.value.trim()) {
+        showError(emailInput, 'Introduce tu email de contacto.');
+        valid = false;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        showError(emailInput, 'El email no tiene un formato v\u00e1lido.');
+        valid = false;
+      } else {
+        clearError(emailInput);
+      }
+
+      if (!fileInput.files || fileInput.files.length === 0) {
+        showError(fileInput, 'Selecciona un archivo para subir.');
+        valid = false;
+      } else {
+        var f = fileInput.files[0];
+        var allowed = currentType === 'video' ? VID_ACCEPT : IMG_ACCEPT;
+        if (allowed.indexOf(f.type) === -1) {
+          showError(fileInput, 'El formato del archivo no es v\u00e1lido.');
+          valid = false;
+        } else if (f.size > MAX_SIZE) {
+          showError(fileInput, 'El archivo supera el tama\u00f1o m\u00e1ximo de 10 MB.');
+          valid = false;
+        } else {
+          clearError(fileInput);
+        }
+      }
+
+      if (!titleInput.value.trim()) {
+        showError(titleInput, 'Introduce un t\u00edtulo.');
+        valid = false;
+      } else {
+        clearError(titleInput);
+      }
+
+      if (!descInput.value.trim()) {
+        showError(descInput, 'Introduce una descripci\u00f3n.');
+        valid = false;
+      } else {
+        clearError(descInput);
+      }
+
+      if (!valid) {
+        msgEl.className = 'hl-msg error';
+        msgEl.textContent = 'Revisa los campos marcados antes de enviar.';
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
 
@@ -2056,11 +2151,8 @@
             typeBtns.forEach(function (b) { b.classList.remove('active'); });
             typeBtns[0].classList.add('active');
             currentType = 'screenshot';
-            urlLabel.textContent = 'URL de la imagen (opcional)';
-            urlInput.placeholder = 'https://...jpg';
-            urlInput.required = false;
-            fileField.style.display = '';
-            fileHint.textContent = 'JPG, PNG, GIF o WebP \u00b7 m\u00e1x. 10 MB';
+            fileInput.accept = IMG_ACCEPT.join(',');
+            fileHint.textContent = IMG_HINT;
             setTimeout(closeModal, 2500);
           } else {
             msgEl.className = 'hl-msg error';

@@ -34,11 +34,11 @@ function respond(int $status, array $payload): void
 }
 
 // Mapeo de tipos de arena: type => etiqueta.
-// type en arena_team: 0 = 2v2, 1 = 3v3, 2 = 5v5
+// AzerothCore usa 2 = 2v2, 3 = 3v3 y 5 = 5v5.
 $ARENA_TYPES = [
-    0 => '2v2',
-    1 => '3v3',
-    2 => '5v5',
+    2 => '2v2',
+    3 => '3v3',
+    5 => '5v5',
 ];
 
 // TTL de 1 hora para el caché de Redis (3600 segundos).

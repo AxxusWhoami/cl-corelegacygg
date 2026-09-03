@@ -63,7 +63,7 @@
           obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
     els.forEach(function (el) { obs.observe(el); });
 
     var gong = document.querySelector('.gong-reveal');

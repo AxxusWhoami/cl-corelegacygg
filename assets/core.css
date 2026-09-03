@@ -228,6 +228,12 @@ body {
 /* ===== Reveal on scroll ===== */
 .reveal { opacity: 0; }
 .reveal.visible { animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+/* No-JS fallback: if JS fails or is disabled, show everything */
+.no-js .reveal { opacity: 1; animation: none; }
+/* Mobile: reveal elements immediately to prevent tall sections from staying hidden */
+@media (max-width: 768px) {
+  .reveal { opacity: 1; animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+}
 
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar { width: 8px; }

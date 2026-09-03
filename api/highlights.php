@@ -6,7 +6,8 @@
 //   - media_type   (string: 'screenshot' | 'video', obligatorio)
 //   - title        (string, obligatorio, máx. 120)
 //   - description  (string, obligatorio, máx. 500)
-//   - media_file   (fichero, obligatorio) — captura o video subido por el usuario
+//   - media_file   (fichero, obligatorio si media_type=screenshot) — captura subida por el usuario
+//   - media_url    (string, obligatorio si media_type=video) — URL del video de YouTube
 // El fichero se guarda en /communityfootage/  (relativo a la raíz del proyecto).
 // El registro se guarda en la tabla `community_highlights` de la base $DB_WEB.
 // PHP 7.4 · mysqli · prepared statements · sin galería pública.
@@ -65,55 +66,62 @@ if ($description === '' || mb_strlen($description) > 500) {
 $uploadDir   = __DIR__ . '/../communityfootage';
 $maxFileSize = 10 * 1024 * 1024; // 10 MB
 
-// ===== Validar archivo subido =====
-if (!isset($_FILES['media_file']) || $_FILES['media_file']['error'] === UPLOAD_ERR_NO_FILE) {
-    respond(400, ['ok' => false, 'message' => 'Debes seleccionar un archivo para subir.']);
+$storedUrl = '';
+
+if ($mediaType === 'video') {
+    // ===== Validar URL de YouTube =====
+    $youtubeUrl = trim($_POST['media_url'] ?? '');
+    if ($youtubeUrl === '' || mb_strlen($youtubeUrl) > 512) {
+        respond(400, ['ok' => false, 'message' => 'Debes proporcionar una URL de YouTube válida.']);
+    }
+    if (!preg_match('#^https?://(www\.)?(youtube\.com/(watch\?v=|embed/|shorts/)|youtu\.be/)[\w-]{11}#i', $youtubeUrl)) {
+        respond(400, ['ok' => false, 'message' => 'La URL no es un enlace válido de YouTube.']);
+    }
+    $storedUrl = $youtubeUrl;
+} else {
+    // ===== Validar archivo subido (screenshot) =====
+    if (!isset($_FILES['media_file']) || $_FILES['media_file']['error'] === UPLOAD_ERR_NO_FILE) {
+        respond(400, ['ok' => false, 'message' => 'Debes seleccionar un archivo para subir.']);
+    }
+
+    $file = $_FILES['media_file'];
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        $msg = $file['error'] === UPLOAD_ERR_INI_SIZE || $file['error'] === UPLOAD_ERR_FORM_SIZE
+            ? 'El archivo es demasiado grande (máx. 10 MB).'
+            : 'Error al subir el archivo.';
+        respond(400, ['ok' => false, 'message' => $msg]);
+    }
+    if ($file['size'] > $maxFileSize) {
+        respond(400, ['ok' => false, 'message' => 'El archivo supera el tamaño máximo de 10 MB.']);
+    }
+
+    $allowedMime = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $detectedMime = finfo_file($finfo, $file['tmp_name']);
+    finfo_close($finfo);
+
+    if (!in_array($detectedMime, $allowedMime, true)) {
+        respond(400, ['ok' => false, 'message' => 'El archivo debe ser un formato válido (JPG, PNG, GIF o WebP).']);
+    }
+
+    $extMap = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
+
+    $ext = $extMap[$detectedMime];
+    $safeName = 'hl_' . date('Ymd_His') . '_' . bin2hex(random_bytes(6)) . '.' . $ext;
+
+    if (!is_dir($uploadDir)) {
+        @mkdir($uploadDir, 0755, true);
+    }
+    if (!is_dir($uploadDir)) {
+        respond(500, ['ok' => false, 'message' => 'No se pudo crear la carpeta de almacenamiento.']);
+    }
+
+    if (!move_uploaded_file($file['tmp_name'], $uploadDir . '/' . $safeName)) {
+        respond(500, ['ok' => false, 'message' => 'No se pudo guardar el archivo.']);
+    }
+    $storedUrl = '/communityfootage/' . $safeName;
 }
-
-$file = $_FILES['media_file'];
-if ($file['error'] !== UPLOAD_ERR_OK) {
-    $msg = $file['error'] === UPLOAD_ERR_INI_SIZE || $file['error'] === UPLOAD_ERR_FORM_SIZE
-        ? 'El archivo es demasiado grande (máx. 10 MB).'
-        : 'Error al subir el archivo.';
-    respond(400, ['ok' => false, 'message' => $msg]);
-}
-if ($file['size'] > $maxFileSize) {
-    respond(400, ['ok' => false, 'message' => 'El archivo supera el tamaño máximo de 10 MB.']);
-}
-
-$allowedMime = $mediaType === 'video'
-    ? ['video/mp4', 'video/webm', 'video/quicktime']
-    : ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-
-$finfo = finfo_open(FILEINFO_MIME_TYPE);
-$detectedMime = finfo_file($finfo, $file['tmp_name']);
-finfo_close($finfo);
-
-if (!in_array($detectedMime, $allowedMime, true)) {
-    $label = $mediaType === 'video'
-        ? 'MP4, WebM o MOV'
-        : 'JPG, PNG, GIF o WebP';
-    respond(400, ['ok' => false, 'message' => 'El archivo debe ser un formato válido (' . $label . ').']);
-}
-
-$extMap = $mediaType === 'video'
-    ? ['video/mp4' => 'mp4', 'video/webm' => 'webm', 'video/quicktime' => 'mov']
-    : ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
-
-$ext = $extMap[$detectedMime];
-$safeName = 'hl_' . date('Ymd_His') . '_' . bin2hex(random_bytes(6)) . '.' . $ext;
-
-if (!is_dir($uploadDir)) {
-    @mkdir($uploadDir, 0755, true);
-}
-if (!is_dir($uploadDir)) {
-    respond(500, ['ok' => false, 'message' => 'No se pudo crear la carpeta de almacenamiento.']);
-}
-
-if (!move_uploaded_file($file['tmp_name'], $uploadDir . '/' . $safeName)) {
-    respond(500, ['ok' => false, 'message' => 'No se pudo guardar el archivo.']);
-}
-$storedUrl = '/communityfootage/' . $safeName;
 
 // ===== Guardar en MySQL =====
 mysqli_report(MYSQLI_REPORT_OFF);

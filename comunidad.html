@@ -1503,6 +1503,11 @@
               <span class="hl-file-hint" id="hlFileHint">JPG, PNG, GIF o WebP · máx. 10 MB</span>
             </div>
           </div>
+          <div class="hl-field" id="hlUrlField" style="display:none;">
+            <label for="hlYoutubeUrl">URL del video de YouTube</label>
+            <input type="url" id="hlYoutubeUrl" name="media_url" maxlength="512" placeholder="https://www.youtube.com/watch?v=..." />
+            <span class="hl-file-hint" id="hlUrlHint">Pega el enlace completo del video de YouTube</span>
+          </div>
           <div class="hl-field">
             <label for="hlTitle">Título</label>
             <input type="text" id="hlTitle" name="title" maxlength="120" required placeholder="Describe tu captura en pocas palabras" />
@@ -1979,15 +1984,16 @@
     var fileInput = document.getElementById('hlFile');
     var fileHint = document.getElementById('hlFileHint');
     var fileField = document.getElementById('hlFileField');
+    var urlField = document.getElementById('hlUrlField');
+    var urlInput = document.getElementById('hlYoutubeUrl');
+    var urlHint = document.getElementById('hlUrlHint');
     var typeBtns = document.querySelectorAll('.hl-type-btn');
     if (!openBtn || !modal || !form) return;
 
     var currentType = 'screenshot';
     var MAX_SIZE = 10 * 1024 * 1024;
     var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
-    var VID_ACCEPT = ['video/mp4','video/webm','video/quicktime'];
     var IMG_HINT = 'JPG, PNG, GIF o WebP \u00b7 m\u00e1x. 10 MB';
-    var VID_HINT = 'MP4, WebM o MOV \u00b7 m\u00e1x. 10 MB';
 
     function openModal() {
       modal.classList.add('open');
@@ -2043,14 +2049,20 @@
         btn.classList.add('active');
         currentType = btn.getAttribute('data-type');
         if (currentType === 'video') {
-          fileInput.accept = VID_ACCEPT.join(',');
-          fileHint.textContent = VID_HINT;
+          fileField.style.display = 'none';
+          urlField.style.display = '';
+          fileInput.required = false;
+          urlInput.required = true;
         } else {
-          fileInput.accept = IMG_ACCEPT.join(',');
-          fileHint.textContent = IMG_HINT;
+          fileField.style.display = '';
+          urlField.style.display = 'none';
+          fileInput.required = true;
+          urlInput.required = false;
         }
         fileInput.value = '';
+        urlInput.value = '';
         clearError(fileInput);
+        clearError(urlInput);
       });
     });
 
@@ -2060,7 +2072,7 @@
         var f = fileInput.files[0];
         fileHint.textContent = f.name + ' (' + Math.round(f.size / 1024) + ' KB)';
       } else {
-        fileHint.textContent = currentType === 'video' ? VID_HINT : IMG_HINT;
+        fileHint.textContent = IMG_HINT;
       }
     });
 
@@ -2093,20 +2105,32 @@
         clearError(emailInput);
       }
 
-      if (!fileInput.files || fileInput.files.length === 0) {
-        showError(fileInput, 'Selecciona un archivo para subir.');
-        valid = false;
-      } else {
-        var f = fileInput.files[0];
-        var allowed = currentType === 'video' ? VID_ACCEPT : IMG_ACCEPT;
-        if (allowed.indexOf(f.type) === -1) {
-          showError(fileInput, 'El formato del archivo no es v\u00e1lido.');
+      if (currentType === 'video') {
+        var urlVal = urlInput.value.trim();
+        if (!urlVal) {
+          showError(urlInput, 'Pega la URL del video de YouTube.');
           valid = false;
-        } else if (f.size > MAX_SIZE) {
-          showError(fileInput, 'El archivo supera el tama\u00f1o m\u00e1ximo de 10 MB.');
+        } else if (!/^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|shorts\/)|youtu\.be\/)[\w-]{11}/.test(urlVal)) {
+          showError(urlInput, 'La URL no es un enlace v\u00e1lido de YouTube.');
           valid = false;
         } else {
-          clearError(fileInput);
+          clearError(urlInput);
+        }
+      } else {
+        if (!fileInput.files || fileInput.files.length === 0) {
+          showError(fileInput, 'Selecciona un archivo para subir.');
+          valid = false;
+        } else {
+          var f = fileInput.files[0];
+          if (IMG_ACCEPT.indexOf(f.type) === -1) {
+            showError(fileInput, 'El formato del archivo no es v\u00e1lido.');
+            valid = false;
+          } else if (f.size > MAX_SIZE) {
+            showError(fileInput, 'El archivo supera el tama\u00f1o m\u00e1ximo de 10 MB.');
+            valid = false;
+          } else {
+            clearError(fileInput);
+          }
         }
       }
 
@@ -2135,6 +2159,9 @@
 
       var fd = new FormData(form);
       fd.append('media_type', currentType);
+      if (currentType === 'video') {
+        fd.append('media_url', urlInput.value.trim());
+      }
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', '/api/highlights.php', true);
@@ -2151,7 +2178,10 @@
             typeBtns.forEach(function (b) { b.classList.remove('active'); });
             typeBtns[0].classList.add('active');
             currentType = 'screenshot';
-            fileInput.accept = IMG_ACCEPT.join(',');
+            fileField.style.display = '';
+            urlField.style.display = 'none';
+            fileInput.required = true;
+            urlInput.required = false;
             fileHint.textContent = IMG_HINT;
             setTimeout(closeModal, 2500);
           } else {

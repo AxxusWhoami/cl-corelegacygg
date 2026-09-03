@@ -21,6 +21,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(terminos-de-servicio|politica-de-privacidad)/?$ /index.html [L]
 
+# /caracteristicas -> /index.html (scroll handled by JS based on path)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^caracteristicas/?$ /index.html [L]
+
 # Guía deep links -> comunidad.html (modal opened via JS based on path)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

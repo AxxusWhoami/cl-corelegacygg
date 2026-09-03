@@ -167,7 +167,7 @@
         "@type": "ListItem",
         "position": 3,
         "name": "Características",
-        "item": "https://corelegacy.gg/#caracteristicas"
+        "item": "https://corelegacy.gg/caracteristicas"
       }
     ]
   }
@@ -1614,7 +1614,7 @@
   </style>
 </head>
 <body>
-  <a href="#caracteristicas" class="skip-link">Saltar al contenido</a>
+  <a href="/caracteristicas" class="skip-link">Saltar al contenido</a>
 
   <!-- ===== Snowfall ===== -->
   <div id="snowContainer"></div>
@@ -1633,7 +1633,7 @@
         <!-- Nav -->
         <nav class="hidden md:flex items-center gap-1" id="navMenu">
           <a class="nav-link" href="/" data-section="inicio">Inicio</a>
-          <a class="nav-link" href="#caracteristicas" data-section="caracteristicas">Características</a>
+          <a class="nav-link" href="/caracteristicas" data-section="caracteristicas">Características</a>
           <a class="nav-link" href="/comunidad">Comunidad</a>
           <a class="nav-link" href="/info-changelog">Server y Changelog</a>
           <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
@@ -1652,7 +1652,7 @@
       <!-- Mobile nav -->
       <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
         <a class="nav-link block" href="/" data-section="inicio">Inicio</a>
-        <a class="nav-link block" href="#caracteristicas" data-section="caracteristicas">Características</a>
+        <a class="nav-link block" href="/caracteristicas" data-section="caracteristicas">Características</a>
         <a class="nav-link block" href="/comunidad">Comunidad</a>
         <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
         <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
@@ -2648,6 +2648,20 @@
   </div>
 
   <script>
+    // ===== Handle /caracteristicas deep link =====
+    (function handleCaracteristicasDeepLink() {
+      var path = window.location.pathname.replace(/\/+$/, '');
+      if (path === '/caracteristicas') {
+        var target = document.getElementById('caracteristicas');
+        if (target) {
+          requestAnimationFrame(function () {
+            target.scrollIntoView({ behavior: 'smooth' });
+          });
+          history.replaceState({}, '', '/caracteristicas');
+        }
+      }
+    })();
+
     // ===== Nav active state on scroll =====
     (function navActive() {
       const links = document.querySelectorAll('.nav-link[data-section]');

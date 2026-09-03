@@ -316,6 +316,215 @@
       opacity: 0.7;
     }
 
+    /* ===== Arena Stats panel (frost) ===== */
+    .arena-panel {
+      position: relative;
+      border: 1px solid #4bbde844;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,18,30,0.92) 0%, rgba(4,10,20,0.96) 100%);
+      box-shadow: 0 0 25px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(77,189,232,0.03);
+    }
+    .arena-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .arena-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid #4bbde833;
+    }
+    .arena-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--ice-100);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .arena-panel-body {
+      padding: 1.5rem 1.5rem 2rem;
+    }
+    .arena-intro {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.9rem; line-height: 1.8; color: #a8c8d8;
+      margin-bottom: 1.5rem; text-align: center;
+    }
+    .arena-tabs {
+      display: flex; gap: 0.5rem; margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .arena-tab {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 1.5rem;
+      border: 1px solid #4bbde833;
+      border-radius: 8px;
+      background: rgba(8,22,36,0.5);
+      color: #6a8a98;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .arena-tab:hover {
+      border-color: #4bbde866;
+      color: #8dd6f5;
+      box-shadow: 0 0 12px rgba(77,189,232,0.1);
+    }
+    .arena-tab.active {
+      border-color: #4bbde8;
+      color: #d4f0ff;
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(13,110,168,0.08) 100%);
+      box-shadow: 0 0 16px rgba(77,189,232,0.2), inset 0 0 8px rgba(77,189,232,0.05);
+    }
+    .arena-table-wrap {
+      max-height: 500px;
+      overflow-y: auto;
+      border-radius: 10px;
+      border: 1px solid #1a3a5a44;
+      scrollbar-width: thin;
+      scrollbar-color: #4bbde855 transparent;
+    }
+    .arena-table-wrap::-webkit-scrollbar { width: 8px; }
+    .arena-table-wrap::-webkit-scrollbar-track { background: transparent; }
+    .arena-table-wrap::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #4bbde855, #1a3a5a33);
+      border-radius: 4px;
+    }
+    .arena-table-wrap::-webkit-scrollbar-thumb:hover { background: #4bbde888; }
+    .arena-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem;
+    }
+    .arena-table thead {
+      position: sticky; top: 0; z-index: 2;
+    }
+    .arena-table thead th {
+      background: linear-gradient(180deg, rgba(13,110,168,0.3) 0%, rgba(8,22,36,0.9) 100%);
+      color: #8dd6f5;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.75rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid #4bbde833;
+      white-space: nowrap;
+    }
+    .arena-table thead th.center { text-align: center; }
+    .arena-table tbody tr {
+      border-bottom: 1px solid #1a3a5a22;
+      transition: background 0.2s ease;
+    }
+    .arena-table tbody tr:hover {
+      background: rgba(77,189,232,0.05);
+    }
+    .arena-table tbody td {
+      padding: 0.65rem 0.85rem;
+      color: #b8d4e8;
+      vertical-align: middle;
+    }
+    .arena-table tbody td.center { text-align: center; }
+    .arena-rank {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.8rem; height: 1.8rem; border-radius: 50%;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 800; font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+    .arena-rank-1 { background: linear-gradient(135deg, rgba(240,200,80,0.25), rgba(180,120,30,0.1)); border: 1px solid #f0c850; color: #f0c850; box-shadow: 0 0 10px rgba(240,200,80,0.3); }
+    .arena-rank-2 { background: linear-gradient(135deg, rgba(192,192,192,0.2), rgba(128,128,128,0.1)); border: 1px solid #c0c0c0; color: #d0d0d0; }
+    .arena-rank-3 { background: linear-gradient(135deg, rgba(205,127,50,0.2), rgba(140,80,30,0.1)); border: 1px solid #cd7f32; color: #cd7f32; }
+    .arena-rank-default { background: rgba(77,189,232,0.08); border: 1px solid #4bbde833; color: #6a8a98; }
+    .arena-team-name {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; color: #d4f0ff;
+      font-size: 0.85rem; letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .arena-rating {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 800; font-size: 0.95rem;
+      color: #8dd6f5;
+      text-shadow: 0 0 8px rgba(77,189,232,0.3);
+    }
+    .arena-members {
+      display: flex; flex-wrap: wrap; gap: 0.35rem;
+    }
+    .arena-member {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      background: rgba(8,22,36,0.4);
+      border: 1px solid #1a3a5a33;
+      font-size: 0.76rem;
+      white-space: nowrap;
+      transition: border-color 0.2s ease;
+    }
+    .arena-member:hover {
+      border-color: #4bbde866;
+    }
+    .arena-member-name { font-weight: 600; }
+    .arena-member-rating {
+      color: #6a8a98; font-size: 0.7rem;
+    }
+    .arena-winrate {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.78rem;
+    }
+    .arena-winrate-bar {
+      width: 60px; height: 5px; border-radius: 3px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .arena-winrate-fill {
+      height: 100%; border-radius: 3px;
+      transition: width 0.6s ease;
+    }
+    .arena-empty {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem;
+      color: #6a8a98;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .arena-loading {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem;
+      color: #6a8a98;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 3rem 1rem;
+      animation: achPulse 1.5s ease-in-out infinite;
+    }
+    .arena-error {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem;
+      color: #a05050;
+      text-align: center;
+      padding: 2rem 1rem;
+      letter-spacing: 0.05em;
+    }
+    .arena-refresh-note {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.7rem;
+      color: #4a6580;
+      letter-spacing: 0.05em;
+      text-align: right;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    @media (max-width: 768px) {
+      .arena-table { font-size: 0.76rem; }
+      .arena-table thead th { font-size: 0.66rem; padding: 0.6rem 0.5rem; }
+      .arena-table tbody td { padding: 0.5rem 0.5rem; }
+      .arena-members { gap: 0.25rem; }
+      .arena-member { font-size: 0.7rem; padding: 0.15rem 0.4rem; }
+      .arena-winrate-bar { width: 40px; }
+    }
+
     /* ===== Guías panel (frost) ===== */
     .guias-panel {
       border: 1px solid #4bbde844;
@@ -957,6 +1166,44 @@
               <div class="ach-refresh-note" id="achRefreshNote" style="display:none;"></div>
             </div>
           </div>
+
+          <!-- ===== Arena Stats Panel ===== -->
+          <div class="arena-panel" style="width:100%; margin-top:2.5rem;">
+            <div class="arena-panel-header">
+              <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">&#9876;</span>
+              <span class="arena-panel-title">Estadísticas de Arena</span>
+            </div>
+            <div class="arena-panel-body">
+              <p class="arena-intro">
+                Los mejores gladiadores de CoRe Legacy se enfrentan en las arenas de Rasganorte. Consulta la clasificación en tiempo real de los equipos mejor valorados de cada modalidad.
+              </p>
+
+              <div class="arena-tabs" id="arenaTabs">
+                <button class="arena-tab active" type="button" data-bracket="2v2">2v2</button>
+                <button class="arena-tab" type="button" data-bracket="3v3">3v3</button>
+                <button class="arena-tab" type="button" data-bracket="5v5">5v5</button>
+              </div>
+
+              <div class="arena-table-wrap">
+                <table class="arena-table">
+                  <thead>
+                    <tr>
+                      <th style="width:3rem;">#</th>
+                      <th>Equipo</th>
+                      <th class="center" style="width:4.5rem;">Rating</th>
+                      <th>Miembros</th>
+                      <th class="center" style="width:5rem;">V/D Temp.</th>
+                      <th class="center" style="width:5rem;">% Win</th>
+                    </tr>
+                  </thead>
+                  <tbody id="arenaTableBody">
+                    <tr><td colspan="6"><div class="arena-loading">Cargando clasificación...</div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="arena-refresh-note" id="arenaRefreshNote" style="display:none;"></div>
+            </div>
+          </div>
         </div>
 
         <!-- ===== Right column (30%): Guías + Ayuda y soporte ===== -->
@@ -1329,6 +1576,130 @@
     }
 
     fetchRealmFirst();
+  })();
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var arenaData = null;
+    var activeBracket = '2v2';
+    var bodyEl = document.getElementById('arenaTableBody');
+    var noteEl = document.getElementById('arenaRefreshNote');
+    var tabsEl = document.getElementById('arenaTabs');
+    if (!bodyEl || !tabsEl) return;
+
+    function escapeHtml(s) {
+      var d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function rankClass(rank) {
+      if (rank === 1) return 'arena-rank-1';
+      if (rank === 2) return 'arena-rank-2';
+      if (rank === 3) return 'arena-rank-3';
+      return 'arena-rank-default';
+    }
+
+    function renderBracket(bracket) {
+      var teams = (arenaData && arenaData.brackets && arenaData.brackets[bracket]) || [];
+      if (teams.length === 0) {
+        bodyEl.innerHTML = '<tr><td colspan="6"><div class="arena-empty">Aún no hay equipos clasificados en esta modalidad. ¡Crea tu equipo y sé el primero!</div></td></tr>';
+        return;
+      }
+
+      var html = '';
+      for (var i = 0; i < teams.length; i++) {
+        var t = teams[i];
+        var rank = i + 1;
+        var winRate = t.season_games > 0 ? Math.round((t.season_wins / t.season_games) * 100) : 0;
+        var winColor = winRate >= 60 ? '#1eff00' : winRate >= 40 ? '#f0c850' : '#a05050';
+
+        html += '<tr>';
+        html += '<td><span class="arena-rank ' + rankClass(rank) + '">' + rank + '</span></td>';
+        html += '<td><span class="arena-team-name">' + escapeHtml(t.name || '') + '</span></td>';
+        html += '<td class="center"><span class="arena-rating">' + t.rating + '</span></td>';
+        html += '<td><div class="arena-members">';
+        for (var m = 0; m < t.members.length; m++) {
+          var mb = t.members[m];
+          html += '<span class="arena-member" style="color:' + mb.class_color + ';">';
+          html += '<span class="arena-member-name">' + escapeHtml(mb.name || '') + '</span>';
+          html += '<span class="arena-member-rating">' + mb.personal_rating + '</span>';
+          html += '</span>';
+        }
+        html += '</div></td>';
+        html += '<td class="center" style="white-space:nowrap;">' + t.season_wins + '/' + t.season_games + '</td>';
+        html += '<td class="center"><div class="arena-winrate">';
+        html += '<div class="arena-winrate-bar"><div class="arena-winrate-fill" style="width:' + winRate + '%; background:' + winColor + ';"></div></div>';
+        html += '<span style="color:' + winColor + ';">' + winRate + '%</span>';
+        html += '</div></td>';
+        html += '</tr>';
+      }
+      bodyEl.innerHTML = html;
+
+      if (arenaData && arenaData.updated_at && noteEl) {
+        var d = arenaData.updated_at;
+        var dp = d.split(/[- :]/);
+        var fmt = '';
+        if (dp.length >= 3) fmt = dp[2] + '/' + dp[1] + '/' + dp[0] + ' ' + (dp[3] || '') + ':' + (dp[4] || '00');
+        noteEl.textContent = 'Última actualización: ' + fmt;
+        noteEl.style.display = 'block';
+      }
+    }
+
+    function renderError(msg) {
+      bodyEl.innerHTML = '<tr><td colspan="6"><div class="arena-error">' + escapeHtml(msg || 'No se pudieron cargar las estadísticas de arena.') + '</div></td></tr>';
+    }
+
+    function switchBracket(bracket) {
+      activeBracket = bracket;
+      var tabs = tabsEl.querySelectorAll('.arena-tab');
+      for (var i = 0; i < tabs.length; i++) {
+        if (tabs[i].getAttribute('data-bracket') === bracket) {
+          tabs[i].classList.add('active');
+        } else {
+          tabs[i].classList.remove('active');
+        }
+      }
+      if (arenaData) {
+        renderBracket(bracket);
+      }
+    }
+
+    tabsEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('.arena-tab');
+      if (!btn) return;
+      var bracket = btn.getAttribute('data-bracket');
+      if (bracket && bracket !== activeBracket) {
+        switchBracket(bracket);
+      }
+    });
+
+    function fetchArenaStats() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/api/arenastats.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status === 200) {
+          try {
+            var data = JSON.parse(xhr.responseText);
+            if (data && data.ok) {
+              arenaData = data;
+              renderBracket(activeBracket);
+              return;
+            }
+          } catch (e) {}
+          renderError();
+        } else {
+          renderError();
+        }
+      };
+      xhr.send();
+    }
+
+    fetchArenaStats();
   })();
   </script>
 </body>

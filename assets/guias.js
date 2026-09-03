@@ -165,6 +165,171 @@
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' }
       }
     },
+    'guia-practica-avanzada-multibot': {
+      title: 'Guía Práctica y Avanzada de MultiBot',
+      icon: '🎮',
+      metaTitle: 'Guía del Addon MultiBot para WoW WotLK 3.3.5a en CoRe Legacy | Controla tu ejército de bots',
+      metaDescription: 'Aprende a usar el addon MultiBot en CoRe Legacy: controla visualmente tus altbots, gestiona equipo, talentos, misiones, estrategias de combate, formaciones tácticas y botín en World of Warcraft (WoW) WotLK 3.3.5a.',
+      html:
+        '<section class="guia-intro">' +
+          '<p>¡Bienvenido a la guía definitiva de MultiBot! Este addon es mucho más que una simple herramienta; es tu centro de mando personalizado para liderar a tus <strong>altbots</strong> (los personajes secundarios de tu cuenta que utilizas como compañeros controlados por la IA) de forma completamente visual e intuitiva.</p>' +
+          '<p>Atrás quedaron los días de escribir largos, complejos y tediosos comandos de texto en la ventana de chat, intentando recordar la sintaxis exacta en medio de un combate intenso. Con esta interfaz, tendrás el poder de orquestar a tu grupo como si fueras un director de orquesta. Podrás gestionar su equipo, configurar intrincadas combinaciones de talentos, completar misiones en masa y ejecutar complejas estrategias de combate en tiempo real con solo unos clics.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">Descarga e Instalación</h3>' +
+          '<p>¿Aún no tienes el addon? Puedes descargar la versión más reciente de MultiBot desde <a href="https://downloads.corelegacy.gg/MultiBot.zip" target="_blank" rel="noopener noreferrer" class="guia-link">este enlace directo</a>.</p>' +
+          '<p>Una vez descargado:</p>' +
+          '<ul class="guia-list">' +
+            '<li>Extrae el contenido del archivo comprimido (ZIP o RAR).</li>' +
+            '<li>Copia la carpeta extraída.</li>' +
+            '<li>Pégala dentro de la carpeta de tu juego en la siguiente ruta: <code>World of Warcraft/Interface/AddOns/</code>.</li>' +
+          '</ul>' +
+          '<p class="guia-note"><em>Nota: Asegúrate de que la carpeta se llame exactamente <strong>MultiBot</strong> sin guiones ni terminaciones como "-master".</em></p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">1. Primeros Pasos: ¿Cómo abrir y configurar MultiBot?</h3>' +
+          '<p>Una vez dentro de CoRe Legacy y con tu personaje principal en el mundo, puedes abrir la interfaz principal de MultiBot de varias maneras:</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Mediante comandos de chat rápidos:</strong> Escribiendo <code>/mb</code>, <code>/mbot</code> o <code>/multibot</code> y pulsando Enter.</li>' +
+            '<li><strong>El botón del minimapa:</strong> Haciendo clic izquierdo en el botón con forma de engranaje (o el ícono de MultiBot) que aparecerá en el borde de tu minimapa, podrás abrir o cerrar la interfaz en un segundo. Si haces clic derecho en este mismo botón, accederás directamente al panel de opciones avanzadas.</li>' +
+          '</ul>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Personalizando tu Interfaz (Layouts)</h4>' +
+          '<p>¿Sientes que la barra principal te tapa la visión? No hay problema.</p>' +
+          '<p class="guia-note"><em>💡 Consejo Pro: Puedes hacer clic derecho (o Ctrl + Clic derecho, según tu configuración) en cualquier zona vacía de la barra principal de MultiBot y arrastrarla para moverla a la parte de la pantalla que te resulte más cómoda.</em></p>' +
+          '<p>En las opciones avanzadas, puedes habilitar el <strong>Auto-ocultado</strong>: la barra desaparecerá cuando no la uses y reaparecerá al pasar el ratón. Además, si logras la configuración de ventanas perfecta (con el inventario por aquí, los talentos por allá), puedes guardar ese "Diseño" (Layout) y cargarlo en cualquiera de tus otros personajes.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">2. Encontrando, Conectando e Invitando a tus Bots</h3>' +
+          '<p>Para jugar con tu ejército personal, primero debes despertarlos. MultiBot organiza a los personajes en diferentes "Listas" (Rosters) sumamente prácticas. Puedes alternar entre ellas desde el menú desplegable situado en la interfaz principal:</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Grupo (Activos):</strong> Es tu lista principal durante el combate. Muestra únicamente a los bots que actualmente están formando grupo o banda contigo.</li>' +
+            '<li><strong>Mis Bots:</strong> La sala de espera. Aquí verás absolutamente todos los personajes de tu cuenta, sin importar si están conectados o desconectados.</li>' +
+            '<li><strong>Hermandad / Amigos:</strong> Muestra a los miembros de tu hermandad o lista de amigos. Los que estén online aparecerán primero.</li>' +
+            '<li><strong>Favoritos:</strong> Si tienes 30 personajes pero solo juegas con un equipo de 5 habitual, puedes marcar a esos 4 bots con una estrella. Solo ellos aparecerán en este filtro, ahorrándote mucho tiempo.</li>' +
+          '</ul>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">El Ciclo de Vida del Bot: Conectar y Desconectar</h4>' +
+          '<p>El sistema visual te indica el estado de tus bots: si un bot está apagado (desconectado), su barra aparecerá colapsada y atenuada.</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Para Conectar un bot:</strong> Ve a "Mis Bots", busca a tu personaje y haz clic izquierdo sobre su nombre. Magia: el personaje entrará al servidor en un instante y su barra se expandirá, revelando todos sus controles.</li>' +
+            '<li><strong>Para Desconectar un bot:</strong> Simplemente haz clic derecho sobre el nombre de un bot que esté conectado. Se desconectará de forma segura.</li>' +
+            '<li><strong>Botón de Pánico / Ahorro de tiempo:</strong> En la barra principal verás un botón general de "Alianza". Haz clic izquierdo para conectar a todos tus bots de golpe, o clic derecho para desconectarlos a todos a la vez.</li>' +
+          '</ul>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Invitación Rápida y Formación de Grupos</h4>' +
+          '<p>Crear un grupo manualmente es cosa del pasado. En la barra principal verás botones dorados para crear grupos instantáneamente. Puedes pulsar los botones de <strong>Grupo de 5</strong>, <strong>Banda de 10</strong>, <strong>Banda de 25</strong> o <strong>Banda de 40</strong>. Al pulsar uno de estos botones, el addon buscará en tu lista actual, conectará a los bots necesarios de forma transparente, y los invitará automáticamente hasta llenar ese cupo.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">3. La Barra de Acciones del Bot (EveryBar)</h3>' +
+          '<p>Cuando un bot ya está vivo y en tu grupo, verás una barra llena de pequeños iconos junto a su nombre. Esta barra, conocida como "EveryBar", es el corazón del control individual. Aquí detallamos las herramientas de las que dispones para cada personaje, sin tener que cerrar tu sesión para entrar en la suya:</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>⚔️ Combate:</strong> Abre el núcleo táctico del bot. Aquí defines si actuará como Tanque, Sanador o DPS, y qué estrategias de clase utilizará (lo veremos a fondo en la sección 4).</li>' +
+            '<li><strong>📖 Libro de Hechizos (Spellbook):</strong> Abre literalmente el libro de hechizos de tu bot. ¿Quieres que lance un bufo específico ahora mismo? Haz clic izquierdo en el hechizo. ¿Quieres crear una macro para tu propia barra de acción que haga que el bot lance ese hechizo? Haz clic derecho.</li>' +
+            '<li><strong>🌳 Talentos:</strong> Un panel completo donde puedes ver su rama actual, aplicarle plantillas prefabricadas (ej. Paladín Protección PvE, Mago Fuego PvP) o cambiar entre su especialización principal y secundaria al instante.</li>' +
+            '<li><strong>🎒 Inventario:</strong> Visualiza todas las mochilas del bot, incluyendo su llavero. Desde aquí puedes obligarle a equipar un objeto, usar una poción, o vender su basura gris al vendedor más cercano.</li>' +
+            '<li><strong>🛡️ AutoGear (Auto-Equipar):</strong> Un botón salvavidas. El bot evaluará todos los objetos de sus bolsas basándose en el GearScore (puntuación de equipo) y estadísticas, y se equipará automáticamente las mejores piezas disponibles para su clase.</li>' +
+            '<li><strong>🔧 Mantenimiento (Maintenance):</strong> ¿Estáis en la ciudad? Pulsa este botón. El bot buscará automáticamente a su entrenador de clase para aprender hechizos nuevos, reparará su equipo en el herrero más cercano, y comprará munición o consumibles básicos. Todo en un segundo.</li>' +
+            '<li><strong>🌀 Invocar (Summon):</strong> Si un bot se queda atascado detrás de una roca, se cae por un precipicio o se pierde por el camino, pulsa este botón. Será teletransportado exactamente a tus coordenadas actuales.</li>' +
+            '<li><strong>💀 Wipe (Reinicio forzado):</strong> Si un bot se "bugea" por completo (no ataca, no se mueve), este botón lo matará y lo resucitará de inmediato para reiniciar completamente su inteligencia artificial.</li>' +
+          '</ul>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">4. Estrategias de Combate, Sinergias y Pulls</h3>' +
+          '<p>El verdadero poder de MultiBot reside en cómo combaten tus personajes. Un grupo mal configurado morirá rápidamente, pero uno bien configurado puede hacer frente a jefes de banda.</p>' +
+          '<p>Haz clic en el botón de Combate (las espadas cruzadas) de cualquier bot para ver sus opciones. Estas opciones son dinámicas y cambian según la clase:</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Sinergias de Clase Específicas</h4>' +
+          '<p>No te limites a marcar "DPS" y olvidarte. Explora las estrategias exclusivas de cada clase para maximizar tu eficiencia:</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Caballero de la Muerte (DK):</strong> Puedes forzar en qué Presencia luchan (Sangre para curarse/tanquear, Escarcha, Profano) y dictar si su daño en área se centrará en enfermedades (Profano-AOE) o explosiones heladas (Escarcha-AOE).</li>' +
+            '<li><strong>Druidas y Paladines (Los Híbridos):</strong> Puedes asignarles el rol de OffHeal (harán daño, pero si el grupo baja de vida, lanzarán curas de emergencia) o Healer-DPS (su prioridad total es curar, pero si todos están al 100% de vida, lanzarán hechizos dañinos para ayudar).</li>' +
+            '<li><strong>Cazadores:</strong> Tienes un control total sobre la mascota (Invocar, abandonar, poner en Agresivo/Pasivo). Una estrategia brillante es el Trapweave: el cazador disparará desde lejos, pero correrá rápidamente al cuerpo a cuerpo para soltar una trampa explosiva cuando sea seguro, y volverá a su posición.</li>' +
+            '<li><strong>Chamanes:</strong> Su panel te permite elegir exactamente qué 4 tótems plantarán en el suelo al iniciar el combate (ej. Tótem de tremor para jefes que asustan, Tótem de corriente de sanación para daño constante).</li>' +
+            '<li><strong>Magos y Brujos:</strong> A los magos puedes activarles Firestarter para que busquen aperturas de combate con hechizos instantáneos. A los brujos les puedes dictar exactamente qué maldición mantener activa sobre el jefe (Elementos, Agonía, Debilidad) y qué demonio invocar.</li>' +
+          '</ul>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Controlando el Inicio del Combate (El "Pull")</h4>' +
+          '<p>Imagina que estás frente a un grupo de 5 élites en una mazmorra. Si todos atacan a lo loco, el sanador generará amenaza (aggro), los monstruos irán a por él y moriréis. Para eso sirve el menú Pull en tu barra principal:</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Safe Pull (Pull Seguro):</strong> La estrategia recomendada. Los bots esperarán a que tú (o tu bot tanque) deis el primer golpe. No harán absolutamente nada hasta que el combate haya iniciado oficialmente, e incluso puedes configurar un Wait Time (Tiempo de espera) de 3 a 5 segundos. Esto permite que el Tanque acumule amenaza antes de que los DPS magos o pícaros empiecen a hacer daño masivo, evitando que les roben la atención de los enemigos.</li>' +
+            '<li><strong>AoE Pack:</strong> Ideal para farmear o limpiar pasillos con enemigos débiles. En el momento en que inicies el ataque, todos los bots que tengan habilidades de área (Ventisca, Lluvia de Fuego, Torbellino) las usarán simultáneamente.</li>' +
+            '<li><strong>Single Target:</strong> Fuerza a todos a usar solo daño a un objetivo (DPS-Assist), ideal para enfocar daño en un jefe sin despertar a enemigos cercanos accidentalmente.</li>' +
+            '<li><strong>Íconos RTI (Marcas de objetivo):</strong> Pon una Calavera sobre un médico enemigo y una Cruz sobre el mago. A través del menú RTI de MultiBot, puedes ordenar que todos los DPS enfoquen a la Calavera inmediatamente.</li>' +
+          '</ul>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">5. Gestión Profunda del Inventario, Bancos y Botín</h3>' +
+          '<p>Manejar el espacio de las mochilas de 5 o 10 personajes es el mayor reto del multiboxing, pero MultiBot lo automatiza.</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">El Inventario Multibot</h4>' +
+          '<p>Al abrir la ventana de inventario de un bot, puedes arrastrar objetos de sus bolsas directamente a tu ventana de comercio para pasártelos. Los modos rápidos en la parte superior del inventario incluyen:</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Vender todo lo gris / vendible:</strong> Con el bot seleccionado cerca de un comerciante, un solo clic venderá toda su chatarra de forma segura (las llaves y la Piedra de Hogar están protegidas por código, es imposible que el bot las destruya o venda).</li>' +
+            '<li><strong>Bancos:</strong> Si el bot está cerca de un banquero, puedes abrir su banco personal (o el Banco de Hermandad) desde su panel e indicarle qué objetos depositar para ahorrar espacio.</li>' +
+          '</ul>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">El Sistema de Botín (Loot)</h4>' +
+          '<p>En la barra principal, el botón Loot define la codicia de tu grupo. Puedes decirles que no despojen nada (ideal para que tú recojas todo lo valioso), que recojan solo basura gris para hacer oro pasivo, o "Desencantar", donde se quedarán las armaduras para que tu alter encantador las rompa más tarde.</p>' +
+          '<p><strong>Maestro Despojador (LootMaster):</strong> Si pones el botín de la banda en Maestro Despojador, cada vez que caiga un objeto Épico, MultiBot abrirá una ventana emergente especial. En ella, verás el objeto y a tus bots candidatos. Lo revolucionario de esta ventana es que te muestra el GearScore de cada bot y te indica si el objeto es una mejora matemática para ellos. Puedes asignar el objeto al tanque que más lo necesita con un solo clic, e incluso guardar "Preferencias" para que el addon asigne automáticamente objetos idénticos en el futuro.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">6. Misiones y Profesiones: Sincronización Total</h3>' +
+          '<p>Subir de nivel en grupo es un placer gracias a la sincronización de misiones. No tienes que iniciar sesión en cada cuenta para aceptar la misma misión de recoger 10 pieles de lobo.</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Gestor de Misiones Globales</h4>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Hablar y Aceptar:</strong> Selecciona al PNJ que da la misión (NPC) y haz clic en "Aceptar Misiones" en el panel de MultiBot. Todos tus bots interactuarán con el PNJ simultáneamente y aceptarán todas las misiones disponibles.</li>' +
+            '<li><strong>Entregar:</strong> Funciona igual. Selecciona al PNJ, haz clic en entregar, y recibe las recompensas masivamente. Si la misión ofrece varias opciones de equipo como recompensa, el Reward Selector de la barra principal te ayudará a elegir la mejor pieza para cada bot según su clase.</li>' +
+            '<li><strong>Compartir:</strong> Si tú aceptas una misión por tu cuenta, abre tu registro, usa el panel del addon y pulsa "Compartir" para forzar a tus bots a aceptarla sin rechistar.</li>' +
+          '</ul>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Profesiones y Fabricación Dirigida</h4>' +
+          '<p>Tus bots son tus artesanos personales. En su panel de profesiones puedes ver las recetas de tu Herrero, Sastre o Alquimista. Si tienes un bot Encantador en tu grupo, no necesitas darle tus armas. Utiliza el <strong>Servicio de encantamiento</strong>: el addon abre una ventana de comercio especial, tú pones tu espada épica en la casilla de "no intercambiar", seleccionas el encantamiento en el menú del bot, y este aplicará la magia directamente a tu arma.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">7. Formaciones Tácticas y Posicionamiento Avanzado</h3>' +
+          '<p>El posicionamiento es la diferencia entre la vida y la muerte en el WoW. Los bots por defecto te siguen como patitos en fila, lo cual es terrible si un dragón escupe fuego en área hacia tu posición.</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Formaciones de Movimiento</h4>' +
+          '<p>Desde la barra principal, puedes forzar configuraciones geométricas:</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Flecha / Escudo:</strong> Los bots tanques y cuerpo a cuerpo se colocan por delante de ti para interceptar enemigos, mientras que los lanzadores de hechizos y sanadores se quedan rezagados a tus espaldas en una posición protegida.</li>' +
+            '<li><strong>Círculo:</strong> Todos los bots te rodean mirando hacia afuera, ideal para proteger a tu personaje (si eres el sanador) de enemigos que aparezcan por los flancos (como emboscadas de pícaros).</li>' +
+            '<li><strong>Tank Face:</strong> Esta orden hace que el bot que tenga la atención (aggro) del jefe, gire inmediatamente al enemigo para que le dé la espalda al resto del grupo. Crucial para evitar ataques de barrido frontal o alientos de dragón.</li>' +
+          '</ul>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Herramientas de Supervivencia: Dispersión y Huida (Flee)</h4>' +
+          '<p><strong>Dispersión (Disperse):</strong> Haz clic para que los bots rompan su formación actual y se separen inmediatamente unos de otros en todas direcciones. Esta herramienta es vital para la supervivencia de tu grupo frente a mecánicas de jefes que exigen movimiento rápido. Por ejemplo: si el jefe lanza zonas de fuego (Void Zones) bajo los pies del grupo, o empieza a conjurar una Cadena de relámpagos que rebota e inflige un daño letal si tus personajes están pegados. Puedes ajustar la distancia exacta de esta separación (desde una sutil corrección de 1 yarda hasta un pánico de 100 yardas) para garantizar que nadie reciba daño colateral mientras reorganizas el combate de forma segura.</p>' +
+          '<p><strong>Huida (Flee):</strong> ¿El tanque ha muerto y el jefe va a por la retaguardia? Abre el menú Flee y ordena solo a los Sanadores o a los Ranged (personajes a distancia) que salgan corriendo en dirección opuesta para salvarse, mientras los pícaros o guerreros se quedan intentando rascar los últimos puntos de daño.</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Control Estratégico en Tiempo Real (RTSC)</h4>' +
+          '<p>Esta es una característica avanzada para jugadores tácticos. Activa el RTSC en la barra principal. Esto te permite usar una bengala (similar a las áreas de efecto) para marcar un punto X en el suelo. Una vez marcado, puedes enviar órdenes precisas: "Mandar a todos los Sanadores y Magos a esas coordenadas exactas". Ellos correrán hasta la marca y se quedarán plantados allí, ideal para mantenerlos a salvo en terrenos elevados o detrás de pilares para evitar la línea de visión de las habilidades enemigas.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">8. Solución de Problemas Frecuentes</h3>' +
+          '<p>Incluso a los mejores comandantes se les atasca la radio de vez en cuando. Si algo no funciona como debería, revisa estos puntos:</p>' +
+          '<div class="guia-faq" id="guiaFaq">' +
+            '<div class="guia-faq-item">' +
+              '<button class="guia-faq-question" type="button">' +
+                '<span>El addon no carga o no responde al hacer clic</span>' +
+                '<span class="guia-faq-icon">+</span>' +
+              '</button>' +
+              '<div class="guia-faq-answer"><p>Verifica la ruta de instalación. Es obligatorio que la carpeta se llame exactamente <strong>MultiBot</strong> (sin guiones ni números extra) y esté ubicada en tu ruta de <code>World of Warcraft/Interface/AddOns/</code>. Si el nombre de la carpeta tiene un "-master" al final (algo común al descargar de GitHub), debes borrarlo.</p></div>' +
+            '</div>' +
+            '<div class="guia-faq-item">' +
+              '<button class="guia-faq-question" type="button">' +
+                '<span>No veo a mis personajes en la lista</span>' +
+                '<span class="guia-faq-icon">+</span>' +
+              '</button>' +
+              '<div class="guia-faq-answer"><p>Asegúrate de estar en la pestaña correcta ("Mis Bots"). Haz clic derecho en el filtro para forzar una actualización profunda con el servidor. Verifica también que no tengas puesto accidentalmente un Filtro de Clase (por ejemplo, buscar Brujos cuando solo tienes Guerreros).</p></div>' +
+            '</div>' +
+            '<div class="guia-faq-item">' +
+              '<button class="guia-faq-question" type="button">' +
+                '<span>Las estrategias de combate no se aplican (Los bots no hacen caso)</span>' +
+                '<span class="guia-faq-icon">+</span>' +
+              '</button>' +
+              '<div class="guia-faq-answer"><p>Esto significa que hay un problema de conexión temporal con el sistema central del servidor (conocido como el "Bridge"). Normalmente se soluciona reiniciando la inteligencia de los bots. Usa el botón Reset Bots o dales un Wipe desde su menú individual para forzar su reinicio.</p></div>' +
+            '</div>' +
+            '<div class="guia-faq-item">' +
+              '<button class="guia-faq-question" type="button">' +
+                '<span>¡Sigo viendo mensajes de texto de los bots en el chat de grupo o susurros!</span>' +
+                '<span class="guia-faq-icon">+</span>' +
+              '</button>' +
+              '<div class="guia-faq-answer"><p>Esto es completamente normal y no significa que el addon esté fallando. Aunque MultiBot fue diseñado específicamente para transformar tu experiencia en algo casi 100% visual y libre de comandos manuales, el sistema central del servidor en el que se basa (conocido históricamente como Playerbots) originalmente funcionaba de forma exclusiva a través de texto escrito. Por lo tanto, el servidor inteligente a veces sigue utilizando estos mensajes de chat como un sistema de respaldo o como "alertas de estado" orgánicas para informarte de eventos críticos que requieren tu atención urgente como líder del grupo. Ejemplos prácticos: es muy común que leas a tus bots avisándote por el chat de grupo diciendo "Me estoy quedando sin maná", si a tu cazador se le acabaron las flechas y susurra "No puedo atacar", si sus mochilas están completamente llenas al intentar despojar botín, o si te avisan de que no pueden curarte porque estás fuera de su línea de visión. En lugar de ver esto como un error del addon, considéralo como un canal de comunicación táctica inmersivo de tu equipo, como si realmente hablaran por radio. Si en algún momento sientes que la cantidad de texto es excesiva durante un combate de banda grande (40 bots hablando a la vez), recuerda que siempre puedes configurar una pestaña de chat separada en la interfaz predeterminada de WoW para agrupar los mensajes del grupo, o usar las "Opciones" en la barra principal de MultiBot para ajustar los límites de "Mensajes por segundo", manteniendo tu ventana de chat principal limpia y libre de spam.</p></div>' +
+            '</div>' +
+          '</div>' +
+        '</section>' +
+        '<p class="guia-footer">¡Nos vemos dentro del juego!</p>'
+    },
     'guia-addon-dungeonclear': {
       title: 'Guía de Uso del Addon: DungeonClear',
       icon: '🤖',

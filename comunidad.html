@@ -572,6 +572,80 @@
     .hl-file-hint {
       font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem; color: #6a8a98; letter-spacing: 0.04em;
     }
+    .hl-cta {
+      text-align: center; padding: 0.5rem 0 0.5rem;
+    }
+    .hl-cta-text {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.88rem; line-height: 1.8; color: #a8c8d8;
+      margin-bottom: 1.5rem; max-width: 560px; margin-left: auto; margin-right: auto;
+    }
+    .hl-cta-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em;
+      padding: 0.8rem 2rem; border-radius: 10px;
+      border: 1px solid #4bbde8; cursor: pointer;
+      color: #d4f0ff;
+      background: linear-gradient(180deg, rgba(77,189,232,0.2) 0%, rgba(13,110,168,0.1) 100%);
+      transition: all 0.3s ease;
+    }
+    .hl-cta-btn:hover {
+      box-shadow: 0 0 20px rgba(77,189,232,0.3);
+      transform: translateY(-2px);
+    }
+    .hl-cta-btn svg { flex-shrink: 0; }
+    .hl-modal-backdrop {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(2,10,20,0.85); backdrop-filter: blur(6px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .hl-modal-backdrop.open { opacity: 1; visibility: visible; }
+    .hl-modal {
+      position: relative;
+      width: min(680px, 94vw);
+      max-height: 88vh;
+      background: linear-gradient(180deg, #0a1828 0%, #050d18 100%);
+      border: 1px solid rgba(77,189,232,0.25);
+      border-radius: 14px;
+      box-shadow: 0 0 40px rgba(77,189,232,0.15), 0 20px 60px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.94);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hl-modal-backdrop.open .hl-modal { transform: scale(1); }
+    .hl-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.5rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.12) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid rgba(77,189,232,0.2);
+    }
+    .hl-modal-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--ice-100);
+      letter-spacing: 0.04em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .hl-modal-close {
+      background: none; border: none; color: var(--ice-200);
+      font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;
+      line-height: 1; transition: color 0.3s ease;
+    }
+    .hl-modal-close:hover { color: var(--frost); }
+    .hl-modal-body {
+      padding: 1.5rem 2rem 2rem;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #4bbde855 transparent;
+    }
+    .hl-modal-body::-webkit-scrollbar { width: 8px; }
+    .hl-modal-body::-webkit-scrollbar-track { background: transparent; }
+    .hl-modal-body::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #4bbde855, #1a9fd433);
+      border-radius: 4px;
+    }
     .hl-section-title {
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
       font-weight: 700; font-size: 0.85rem; color: #8dd6f5;
@@ -1378,56 +1452,71 @@
           <span class="hl-panel-title">Destacados de la Comunidad</span>
         </div>
         <div class="hl-panel-body">
-          <p class="hl-intro">
-            Comparte tus mejores momentos en CoRe Legacy. Envía una captura de pantalla o un enlace de YouTube y nuestro equipo lo revisará para destacarlo en nuestras redes sociales.
-          </p>
-
-          <div class="hl-form-wrap">
-            <form class="hl-form" id="hlForm">
-              <div class="hl-form-row">
-                <div class="hl-field">
-                  <label for="hlPlayerName">Nombre del personaje</label>
-                  <input type="text" id="hlPlayerName" name="player_name" maxlength="32" required placeholder="Tu nombre en el servidor" />
-                </div>
-                <div class="hl-field">
-                  <label for="hlEmail">Email de contacto</label>
-                  <input type="email" id="hlEmail" name="email" maxlength="120" required placeholder="tucorreo@ejemplo.com" />
-                </div>
-              </div>
-              <div class="hl-field">
-                <label>Tipo de contenido</label>
-                <div class="hl-type-toggle">
-                  <button type="button" class="hl-type-btn active" data-type="screenshot">Captura de pantalla</button>
-                  <button type="button" class="hl-type-btn" data-type="video">Video de YouTube</button>
-                </div>
-              </div>
-              <div class="hl-field" id="hlUrlField">
-                <label for="hlMediaUrl" id="hlUrlLabel">URL de la imagen</label>
-                <input type="url" id="hlMediaUrl" name="media_url" maxlength="512" placeholder="https://...jpg" />
-              </div>
-              <div class="hl-field" id="hlFileField">
-                <label for="hlFile">O sube un archivo desde tu equipo</label>
-                <div class="hl-file-area">
-                  <input type="file" id="hlFile" name="media_file" accept="image/jpeg,image/png,image/gif,image/webp" />
-                  <span class="hl-file-hint" id="hlFileHint">JPG, PNG, GIF o WebP · máx. 10 MB</span>
-                </div>
-              </div>
-              <div class="hl-field">
-                <label for="hlTitle">Título</label>
-                <input type="text" id="hlTitle" name="title" maxlength="120" required placeholder="Describe tu captura en pocas palabras" />
-              </div>
-              <div class="hl-field">
-                <label for="hlDescription">Descripción (opcional)</label>
-                <textarea id="hlDescription" name="description" maxlength="500" placeholder="Cuenta la historia detrás de la captura..."></textarea>
-              </div>
-              <button type="submit" class="hl-submit" id="hlSubmit">Enviar para revisión</button>
-              <div class="hl-msg" id="hlMsg"></div>
-            </form>
+          <div class="hl-cta">
+            <p class="hl-cta-text">
+              ¿Tienes una captura épica o un video increíble de tus aventuras en CoRe Legacy? Compártelo con nosotros y podría ser destacado en nuestras redes sociales.
+            </p>
+            <button type="button" class="hl-cta-btn" id="hlOpenModal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Enviar tu contenido
+            </button>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ===== Modal de envío de destacados ===== -->
+  <div id="hlModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="hlModalTitle">
+    <div class="hl-modal">
+      <div class="hl-modal-header">
+        <span class="hl-modal-title" id="hlModalTitle">Enviar contenido para destacado</span>
+        <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="hl-modal-body">
+        <form class="hl-form" id="hlForm">
+          <div class="hl-form-row">
+            <div class="hl-field">
+              <label for="hlPlayerName">Nombre del personaje</label>
+              <input type="text" id="hlPlayerName" name="player_name" maxlength="32" required placeholder="Tu nombre en el servidor" />
+            </div>
+            <div class="hl-field">
+              <label for="hlEmail">Email de contacto</label>
+              <input type="email" id="hlEmail" name="email" maxlength="120" required placeholder="tucorreo@ejemplo.com" />
+            </div>
+          </div>
+          <div class="hl-field">
+            <label>Tipo de contenido</label>
+            <div class="hl-type-toggle">
+              <button type="button" class="hl-type-btn active" data-type="screenshot">Captura de pantalla</button>
+              <button type="button" class="hl-type-btn" data-type="video">Video de YouTube</button>
+            </div>
+          </div>
+          <div class="hl-field" id="hlUrlField">
+            <label for="hlMediaUrl" id="hlUrlLabel">URL de la imagen (opcional)</label>
+            <input type="url" id="hlMediaUrl" name="media_url" maxlength="512" placeholder="https://...jpg" />
+          </div>
+          <div class="hl-field" id="hlFileField">
+            <label for="hlFile">O sube un archivo desde tu equipo</label>
+            <div class="hl-file-area">
+              <input type="file" id="hlFile" name="media_file" accept="image/jpeg,image/png,image/gif,image/webp" />
+              <span class="hl-file-hint" id="hlFileHint">JPG, PNG, GIF o WebP · máx. 10 MB</span>
+            </div>
+          </div>
+          <div class="hl-field">
+            <label for="hlTitle">Título</label>
+            <input type="text" id="hlTitle" name="title" maxlength="120" required placeholder="Describe tu captura en pocas palabras" />
+          </div>
+          <div class="hl-field">
+            <label for="hlDescription">Descripción (opcional)</label>
+            <textarea id="hlDescription" name="description" maxlength="500" placeholder="Cuenta la historia detrás de la captura..."></textarea>
+          </div>
+          <button type="submit" class="hl-submit" id="hlSubmit">Enviar para revisión</button>
+          <div class="hl-msg" id="hlMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   </main>
 
@@ -1882,6 +1971,8 @@
   (function () {
     'use strict';
 
+    var openBtn = document.getElementById('hlOpenModal');
+    var modal = document.getElementById('hlModal');
     var form = document.getElementById('hlForm');
     var msgEl = document.getElementById('hlMsg');
     var submitBtn = document.getElementById('hlSubmit');
@@ -1892,9 +1983,30 @@
     var urlField = document.getElementById('hlUrlField');
     var fileField = document.getElementById('hlFileField');
     var typeBtns = document.querySelectorAll('.hl-type-btn');
-    if (!form) return;
+    if (!openBtn || !modal || !form) return;
 
     var currentType = 'screenshot';
+
+    function openModal() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      msgEl.className = 'hl-msg';
+      msgEl.textContent = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    modal.querySelector('.hl-modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
 
     typeBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -1954,6 +2066,7 @@
             urlInput.required = false;
             fileField.style.display = '';
             fileHint.textContent = 'JPG, PNG, GIF o WebP \u00b7 m\u00e1x. 10 MB';
+            setTimeout(closeModal, 2500);
           } else {
             msgEl.className = 'hl-msg error';
             msgEl.textContent = (data && data.message) || 'Error al enviar.';

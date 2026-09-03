@@ -5,7 +5,7 @@
 $DB_HOST = '127.0.0.1';
 $DB_USER = 'corelegacygg';
 $DB_PASS = 'A0M34kn0DH96tZ';
-$DB_WEB =  'corelegacygg';
+$DB_WEB  = 'corelegacygg';
 $DB_CHAR = 'acore_characters';
 $DB_PORT = 3306;
 

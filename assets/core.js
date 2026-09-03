@@ -66,6 +66,10 @@
     }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
     els.forEach(function (el) { obs.observe(el); });
 
+    setTimeout(function () {
+      els.forEach(function (el) { if (!el.classList.contains('visible')) el.classList.add('visible'); });
+    }, 3000);
+
     var gong = document.querySelector('.gong-reveal');
     if (gong) {
       var gongObs = new IntersectionObserver(function (entries) {

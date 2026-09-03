@@ -354,7 +354,10 @@
     var titleEl = modal.querySelector('.guia-modal-title');
     var bodyEl = modal.querySelector('.guia-modal-body');
     if (titleEl) titleEl.textContent = guide.title;
-    if (bodyEl) bodyEl.innerHTML = guide.html;
+    if (bodyEl) {
+      bodyEl.innerHTML = guide.html;
+      bodyEl.scrollTop = 0;
+    }
 
     initAccordion(bodyEl);
     injectFaqJsonLd(guide.title);

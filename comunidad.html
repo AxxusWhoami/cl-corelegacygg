@@ -1143,6 +1143,27 @@
       line-height: 1.7;
       max-width: 260px;
     }
+    .ayuda-intro {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.82rem; line-height: 1.7; color: #a8c8d8;
+      margin: 0 0 1.25rem; letter-spacing: 0.02em;
+    }
+    .ayuda-ticket-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      width: 100%;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em;
+      padding: 0.8rem 1.5rem; border-radius: 10px;
+      border: 1px solid #4bbde8; cursor: pointer;
+      color: #d4f0ff;
+      background: linear-gradient(180deg, rgba(77,189,232,0.2) 0%, rgba(13,110,168,0.1) 100%);
+      transition: all 0.3s ease;
+    }
+    .ayuda-ticket-btn:hover {
+      box-shadow: 0 0 20px rgba(77,189,232,0.3);
+      transform: translateY(-2px);
+    }
+    .ayuda-ticket-btn svg { flex-shrink: 0; }
 
     /* ===== Calendar of Festivities ===== */
     .calendario-panel {
@@ -1437,11 +1458,14 @@
               <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">🛡️</span>
               <span class="ayuda-panel-title">Ayuda y soporte</span>
             </div>
-            <div class="ayuda-panel-body" id="ayudaBody">
-              <div class="ayuda-empty-icon">🛡️</div>
-              <div class="ayuda-empty-text">
-                Próximamente encontrarás aquí recursos de ayuda y soporte.
-              </div>
+            <div class="ayuda-panel-body" id="ayudaBody" style="justify-content:flex-start;align-items:stretch;text-align:left;">
+              <p class="ayuda-intro">
+                ¿Necesitas ayuda de un Maestro de Juego? Abre un ticket y el equipo de MJ te atenderá lo antes posible.
+              </p>
+              <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Contactar con un MJ (Abrir Ticket)
+              </button>
             </div>
           </div>
 
@@ -1536,6 +1560,62 @@
           </div>
           <button type="submit" class="hl-submit" id="hlSubmit">Enviar para revisión</button>
           <div class="hl-msg" id="hlMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal de contacto con MJ (ticket) ===== -->
+  <div id="tkModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="tkModalTitle">
+    <div class="hl-modal">
+      <div class="hl-modal-header">
+        <span class="hl-modal-title" id="tkModalTitle">Contactar con un MJ (Abrir Ticket)</span>
+        <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="hl-modal-body">
+        <form class="hl-form" id="tkForm">
+          <div class="hl-form-row">
+            <div class="hl-field">
+              <label for="tkPlayerName">Nombre del personaje</label>
+              <input type="text" id="tkPlayerName" name="player_name" maxlength="32" required placeholder="Tu nombre en el servidor" />
+            </div>
+            <div class="hl-field">
+              <label for="tkAccount">Cuenta</label>
+              <input type="text" id="tkAccount" name="account" maxlength="32" required placeholder="Nombre de tu cuenta" />
+            </div>
+          </div>
+          <div class="hl-form-row">
+            <div class="hl-field">
+              <label for="tkEmail">Email de contacto</label>
+              <input type="email" id="tkEmail" name="email" maxlength="120" required placeholder="tucorreo@ejemplo.com" />
+            </div>
+            <div class="hl-field">
+              <label for="tkCategory">Categoría</label>
+              <select id="tkCategory" name="category" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="general">Consulta general</option>
+                <option value="bug">Reporte de bug</option>
+                <option value="account">Problema de cuenta</option>
+                <option value="stuck">Personaje atascado</option>
+                <option value="harassment">Denuncia de jugador</option>
+                <option value="other">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="hl-field">
+            <label for="tkSubject">Asunto</label>
+            <input type="text" id="tkSubject" name="subject" maxlength="120" required placeholder="Resumen breve de tu consulta" />
+          </div>
+          <div class="hl-field">
+            <label for="tkDescription">Descripción</label>
+            <textarea id="tkDescription" name="description" maxlength="1000" required placeholder="Describe tu problema o consulta con el mayor detalle posible..."></textarea>
+          </div>
+          <div class="hl-field">
+            <label>Verificación de seguridad</label>
+            <div class="cf-turnstile" id="tkTurnstile" data-sitekey="0x4AAAAAAEpTHjxtASKkn48b" data-action="ticket_submit" data-theme="dark"></div>
+          </div>
+          <button type="submit" class="hl-submit" id="tkSubmit">Abrir ticket</button>
+          <div class="hl-msg" id="tkMsg"></div>
         </form>
       </div>
     </div>
@@ -2258,6 +2338,204 @@
             fileInput.required = true;
             urlInput.required = false;
             fileHint.textContent = IMG_HINT;
+            resetTurnstile();
+            setTimeout(closeModal, 2500);
+          } else {
+            msgEl.className = 'hl-msg error';
+            msgEl.textContent = (data && data.message) || 'Error al enviar.';
+          }
+        } catch (err) {
+          msgEl.className = 'hl-msg error';
+          msgEl.textContent = 'Error de conexi\u00f3n.';
+        }
+      };
+      xhr.send(fd);
+    });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var openBtn = document.getElementById('tkOpenModal');
+    var modal = document.getElementById('tkModal');
+    var form = document.getElementById('tkForm');
+    var msgEl = document.getElementById('tkMsg');
+    var submitBtn = document.getElementById('tkSubmit');
+    var turnstileContainer = document.getElementById('tkTurnstile');
+    if (!openBtn || !modal || !form) return;
+
+    var turnstileWidgetId = null;
+    var turnstileReady = false;
+
+    function renderTurnstile() {
+      if (turnstileWidgetId !== null || !turnstileContainer) return;
+      if (typeof window.turnstile === 'undefined') return;
+      turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: turnstileContainer.getAttribute('data-sitekey'),
+        theme: 'dark',
+        action: 'ticket_submit',
+        callback: function () { turnstileReady = true; },
+        'expired-callback': function () { turnstileReady = false; },
+        'error-callback': function () { turnstileReady = false; }
+      });
+    }
+
+    function resetTurnstile() {
+      turnstileReady = false;
+      if (turnstileWidgetId !== null && typeof window.turnstile !== 'undefined') {
+        window.turnstile.reset(turnstileWidgetId);
+      }
+    }
+
+    window.tkTurnstileCallback = function () {
+      renderTurnstile();
+    };
+
+    function openModal() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderTurnstile();
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      msgEl.className = 'hl-msg';
+      msgEl.textContent = '';
+      clearErrors();
+      resetTurnstile();
+    }
+
+    function showError(el, msg) {
+      el.classList.add('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (!hint) {
+        hint = document.createElement('span');
+        hint.className = 'hl-field-error';
+        el.parentNode.appendChild(hint);
+      }
+      hint.textContent = msg;
+    }
+
+    function clearError(el) {
+      el.classList.remove('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (hint) hint.remove();
+    }
+
+    function clearErrors() {
+      form.querySelectorAll('.hl-input-error').forEach(function (el) { el.classList.remove('hl-input-error'); });
+      form.querySelectorAll('.hl-field-error').forEach(function (el) { el.remove(); });
+    }
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    openBtn.addEventListener('click', openModal);
+    modal.querySelector('.hl-modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearErrors();
+      msgEl.className = 'hl-msg';
+      msgEl.textContent = '';
+
+      var nameInput = document.getElementById('tkPlayerName');
+      var accountInput = document.getElementById('tkAccount');
+      var emailInput = document.getElementById('tkEmail');
+      var categoryInput = document.getElementById('tkCategory');
+      var subjectInput = document.getElementById('tkSubject');
+      var descInput = document.getElementById('tkDescription');
+      var valid = true;
+
+      if (!nameInput.value.trim()) {
+        showError(nameInput, 'Introduce el nombre de tu personaje.');
+        valid = false;
+      } else {
+        clearError(nameInput);
+      }
+
+      if (!accountInput.value.trim()) {
+        showError(accountInput, 'Introduce el nombre de tu cuenta.');
+        valid = false;
+      } else {
+        clearError(accountInput);
+      }
+
+      if (!emailInput.value.trim()) {
+        showError(emailInput, 'Introduce tu email de contacto.');
+        valid = false;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        showError(emailInput, 'El email no tiene un formato v\u00e1lido.');
+        valid = false;
+      } else {
+        clearError(emailInput);
+      }
+
+      if (!categoryInput.value) {
+        showError(categoryInput, 'Selecciona una categor\u00eda.');
+        valid = false;
+      } else {
+        clearError(categoryInput);
+      }
+
+      if (!subjectInput.value.trim()) {
+        showError(subjectInput, 'Introduce un asunto.');
+        valid = false;
+      } else {
+        clearError(subjectInput);
+      }
+
+      if (!descInput.value.trim()) {
+        showError(descInput, 'Describe tu problema o consulta.');
+        valid = false;
+      } else {
+        clearError(descInput);
+      }
+
+      var turnstileToken = turnstileWidgetId !== null && typeof window.turnstile !== 'undefined'
+        ? window.turnstile.getResponse(turnstileWidgetId)
+        : '';
+      if (!turnstileToken) {
+        msgEl.className = 'hl-msg error';
+        msgEl.textContent = 'Completa la verificaci\u00f3n de seguridad antes de enviar.';
+        return;
+      }
+
+      if (!valid) {
+        msgEl.className = 'hl-msg error';
+        msgEl.textContent = 'Revisa los campos marcados antes de enviar.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      var fd = new FormData(form);
+      fd.append('cf_turnstile_response', turnstileToken);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/ticket.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Abrir ticket';
+        resetTurnstile();
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data && data.ok) {
+            msgEl.className = 'hl-msg success';
+            msgEl.textContent = data.message || 'Ticket enviado.';
+            form.reset();
             resetTurnstile();
             setTimeout(closeModal, 2500);
           } else {

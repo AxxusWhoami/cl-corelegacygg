@@ -38,3 +38,4 @@ $TURNSTILE_SITE_KEY   = '0x4AAAAAAEpTHjxtASKkn48b';   // Clave pública (se usa 
 $TURNSTILE_SECRET_KEY = '0x4AAAAAAEpTHnVPu5BOCYGNqp2tufw6fc4';  // Clave secreta (se usa en el backend)
 $TURNSTILE_ACTION     = 'highlight_submit';               // Acción esperada del widget
 $TURNSTILE_HOSTNAMES  = ['corelegacy.gg'];               // Dominios frontend permitidos
+$TURNSTILE_ACTIONS    = ['highlight_submit', 'ticket_submit']; // Acciones permitidas

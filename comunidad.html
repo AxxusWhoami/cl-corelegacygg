@@ -1164,6 +1164,84 @@
       transform: translateY(-2px);
     }
     .ayuda-ticket-btn svg { flex-shrink: 0; }
+    .ayuda-bug-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      width: 100%;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em;
+      padding: 0.8rem 1.5rem; border-radius: 10px;
+      border: 1px solid #a08050; cursor: pointer;
+      color: #f0d8a8;
+      background: linear-gradient(180deg, rgba(160,128,80,0.15) 0%, rgba(100,70,30,0.08) 100%);
+      transition: all 0.3s ease;
+    }
+    .ayuda-bug-btn:hover {
+      box-shadow: 0 0 20px rgba(160,128,80,0.3);
+      transform: translateY(-2px);
+    }
+    .ayuda-bug-btn svg { flex-shrink: 0; }
+
+    /* ===== Bug report modal ===== */
+    .bug-cat-grid {
+      display: flex; flex-direction: column; gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .bug-cat-card {
+      border: 1px solid #4bbde833;
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      cursor: pointer;
+      background: linear-gradient(180deg, rgba(8,22,36,0.5) 0%, rgba(4,12,22,0.5) 100%);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .bug-cat-card:hover {
+      border-color: #4bbde866;
+      box-shadow: 0 0 12px rgba(77,189,232,0.1);
+      transform: translateX(3px);
+    }
+    .bug-cat-card.selected {
+      border-color: #4bbde8;
+      background: linear-gradient(180deg, rgba(77,189,232,0.12) 0%, rgba(13,110,168,0.06) 100%);
+      box-shadow: 0 0 16px rgba(77,189,232,0.15);
+    }
+    .bug-cat-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.82rem; color: var(--ice-100);
+      letter-spacing: 0.04em; margin-bottom: 0.25rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .bug-cat-check {
+      width: 1.1rem; height: 1.1rem; border-radius: 50%;
+      border: 1.5px solid #4bbde855; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .bug-cat-card.selected .bug-cat-check {
+      border-color: #4bbde8;
+      background: #4bbde8;
+      box-shadow: 0 0 8px rgba(77,189,232,0.4);
+    }
+    .bug-cat-card.selected .bug-cat-check::after {
+      content: ''; width: 5px; height: 5px; border-radius: 50%; background: #050d18;
+    }
+    .bug-cat-desc {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.72rem; line-height: 1.6; color: #8a9aa8;
+      letter-spacing: 0.02em;
+      padding-left: 1.6rem;
+    }
+    .bug-form-section {
+      display: none;
+      flex-direction: column; gap: 0.85rem;
+    }
+    .bug-form-section.visible { display: flex; }
+    .bug-step-label {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.85rem; color: #8dd6f5;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid #4bbde833;
+    }
 
     /* ===== Calendar of Festivities ===== */
     .calendario-panel {
@@ -1466,6 +1544,10 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Contactar con un MJ (Abrir Ticket)
               </button>
+              <button type="button" class="ayuda-bug-btn" id="bgOpenModal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+                Reportar Bug
+              </button>
             </div>
           </div>
 
@@ -1617,6 +1699,95 @@
           <button type="submit" class="hl-submit" id="tkSubmit">Abrir ticket</button>
           <div class="hl-msg" id="tkMsg"></div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal de reporte de bugs ===== -->
+  <div id="bgModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bgModalTitle">
+    <div class="hl-modal" style="width:min(720px,94vw);">
+      <div class="hl-modal-header">
+        <span class="hl-modal-title" id="bgModalTitle">Reportar Bug</span>
+        <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="hl-modal-body">
+        <div class="bug-step-label">Paso 1 — Selecciona la categoría del bug</div>
+        <div class="bug-cat-grid" id="bgCatGrid">
+          <div class="bug-cat-card" data-cat="quests">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Misiones (Quests)</div>
+            <div class="bug-cat-desc">Misiones que no se pueden entregar, objetivos bugueados, eventos atascados o NPCs de misión desaparecidos.</div>
+          </div>
+          <div class="bug-cat-card" data-cat="spells">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Clases y Hechizos</div>
+            <div class="bug-cat-desc">Talentos que no se aplican bien, daño o curación incorrectos, auras/buffos que no funcionan, o mecánicas de mascota rotas.</div>
+          </div>
+          <div class="bug-cat-card" data-cat="pve">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Mazmorras y Bandas (PvE)</div>
+            <div class="bug-cat-desc">Mecánicas de jefes (bosses) rotas, puertas que no se abren, scripts de banda que no se inician, o problemas con los bloqueos (saves).</div>
+          </div>
+          <div class="bug-cat-card" data-cat="pvp">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Campos de Batalla y Arenas (PvP)</div>
+            <div class="bug-cat-desc">Problemas de emparejamiento, cálculo de índices (MMR), o fallos en las mecánicas de captura de banderas o bases.</div>
+          </div>
+          <div class="bug-cat-card" data-cat="loot">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Objetos y Botín (Loot)</div>
+            <div class="bug-cat-desc">Tasas de drop incorrectas, objetos que no otorgan las estadísticas indicadas, o problemas con las profesiones.</div>
+          </div>
+          <div class="bug-cat-card" data-cat="npc">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>NPCs y Entorno</div>
+            <div class="bug-cat-desc">Enemigos cayendo por debajo del mapa, rutas de patrulla erráticas, o personajes atascados (stuck).</div>
+          </div>
+          <div class="bug-cat-card" data-cat="bots">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>IA de Playerbots y Chat</div>
+            <div class="bug-cat-desc">Comportamiento errático de los bots del servidor, fallos al darles órdenes, o respuestas inesperadas/rotas en el sistema de chat integrado.</div>
+          </div>
+          <div class="bug-cat-card" data-cat="web">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Cuenta y Tienda Web</div>
+            <div class="bug-cat-desc">Problemas al recibir objetos comprados, fallos en el sistema de donaciones/votos, o errores al iniciar sesión en el panel.</div>
+          </div>
+          <div class="bug-cat-card" data-cat="exploits">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Exploits o Abuso</div>
+            <div class="bug-cat-desc">Una categoría discreta para que los jugadores reporten a otros aprovechándose de bugs o usando programas externos.</div>
+          </div>
+          <div class="bug-cat-card" data-cat="other">
+            <div class="bug-cat-title"><span class="bug-cat-check"></span>Otros</div>
+            <div class="bug-cat-desc">Cualquier problema menor que no encaje en las categorías anteriores.</div>
+          </div>
+        </div>
+
+        <div class="bug-form-section" id="bgFormSection">
+          <div class="bug-step-label">Paso 2 — Describe el bug</div>
+          <form class="hl-form" id="bgForm">
+            <div class="hl-form-row">
+              <div class="hl-field">
+                <label for="bgPlayerName">Nombre del personaje</label>
+                <input type="text" id="bgPlayerName" name="player_name" maxlength="32" required placeholder="Tu nombre en el servidor" />
+              </div>
+              <div class="hl-field">
+                <label for="bgAccount">Cuenta</label>
+                <input type="text" id="bgAccount" name="account" maxlength="32" required placeholder="Nombre de tu cuenta" />
+              </div>
+            </div>
+            <div class="hl-field">
+              <label for="bgEmail">Email de contacto</label>
+              <input type="email" id="bgEmail" name="email" maxlength="120" required placeholder="tucorreo@ejemplo.com" />
+            </div>
+            <div class="hl-field">
+              <label for="bgSubject">Asunto</label>
+              <input type="text" id="bgSubject" name="subject" maxlength="120" required placeholder="Resumen breve del bug" />
+            </div>
+            <div class="hl-field">
+              <label for="bgDescription">Descripción del bug</label>
+              <textarea id="bgDescription" name="description" maxlength="2000" required placeholder="Describe el bug con el mayor detalle posible: qué ocurrió, qué esperabas que ocurriera, pasos para reproducirlo, y cualquier información relevante..."></textarea>
+            </div>
+            <div class="hl-field">
+              <label>Verificación de seguridad</label>
+              <div class="cf-turnstile" id="bgTurnstile" data-sitekey="0x4AAAAAAEpTHjxtASKkn48b" data-action="bug_report" data-theme="dark"></div>
+            </div>
+            <button type="submit" class="hl-submit" id="bgSubmit">Enviar reporte</button>
+            <div class="hl-msg" id="bgMsg"></div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -2536,6 +2707,212 @@
             msgEl.className = 'hl-msg success';
             msgEl.textContent = data.message || 'Ticket enviado.';
             form.reset();
+            resetTurnstile();
+            setTimeout(closeModal, 2500);
+          } else {
+            msgEl.className = 'hl-msg error';
+            msgEl.textContent = (data && data.message) || 'Error al enviar.';
+          }
+        } catch (err) {
+          msgEl.className = 'hl-msg error';
+          msgEl.textContent = 'Error de conexi\u00f3n.';
+        }
+      };
+      xhr.send(fd);
+    });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var openBtn = document.getElementById('bgOpenModal');
+    var modal = document.getElementById('bgModal');
+    var form = document.getElementById('bgForm');
+    var msgEl = document.getElementById('bgMsg');
+    var submitBtn = document.getElementById('bgSubmit');
+    var turnstileContainer = document.getElementById('bgTurnstile');
+    var catCards = document.querySelectorAll('.bug-cat-card');
+    var formSection = document.getElementById('bgFormSection');
+    if (!openBtn || !modal || !form) return;
+
+    var selectedCategory = '';
+    var turnstileWidgetId = null;
+    var turnstileReady = false;
+
+    function renderTurnstile() {
+      if (turnstileWidgetId !== null || !turnstileContainer) return;
+      if (typeof window.turnstile === 'undefined') return;
+      turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: turnstileContainer.getAttribute('data-sitekey'),
+        theme: 'dark',
+        action: 'bug_report',
+        callback: function () { turnstileReady = true; },
+        'expired-callback': function () { turnstileReady = false; },
+        'error-callback': function () { turnstileReady = false; }
+      });
+    }
+
+    function resetTurnstile() {
+      turnstileReady = false;
+      if (turnstileWidgetId !== null && typeof window.turnstile !== 'undefined') {
+        window.turnstile.reset(turnstileWidgetId);
+      }
+    }
+
+    window.bgTurnstileCallback = function () {
+      renderTurnstile();
+    };
+
+    function openModal() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      msgEl.className = 'hl-msg';
+      msgEl.textContent = '';
+      clearErrors();
+      resetTurnstile();
+    }
+
+    function showError(el, msg) {
+      el.classList.add('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (!hint) {
+        hint = document.createElement('span');
+        hint.className = 'hl-field-error';
+        el.parentNode.appendChild(hint);
+      }
+      hint.textContent = msg;
+    }
+
+    function clearError(el) {
+      el.classList.remove('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (hint) hint.remove();
+    }
+
+    function clearErrors() {
+      form.querySelectorAll('.hl-input-error').forEach(function (el) { el.classList.remove('hl-input-error'); });
+      form.querySelectorAll('.hl-field-error').forEach(function (el) { el.remove(); });
+    }
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    openBtn.addEventListener('click', openModal);
+    modal.querySelector('.hl-modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    catCards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        catCards.forEach(function (c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+        selectedCategory = card.getAttribute('data-cat');
+        if (!formSection.classList.contains('visible')) {
+          formSection.classList.add('visible');
+          renderTurnstile();
+        }
+        msgEl.className = 'hl-msg';
+        msgEl.textContent = '';
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearErrors();
+      msgEl.className = 'hl-msg';
+      msgEl.textContent = '';
+
+      if (!selectedCategory) {
+        msgEl.className = 'hl-msg error';
+        msgEl.textContent = 'Selecciona una categor\u00eda de bug antes de enviar.';
+        return;
+      }
+
+      var nameInput = document.getElementById('bgPlayerName');
+      var accountInput = document.getElementById('bgAccount');
+      var emailInput = document.getElementById('bgEmail');
+      var subjectInput = document.getElementById('bgSubject');
+      var descInput = document.getElementById('bgDescription');
+      var valid = true;
+
+      if (!nameInput.value.trim()) {
+        showError(nameInput, 'Introduce el nombre de tu personaje.');
+        valid = false;
+      } else { clearError(nameInput); }
+
+      if (!accountInput.value.trim()) {
+        showError(accountInput, 'Introduce el nombre de tu cuenta.');
+        valid = false;
+      } else { clearError(accountInput); }
+
+      if (!emailInput.value.trim()) {
+        showError(emailInput, 'Introduce tu email de contacto.');
+        valid = false;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        showError(emailInput, 'El email no tiene un formato v\u00e1lido.');
+        valid = false;
+      } else { clearError(emailInput); }
+
+      if (!subjectInput.value.trim()) {
+        showError(subjectInput, 'Introduce un asunto.');
+        valid = false;
+      } else { clearError(subjectInput); }
+
+      if (!descInput.value.trim()) {
+        showError(descInput, 'Describe el bug.');
+        valid = false;
+      } else { clearError(descInput); }
+
+      var turnstileToken = turnstileWidgetId !== null && typeof window.turnstile !== 'undefined'
+        ? window.turnstile.getResponse(turnstileWidgetId)
+        : '';
+      if (!turnstileToken) {
+        msgEl.className = 'hl-msg error';
+        msgEl.textContent = 'Completa la verificaci\u00f3n de seguridad antes de enviar.';
+        return;
+      }
+
+      if (!valid) {
+        msgEl.className = 'hl-msg error';
+        msgEl.textContent = 'Revisa los campos marcados antes de enviar.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      var fd = new FormData(form);
+      fd.append('category', selectedCategory);
+      fd.append('cf_turnstile_response', turnstileToken);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/bugreport.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar reporte';
+        resetTurnstile();
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data && data.ok) {
+            msgEl.className = 'hl-msg success';
+            msgEl.textContent = data.message || 'Reporte enviado.';
+            form.reset();
+            catCards.forEach(function (c) { c.classList.remove('selected'); });
+            selectedCategory = '';
+            formSection.classList.remove('visible');
             resetTurnstile();
             setTimeout(closeModal, 2500);
           } else {

@@ -4,7 +4,7 @@
 //   - player_name  (string, obligatorio, máx. 32)
 //   - account      (string, obligatorio, máx. 32)
 //   - email        (string, obligatorio, máx. 120)
-//   - category     (string: general|bug|account|stuck|harassment|other, obligatorio)
+//   - category     (string: general|account|stuck|harassment|other, obligatorio)
 //   - subject      (string, obligatorio, máx. 120)
 //   - description  (string, obligatorio, máx. 1000)
 //   - cf_turnstile_response (string, obligatorio — token de Cloudflare Turnstile)
@@ -97,7 +97,7 @@ if ($account === '' || mb_strlen($account) > 32) {
 if ($email === '' || mb_strlen($email) > 120 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(400, ['ok' => false, 'message' => 'Debes proporcionar un email de contacto válido.']);
 }
-$validCategories = ['general', 'bug', 'account', 'stuck', 'harassment', 'other'];
+$validCategories = ['general', 'account', 'stuck', 'harassment', 'other'];
 if (!in_array($category, $validCategories, true)) {
     respond(400, ['ok' => false, 'message' => 'Debes seleccionar una categoría válida.']);
 }
@@ -161,7 +161,6 @@ if (isset($_FILES['screenshots'])) {
 // ===== Guardar en MySQL =====
 $categoryLabels = [
     'general'    => 'Consulta general',
-    'bug'        => 'Reporte de bug',
     'account'    => 'Problema de cuenta',
     'stuck'      => 'Personaje atascado',
     'harassment' => 'Denuncia de jugador',

@@ -77,6 +77,13 @@
               '</button>' +
               '<div class="guia-faq-answer"><p>No te preocupes, el nombre "4K Patch" se refiere a la capacidad de memoria (4 GB), no a la resolución gráfica. No añade pesadas texturas en HD, por lo que los requisitos del juego siguen siendo los mismos de siempre, pero con la ventaja de que el juego será mucho más estable y no se cerrará inesperadamente en zonas con mucha carga.</p></div>' +
             '</div>' +
+            '<div class="guia-faq-item">' +
+              '<button class="guia-faq-question" type="button">' +
+                '<span>6. Le doy a ejecutar Wow.exe y el juego no se abre, ¿qué hago?</span>' +
+                '<span class="guia-faq-icon">+</span>' +
+              '</button>' +
+              '<div class="guia-faq-answer"><p>Este problema se debe a tarjetas gráficas antiguas sin soporte Vulkan. Si tu tarjeta gráfica no admite drivers de Vulkan, bastará con retirar los archivos de <strong>DXVK</strong> (<strong>d3d9.dll</strong> y <strong>dxgi.dll</strong>) de la carpeta raíz del juego para que vuelva a ejecutarse mediante el renderizador <strong>DirectX 9 nativo</strong>.</p></div>' +
+            '</div>' +
           '</div>' +
         '</section>' +
         '<p class="guia-footer">¡Nos vemos dentro del juego!</p>'
@@ -474,6 +481,10 @@
     {
       q: '5. Si uso el parche 4K, ¿necesito un ordenador muy potente?',
       a: 'No te preocupes, el nombre "4K Patch" se refiere a la capacidad de memoria (4 GB), no a la resolución gráfica. No añade pesadas texturas en HD, por lo que los requisitos del juego siguen siendo los mismos de siempre, pero con la ventaja de que el juego será mucho más estable y no se cerrará inesperadamente en zonas con mucha carga.'
+    },
+    {
+      q: '6. Le doy a ejecutar Wow.exe y el juego no se abre, ¿qué hago?',
+      a: 'Este problema se debe a tarjetas gráficas antiguas sin soporte Vulkan. Si tu tarjeta gráfica no admite drivers de Vulkan, bastará con retirar los archivos de DXVK (d3d9.dll y dxgi.dll) de la carpeta raíz del juego para que vuelva a ejecutarse mediante el renderizador DirectX 9 nativo.'
     }
   ];
 

@@ -35,6 +35,8 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
   <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+  <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=hlTurnstileCallback" async defer></script>
 
   <script defer src="https://www.googletagmanager.com/gtag/js?id=G-29RVG4TWST"></script>
   <script defer>
@@ -723,6 +725,14 @@
       font-family: 'Cinzel', Georgia, serif;
       font-size: 0.72rem; color: #e08080;
       letter-spacing: 0.03em; margin-top: 0.15rem;
+    }
+    .cf-turnstile {
+      min-height: 65px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .cf-turnstile iframe {
+      border-radius: 6px;
     }
 
 
@@ -1478,7 +1488,7 @@
   <div id="hlModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="hlModalTitle">
     <div class="hl-modal">
       <div class="hl-modal-header">
-        <span class="hl-modal-title" id="hlModalTitle">Enviar contenido para destacado</span>
+        <span class="hl-modal-title" id="hlModalTitle">Comparte tu contenido</span>
         <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
       </div>
       <div class="hl-modal-body">
@@ -1519,6 +1529,10 @@
           <div class="hl-field">
             <label for="hlDescription">Descripción</label>
             <textarea id="hlDescription" name="description" maxlength="500" required placeholder="Cuenta la historia detrás de la captura..."></textarea>
+          </div>
+          <div class="hl-field">
+            <label>Verificación de seguridad</label>
+            <div class="cf-turnstile" id="hlTurnstile" data-sitekey="0x4XXXXXXXXXXXXXXXXX" data-theme="dark"></div>
           </div>
           <button type="submit" class="hl-submit" id="hlSubmit">Enviar para revisión</button>
           <div class="hl-msg" id="hlMsg"></div>
@@ -2009,16 +2023,43 @@
     var urlInput = document.getElementById('hlYoutubeUrl');
     var urlHint = document.getElementById('hlUrlHint');
     var typeBtns = document.querySelectorAll('.hl-type-btn');
+    var turnstileContainer = document.getElementById('hlTurnstile');
     if (!openBtn || !modal || !form) return;
 
     var currentType = 'screenshot';
     var MAX_SIZE = 10 * 1024 * 1024;
     var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
     var IMG_HINT = 'JPG, PNG, GIF o WebP \u00b7 m\u00e1x. 10 MB';
+    var turnstileWidgetId = null;
+    var turnstileReady = false;
+
+    function renderTurnstile() {
+      if (turnstileWidgetId !== null || !turnstileContainer) return;
+      if (typeof window.turnstile === 'undefined') return;
+      turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: turnstileContainer.getAttribute('data-sitekey'),
+        theme: 'dark',
+        callback: function () { turnstileReady = true; },
+        'expired-callback': function () { turnstileReady = false; },
+        'error-callback': function () { turnstileReady = false; }
+      });
+    }
+
+    function resetTurnstile() {
+      turnstileReady = false;
+      if (turnstileWidgetId !== null && typeof window.turnstile !== 'undefined') {
+        window.turnstile.reset(turnstileWidgetId);
+      }
+    }
+
+    window.hlTurnstileCallback = function () {
+      renderTurnstile();
+    };
 
     function openModal() {
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
+      renderTurnstile();
     }
 
     function closeModal() {
@@ -2027,6 +2068,7 @@
       msgEl.className = 'hl-msg';
       msgEl.textContent = '';
       clearErrors();
+      resetTurnstile();
     }
 
     function showError(el, msg) {
@@ -2169,6 +2211,15 @@
         clearError(descInput);
       }
 
+      var turnstileToken = turnstileWidgetId !== null && typeof window.turnstile !== 'undefined'
+        ? window.turnstile.getResponse(turnstileWidgetId)
+        : '';
+      if (!turnstileToken) {
+        msgEl.className = 'hl-msg error';
+        msgEl.textContent = 'Completa la verificaci\u00f3n de seguridad antes de enviar.';
+        return;
+      }
+
       if (!valid) {
         msgEl.className = 'hl-msg error';
         msgEl.textContent = 'Revisa los campos marcados antes de enviar.';
@@ -2180,6 +2231,7 @@
 
       var fd = new FormData(form);
       fd.append('media_type', currentType);
+      fd.append('cf_turnstile_response', turnstileToken);
       if (currentType === 'video') {
         fd.append('media_url', urlInput.value.trim());
       }
@@ -2190,6 +2242,7 @@
         if (xhr.readyState !== 4) return;
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar para revisi\u00f3n';
+        resetTurnstile();
         try {
           var data = JSON.parse(xhr.responseText);
           if (data && data.ok) {
@@ -2204,6 +2257,7 @@
             fileInput.required = true;
             urlInput.required = false;
             fileHint.textContent = IMG_HINT;
+            resetTurnstile();
             setTimeout(closeModal, 2500);
           } else {
             msgEl.className = 'hl-msg error';

@@ -30,3 +30,9 @@ $MAIL_FROM_NAME  = 'Core Legacy';           // Nombre visible del remitente
 $MAIL_REPLY_TO   = 'corelegacygg@gmail.com'; // Dirección de respuesta
 $MAIL_CHARSET    = 'UTF-8';                  // Juego de caracteres
 $MAIL_DEBUG      = 0;                        // 0 = sin log, 1 = errores, 2 = detallado
+
+// ===== Cloudflare Turnstile =====
+// Claves para proteger formularios públicos contra bots.
+// Obtén las tuyas desde el panel de Cloudflare → Turnstile.
+$TURNSTILE_SITE_KEY   = '0x4XXXXXXXXXXXXXXXXX';  // Clave pública (se usa en el frontend)
+$TURNSTILE_SECRET_KEY = '0x4XXXXXXXXXXXXXXXXX';  // Clave secreta (se usa en el backend)

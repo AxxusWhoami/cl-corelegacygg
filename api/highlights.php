@@ -40,6 +40,38 @@ function respond(int $status, array $payload): void
     exit;
 }
 
+// ===== Verificar Cloudflare Turnstile =====
+$turnstileResponse = trim($_POST['cf_turnstile_response'] ?? '');
+if ($turnstileResponse === '') {
+    respond(400, ['ok' => false, 'message' => 'Debes completar la verificación de seguridad.']);
+}
+
+$turnstilePayload = http_build_query([
+    'secret'   => $TURNSTILE_SECRET_KEY,
+    'response' => $turnstileResponse,
+    'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+]);
+
+$ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+curl_setopt_array($ch, [
+    CURLOPT_POST          => true,
+    CURLOPT_POSTFIELDS    => $turnstilePayload,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT       => 10,
+    CURLOPT_HTTPHEADER    => ['Content-Type: application/x-www-form-urlencoded'],
+]);
+$turnstileResult = curl_exec($ch);
+curl_close($ch);
+
+if ($turnstileResult === false) {
+    respond(503, ['ok' => false, 'message' => 'No se pudo verificar el captcha. Inténtalo de nuevo.']);
+}
+
+$turnstileData = json_decode($turnstileResult, true);
+if (!is_array($turnstileData) || empty($turnstileData['success'])) {
+    respond(403, ['ok' => false, 'message' => 'La verificación de seguridad ha fallado. Inténtalo de nuevo.']);
+}
+
 // ===== Validar y procesar entrada =====
 $playerName  = trim($_POST['player_name']  ?? '');
 $email       = trim($_POST['email']        ?? '');

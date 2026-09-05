@@ -116,7 +116,7 @@ if (isset($_FILES['screenshots'])) {
     $maxFiles = 10;
     $allowedMime = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     $extMap = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
-    $uploadDir = __DIR__ . '/../communityfootage';
+    $uploadDir = __DIR__ . '/../assets/reports';
     if (!is_dir($uploadDir)) {
         @mkdir($uploadDir, 0755, true);
     }
@@ -206,11 +206,13 @@ try {
         . '<p style="margin-top:16px;font-size:12px;color:#999">Responde a este correo para contactar directamente con el autor (' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . ').</p>';
 
     if (count($screenshotPaths) > 0) {
-        foreach ($screenshotPaths as $idx => $sp) {
-            $mail->addAttachment($sp, $screenshotNames[$idx]);
+        $mail->Body .= '<p style="margin-top:12px;font-size:13px"><strong>Capturas:</strong></p><ul style="font-size:13px;line-height:1.8">';
+        foreach ($screenshotNames as $idx => $sn) {
+            $imgUrl = 'https://corelegacy.gg/assets/reports/' . $sn;
+            $mail->Body .= '<li><a href="' . htmlspecialchars($imgUrl, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($sn, ENT_QUOTES, 'UTF-8') . '</a></li>';
+            $mail->AltBody .= "\n  - " . $imgUrl;
         }
-        $mail->Body .= '<p style="margin-top:12px;font-size:13px"><strong>Capturas adjuntas:</strong> ' . count($screenshotPaths) . ' imagen(es).</p>';
-        $mail->AltBody .= "\nCapturas adjuntas: " . count($screenshotPaths) . " imagen(es).\n";
+        $mail->Body .= '</ul>';
     }
 
     $mail->AltBody =

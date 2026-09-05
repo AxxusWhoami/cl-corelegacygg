@@ -158,7 +158,7 @@ if (isset($_FILES['screenshots'])) {
     }
 }
 
-// ===== Enviar correo al equipo =====
+// ===== Guardar en MySQL =====
 $categoryLabels = [
     'general'    => 'Consulta general',
     'bug'        => 'Reporte de bug',
@@ -168,6 +168,59 @@ $categoryLabels = [
     'other'      => 'Otro',
 ];
 $categoryLabel = $categoryLabels[$category] ?? $category;
+$screenshotsJson = count($screenshotNames) > 0 ? json_encode($screenshotNames) : '';
+
+mysqli_report(MYSQLI_REPORT_OFF);
+$conn = @mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_WEB, (int) $DB_PORT);
+if (!$conn) {
+    respond(503, ['ok' => false, 'message' => 'No se pudo conectar a la base de datos.']);
+}
+mysqli_set_charset($conn, 'utf8mb4');
+
+$createSql = "CREATE TABLE IF NOT EXISTS `support_tickets` ("
+    . "`id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+    . "`player_name` VARCHAR(32) NOT NULL, "
+    . "`account` VARCHAR(32) NOT NULL, "
+    . "`email` VARCHAR(120) NOT NULL, "
+    . "`category` VARCHAR(20) NOT NULL, "
+    . "`subject` VARCHAR(120) NOT NULL, "
+    . "`description` TEXT NOT NULL, "
+    . "`screenshots` JSON DEFAULT NULL, "
+    . "`status` ENUM('open','assigned','in_progress','waiting_user','resolved','closed','rejected') NOT NULL DEFAULT 'open', "
+    . "`priority` ENUM('low','medium','high','urgent') NOT NULL DEFAULT 'medium', "
+    . "`assigned_to` VARCHAR(64) DEFAULT NULL, "
+    . "`staff_response` TEXT DEFAULT NULL, "
+    . "`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "
+    . "`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, "
+    . "INDEX `idx_status_created` (`status`, `created_at` DESC), "
+    . "INDEX `idx_category` (`category`), "
+    . "INDEX `idx_assigned` (`assigned_to`)"
+    . ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+mysqli_query($conn, $createSql);
+
+$insertSql = "INSERT INTO `support_tickets` "
+    . "(`player_name`, `account`, `email`, `category`, `subject`, `description`, `screenshots`, `status`, `priority`) "
+    . "VALUES (?, ?, ?, ?, ?, ?, ?, 'open', 'medium')";
+
+$stmt = mysqli_prepare($conn, $insertSql);
+if (!$stmt) {
+    mysqli_close($conn);
+    respond(500, ['ok' => false, 'message' => 'Error al preparar la inserción.']);
+}
+
+$nullScreenshots = $screenshotsJson !== '' ? $screenshotsJson : null;
+mysqli_stmt_bind_param($stmt, 'sssssss', $playerName, $account, $email, $category, $subject, $description, $nullScreenshots);
+
+if (!mysqli_stmt_execute($stmt)) {
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    respond(500, ['ok' => false, 'message' => 'No se pudo guardar el ticket.']);
+}
+
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
+
+// ===== Enviar correo al equipo =====
 
 try {
     require_once __DIR__ . '/../lib/PHPMailer/src/PHPMailer.php';

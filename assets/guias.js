@@ -172,6 +172,116 @@
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' }
       }
     },
+    'guia-playerbots-ia-wow-wotlk-solitario': {
+      title: 'Guía Definitiva de Playerbots: Cómo Jugar WoW WotLK en Solitario con IA',
+      icon: '🤖',
+      metaTitle: 'Cómo Jugar WoW WotLK en Solitario con Inteligencia Artificial',
+      metaDescription: 'Configura tu grupo, descubre los comandos y exprime nuestro servidor WoW IA con modelo de lenguaje integrado.',
+      html:
+        '<section class="guia-intro">' +
+          '<p>¿Alguna vez has querido explorar todo el contenido de Northrend pero no tenías un grupo disponible? En CoRe Legacy, el mejor servidor wow para jugar en solitario 3.3.5a, la falta de jugadores ya no es un obstáculo. Gracias a nuestro sistema avanzado de bots Azerothcore, puedes reclutar tu propio escuadrón y dominar Azeroth a tu ritmo.</p>' +
+          '<p>En esta guía SEO optimizada, te enseñaremos cómo aprender a jugar WoW 3.3.5a solo con compañeros controlados por IA, desde la configuración básica hasta estrategias avanzadas para limpiar las bandas más difíciles sin depender de terceros.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">¿Qué son los Playerbots IA y por qué revolucionan el PvE?</h3>' +
+          '<p>En CoRe Legacy, los bots no son simples scripts de seguimiento. Hablamos de NPCs impulsados por inteligencia artificial diseñados para simular de forma realista el comportamiento, los errores y los aciertos de jugadores humanos. Al aventurarte en nuestro servidor privado wow 3.3.5a npc con inteligencia artificial, tus compañeros:</p>' +
+          '<ul class="guia-list">' +
+            '<li>Ejecutan rotaciones de daño y curación óptimas analizando el estado del combate en tiempo real.</li>' +
+            '<li>Tienen programación de bots que hacen mecánicas de bosses WotLK, apartándose del fuego y cambiando de objetivo cuando es necesario.</li>' +
+            '<li>Cuentan con un cerebro propio, convirtiéndonos en el primer servidor WoW IA modelo de lenguaje integrado, lo que permite una interacción profunda y dinámica.</li>' +
+          '</ul>' +
+          '<p>Ya sea para subir de nivel con bots en wow wrath of the lich king o farmear reputaciones complejas, tu grupo de compañeros IA para misiones y farmeo WoW está siempre listo.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">El Cerebro del Grupo: Servidor WoW WotLK con Chat Interactivo</h3>' +
+          '<p>Lo que realmente separa a CoRe Legacy del resto es nuestra integración de IA conversacional. No solo les das órdenes de combate; puedes hablar con ellos.</p>' +
+          '<p>Disfruta de un chat de rol inmersivo con bots WoW WotLK. Escríbeles por el canal de grupo (<code>/p</code>) o mediante susurros (<code>/w</code>). El modelo de lenguaje interpretará tus palabras, responderá acorde a la raza y clase del bot, y te dará consejos tácticos. Si les preguntas "¿Queda mucho maná?" o "¡Cuidado con el jefe!", la IA procesará el contexto de la mazmorra y te responderá de forma natural, haciendo de este servidor wow wotlk chat interactivo con npcs la experiencia más inmersiva del panorama actual.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">Comandos Esenciales para Controlar Playerbots WotLK</h3>' +
+          '<p>Para comunicarte rápidamente en combate, hemos simplificado los comandos para controlar playerbots wotlk. Puedes escribirlos en el chat o utilizarlos en tus macros y scripts para bots azerothcore 3.3.5a.</p>' +
+          '<p>Saber configurar la inteligencia artificial de playerbots WotLK empieza por estos atajos:</p>' +
+          '<div class="guia-table-wrap">' +
+            '<table class="guia-table">' +
+              '<thead>' +
+                '<tr>' +
+                  '<th scope="col">Comando Básico</th>' +
+                  '<th scope="col">Función de la IA</th>' +
+                  '<th scope="col">Cuándo Utilizarlo</th>' +
+                '</tr>' +
+              '</thead>' +
+              '<tbody>' +
+                '<tr>' +
+                  '<th scope="row"><code>.bot add [Nombre]</code></th>' +
+                  '<td>El bot acepta instantáneamente la invitación.</td>' +
+                  '<td>Para armar tu grupo antes de entrar a una mazmorra.</td>' +
+                '</tr>' +
+                '<tr>' +
+                  '<th scope="row"><code>.bot remove [Nombre]</code></th>' +
+                  '<td>Disuelve el vínculo con la IA.</td>' +
+                  '<td>Si necesitas cambiar la composición de clases de tu equipo.</td>' +
+                '</tr>' +
+                '<tr>' +
+                  '<th scope="row"><code>.bot stay</code></th>' +
+                  '<td>Fuerza a los bots a ignorar su script de movimiento.</td>' +
+                  '<td>Ideal para evitar áreas de daño (AoE) o emboscadas mortales.</td>' +
+                '</tr>' +
+                '<tr>' +
+                  '<th scope="row"><code>.bot follow</code></th>' +
+                  '<td>La IA reanuda el seguimiento del líder.</td>' +
+                  '<td>Tras finalizar un combate, revivir o reposicionarte.</td>' +
+                '</tr>' +
+                '<tr>' +
+                  '<th scope="row"><code>.bot attack</code></th>' +
+                  '<td>Sobrescribe el objetivo actual de la IA.</td>' +
+                  '<td>Para el pulling controlado o hacer focus de daño masivo.</td>' +
+                '</tr>' +
+              '</tbody>' +
+            '</table>' +
+          '</div>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">IA por Roles: Formando el Escuadrón Perfecto</h3>' +
+          '<p>Para jugar mazmorras wotlk en solitario con bots y no morir en el intento, necesitas entender cómo nuestra IA procesa cada rol:</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Tanques: El Escudo Inteligente</h4>' +
+          '<p>Los Guerreros, Paladines y usuarios con talentos caballero de la muerte tanque wotlk 3.3.5 están programados para mantener la amenaza (agro) en múltiples objetivos. Usarán sus habilidades defensivas (cooldowns) si prevén daño letal o su salud cae por debajo del 30%.</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Sanadores: IA Reactiva</h4>' +
+          '<p>Los healers gestionan su maná inteligentemente. Priorizan la salud del tanque y disipan perjuicios críticos (magias, maldiciones) en milisegundos, una ventaja que convierte hacer mazmorras heroicas wotlk con grupo de bots en una experiencia fluida.</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">DPS: Daño Automatizado</h4>' +
+          '<p>Los atacantes ejecutan rotaciones perfectas basadas en las mejores guías de clase wotlk 3.3.5a pve español. Magos, brujos y pícaros asisten con interrupciones (kicks) instantáneas cuando un enemigo lanza un hechizo peligroso.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">Endgame IA: Hacer Bandas WotLK solo con Compañeros</h3>' +
+          '<p>El mayor logro en CoRe Legacy es la progresión PvE en solitario servidor WoW WotLK. ¿Es posible limpiar ICC? Sí, pero la simulación de jugadores reales en servidor privado WoW requiere que lideres como un verdadero Raid Leader.</p>' +
+          '<ul class="guia-list">' +
+            '<li><strong>Posicionamiento Táctico:</strong> Usa el comando <code>.bot stay</code> para dejar a tus rangos a 30 metros del jefe, evitando ataques de cono frontal.</li>' +
+            '<li><strong>Gestión del Control de Masas:</strong> Marca enemigos con iconos (Calavera, Cruz). La IA reconoce estas marcas para enfocar el daño o aplicar Polimorfia.</li>' +
+            '<li><strong>Equipamiento Estratégico:</strong> La IA es tan fuerte como su equipo. Fármea para mejorar las estadísticas de armadura tier 10 wotlk 3.3.5a de tus bots.</li>' +
+          '</ul>' +
+          '<p>Con táctica y macros, matar al rey exánime 3.3.5a en solitario será la prueba definitiva de tu habilidad como comandante de IA.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">Macros de Supervivencia PvE con Bots</h3>' +
+          '<p>Mejora tu tiempo de reacción con estas macros útiles para pve pvp wow 3.3.5a:</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Macro de Ataque Coordinado (Focus IA)</h4>' +
+          '<pre class="guia-code-block"><code>/targetenemy [noharm][dead]\n/cast [Tu Habilidad de Inicio]\n/say .bot attack</code></pre>' +
+          '<p>Esta macro lanza tu ataque inicial y fuerza a la IA a priorizar de forma agresiva a ese mismo objetivo, ignorando a otros enemigos.</p>' +
+          '<h4 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Macro de Retirada Táctica / Posición Segura</h4>' +
+          '<pre class="guia-code-block"><code>/stopcasting\n/say .bot stay\n/yell ¡Mantengan la posición! ¡Cuidado con el área!</code></pre>' +
+          '<p>Un salvavidas absoluto. Al incluir <code>/stopcasting</code>, tu personaje reacciona al instante. La IA se anclará al suelo, permitiéndote salvar a tus bots de ataques AoE letales de jefes de banda, o esconderlos detrás de una pared para romper la línea de visión de hechiceros enemigos. Un simple <code>.bot follow</code> los devolverá a la acción.</p>' +
+        '</section>' +
+        '<section class="guia-section">' +
+          '<h3 class="guia-step-title">Únete a la Revolución de la IA en CoRe Legacy</h3>' +
+          '<p>Experimenta la evolución de los servidores privados. Si estás buscando descargar cliente wow wotlk 3.3.5a español y sumergirte en un ecosistema vivo donde nunca estarás solo, únete hoy.</p>' +
+          '<ul class="guia-list">' +
+            '<li><a href="https://accounts.corelegacy.gg/crear-cuenta" target="_blank" rel="noopener noreferrer" class="guia-link">Crear cuenta servidor wow wotlk gratis</a></li>' +
+            '<li>Únete a nuestro Discord servidor wow core legacy español</li>' +
+            '<li>Visita nuestra tienda de recompensas web servidor wow wotlk</li>' +
+          '</ul>' +
+          '<p class="guia-note"><em>CoRe Legacy: Tu mundo, tu escuadrón, la mejor inteligencia artificial.</em></p>' +
+        '</section>' +
+        '<p class="guia-footer">¡Nos vemos dentro del juego!</p>'
+    },
     'guia-practica-avanzada-multibot': {
       title: 'Guía Práctica y Avanzada de MultiBot',
       icon: '🎮',

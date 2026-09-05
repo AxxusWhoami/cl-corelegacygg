@@ -30,3 +30,8 @@ RewriteRule ^caracteristicas/?$ /index.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^guias/([a-z0-9-]+)/?$ /comunidad.html [L]
+
+# Deep links para abrir modales directamente -> comunidad.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(abrir-ticket|reportar-bug)/?$ /comunidad.html [L]

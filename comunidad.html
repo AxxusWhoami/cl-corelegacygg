@@ -2602,6 +2602,9 @@
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
       renderTurnstile();
+      if (window.location.pathname !== '/abrir-ticket') {
+        history.pushState({ modal: 'abrir-ticket' }, '', '/abrir-ticket');
+      }
     }
 
     function closeModal() {
@@ -2611,6 +2614,9 @@
       msgEl.textContent = '';
       clearErrors();
       resetTurnstile();
+      if (window.location.pathname === '/abrir-ticket') {
+        history.pushState({ modal: null }, '', '/comunidad');
+      }
     }
 
     function showError(el, msg) {
@@ -2647,6 +2653,21 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
     });
+    window.addEventListener('popstate', function () {
+      if (window.location.pathname === '/abrir-ticket') {
+        openModal();
+      } else if (modal.classList.contains('open')) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        msgEl.className = 'hl-msg';
+        msgEl.textContent = '';
+        clearErrors();
+        resetTurnstile();
+      }
+    });
+    if (window.location.pathname === '/abrir-ticket') {
+      openModal();
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -2843,6 +2864,9 @@
     function openModal() {
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (window.location.pathname !== '/reportar-bug') {
+        history.pushState({ modal: 'reportar-bug' }, '', '/reportar-bug');
+      }
     }
 
     function closeModal() {
@@ -2852,6 +2876,9 @@
       msgEl.textContent = '';
       clearErrors();
       resetTurnstile();
+      if (window.location.pathname === '/reportar-bug') {
+        history.pushState({ modal: null }, '', '/comunidad');
+      }
     }
 
     function showError(el, msg) {
@@ -2888,6 +2915,21 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
     });
+    window.addEventListener('popstate', function () {
+      if (window.location.pathname === '/reportar-bug') {
+        openModal();
+      } else if (modal.classList.contains('open')) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        msgEl.className = 'hl-msg';
+        msgEl.textContent = '';
+        clearErrors();
+        resetTurnstile();
+      }
+    });
+    if (window.location.pathname === '/reportar-bug') {
+      openModal();
+    }
 
     catCards.forEach(function (card) {
       card.addEventListener('click', function () {

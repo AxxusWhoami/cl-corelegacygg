@@ -5,6 +5,10 @@
     { "source": "/comunidad", "destination": "/comunidad.html" },
     { "source": "/comunidad/", "destination": "/comunidad.html" },
     { "source": "/caracteristicas", "destination": "/index.html" },
-    { "source": "/caracteristicas/", "destination": "/index.html" }
+    { "source": "/caracteristicas/", "destination": "/index.html" },
+    { "source": "/abrir-ticket", "destination": "/comunidad.html" },
+    { "source": "/abrir-ticket/", "destination": "/comunidad.html" },
+    { "source": "/reportar-bug", "destination": "/comunidad.html" },
+    { "source": "/reportar-bug/", "destination": "/comunidad.html" }
   ]
 }

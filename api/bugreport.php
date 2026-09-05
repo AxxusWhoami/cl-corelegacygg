@@ -119,31 +119,14 @@ if ($description === '' || mb_strlen($description) > 2000) {
     respond(400, ['ok' => false, 'message' => 'La descripción es obligatoria (máx. 2000 caracteres).']);
 }
 
-// ===== Procesar captura de pantalla opcional =====
-$screenshotPath = null;
-$screenshotName = null;
-if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] !== UPLOAD_ERR_NO_FILE) {
-    $file = $_FILES['screenshot'];
-    if ($file['error'] !== UPLOAD_ERR_OK) {
-        $msg = $file['error'] === UPLOAD_ERR_INI_SIZE || $file['error'] === UPLOAD_ERR_FORM_SIZE
-            ? 'La captura es demasiado grande (máx. 10 MB).'
-            : 'Error al subir la captura.';
-        respond(400, ['ok' => false, 'message' => $msg]);
-    }
+// ===== Procesar capturas de pantalla opcionales (hasta 10) =====
+$screenshotPaths = [];
+$screenshotNames = [];
+if (isset($_FILES['screenshots'])) {
     $maxFileSize = 10 * 1024 * 1024;
-    if ($file['size'] > $maxFileSize) {
-        respond(400, ['ok' => false, 'message' => 'La captura supera el tamaño máximo de 10 MB.']);
-    }
+    $maxFiles = 10;
     $allowedMime = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $detectedMime = finfo_file($finfo, $file['tmp_name']);
-    finfo_close($finfo);
-    if (!in_array($detectedMime, $allowedMime, true)) {
-        respond(400, ['ok' => false, 'message' => 'La captura debe ser un formato válido (JPG, PNG, GIF o WebP).']);
-    }
     $extMap = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
-    $ext = $extMap[$detectedMime];
-    $safeName = 'bug_' . date('Ymd_His') . '_' . bin2hex(random_bytes(6)) . '.' . $ext;
     $uploadDir = __DIR__ . '/../communityfootage';
     if (!is_dir($uploadDir)) {
         @mkdir($uploadDir, 0755, true);
@@ -151,11 +134,39 @@ if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] !== UPLOAD_ER
     if (!is_dir($uploadDir)) {
         respond(500, ['ok' => false, 'message' => 'No se pudo crear la carpeta de almacenamiento.']);
     }
-    if (!move_uploaded_file($file['tmp_name'], $uploadDir . '/' . $safeName)) {
-        respond(500, ['ok' => false, 'message' => 'No se pudo guardar la captura.']);
+
+    $files = $_FILES['screenshots'];
+    $fileCount = is_array($files['name']) ? count($files['name']) : 0;
+
+    if ($fileCount > $maxFiles) {
+        respond(400, ['ok' => false, 'message' => 'Solo puedes adjuntar un máximo de 10 imágenes.']);
     }
-    $screenshotPath = $uploadDir . '/' . $safeName;
-    $screenshotName = $safeName;
+
+    for ($i = 0; $i < $fileCount; $i++) {
+        if ($files['error'][$i] === UPLOAD_ERR_NO_FILE) continue;
+        if ($files['error'][$i] !== UPLOAD_ERR_OK) {
+            $msg = $files['error'][$i] === UPLOAD_ERR_INI_SIZE || $files['error'][$i] === UPLOAD_ERR_FORM_SIZE
+                ? 'Una de las capturas es demasiado grande (máx. 10 MB).'
+                : 'Error al subir una de las capturas.';
+            respond(400, ['ok' => false, 'message' => $msg]);
+        }
+        if ($files['size'][$i] > $maxFileSize) {
+            respond(400, ['ok' => false, 'message' => 'Una captura supera el tamaño máximo de 10 MB.']);
+        }
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $detectedMime = finfo_file($finfo, $files['tmp_name'][$i]);
+        finfo_close($finfo);
+        if (!in_array($detectedMime, $allowedMime, true)) {
+            respond(400, ['ok' => false, 'message' => 'Las capturas deben ser un formato válido (JPG, PNG, GIF o WebP).']);
+        }
+        $ext = $extMap[$detectedMime];
+        $safeName = 'bug_' . date('Ymd_His') . '_' . bin2hex(random_bytes(6)) . '_' . $i . '.' . $ext;
+        if (!move_uploaded_file($files['tmp_name'][$i], $uploadDir . '/' . $safeName)) {
+            respond(500, ['ok' => false, 'message' => 'No se pudo guardar una de las capturas.']);
+        }
+        $screenshotPaths[] = $uploadDir . '/' . $safeName;
+        $screenshotNames[] = $safeName;
+    }
 }
 
 // ===== Enviar correo al equipo =====
@@ -197,11 +208,12 @@ try {
         . '<div style="font-family:sans-serif;font-size:14px;line-height:1.6;white-space:pre-wrap">' . nl2br(htmlspecialchars($description, ENT_QUOTES, 'UTF-8')) . '</div>'
         . '<p style="margin-top:16px;font-size:12px;color:#999">Responde a este correo para contactar directamente con el autor (' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . ').</p>';
 
-    if ($screenshotPath !== null) {
-        $mail->addAttachment($screenshotPath, $screenshotName);
-        $screenshotUrl = 'https://corelegacy.gg/communityfootage/' . $screenshotName;
-        $mail->Body .= '<p style="margin-top:12px;font-size:13px"><strong>Captura adjunta:</strong> <a href="' . htmlspecialchars($screenshotUrl, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($screenshotName, ENT_QUOTES, 'UTF-8') . '</a></p>';
-        $mail->AltBody .= "\nCaptura adjrita: $screenshotUrl\n";
+    if (count($screenshotPaths) > 0) {
+        foreach ($screenshotPaths as $idx => $sp) {
+            $mail->addAttachment($sp, $screenshotNames[$idx]);
+        }
+        $mail->Body .= '<p style="margin-top:12px;font-size:13px"><strong>Capturas adjuntas:</strong> ' . count($screenshotPaths) . ' imagen(es).</p>';
+        $mail->AltBody .= "\nCapturas adjuntas: " . count($screenshotPaths) . " imagen(es).\n";
     }
 
     $mail->AltBody =

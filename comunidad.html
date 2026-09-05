@@ -1690,6 +1690,13 @@
             <textarea id="tkDescription" name="description" maxlength="1000" required placeholder="Describe tu problema o consulta con el mayor detalle posible..."></textarea>
           </div>
           <div class="hl-field">
+            <label for="tkScreenshots">Capturas de pantalla (opcional, hasta 10)</label>
+            <div class="hl-file-area">
+              <input type="file" id="tkScreenshots" name="screenshots[]" accept="image/jpeg,image/png,image/gif,image/webp" multiple />
+              <span class="hl-file-hint" id="tkFileHint">JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes</span>
+            </div>
+          </div>
+          <div class="hl-field">
             <label>Verificación de seguridad</label>
             <div class="cf-turnstile" id="tkTurnstile" data-sitekey="0x4AAAAAAEpTHjxtASKkn48b" data-action="ticket_submit" data-theme="dark"></div>
           </div>
@@ -1778,10 +1785,10 @@
               <textarea id="bgDescription" name="description" maxlength="2000" required placeholder="Describe el bug con el mayor detalle posible: qué ocurrió, qué esperabas que ocurriera, pasos para reproducirlo, y cualquier información relevante..."></textarea>
             </div>
             <div class="hl-field">
-              <label for="bgScreenshot">Captura de pantalla (opcional)</label>
+              <label for="bgScreenshots">Capturas de pantalla (opcional, hasta 10)</label>
               <div class="hl-file-area">
-                <input type="file" id="bgScreenshot" name="screenshot" accept="image/jpeg,image/png,image/gif,image/webp" />
-                <span class="hl-file-hint" id="bgFileHint">JPG, PNG, GIF o WebP · máx. 10 MB</span>
+                <input type="file" id="bgScreenshots" name="screenshots[]" accept="image/jpeg,image/png,image/gif,image/webp" multiple />
+                <span class="hl-file-hint" id="bgFileHint">JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes</span>
               </div>
             </div>
             <div class="hl-field">
@@ -2544,6 +2551,25 @@
     var turnstileWidgetId = null;
     var turnstileReady = false;
 
+    var MAX_SIZE = 10 * 1024 * 1024;
+    var MAX_FILES = 10;
+    var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
+    var fileInput = document.getElementById('tkScreenshots');
+    var fileHint = document.getElementById('tkFileHint');
+    var FILE_HINT = 'JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes';
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        clearError(fileInput);
+        var files = fileInput.files;
+        if (files && files.length > 0) {
+          fileHint.textContent = files.length + ' imagen(es) seleccionada(s)';
+        } else {
+          fileHint.textContent = FILE_HINT;
+        }
+      });
+    }
+
     function renderTurnstile() {
       if (turnstileWidgetId !== null || !turnstileContainer) return;
       if (typeof window.turnstile === 'undefined') return;
@@ -2677,6 +2703,27 @@
         clearError(descInput);
       }
 
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        if (fileInput.files.length > MAX_FILES) {
+          showError(fileInput, 'Solo puedes adjuntar un máximo de 10 imágenes.');
+          valid = false;
+        } else {
+          for (var fi = 0; fi < fileInput.files.length; fi++) {
+            var sf = fileInput.files[fi];
+            if (IMG_ACCEPT.indexOf(sf.type) === -1) {
+              showError(fileInput, 'El formato de "' + sf.name + '" no es válido.');
+              valid = false;
+              break;
+            } else if (sf.size > MAX_SIZE) {
+              showError(fileInput, '"' + sf.name + '" supera el tamaño máximo de 10 MB.');
+              valid = false;
+              break;
+            }
+          }
+          if (valid) clearError(fileInput);
+        }
+      }
+
       var turnstileToken = turnstileWidgetId !== null && typeof window.turnstile !== 'undefined'
         ? window.turnstile.getResponse(turnstileWidgetId)
         : '';
@@ -2711,6 +2758,7 @@
             msgEl.className = 'hl-msg success';
             msgEl.textContent = data.message || 'Ticket enviado.';
             form.reset();
+            if (fileHint) fileHint.textContent = FILE_HINT;
             resetTurnstile();
             setTimeout(closeModal, 2500);
           } else {
@@ -2746,17 +2794,18 @@
     var turnstileReady = false;
 
     var MAX_SIZE = 10 * 1024 * 1024;
+    var MAX_FILES = 10;
     var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
-    var fileInput = document.getElementById('bgScreenshot');
+    var fileInput = document.getElementById('bgScreenshots');
     var fileHint = document.getElementById('bgFileHint');
-    var FILE_HINT = 'JPG, PNG, GIF o WebP · máx. 10 MB';
+    var FILE_HINT = 'JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes';
 
     if (fileInput) {
       fileInput.addEventListener('change', function () {
         clearError(fileInput);
-        if (fileInput.files && fileInput.files.length > 0) {
-          var f = fileInput.files[0];
-          fileHint.textContent = f.name + ' (' + Math.round(f.size / 1024) + ' KB)';
+        var files = fileInput.files;
+        if (files && files.length > 0) {
+          fileHint.textContent = files.length + ' imagen(es) seleccionada(s)';
         } else {
           fileHint.textContent = FILE_HINT;
         }
@@ -2898,15 +2947,23 @@
       } else { clearError(descInput); }
 
       if (fileInput && fileInput.files && fileInput.files.length > 0) {
-        var sf = fileInput.files[0];
-        if (IMG_ACCEPT.indexOf(sf.type) === -1) {
-          showError(fileInput, 'El formato del archivo no es válido.');
-          valid = false;
-        } else if (sf.size > MAX_SIZE) {
-          showError(fileInput, 'El archivo supera el tamaño máximo de 10 MB.');
+        if (fileInput.files.length > MAX_FILES) {
+          showError(fileInput, 'Solo puedes adjuntar un máximo de 10 imágenes.');
           valid = false;
         } else {
-          clearError(fileInput);
+          for (var fi = 0; fi < fileInput.files.length; fi++) {
+            var sf = fileInput.files[fi];
+            if (IMG_ACCEPT.indexOf(sf.type) === -1) {
+              showError(fileInput, 'El formato de "' + sf.name + '" no es válido.');
+              valid = false;
+              break;
+            } else if (sf.size > MAX_SIZE) {
+              showError(fileInput, '"' + sf.name + '" supera el tamaño máximo de 10 MB.');
+              valid = false;
+              break;
+            }
+          }
+          if (valid) clearError(fileInput);
         }
       }
 

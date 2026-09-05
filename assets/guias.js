@@ -275,8 +275,8 @@
           '<p>Experimenta la evolución de los servidores privados. Si estás buscando descargar cliente wow wotlk 3.3.5a español y sumergirte en un ecosistema vivo donde nunca estarás solo, únete hoy.</p>' +
           '<ul class="guia-list">' +
             '<li><a href="https://accounts.corelegacy.gg/crear-cuenta" target="_blank" rel="noopener noreferrer" class="guia-link">Crear cuenta servidor wow wotlk gratis</a></li>' +
-            '<li>Únete a nuestro Discord servidor wow core legacy español</li>' +
-            '<li>Visita nuestra tienda de recompensas web servidor wow wotlk</li>' +
+            '<li><a href="https://discord.gg/9AJ23YwDV" target="_blank" rel="noopener noreferrer" class="guia-link">Únete a nuestro Discord servidor wow core legacy español</a></li>' +
+            '<li><a href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer" class="guia-link">Visita nuestra tienda de recompensas web servidor wow wotlk</a></li>' +
           '</ul>' +
           '<p class="guia-note"><em>CoRe Legacy: Tu mundo, tu escuadrón, la mejor inteligencia artificial.</em></p>' +
         '</section>' +

@@ -1532,7 +1532,7 @@
           </div>
           <div class="hl-field">
             <label>Verificación de seguridad</label>
-            <div class="cf-turnstile" id="hlTurnstile" data-sitekey="0x4XXXXXXXXXXXXXXXXX" data-theme="dark"></div>
+            <div class="cf-turnstile" id="hlTurnstile" data-sitekey="0x4AAAAAAEpTHjxtASKkn48b" data-action="highlight_submit" data-theme="dark"></div>
           </div>
           <button type="submit" class="hl-submit" id="hlSubmit">Enviar para revisión</button>
           <div class="hl-msg" id="hlMsg"></div>
@@ -2039,6 +2039,7 @@
       turnstileWidgetId = window.turnstile.render(turnstileContainer, {
         sitekey: turnstileContainer.getAttribute('data-sitekey'),
         theme: 'dark',
+        action: 'highlight_submit',
         callback: function () { turnstileReady = true; },
         'expired-callback': function () { turnstileReady = false; },
         'error-callback': function () { turnstileReady = false; }

@@ -34,5 +34,7 @@ $MAIL_DEBUG      = 0;                        // 0 = sin log, 1 = errores, 2 = de
 // ===== Cloudflare Turnstile =====
 // Claves para proteger formularios públicos contra bots.
 // Obtén las tuyas desde el panel de Cloudflare → Turnstile.
-$TURNSTILE_SITE_KEY   = '0x4XXXXXXXXXXXXXXXXX';  // Clave pública (se usa en el frontend)
-$TURNSTILE_SECRET_KEY = '0x4XXXXXXXXXXXXXXXXX';  // Clave secreta (se usa en el backend)
+$TURNSTILE_SITE_KEY   = '0x4AAAAAAEpTHjxtASKkn48b';   // Clave pública (se usa en el frontend)
+$TURNSTILE_SECRET_KEY = '0x4AAAAAAEpTHnVPu5BOCYGNqp2tufw6fc4';  // Clave secreta (se usa en el backend)
+$TURNSTILE_ACTION     = 'highlight_submit';               // Acción esperada del widget
+$TURNSTILE_HOSTNAMES  = ['corelegacy.gg'];               // Dominios frontend permitidos

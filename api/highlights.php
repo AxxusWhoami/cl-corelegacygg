@@ -42,7 +42,7 @@ function respond(int $status, array $payload): void
 
 // ===== Verificar Cloudflare Turnstile =====
 $turnstileResponse = trim($_POST['cf_turnstile_response'] ?? '');
-if ($turnstileResponse === '') {
+if ($turnstileResponse === '' || strlen($turnstileResponse) > 2048) {
     respond(400, ['ok' => false, 'message' => 'Debes completar la verificación de seguridad.']);
 }
 
@@ -70,6 +70,15 @@ if ($turnstileResult === false) {
 $turnstileData = json_decode($turnstileResult, true);
 if (!is_array($turnstileData) || empty($turnstileData['success'])) {
     respond(403, ['ok' => false, 'message' => 'La verificación de seguridad ha fallado. Inténtalo de nuevo.']);
+}
+
+if (($turnstileData['action'] ?? '') !== $TURNSTILE_ACTION) {
+    respond(403, ['ok' => false, 'message' => 'Verificación de seguridad inválida.']);
+}
+
+$turnstileHostname = $turnstileData['hostname'] ?? '';
+if (!in_array($turnstileHostname, $TURNSTILE_HOSTNAMES, true)) {
+    respond(403, ['ok' => false, 'message' => 'Verificación de seguridad inválida.']);
 }
 
 // ===== Validar y procesar entrada =====

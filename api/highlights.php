@@ -208,4 +208,66 @@ if (!mysqli_stmt_execute($stmt)) {
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
 
+// ===== Enviar notificación por correo al equipo =====
+$mailSent = false;
+$mailError = '';
+
+try {
+    require_once __DIR__ . '/../lib/PHPMailer/src/PHPMailer.php';
+    require_once __DIR__ . '/../lib/PHPMailer/src/SMTP.php';
+    require_once __DIR__ . '/../lib/PHPMailer/src/Exception.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host       = $MAIL_HOST;
+    $mail->Port       = (int) $MAIL_PORT;
+    $mail->SMTPSecure = $MAIL_SECURE;
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $MAIL_USER;
+    $mail->Password   = $MAIL_PASS;
+    $mail->CharSet    = $MAIL_CHARSET;
+    $mail->SMTPDebug  = (int) $MAIL_DEBUG;
+
+    $mail->setFrom($MAIL_FROM, $MAIL_FROM_NAME);
+    $mail->addAddress('team@corelegacy.gg', 'Equipo Core Legacy');
+    $mail->addReplyTo($email, $playerName);
+
+    $mail->Subject = 'Nuevo envío de contenido: ' . $title;
+
+    $typeLabel = $mediaType === 'video' ? 'Video de YouTube' : 'Captura de pantalla';
+    $mediaLink = $mediaType === 'video'
+        ? $storedUrl
+        : 'https://corelegacy.gg' . $storedUrl;
+
+    $mail->isHTML(true);
+    $mail->Body =
+        '<h2>Nuevo envío de contenido comunitario</h2>'
+        . '<table style="border-collapse:collapse;font-family:sans-serif;font-size:14px;line-height:1.6">'
+        . '<tr><td style="padding:4px 12px 4px 0;color:#666;font-weight:bold">Autor:</td><td>' . htmlspecialchars($playerName, ENT_QUOTES, 'UTF-8') . '</td></tr>'
+        . '<tr><td style="padding:4px 12px 4px 0;color:#666;font-weight:bold">Email de contacto:</td><td>' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '</td></tr>'
+        . '<tr><td style="padding:4px 12px 4px 0;color:#666;font-weight:bold">Tipo:</td><td>' . $typeLabel . '</td></tr>'
+        . '<tr><td style="padding:4px 12px 4px 0;color:#666;font-weight:bold">Título:</td><td>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</td></tr>'
+        . '<tr><td style="padding:4px 12px 4px 0;color:#666;font-weight:bold">Descripción:</td><td>' . nl2br(htmlspecialchars($description, ENT_QUOTES, 'UTF-8')) . '</td></tr>'
+        . '<tr><td style="padding:4px 12px 4px 0;color:#666;font-weight:bold">Enlace al material:</td><td><a href="' . htmlspecialchars($mediaLink, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($mediaLink, ENT_QUOTES, 'UTF-8') . '</a></td></tr>'
+        . '</table>'
+        . '<p style="margin-top:16px;font-size:12px;color:#999">Responde a este correo para contactar directamente con el autor (' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . ').</p>';
+
+    $mail->AltBody =
+        "Nuevo envío de contenido comunitario\n\n"
+        . "Autor: $playerName\n"
+        . "Email de contacto: $email\n"
+        . "Tipo: $typeLabel\n"
+        . "Título: $title\n"
+        . "Descripción: $description\n"
+        . "Enlace al material: $mediaLink\n\n"
+        . "Responde a este correo para contactar directamente con el autor ($email).";
+
+    $mail->send();
+    $mailSent = true;
+} catch (PHPMailer\PHPMailer\Exception $e) {
+    $mailError = $e->getMessage();
+} catch (Throwable $e) {
+    $mailError = $e->getMessage();
+}
+
 respond(200, ['ok' => true, 'message' => '¡Envío recibido! Tu contenido será revisado por el equipo antes de publicarse en nuestras redes sociales.']);

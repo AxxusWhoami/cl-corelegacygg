@@ -1537,9 +1537,6 @@
               <span class="ayuda-panel-title">Ayuda y soporte</span>
             </div>
             <div class="ayuda-panel-body" id="ayudaBody" style="justify-content:flex-start;align-items:stretch;text-align:left;">
-              <p class="ayuda-intro">
-                ¿Necesitas ayuda de un Maestro de Juego? Abre un ticket y el equipo de MJ te atenderá lo antes posible.
-              </p>
               <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Contactar con un MJ (Abrir Ticket)
@@ -1779,6 +1776,13 @@
             <div class="hl-field">
               <label for="bgDescription">Descripción del bug</label>
               <textarea id="bgDescription" name="description" maxlength="2000" required placeholder="Describe el bug con el mayor detalle posible: qué ocurrió, qué esperabas que ocurriera, pasos para reproducirlo, y cualquier información relevante..."></textarea>
+            </div>
+            <div class="hl-field">
+              <label for="bgScreenshot">Captura de pantalla (opcional)</label>
+              <div class="hl-file-area">
+                <input type="file" id="bgScreenshot" name="screenshot" accept="image/jpeg,image/png,image/gif,image/webp" />
+                <span class="hl-file-hint" id="bgFileHint">JPG, PNG, GIF o WebP · máx. 10 MB</span>
+              </div>
             </div>
             <div class="hl-field">
               <label>Verificación de seguridad</label>
@@ -2741,6 +2745,24 @@
     var turnstileWidgetId = null;
     var turnstileReady = false;
 
+    var MAX_SIZE = 10 * 1024 * 1024;
+    var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
+    var fileInput = document.getElementById('bgScreenshot');
+    var fileHint = document.getElementById('bgFileHint');
+    var FILE_HINT = 'JPG, PNG, GIF o WebP · máx. 10 MB';
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        clearError(fileInput);
+        if (fileInput.files && fileInput.files.length > 0) {
+          var f = fileInput.files[0];
+          fileHint.textContent = f.name + ' (' + Math.round(f.size / 1024) + ' KB)';
+        } else {
+          fileHint.textContent = FILE_HINT;
+        }
+      });
+    }
+
     function renderTurnstile() {
       if (turnstileWidgetId !== null || !turnstileContainer) return;
       if (typeof window.turnstile === 'undefined') return;
@@ -2875,6 +2897,19 @@
         valid = false;
       } else { clearError(descInput); }
 
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        var sf = fileInput.files[0];
+        if (IMG_ACCEPT.indexOf(sf.type) === -1) {
+          showError(fileInput, 'El formato del archivo no es válido.');
+          valid = false;
+        } else if (sf.size > MAX_SIZE) {
+          showError(fileInput, 'El archivo supera el tamaño máximo de 10 MB.');
+          valid = false;
+        } else {
+          clearError(fileInput);
+        }
+      }
+
       var turnstileToken = turnstileWidgetId !== null && typeof window.turnstile !== 'undefined'
         ? window.turnstile.getResponse(turnstileWidgetId)
         : '';
@@ -2913,6 +2948,7 @@
             catCards.forEach(function (c) { c.classList.remove('selected'); });
             selectedCategory = '';
             formSection.classList.remove('visible');
+            if (fileHint) fileHint.textContent = FILE_HINT;
             resetTurnstile();
             setTimeout(closeModal, 2500);
           } else {

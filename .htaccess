@@ -1,5 +1,15 @@
 RewriteEngine On
 
+# Block direct access to sensitive files
+RewriteRule ^params\.php$ - [F,L]
+RewriteRule ^\.env$ - [F,L]
+
+# Security headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
 # Force HTTPS and strip www
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]

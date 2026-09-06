@@ -554,3 +554,31 @@ body {
 @media (max-width: 640px) {
   .back-to-top { bottom: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; }
 }
+
+/* ===== Focus-visible for keyboard navigation ===== */
+.nav-link:focus-visible,
+.back-to-top:focus-visible,
+.btn-cta-primary:focus-visible,
+.btn-cta-secondary:focus-visible,
+.legal-modal-close:focus-visible,
+.legal-modal-accept:focus-visible,
+.site-footer-link:focus-visible,
+.site-footer-social-link:focus-visible {
+  outline: 2px solid var(--frost);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.nav-link:focus-visible {
+  text-shadow: 0 0 12px var(--ice-300);
+  text-decoration: underline;
+}
+.back-to-top:focus-visible {
+  border-color: var(--frost);
+  color: var(--frost);
+  box-shadow: 0 0 18px rgba(86,200,240,0.35);
+}
+.btn-cta-primary:focus-visible,
+.btn-cta-secondary:focus-visible {
+  box-shadow: 0 0 36px rgba(77,189,232,0.55), 0 6px 20px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+}

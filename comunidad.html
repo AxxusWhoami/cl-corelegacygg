@@ -1418,6 +1418,9 @@
 
     @media (max-width: 880px) {
       .comunidad-layout { grid-template-columns: 1fr !important; }
+      .comunidad-layout > div:first-child { order: 2; }
+      .comunidad-layout > div:last-child { order: 1; }
+      .achievement-grid { grid-template-columns: 1fr !important; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }

@@ -73,38 +73,38 @@
 
   var ABOUT_HTML = '\
     <h3>CoRe Legacy nace con un objetivo claro</h3>\
-    <p>CoRe Legacy nace con un objetivo claro: recuperar la esencia de una de las etapas más recordadas de WoW CoRe y llevarla a una nueva dimensión.</p>\
-    <p>Tras años de experiencia y después de haber formado parte del equipo que hizo historia en WoW CoRe, antiguos miembros del staff se han reunido nuevamente para poner en marcha un proyecto que busca recuperar aquella experiencia que marcó a toda una generación de jugadores.</p>\
-    <p>Al frente del proyecto se encuentra <strong style="color:#d4af37;">Homenixx</strong>, antiguo administrador y una de las figuras vinculadas a aquella etapa, acompañado por antiguos integrantes del equipo que comparten una misma visión: crear un servidor que permita volver a disfrutar de la esencia de WoW CoRe, pero incorporando las posibilidades y mejoras que ofrecen las tecnologías actuales.</p>\
-    <h3>El legado de WoW CoRe vuelve</h3>\
+    <p>CoRe Legacy nace con un objetivo claro: recuperar la esencia de una de las etapas más recordadas de <strong style="color:#d4af37;">WoW CoRe</strong> y llevarla a una nueva dimensión.</p>\
+    <p>Tras años de experiencia y después de haber formado parte del equipo que hizo historia en <strong style="color:#d4af37;">WoW CoRe</strong>, antiguos miembros del staff se han reunido nuevamente para poner en marcha un proyecto que busca recuperar aquella experiencia que marcó a toda una generación de jugadores.</p>\
+    <p>Al frente del proyecto se encuentra Homenixx, antiguo administrador y una de las figuras vinculadas a aquella etapa, acompañado por antiguos integrantes del equipo que comparten una misma visión: crear un servidor que permita volver a disfrutar de la esencia de <strong style="color:#d4af37;">WoW CoRe</strong>, pero incorporando las posibilidades y mejoras que ofrecen las tecnologías actuales.</p>\
+    <h3>El legado de <strong style="color:#d4af37;">WoW CoRe</strong> vuelve</h3>\
     <p>CoRe Legacy pretende ser mucho más que un servidor basado en el recuerdo.</p>\
-    <p>La intención es recuperar la esencia, identidad y filosofía de juego que caracterizaron a WoW CoRe durante su denominada era dorada, ofreciendo a los antiguos jugadores la oportunidad de regresar a un mundo que muchos dejaron atrás, reencontrarse con viejos compañeros, amigos, rivales y aliados, y volver a vivir experiencias que forman parte de la historia de la comunidad.</p>\
+    <p>La intención es recuperar la esencia, identidad y filosofía de juego que caracterizaron a <strong style="color:#d4af37;">WoW CoRe</strong> durante su denominada era dorada, ofreciendo a los antiguos jugadores la oportunidad de regresar a un mundo que muchos dejaron atrás, reencontrarse con viejos compañeros, amigos, rivales y aliados, y volver a vivir experiencias que forman parte de la historia de la comunidad.</p>\
     <p>Pero esta vez, el pasado se encuentra con el futuro.</p>\
     <p>El proyecto parte de aquella experiencia para construir algo nuevo, incorporando nuevas mecánicas, sistemas propios y numerosas mejoras de calidad de vida (QoL) destinadas a hacer que la experiencia de juego sea más cómoda, dinámica y atractiva sin perder la esencia que hizo especial a aquella época.</p>\
     <h3>Nuevas mecánicas y mejoras de calidad de vida</h3>\
     <p>Uno de los pilares de CoRe Legacy es evolucionar la experiencia de juego sin convertirla en algo completamente diferente.</p>\
     <p>El servidor incorpora nuevas mecánicas diseñadas para aportar profundidad y variedad al gameplay, junto con diferentes sistemas de Quality of Life (QoL) que buscan reducir tareas repetitivas, mejorar la accesibilidad de determinadas funciones y facilitar la interacción del jugador con el mundo.</p>\
     <p>La filosofía es sencilla: mantener aquello que funcionaba y mejorar aquello que la tecnología y la experiencia actual permiten mejorar.</p>\
-    <p>De esta manera, CoRe Legacy pretende ofrecer una experiencia familiar para quienes vivieron WoW CoRe, pero suficientemente renovada para sorprender también a quienes descubran el proyecto por primera vez.</p>\
+    <p>De esta manera, CoRe Legacy pretende ofrecer una experiencia familiar para quienes vivieron <strong style="color:#d4af37;">WoW CoRe</strong>, pero suficientemente renovada para sorprender también a quienes descubran el proyecto por primera vez.</p>\
     <h3>Inteligencia Artificial: una nueva forma de vivir Azeroth</h3>\
     <p>Uno de los elementos más innovadores y diferenciales del proyecto es la incorporación de Inteligencia Artificial en un entorno como World of Warcraft.</p>\
     <p>La IA abre la puerta a nuevas posibilidades dentro de un MMORPG clásico: personajes y sistemas capaces de ofrecer interacciones más dinámicas, experiencias más personalizadas y nuevas formas de relacionarse con el mundo del juego.</p>\
     <p>La incorporación de esta tecnología supone un paso más allá de los sistemas tradicionales utilizados en servidores privados y plantea una pregunta interesante:</p>\
     <p style="font-style:italic;color:#8dd6f5;">¿Qué ocurre cuando la Inteligencia Artificial entra en Azeroth?</p>\
-    <p>CoRe Legacy busca explorar precisamente ese territorio, utilizando las nuevas posibilidades tecnológicas para enriquecer la experiencia del jugador y crear situaciones que difícilmente podían plantearse durante la época original de WoW CoRe.</p>\
+    <p>CoRe Legacy busca explorar precisamente ese territorio, utilizando las nuevas posibilidades tecnológicas para enriquecer la experiencia del jugador y crear situaciones que difícilmente podían plantearse durante la época original de <strong style="color:#d4af37;">WoW CoRe</strong>.</p>\
     <h3>Volver a encontrarse</h3>\
     <p>Más allá de las mecánicas y de la tecnología, CoRe Legacy tiene un componente especialmente importante: la comunidad.</p>\
-    <p>Para muchos jugadores, WoW CoRe no fue simplemente un servidor. Fue el lugar donde conocieron a sus amigos, crearon hermandades, participaron en batallas, conquistaron territorios, compartieron noches de juego y construyeron recuerdos que permanecen muchos años después.</p>\
+    <p>Para muchos jugadores, <strong style="color:#d4af37;">WoW CoRe</strong> no fue simplemente un servidor. Fue el lugar donde conocieron a sus amigos, crearon hermandades, participaron en batallas, conquistaron territorios, compartieron noches de juego y construyeron recuerdos que permanecen muchos años después.</p>\
     <p>CoRe Legacy pretende recuperar precisamente esa sensación.</p>\
     <p>El reencuentro con antiguos jugadores y miembros de la comunidad constituye una parte fundamental de este nuevo capítulo. Viejos nombres, viejas alianzas y viejas rivalidades pueden volver a encontrarse en un Azeroth conocido, pero al mismo tiempo renovado.</p>\
     <h3>Un legado que mira hacia el futuro</h3>\
     <p>CoRe Legacy representa el encuentro entre nostalgia, experiencia y tecnología.</p>\
-    <p>Es el intento de recuperar la esencia de una época considerada por muchos como la era dorada de WoW CoRe, pero sin limitarse a reproducir el pasado.</p>\
-    <p>Antiguos miembros del equipo, encabezados por <strong style="color:#d4af37;">Homenixx</strong>, vuelven a ponerse al frente de un proyecto que busca demostrar que el legado de aquella comunidad todavía puede tener un futuro.</p>\
+    <p>Es el intento de recuperar la esencia de una época considerada por muchos como la era dorada de <strong style="color:#d4af37;">WoW CoRe</strong>, pero sin limitarse a reproducir el pasado.</p>\
+    <p>Antiguos miembros del equipo, encabezados por Homenixx, vuelven a ponerse al frente de un proyecto que busca demostrar que el legado de aquella comunidad todavía puede tener un futuro.</p>\
     <p>El mundo que conocimos puede volver a abrir sus puertas.</p>\
     <p>Los viejos amigos pueden volver a encontrarse.</p>\
     <p>Y esta vez, Azeroth contará con algo que nunca tuvo antes: Inteligencia Artificial.</p>\
-    <p style="font-style:italic;color:#8dd6f5;">CoRe Legacy no pretende simplemente recordar la era dorada de WoW CoRe. Pretende construir su siguiente capítulo.</p>';
+    <p style="font-style:italic;color:#8dd6f5;">CoRe Legacy no pretende simplemente recordar la era dorada de <strong style="color:#d4af37;">WoW CoRe</strong>. Pretende construir su siguiente capítulo.</p>';
 
   var TOS_META = {
     title: 'Términos de Servicio — CoRe Legacy | Servidor privado de WoW WotLK 3.3.5a',

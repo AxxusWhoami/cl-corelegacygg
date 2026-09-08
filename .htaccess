@@ -21,6 +21,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^info-changelog/?$ /info-changelog.html [L]
 
+# Clean URL: /sobre-nosotros -> /sobre-nosotros.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^sobre-nosotros/?$ /sobre-nosotros.html [L]
+
 # Clean URLs: /comunidad -> /comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

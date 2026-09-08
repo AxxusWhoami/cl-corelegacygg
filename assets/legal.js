@@ -243,9 +243,21 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLegal);
-  } else {
+  var legalInitialized = false;
+  function initializeLegal() {
+    if (legalInitialized) return;
+    var aboutModal = document.getElementById('legalAboutModal');
+    var tosModal = document.getElementById('legalTosModal');
+    var privacyModal = document.getElementById('legalPrivacyModal');
+    if (!tosModal || !privacyModal || !aboutModal) return;
+    legalInitialized = true;
     initLegal();
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLegal, { once: true });
+  } else {
+    initializeLegal();
+  }
+  window.addEventListener('load', initializeLegal, { once: true });
 })();

@@ -362,6 +362,7 @@ body {
   flex-shrink: 0;
 }
 .legal-modal-title {
+  margin: 0;
   font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
   font-weight: 700;
   font-size: 1.3rem;

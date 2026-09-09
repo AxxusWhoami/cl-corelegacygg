@@ -76,7 +76,7 @@
     <p>CoRe Legacy nace con un objetivo claro: recuperar la esencia de una de las etapas más recordadas de <strong style="color:#d4af37;">WoW CoRe</strong> y llevarla a una nueva dimensión.</p>\
     <p>Tras años de experiencia y después de haber formado parte del equipo que hizo historia en <strong style="color:#d4af37;">WoW CoRe</strong>, antiguos miembros del staff se han reunido nuevamente para poner en marcha un proyecto que busca recuperar aquella experiencia que marcó a toda una generación de jugadores.</p>\
     <p>Al frente del proyecto se encuentra Homenixx, antiguo administrador y una de las figuras vinculadas a aquella etapa, acompañado por antiguos integrantes del equipo que comparten una misma visión: crear un servidor que permita volver a disfrutar de la esencia de <strong style="color:#d4af37;">WoW CoRe</strong>, pero incorporando las posibilidades y mejoras que ofrecen las tecnologías actuales.</p>\
-    <h3>El legado de <strong style="color:#d4af37;">WoW CoRe</strong> vuelve</h3>\
+    <h3>El legado de WoW CoRe vuelve</h3>\
     <p>CoRe Legacy pretende ser mucho más que un servidor basado en el recuerdo.</p>\
     <p>La intención es recuperar la esencia, identidad y filosofía de juego que caracterizaron a <strong style="color:#d4af37;">WoW CoRe</strong> durante su denominada era dorada, ofreciendo a los antiguos jugadores la oportunidad de regresar a un mundo que muchos dejaron atrás, reencontrarse con viejos compañeros, amigos, rivales y aliados, y volver a vivir experiencias que forman parte de la historia de la comunidad.</p>\
     <p>Pero esta vez, el pasado se encuentra con el futuro.</p>\

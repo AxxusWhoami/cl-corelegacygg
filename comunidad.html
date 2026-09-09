@@ -86,18 +86,18 @@
       var p = window.location.pathname.replace(/\/+$/, '');
       var meta = {
         '/abrir-ticket': {
-          title: 'Abrir Ticket de Soporte — CoRe Legacy | World of Warcraft WotLK',
-          desc: 'Abre un ticket de soporte para recibir ayuda del equipo de CoRe Legacy. Reporta problemas con tu cuenta, personaje, pagos o consulta cualquier duda sobre el servidor.',
+          title: 'Soporte WoW WotLK: abrir ticket | CoRe Legacy',
+          desc: 'Abre un ticket de soporte en CoRe Legacy para recibir ayuda con tu cuenta, personaje, pagos o cualquier duda sobre el servidor de WoW WotLK 3.3.5a hoy.',
           canonical: 'https://corelegacy.gg/abrir-ticket'
         },
         '/reportar-bug': {
-          title: 'Reportar un Bug — CoRe Legacy | World of Warcraft WotLK',
-          desc: 'Reporta un bug encontrado en el servidor CoRe Legacy. Describe el error con el máximo detalle posible para que nuestro equipo pueda reproducirlo y corregirlo.',
+          title: 'Reportar un bug en WoW WotLK | CoRe Legacy',
+          desc: 'Reporta bugs de CoRe Legacy con todos los detalles: explica el error, cómo reproducirlo y la información necesaria para que el equipo pueda corregirlo.',
           canonical: 'https://corelegacy.gg/reportar-bug'
         },
         '/highlights-gameplays': {
-          title: 'Comparte tus Gameplays y Capturas — CoRe Legacy | World of Warcraft WotLK',
-          desc: 'Envía tus mejores capturas de pantalla y videos de gameplays de WoW WotLK 3.3.5a a CoRe Legacy. Comparte tu contenido épico con la comunidad y aparece en nuestras redes sociales.',
+          title: 'Compartir gameplays de WoW | CoRe Legacy',
+          desc: 'Envía capturas y gameplays de WoW WotLK 3.3.5a a CoRe Legacy. Comparte tu contenido con la comunidad y descubre tus mejores momentos en nuestras redes.',
           canonical: 'https://corelegacy.gg/highlights-gameplays'
         }
       };
@@ -676,6 +676,7 @@
       border-bottom: 1px solid rgba(77,189,232,0.2);
     }
     .hl-modal-title {
+      margin: 0;
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
       font-weight: 700; font-size: 1rem; color: var(--ice-100);
       letter-spacing: 0.04em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
@@ -1316,6 +1317,7 @@
     }
     .bug-form-section.visible { display: flex; }
     .bug-step-label {
+      margin-top: 0;
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
       font-weight: 700; font-size: 0.85rem; color: #8dd6f5;
       letter-spacing: 0.06em; text-transform: uppercase;
@@ -1673,7 +1675,7 @@
   <div id="hlModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="hlModalTitle">
     <div class="hl-modal">
       <div class="hl-modal-header">
-        <span class="hl-modal-title" id="hlModalTitle">Comparte tu contenido</span>
+        <h1 class="hl-modal-title" id="hlModalTitle">Comparte tu contenido</h1>
         <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
       </div>
       <div class="hl-modal-body">
@@ -1730,7 +1732,7 @@
   <div id="tkModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="tkModalTitle">
     <div class="hl-modal">
       <div class="hl-modal-header">
-        <span class="hl-modal-title" id="tkModalTitle">Contactar con un MJ (Abrir Ticket)</span>
+        <h1 class="hl-modal-title" id="tkModalTitle">Contactar con un MJ (Abrir Ticket)</h1>
         <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
       </div>
       <div class="hl-modal-body">
@@ -1793,11 +1795,11 @@
   <div id="bgModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bgModalTitle">
     <div class="hl-modal" style="width:min(720px,94vw);">
       <div class="hl-modal-header">
-        <span class="hl-modal-title" id="bgModalTitle">Reportar Bug</span>
+        <h1 class="hl-modal-title" id="bgModalTitle">Reportar Bug</h1>
         <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
       </div>
       <div class="hl-modal-body">
-        <div class="bug-step-label">Paso 1 — Selecciona la categoría del bug</div>
+        <h2 class="bug-step-label">Paso 1 — Selecciona la categoría del bug</h2>
         <div class="bug-cat-grid" id="bgCatGrid">
           <div class="bug-cat-card" data-cat="quests">
             <div class="bug-cat-title"><span class="bug-cat-check"></span>Misiones (Quests)</div>
@@ -1842,7 +1844,7 @@
         </div>
 
         <div class="bug-form-section" id="bgFormSection">
-          <div class="bug-step-label">Paso 2 — Describe el bug</div>
+          <h2 class="bug-step-label">Paso 2 — Describe el bug</h2>
           <form class="hl-form" id="bgForm">
             <div class="hl-form-row">
               <div class="hl-field">

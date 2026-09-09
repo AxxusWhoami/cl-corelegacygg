@@ -126,6 +126,10 @@
     var tag = document.querySelector('meta[name="description"]');
     return tag ? tag.getAttribute('content') : '';
   })();
+  var originalCanonical = (function () {
+    var tag = document.querySelector('link[rel="canonical"]');
+    return tag ? tag.getAttribute('href') : '';
+  })();
 
   function updateMetaDescription(content) {
     var tag = document.querySelector('meta[name="description"]');
@@ -133,12 +137,21 @@
     tag.setAttribute('content', content);
   }
 
-  function openModal(modal, meta) {
+  function updateCanonical(href) {
+    var tag = document.querySelector('link[rel="canonical"]');
+    if (!tag) return;
+    tag.setAttribute('href', href);
+  }
+
+  function openModal(modal, meta, path) {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (meta) {
       document.title = meta.title;
       updateMetaDescription(meta.description);
+    }
+    if (path) {
+      updateCanonical('https://corelegacy.gg' + path);
     }
   }
 
@@ -152,7 +165,7 @@
     var entry = MODAL_MAP[name];
     if (!entry) return;
     var modal = document.getElementById(entry.id);
-    if (modal) openModal(modal, entry.meta);
+    if (modal) openModal(modal, entry.meta, entry.path);
   }
 
   function handleDeepLink() {
@@ -167,6 +180,7 @@
     document.body.style.overflow = '';
     document.title = originalTitle;
     updateMetaDescription(originalDescription);
+    updateCanonical(originalCanonical);
     var path = window.location.pathname.replace(/\/+$/, '');
     if (path === '/terminos-de-servicio' || path === '/politica-de-privacidad' || path === '/sobre-nosotros') {
       history.pushState({}, '', '/');
@@ -190,7 +204,7 @@
     document.querySelectorAll('[data-legal="tos"]').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        openModal(tosModal, TOS_META);
+        openModal(tosModal, TOS_META, '/terminos-de-servicio');
         history.pushState({ legal: 'tos' }, '', '/terminos-de-servicio');
       });
     });
@@ -198,7 +212,7 @@
     document.querySelectorAll('[data-legal="privacy"]').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
-        openModal(privacyModal, PRIVACY_META);
+        openModal(privacyModal, PRIVACY_META, '/politica-de-privacidad');
         history.pushState({ legal: 'privacy' }, '', '/politica-de-privacidad');
       });
     });
@@ -207,7 +221,7 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         if (aboutModal) {
-          openModal(aboutModal, ABOUT_META);
+          openModal(aboutModal, ABOUT_META, '/sobre-nosotros');
           history.pushState({ legal: 'about' }, '', '/sobre-nosotros');
         }
       });

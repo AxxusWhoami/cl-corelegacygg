@@ -5,8 +5,8 @@
     'guia-de-descarga-e-inicio-rapido': {
       title: 'Guía de Descarga e Inicio Rápido',
       icon: '📥',
-      metaTitle: 'Descargar e instalar World of Warcraft (WoW) WotLK 3.3.5a en CoRe Legacy | Guía rápida',
-      metaDescription: 'Descarga el cliente de World of Warcraft (WoW) Wrath of the Lich King 3.3.5a en CoRe Legacy con Vulkan y parche 4K preinstalados. Sin instalación: descarga, descomprime y juega en minutos.',
+      metaTitle: 'Descargar e instalar WoW WotLK 3.3.5a en CoRe Legacy | Guía rápida',
+      metaDescription: 'Descarga el cliente de WoW WotLK 3.3.5a en CoRe Legacy con Vulkan y parche 4K preinstalados. Sin instalación: descarga, descomprime y juega en minutos.',
       html:
         '<section class="guia-intro">' +
           '<p>¡Bienvenido! Empezar a jugar con nosotros es muy sencillo. Sigue estos rápidos pasos y estarás en el juego en cuestión de minutos.</p>' +
@@ -91,8 +91,8 @@
     'requisitos-de-hardware': {
       title: 'Requisitos de Hardware',
       icon: '🖥️',
-      metaTitle: 'Requisitos mínimos y recomendados para jugar a World of Warcraft (WoW) WotLK 3.3.5a en CoRe Legacy',
-      metaDescription: 'Requisitos de hardware para World of Warcraft (WoW) Wrath of the Lich King 3.3.5a en CoRe Legacy: CPU, RAM, GPU con Vulkan, almacenamiento y conexión a internet activa.',
+      metaTitle: 'Requisitos de hardware para WoW WotLK 3.3.5a en CoRe Legacy',
+      metaDescription: 'Requisitos mínimos y recomendados para jugar a WoW WotLK 3.3.5a en CoRe Legacy: CPU, RAM, GPU con Vulkan, almacenamiento y conexión a internet.',
       html:
         '<section class="guia-intro">' +
           '<p>Antes de lanzarte a la aventura, asegúrate de que tu equipo cumple con los requisitos mínimos para disfrutar de CoRe Legacy sin problemas. A continuación tienes una tabla con los requisitos mínimos operativos y los recomendados para una experiencia óptima.</p>' +
@@ -175,8 +175,8 @@
     'guia-playerbots-ia-wow-wotlk-solitario': {
       title: 'Guía Definitiva de Playerbots: Cómo Jugar WoW WotLK en Solitario con IA',
       icon: '🤖',
-      metaTitle: 'Cómo Jugar WoW WotLK en Solitario con Inteligencia Artificial',
-      metaDescription: 'Configura tu grupo, descubre los comandos y exprime nuestro servidor WoW IA con modelo de lenguaje integrado.',
+      metaTitle: 'Jugar WoW WotLK en solitario con IA | Guía de Playerbots',
+      metaDescription: 'Configura tu grupo de Playerbots con IA en CoRe Legacy: comandos, roles, estrategias de combate y bandas en solitario en WoW WotLK 3.3.5a.',
       html:
         '<section class="guia-intro">' +
           '<p>¿Alguna vez has querido explorar todo el contenido de Northrend pero no tenías un grupo disponible? En CoRe Legacy, el mejor servidor wow para jugar en solitario 3.3.5a, la falta de jugadores ya no es un obstáculo. Gracias a nuestro sistema avanzado de bots Azerothcore, puedes reclutar tu propio escuadrón y dominar Azeroth a tu ritmo.</p>' +
@@ -285,8 +285,8 @@
     'guia-practica-avanzada-multibot': {
       title: 'Guía Práctica y Avanzada de MultiBot',
       icon: '🎮',
-      metaTitle: 'Guía del Addon MultiBot para WoW WotLK 3.3.5a en CoRe Legacy | Controla tu ejército de bots',
-      metaDescription: 'Aprende a usar el addon MultiBot en CoRe Legacy: controla visualmente tus altbots, gestiona equipo, talentos, misiones, estrategias de combate, formaciones tácticas y botín en World of Warcraft (WoW) WotLK 3.3.5a.',
+      metaTitle: 'Guía del Addon MultiBot para WoW WotLK 3.3.5a | CoRe Legacy',
+      metaDescription: 'Aprende a usar el addon MultiBot en CoRe Legacy: controla tus altbots, gestiona equipo, talentos, misiones, estrategias de combate y formaciones en WoW WotLK 3.3.5a.',
       html:
         '<section class="guia-intro">' +
           '<p>¡Bienvenido a la guía definitiva de MultiBot! Este addon es mucho más que una simple herramienta; es tu centro de mando personalizado para liderar a tus <strong>altbots</strong> (los personajes secundarios de tu cuenta que utilizas como compañeros controlados por la IA) de forma completamente visual e intuitiva.</p>' +
@@ -450,8 +450,8 @@
     'guia-addon-dungeonclear': {
       title: 'Guía de Uso del Addon: DungeonClear',
       icon: '🤖',
-      metaTitle: 'Guía del Addon DungeonClear para WoW WotLK 3.3.5a en CoRe Legacy | Bot tanque automático',
-      metaDescription: 'Aprende a usar el addon DungeonClear en CoRe Legacy: controla un bot tanque que limpia mazmorras de forma autónoma en World of Warcraft (WoW) WotLK 3.3.5a. Instalación, interfaz, modos de combate y comandos de chat.',
+      metaTitle: 'Guía del Addon DungeonClear para WoW WotLK 3.3.5a | CoRe Legacy',
+      metaDescription: 'Aprende a usar DungeonClear en CoRe Legacy: controla un bot tanque que limpia mazmorras de forma autónoma en WoW WotLK 3.3.5a. Instalación, interfaz y comandos.',
       html:
         '<section class="guia-intro">' +
           '<p>El addon <strong>DungeonClear</strong> es una interfaz gráfica integrada en el juego diseñada para controlar de forma sencilla a un bot tanque dentro de una mazmorra. En lugar de escribir constantemente comandos en el chat, este addon te proporciona un panel para que el tanque limpie la mazmorra de forma autónoma: caminará de jefe en jefe, limpiará los enemigos en el camino (trash), esquivará obstáculos, recogerá botín, abrirá puertas y se recuperará de atascos.</p>' +
@@ -605,11 +605,21 @@
     var tag = document.querySelector('meta[name="description"]');
     return tag ? tag.getAttribute('content') : '';
   })();
+  var originalCanonical = (function () {
+    var tag = document.querySelector('link[rel="canonical"]');
+    return tag ? tag.getAttribute('href') : '';
+  })();
 
   function updateMetaDescription(content) {
     var tag = document.querySelector('meta[name="description"]');
     if (!tag) return;
     tag.setAttribute('content', content);
+  }
+
+  function updateCanonical(href) {
+    var tag = document.querySelector('link[rel="canonical"]');
+    if (!tag) return;
+    tag.setAttribute('href', href);
   }
 
   function openModal(modal) {
@@ -626,6 +636,7 @@
     if (existingGuide) existingGuide.remove();
     document.title = originalTitle;
     updateMetaDescription(originalDescription);
+    updateCanonical(originalCanonical);
     var path = window.location.pathname.replace(/\/+$/, '');
     if (path.indexOf(GUIA_PATH_PREFIX) === 0) {
       history.pushState({}, '', '/comunidad');
@@ -651,6 +662,7 @@
 
     if (guide.metaTitle) document.title = guide.metaTitle;
     if (guide.metaDescription) updateMetaDescription(guide.metaDescription);
+    updateCanonical('https://corelegacy.gg' + GUIA_PATH_PREFIX + slug);
 
     openModal(modal);
   }

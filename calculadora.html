@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Talentos WotLK 3.3.5a | CoRe Legacy</title>
+  <meta name="description" content="Crea, guarda y comparte tus builds de talentos de World of Warcraft Wrath of the Lich King 3.3.5a para todas las clases." />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/calculadora" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <style>
+    :root { --calc-bg:#06111f; --calc-panel:rgba(8,27,47,.9); --calc-panel-2:rgba(13,42,68,.72); --calc-line:#275a7d; --calc-text:#d4f0ff; --calc-muted:#85a7bf; --calc-accent:#65d3f5; --calc-gold:#f0c850; --calc-success:#72dda9; }
+    body { min-height:100vh; background:radial-gradient(ellipse at 50% -10%, rgba(26,128,180,.22), transparent 45%), linear-gradient(180deg,rgba(2,12,23,.72),#050d18 42%), url('/public/hero-citadel.webp') center top/cover fixed; }
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; background:linear-gradient(90deg,rgba(2,10,20,.45),transparent 35%,transparent 65%,rgba(2,10,20,.45)); z-index:-1; }
+    .calc-shell { width:min(1240px,calc(100% - 32px)); margin:0 auto; padding:24px 0 56px; }
+    .calc-nav { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:10px 0 24px; }
+    .brand { display:flex; align-items:center; gap:12px; color:var(--calc-text); text-decoration:none; font-family:'Cinzel Decorative',serif; font-weight:700; letter-spacing:.04em; }
+    .brand img { width:42px; height:42px; object-fit:contain; filter:drop-shadow(0 0 10px rgba(101,211,245,.6)); }
+    .back-link { color:var(--calc-muted); text-decoration:none; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; transition:color .2s ease; }
+    .back-link:hover { color:var(--calc-text); }
+    .hero { text-align:center; padding:42px 16px 32px; }
+    .eyebrow { color:var(--calc-gold); font-size:.7rem; letter-spacing:.28em; text-transform:uppercase; margin-bottom:14px; }
+    h1 { margin:0; font-family:'Cinzel Decorative',serif; font-size:clamp(1.7rem,4vw,3.1rem); line-height:1.15; color:#f0fbff; text-shadow:0 0 26px rgba(101,211,245,.32); }
+    .hero p { max-width:700px; margin:16px auto 0; color:#a9c7da; line-height:1.7; font-size:.94rem; }
+    .workspace { display:grid; grid-template-columns:270px minmax(0,1fr); gap:18px; align-items:start; }
+    .panel { border:1px solid rgba(101,211,245,.2); border-radius:14px; background:linear-gradient(145deg,rgba(9,34,57,.96),rgba(3,16,30,.94)); box-shadow:0 18px 50px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.04); }
+    .class-panel { padding:16px; position:sticky; top:18px; }
+    .panel-title { color:var(--calc-text); font-family:'Cinzel Decorative',serif; font-size:.88rem; letter-spacing:.05em; margin:0 0 14px; }
+    .class-list { display:grid; gap:7px; }
+    .class-button { display:flex; align-items:center; gap:10px; width:100%; padding:9px 10px; border:1px solid transparent; border-radius:9px; background:transparent; color:#9bb8ca; text-align:left; font:600 .78rem 'Cinzel',serif; cursor:pointer; transition:background .2s,border-color .2s,color .2s,transform .2s; }
+    .class-button:hover { color:#e7f8ff; background:rgba(101,211,245,.08); transform:translateX(2px); }
+    .class-button.active { color:#f4fcff; background:linear-gradient(90deg,rgba(39,123,163,.38),rgba(39,123,163,.1)); border-color:rgba(101,211,245,.5); box-shadow:0 0 16px rgba(40,170,220,.12); }
+    .class-icon { width:30px; height:30px; border-radius:7px; object-fit:cover; border:1px solid rgba(240,200,80,.42); }
+    .class-name { flex:1; }
+    .class-level { color:#6c8ea6; font-size:.63rem; }
+    .main-panel { padding:20px; min-width:0; }
+    .build-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding-bottom:18px; border-bottom:1px solid rgba(101,211,245,.14); }
+    .build-kicker { color:var(--calc-gold); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:6px; }
+    .build-title { margin:0; color:#effaff; font-family:'Cinzel Decorative',serif; font-size:clamp(1.05rem,2vw,1.5rem); }
+    .build-meta { color:var(--calc-muted); font-size:.78rem; margin-top:7px; }
+    .points-box { text-align:right; min-width:120px; }
+    .points-number { display:block; color:var(--calc-accent); font:700 1.55rem 'Cinzel Decorative',serif; text-shadow:0 0 14px rgba(101,211,245,.32); }
+    .points-label { color:#7898ad; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+    .btn { border:1px solid rgba(101,211,245,.38); border-radius:8px; padding:9px 13px; color:#cdeefa; background:rgba(23,80,111,.36); font:600 .72rem 'Cinzel',serif; letter-spacing:.05em; cursor:pointer; transition:all .2s ease; }
+    .btn:hover { color:#fff; border-color:var(--calc-accent); background:rgba(43,135,170,.48); transform:translateY(-1px); }
+    .btn-primary { color:#061522; border-color:#a9edff; background:linear-gradient(135deg,#d7f6ff,#63d2f3); box-shadow:0 0 18px rgba(101,211,245,.22); }
+    .btn-primary:hover { color:#061522; background:linear-gradient(135deg,#fff,#8be3fa); }
+    .share-status { color:var(--calc-success); font-size:.72rem; align-self:center; min-height:1em; }
+    .trees { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .tree { min-width:0; overflow:hidden; border:1px solid rgba(101,211,245,.2); border-radius:11px; background:rgba(2,15,28,.68); }
+    .tree-head { padding:13px 12px 12px; background:linear-gradient(135deg,rgba(31,104,143,.35),rgba(5,27,44,.45)); border-bottom:1px solid rgba(101,211,245,.16); }
+    .tree-head h3 { margin:0; color:#e6f8ff; font:700 .83rem 'Cinzel Decorative',serif; line-height:1.3; }
+    .tree-count { color:#83bad4; font-size:.7rem; margin-top:5px; }
+    .tree-bar { height:4px; margin-top:10px; border-radius:8px; background:#102b40; overflow:hidden; }
+    .tree-bar span { display:block; height:100%; width:0; background:linear-gradient(90deg,#2a9ac9,#9ceeff); box-shadow:0 0 8px #65d3f5; transition:width .25s ease; }
+    .talent-list { display:grid; gap:6px; padding:10px; }
+    .talent { display:grid; grid-template-columns:34px 1fr 52px; align-items:center; gap:7px; min-height:49px; padding:6px; border:1px solid rgba(88,135,163,.2); border-radius:8px; background:rgba(13,37,57,.6); transition:background .2s,border-color .2s,opacity .2s; }
+    .talent.available { border-color:rgba(101,211,245,.28); }
+    .talent.locked { opacity:.45; }
+    .talent-icon { width:32px; height:32px; border-radius:6px; border:1px solid rgba(240,200,80,.3); object-fit:cover; background:#0c2438; }
+    .talent-name { color:#c2dce9; font-size:.68rem; line-height:1.25; }
+    .talent-rank { display:block; color:#6c9ab3; font-size:.6rem; margin-top:3px; }
+    .talent-actions { display:flex; gap:4px; justify-content:flex-end; } .talent-button { display:flex; align-items:center; justify-content:center; width:24px; height:25px; border:1px solid rgba(101,211,245,.4); border-radius:6px; color:#b5edff; background:rgba(34,111,146,.35); font-size:1rem; line-height:1; cursor:pointer; transition:background .2s,transform .2s; }
+    .talent-button:hover:not(:disabled) { background:#2d9fc8; transform:scale(1.06); }
+    .talent-button:disabled { cursor:not-allowed; color:#527087; border-color:#24445a; background:transparent; }
+    .talent-button.maxed { color:var(--calc-gold); border-color:rgba(240,200,80,.48); }
+    .empty { padding:34px 12px; text-align:center; color:#66879d; font-size:.74rem; line-height:1.6; }
+    .share-card { margin-top:18px; padding:16px 18px; border:1px solid rgba(240,200,80,.22); border-radius:11px; background:linear-gradient(120deg,rgba(76,54,17,.26),rgba(7,26,43,.5)); }
+    .share-card strong { color:var(--calc-gold); font-family:'Cinzel Decorative',serif; font-size:.78rem; }
+    .share-card p { color:#a8bdc9; margin:6px 0 0; font-size:.72rem; line-height:1.6; }
+    .share-url { display:block; width:100%; margin-top:10px; padding:9px 10px; border:1px solid rgba(101,211,245,.18); border-radius:7px; background:rgba(1,10,20,.56); color:#8fcce3; font: .68rem monospace; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .toast { position:fixed; left:50%; bottom:24px; z-index:5; transform:translate(-50%,20px); padding:11px 16px; border:1px solid rgba(114,221,169,.45); border-radius:8px; background:#082b27; color:#b9ffe3; font-size:.75rem; opacity:0; pointer-events:none; transition:opacity .25s,transform .25s; }
+    .toast.visible { opacity:1; transform:translate(-50%,0); }
+    @media (max-width:900px) { .workspace { grid-template-columns:1fr; } .class-panel { position:static; } .class-list { grid-template-columns:repeat(5,1fr); } .class-button { flex-direction:column; justify-content:center; gap:5px; padding:8px 4px; text-align:center; } .class-level { display:none; } }
+    @media (max-width:680px) { .calc-shell { width:min(100% - 20px,1240px); padding-top:10px; } .calc-nav { padding-bottom:10px; } .brand { font-size:.78rem; } .back-link { font-size:.63rem; } .hero { padding:26px 6px 24px; } .hero p { font-size:.82rem; } .main-panel { padding:13px; } .build-head { flex-direction:column; } .points-box { text-align:left; } .trees { grid-template-columns:1fr; } .tree-head { cursor:default; } .class-list { gap:5px; } .class-icon { width:26px; height:26px; } .class-button { font-size:.62rem; } }
+  </style>
+</head>
+<body>
+  <main class="calc-shell">
+    <nav class="calc-nav" aria-label="Navegación principal">
+      <a class="brand" href="/"><img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" /><span>CoRe Legacy</span></a>
+      <a class="back-link" href="/">Volver al inicio</a>
+    </nav>
+    <header class="hero">
+      <div class="eyebrow">Wrath of the Lich King · 3.3.5a</div>
+      <h1>Calculadora de talentos</h1>
+      <p>Diseña tu próxima build, prueba combinaciones para PvE o PvP y comparte el enlace con tus compañeros de hermandad.</p>
+    </header>
+    <section class="workspace" aria-label="Calculadora de talentos">
+      <aside class="panel class-panel">
+        <h2 class="panel-title">Elige una clase</h2>
+        <div id="classList" class="class-list"></div>
+      </aside>
+      <section class="panel main-panel">
+        <div class="build-head">
+          <div><div class="build-kicker">Build actual</div><h2 id="buildTitle" class="build-title"></h2><div id="buildMeta" class="build-meta"></div></div>
+          <div class="points-box"><span id="pointsNumber" class="points-number">0 / 71</span><span class="points-label">puntos gastados</span></div>
+        </div>
+        <div class="toolbar">
+          <button id="resetButton" class="btn" type="button">Reiniciar talentos</button>
+          <button id="shareButton" class="btn btn-primary" type="button">Compartir build</button>
+          <span id="shareStatus" class="share-status" role="status"></span>
+        </div>
+        <div id="trees" class="trees"></div>
+        <div class="share-card"><strong>Comparte tu combinación</strong><p>El enlace incluye la clase y todos los puntos seleccionados. Cópialo y envíalo a tus amigos para que puedan abrir exactamente la misma build.</p><code id="shareUrl" class="share-url"></code></div>
+      </section>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    (function () {
+      'use strict';
+      var iconPath = '/assets/icons/large/';
+      var classes = [
+        { id:'warrior', name:'Guerrero', icon:'classicon_warrior.jpg', trees:['Armas','Furia','Protección'] },
+        { id:'paladin', name:'Paladín', icon:'classicon_paladin.jpg', trees:['Sagrado','Protección','Reprensión'] },
+        { id:'hunter', name:'Cazador', icon:'classicon_hunter.jpg', trees:['Bestias','Puntería','Supervivencia'] },
+        { id:'rogue', name:'Pícaro', icon:'classicon_rogue.jpg', trees:['Asesinato','Combate','Sutileza'] },
+        { id:'priest', name:'Sacerdote', icon:'classicon_priest.jpg', trees:['Disciplina','Sagrado','Sombra'] },
+        { id:'deathknight', name:'Caballero de la Muerte', icon:'spell_deathknight_classicon.jpg', trees:['Sangre','Escarcha','Profano'] },
+        { id:'shaman', name:'Chamán', icon:'classicon_shaman.jpg', trees:['Elemental','Mejora','Restauración'] },
+        { id:'mage', name:'Mago', icon:'classicon_mage.jpg', trees:['Arcano','Fuego','Escarcha'] },
+        { id:'warlock', name:'Brujo', icon:'classicon_warlock.jpg', trees:['Aflicción','Demonología','Destrucción'] },
+        { id:'druid', name:'Druida', icon:'classicon_druid.jpg', trees:['Equilibrio','Feral','Restauración'] }
+      ];
+      var talentNames = {
+        warrior:['Especialización en armas','Desvío','Heridas profundas','Maestría táctica','Carga mejorada','Impulso','Muerte súbita','Filotormenta','Especialización en actitud','Golpe mortal','Atronar mejorado','Maestría de batalla'],
+        paladin:['Intelecto divino','Aura de concentración','Luz de sanación','Favor divino','Sentencias del puro','Guardián divino','Iluminación divina','Cólera santificada','Venganza recta','Tormenta divina','Fanatismo','Divinidad'],
+        hunter:['Aspecto del halcón mejorado','Entrenamiento de francotirador','Fuego enfocado','Matanza','Maestro de bestias','Cobra escupidora','Disparo mortal','Mordedura de serpiente','Picadura de wyvern','Aguijón de escórpido','Disparo de quimera','Trampa explosiva'],
+        rogue:['Crueldad','Malicia','Hemorragia','Exponer armadura mejorado','Letalidad','Venenos inmundos','Asesinato','Aluvión de acero','Especialización en armas','Adrenalina','Hacer picadillo','Danza de las sombras'],
+        priest:['Voluntad enfocada','Palabra de poder: barrera','Meditación','Éxtasis','Enfoque interno','Evangelización','Penitencia','Sanación mejorada','Inspiración','Círculo de sanación','Espíritu redentor','Serendipia'],
+        deathknight:['Matanza sangrienta','Veterano de la Tercera Guerra','Venganza sangrienta','Arma de runa danzante','Subversión','Veterano de la guerra','Maquina de matar','Garras heladas','Nervios de acero frío','Helada blanca','Toque helado mejorado','Hambre de frío'],
+        shaman:['Convección','Conmoción estática','Llamada de las llamas','Sobrecarga elemental','Tormenta, tierra y fuego','Maestría elemental','Tótem de cólera','Armas elementales','Arremetida de tormenta','Escudo de agua mejorado','Escudo de tierra','Marea de maná'],
+        mage:['Misiles arcanos mejorados','Concentración arcana','Meditación arcana','Poder arcano','Armonización de magia','Presencia mental','Tromba de misiles','Agostar mejorado','Ignición','Combustión','Bola de fuego mejorada','Pirofrío'],
+        warlock:['Corrupción mejorada','Supresión','Abrazo de las sombras','Drenar alma mejorado','Maldición de agonía','Pandemia','Aullido de terror mejorado','Pacto oscuro','Demonología','Sacrificio demoníaco','Descarga de las sombras','Conflagrar'],
+        druid:['Fuego lunar mejorado','Enjambre de insectos','Fuerza de la naturaleza','Forma de lechúcico lunar','Génesis','Tormenta de estrellas','Piel gruesa','Supervivencia del más fuerte','Destrozar','Rabia','Rugido salvaje','Mutilar']
+      };
+      var rankConfig = [5,5,3,3,2,1,5,3,2,1,5,1];
+      var state = { classId:'warrior', points:{}, title:'', loaded:false };
+      var classList = document.getElementById('classList');
+      var treesEl = document.getElementById('trees');
+      var currentClass = function () { return classes.find(function (item) { return item.id === state.classId; }); };
+      function talentData() { return talentNames[state.classId].map(function (name, index) { return { id:index, name:name, max:rankConfig[index], tier:Math.floor(index / 2) }; }); }
+      function key(treeIndex, talentIndex) { return state.classId + '-' + treeIndex + '-' + talentIndex; }
+      function pointsInTree(treeIndex) { return talentData().reduce(function (total, talent, index) { return total + (state.points[key(treeIndex,index)] || 0); }, 0); }
+      function totalPoints() { return Object.keys(state.points).reduce(function (total, item) { return total + state.points[item]; }, 0); }
+      function canAdd(treeIndex, talentIndex) { var talent=talentData()[talentIndex]; return (state.points[key(treeIndex,talentIndex)] || 0) < talent.max && totalPoints() < 71 && pointsInTree(treeIndex) >= talent.tier * 5; }
+      function renderClasses() { classList.innerHTML = classes.map(function (item) { return '<button class="class-button '+(item.id === state.classId ? 'active' : '')+'" type="button" data-class="'+item.id+'"><img class="class-icon" src="'+iconPath+item.icon+'" alt="" /><span class="class-name">'+item.name+'</span><span class="class-level">80</span></button>'; }).join(''); }
+      function renderTrees() {
+        var selected = currentClass();
+        var names = talentData();
+        document.getElementById('buildTitle').textContent = (state.title || selected.name + ' · Nueva combinación');
+        document.getElementById('buildMeta').textContent = selected.name + ' · Nivel 80 · WotLK 3.3.5a';
+        document.getElementById('pointsNumber').textContent = totalPoints() + ' / 71';
+        treesEl.innerHTML = selected.trees.map(function (treeName, treeIndex) {
+          var spent = pointsInTree(treeIndex);
+          var talentHtml = names.map(function (talent, talentIndex) {
+            var value = state.points[key(treeIndex,talentIndex)] || 0;
+            var unlocked = spent >= talent.tier * 5;
+            var disabled = !canAdd(treeIndex,talentIndex); var removeDisabled = value === 0;
+            var icon = iconPath + ['spell_nature_naturetouchgrow.jpg','inv_misc_gem_01.jpg','spell_holy_sealofsacrifice.jpg','trade_alchemy.jpg'][talentIndex % 4];
+            return '<div class="talent '+(unlocked ? 'available' : 'locked')+'"><img class="talent-icon" src="'+icon+'" alt="" /><div class="talent-name">'+talent.name+'<span class="talent-rank">Rango '+value+' / '+talent.max+(unlocked ? '' : ' · Requiere '+(talent.tier*5)+' puntos')+'</span></div><div class="talent-actions"><button class="talent-button" type="button" data-action="remove" data-tree="'+treeIndex+'" data-talent="'+talentIndex+'" '+(removeDisabled ? 'disabled' : '')+' aria-label="Quitar rango a '+talent.name+'">−</button><button class="talent-button '+(value === talent.max ? 'maxed' : '')+'" type="button" data-action="add" data-tree="'+treeIndex+'" data-talent="'+talentIndex+'" '+(disabled ? 'disabled' : '')+' aria-label="Añadir rango a '+talent.name+'">+</button></div></div>';
+          }).join('');
+          return '<article class="tree"><header class="tree-head"><h3>'+treeName+'</h3><div class="tree-count">'+spent+' puntos</div><div class="tree-bar"><span style="width:'+Math.min(100,spent/31*100)+'%"></span></div></header><div class="talent-list">'+talentHtml+'</div></article>';
+        }).join('');
+        updateShareUrl();
+      }
+      function encodeBuild() { var payload={c:state.classId,p:state.points,t:state.title}; return btoa(unescape(encodeURIComponent(JSON.stringify(payload)))).replace(/=/g,''); }
+      function decodeBuild(value) { try { var parsed=JSON.parse(decodeURIComponent(escape(atob(value)))); if (!classes.some(function (item) { return item.id === parsed.c; })) return false; state.classId=parsed.c; state.points=parsed.p && typeof parsed.p === 'object' ? parsed.p : {}; state.title=typeof parsed.t === 'string' ? parsed.t : ''; return true; } catch (error) { return false; } }
+      function updateShareUrl() { var url=window.location.origin+window.location.pathname+'#build='+encodeBuild(); document.getElementById('shareUrl').textContent=url; }
+      function showToast(message) { var toast=document.getElementById('toast'); toast.textContent=message; toast.classList.add('visible'); window.clearTimeout(showToast.timer); showToast.timer=window.setTimeout(function () { toast.classList.remove('visible'); },2400); }
+      function selectClass(classId) { state.classId=classId; state.points={}; state.title=''; renderClasses(); renderTrees(); }
+      classList.addEventListener('click', function (event) { var button=event.target.closest('[data-class]'); if (button) selectClass(button.getAttribute('data-class')); });
+      treesEl.addEventListener('click', function (event) { var button=event.target.closest('[data-talent]'); if (!button) return; var treeIndex=Number(button.getAttribute('data-tree')); var talentIndex=Number(button.getAttribute('data-talent')); var talentKey=key(treeIndex,talentIndex); var value=state.points[talentKey] || 0; if (button.getAttribute('data-action') === 'remove') { if (value === 0) return; state.points[talentKey]=value-1; if (state.points[talentKey] === 0) delete state.points[talentKey]; renderTrees(); return; } if (!canAdd(treeIndex,talentIndex)) return; state.points[talentKey]=value+1; renderTrees(); });
+      document.getElementById('resetButton').addEventListener('click', function () { state.points={}; state.title=''; renderTrees(); showToast('Talentos reiniciados'); });
+      document.getElementById('shareButton').addEventListener('click', function () { var url=window.location.origin+window.location.pathname+'#build='+encodeBuild(); if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(url).then(function () { showToast('Enlace copiado al portapapeles'); }).catch(function () { showToast('Copia el enlace mostrado abajo'); }); } else { showToast('Copia el enlace mostrado abajo'); } document.getElementById('shareStatus').textContent='Enlace listo para compartir'; });
+      var hash=window.location.hash.match(/build=([^&]+)/); if (hash) state.loaded=decodeBuild(hash[1]); renderClasses(); renderTrees();
+    }());
+  </script>
+</body>
+</html>

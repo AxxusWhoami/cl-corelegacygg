@@ -10,6 +10,9 @@ $DB_CHAR = 'acore_characters';
 $DB_WEB  = 'corelegacygg';
 $DB_PORT = 3306;
 
+// ===== OpenAI — análisis de builds =====
+$openai_key = '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';
+
 // ===== Redis connection (Unix socket) =====
 // Conexión vía socket Unix para menor latencia y mayor seguridad.
 // El socket no expone un puerto TCP, reduciendo la superficie de ataque.

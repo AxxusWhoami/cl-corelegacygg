@@ -48,6 +48,15 @@
     .btn-primary { color:#061522; border-color:#a9edff; background:linear-gradient(135deg,#d7f6ff,#63d2f3); box-shadow:0 0 18px rgba(101,211,245,.22); }
     .btn-primary:hover { color:#061522; background:linear-gradient(135deg,#fff,#8be3fa); }
     .share-status { color:var(--calc-success); font-size:.72rem; align-self:center; min-height:1em; }
+    .ai-panel { margin:4px 0 18px; padding:15px 16px; border:1px solid rgba(114,221,169,.24); border-radius:11px; background:linear-gradient(120deg,rgba(15,66,59,.32),rgba(6,27,42,.62)); }
+    .ai-panel-header { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+    .ai-panel strong { color:#a9f4d0; font-family:'Cinzel Decorative',serif; font-size:.8rem; }
+    .ai-panel p { color:#9dbfc0; margin:6px 0 12px; font-size:.7rem; line-height:1.55; }
+    .goal-list { display:flex; flex-wrap:wrap; gap:6px; }
+    .goal-button { border:1px solid rgba(114,221,169,.28); border-radius:7px; padding:7px 9px; color:#a9d4cc; background:rgba(8,48,45,.42); font:600 .65rem 'Cinzel',serif; cursor:pointer; transition:all .2s ease; }
+    .goal-button:hover, .goal-button.active { color:#06231d; border-color:#a9f4d0; background:#a9f4d0; }
+    .analysis-result { margin-top:12px; padding:13px; border-left:2px solid #72dda9; border-radius:0 7px 7px 0; background:rgba(2,18,28,.5); color:#d3eee2; font-size:.74rem; line-height:1.7; white-space:pre-wrap; }
+    .analysis-result.error { color:#ffc6b8; border-left-color:#ef947d; }
     .trees { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
     .tree { min-width:0; overflow:hidden; border:1px solid rgba(101,211,245,.2); border-radius:11px; background:rgba(2,15,28,.68); }
     .tree-head { padding:13px 12px 12px; background:linear-gradient(135deg,rgba(31,104,143,.35),rgba(5,27,44,.45)); border-bottom:1px solid rgba(101,211,245,.16); }
@@ -103,6 +112,18 @@
           <button id="shareButton" class="btn btn-primary" type="button">Compartir build</button>
           <span id="shareStatus" class="share-status" role="status"></span>
         </div>
+        <section class="ai-panel" aria-labelledby="aiTitle">
+          <div class="ai-panel-header"><div><strong id="aiTitle">Analiza mi build con IA</strong><p>Recibe una revisión rápida de eficiencia y recomendaciones adaptadas a tu objetivo.</p></div></div>
+          <div class="goal-list" id="goalList" role="group" aria-label="Objetivo del análisis">
+            <button class="goal-button active" type="button" data-goal="general">Análisis general</button>
+            <button class="goal-button" type="button" data-goal="icc">Optimizar para ICC</button>
+            <button class="goal-button" type="button" data-goal="pvp">Optimizar para PvP</button>
+            <button class="goal-button" type="button" data-goal="ia">Jugar con IA</button>
+            <button class="goal-button" type="button" data-goal="dungeons">Optimizar mazmorras</button>
+          </div>
+          <button id="analyzeButton" class="btn" type="button" style="margin-top:11px;border-color:rgba(114,221,169,.5);color:#c8ffe3;background:rgba(30,123,99,.35);">Analizar build con IA</button>
+          <div id="analysisResult" class="analysis-result" hidden role="status"></div>
+        </section>
         <div id="trees" class="trees"></div>
         <div class="share-card"><strong>Comparte tu combinación</strong><p>El enlace incluye la clase y todos los puntos seleccionados. Cópialo y envíalo a tus amigos para que puedan abrir exactamente la misma build.</p><code id="shareUrl" class="share-url"></code></div>
       </section>
@@ -139,6 +160,7 @@
       };
       var rankConfig = [5,5,3,3,2,1,5,3,2,1,5,1];
       var state = { classId:'warrior', points:{}, title:'', loaded:false };
+      var selectedGoal = 'general';
       var classList = document.getElementById('classList');
       var treesEl = document.getElementById('trees');
       var currentClass = function () { return classes.find(function (item) { return item.id === state.classId; }); };
@@ -171,11 +193,15 @@
       function decodeBuild(value) { try { var parsed=JSON.parse(decodeURIComponent(escape(atob(value)))); if (!classes.some(function (item) { return item.id === parsed.c; })) return false; state.classId=parsed.c; state.points=parsed.p && typeof parsed.p === 'object' ? parsed.p : {}; state.title=typeof parsed.t === 'string' ? parsed.t : ''; return true; } catch (error) { return false; } }
       function updateShareUrl() { var url=window.location.origin+window.location.pathname+'#build='+encodeBuild(); document.getElementById('shareUrl').textContent=url; }
       function showToast(message) { var toast=document.getElementById('toast'); toast.textContent=message; toast.classList.add('visible'); window.clearTimeout(showToast.timer); showToast.timer=window.setTimeout(function () { toast.classList.remove('visible'); },2400); }
+      function buildForAnalysis() { var selected=currentClass(); var names=talentData(); var talents=[]; selected.trees.forEach(function (treeName, treeIndex) { names.forEach(function (talent, talentIndex) { var rank=state.points[key(treeIndex,talentIndex)] || 0; if (rank > 0) talents.push({tree:treeName,name:talent.name,rank:rank}); }); }); return { class:selected.name, goal:selectedGoal, talents:talents }; }
+      function setAnalysis(message, isError) { var result=document.getElementById('analysisResult'); result.hidden=false; result.classList.toggle('error',Boolean(isError)); result.textContent=message; }
       function selectClass(classId) { state.classId=classId; state.points={}; state.title=''; renderClasses(); renderTrees(); }
       classList.addEventListener('click', function (event) { var button=event.target.closest('[data-class]'); if (button) selectClass(button.getAttribute('data-class')); });
       treesEl.addEventListener('click', function (event) { var button=event.target.closest('[data-talent]'); if (!button) return; var treeIndex=Number(button.getAttribute('data-tree')); var talentIndex=Number(button.getAttribute('data-talent')); var talentKey=key(treeIndex,talentIndex); var value=state.points[talentKey] || 0; if (button.getAttribute('data-action') === 'remove') { if (value === 0) return; state.points[talentKey]=value-1; if (state.points[talentKey] === 0) delete state.points[talentKey]; renderTrees(); return; } if (!canAdd(treeIndex,talentIndex)) return; state.points[talentKey]=value+1; renderTrees(); });
       document.getElementById('resetButton').addEventListener('click', function () { state.points={}; state.title=''; renderTrees(); showToast('Talentos reiniciados'); });
       document.getElementById('shareButton').addEventListener('click', function () { var url=window.location.origin+window.location.pathname+'#build='+encodeBuild(); if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(url).then(function () { showToast('Enlace copiado al portapapeles'); }).catch(function () { showToast('Copia el enlace mostrado abajo'); }); } else { showToast('Copia el enlace mostrado abajo'); } document.getElementById('shareStatus').textContent='Enlace listo para compartir'; });
+      document.getElementById('goalList').addEventListener('click', function (event) { var button=event.target.closest('[data-goal]'); if (!button) return; selectedGoal=button.getAttribute('data-goal'); document.querySelectorAll('.goal-button').forEach(function (item) { item.classList.toggle('active', item === button); }); });
+      document.getElementById('analyzeButton').addEventListener('click', async function () { var button=document.getElementById('analyzeButton'); button.disabled=true; button.textContent='Analizando build...'; setAnalysis('La IA está revisando tu distribución de talentos...', false); try { var response=await fetch('/api/analizar-build.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildForAnalysis())}); var data=await response.json(); if (!response.ok || typeof data.analysis !== 'string') throw new Error('analysis'); setAnalysis(data.analysis,false); } catch (error) { setAnalysis('No se pudo completar el análisis ahora. Revisa la build e inténtalo de nuevo.',true); } finally { button.disabled=false; button.textContent='Analizar build con IA'; } });
       var hash=window.location.hash.match(/build=([^&]+)/); if (hash) state.loaded=decodeBuild(hash[1]); renderClasses(); renderTrees();
     }());
   </script>

@@ -21,6 +21,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^info-changelog/?$ /info-changelog.html [L]
 
+# Clean URL: /calculadora -> /calculadora.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^calculadora/?$ /calculadora.html [L]
+
 # About deep link -> index.html (modal opened via JS)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

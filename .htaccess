@@ -26,10 +26,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^calculadora/?$ /calculadora.html [L]
 
-# About deep link -> index.html (modal opened via JS)
+# About deep link -> legal-page.php (serves correct meta tags)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^sobre-nosotros/?$ /index.html [L]
+RewriteRule ^sobre-nosotros/?$ /legal-page.php [L]
 
 # Clean URLs: /comunidad -> /comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -41,10 +41,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^tops/?$ /tops.html [L]
 
-# Legal deep links -> index.html (modal opened via JS based on path)
+# Legal deep links -> legal-page.php (serves correct meta tags)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(terminos-de-servicio|politica-de-privacidad)/?$ /index.html [L]
+RewriteRule ^(terminos-de-servicio|politica-de-privacidad)/?$ /legal-page.php [L]
 
 # Guía deep links -> comunidad.html (modal opened via JS based on path)
 RewriteCond %{REQUEST_FILENAME} !-f

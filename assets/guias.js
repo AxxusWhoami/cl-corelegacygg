@@ -92,7 +92,7 @@
       title: 'Requisitos de Hardware',
       icon: '🖥️',
       metaTitle: 'Requisitos para WoW WotLK 3.3.5a | CoRe Legacy',
-      metaDescription: 'Consulta los requisitos mínimos y recomendados para jugar WoW WotLK 3.3.5a en CoRe Legacy: CPU, RAM, GPU con Vulkan, almacenamiento y conexión estable.',
+      metaDescription: 'Requisitos mínimos y recomendados para jugar WoW WotLK 3.3.5a en CoRe Legacy: CPU, RAM, GPU con Vulkan, almacenamiento y conexión.',
       html:
         '<section class="guia-intro">' +
           '<p>Antes de lanzarte a la aventura, asegúrate de que tu equipo cumple con los requisitos mínimos para disfrutar de CoRe Legacy sin problemas. A continuación tienes una tabla con los requisitos mínimos operativos y los recomendados para una experiencia óptima.</p>' +
@@ -159,7 +159,7 @@
         description: 'Servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a con inteligencia artificial, PvE, PvP y mundo vivo. Requisitos mínimos: Windows 7 SP1 64-bit, Dual Core 2.0 GHz, 2 GB RAM, GPU compatible con Vulkan 1.1+, 16 GB almacenamiento y conexión a internet activa.',
         url: 'https://corelegacy.gg/guias/requisitos-de-hardware',
         image: 'https://corelegacy.gg/assets/logotipo_corelegacy.webp',
-        inLanguage: 'es',
+        inLanguage: 'es-ES',
         genre: ['MMORPG', 'RPG', 'PvP', 'PvE'],
         gamePlatform: 'PC',
         playMode: ['MultiPlayer', 'CoOp'],
@@ -176,7 +176,7 @@
       title: 'Guía Definitiva de Playerbots: Cómo Jugar WoW WotLK en Solitario con IA',
       icon: '🤖',
       metaTitle: 'Playerbots IA en WoW WotLK 3.3.5a | CoRe Legacy',
-      metaDescription: 'Aprende a configurar Playerbots con IA en CoRe Legacy: comandos, roles, estrategias de combate y cómo superar mazmorras y bandas de WoW WotLK 3.3.5a hoy.',
+      metaDescription: 'Configura Playerbots con IA en CoRe Legacy: comandos, roles, estrategias y cómo superar mazmorras y bandas de WoW WotLK 3.3.5a.',
       html:
         '<section class="guia-intro">' +
           '<p>¿Alguna vez has querido explorar todo el contenido de Northrend pero no tenías un grupo disponible? En CoRe Legacy, el mejor servidor wow para jugar en solitario 3.3.5a, la falta de jugadores ya no es un obstáculo. Gracias a nuestro sistema avanzado de bots Azerothcore, puedes reclutar tu propio escuadrón y dominar Azeroth a tu ritmo.</p>' +
@@ -451,7 +451,7 @@
       title: 'Guía de Uso del Addon: DungeonClear',
       icon: '🤖',
       metaTitle: 'Addon DungeonClear para WoW WotLK 3.3.5a | CoRe Legacy',
-      metaDescription: 'Aprende a usar DungeonClear en CoRe Legacy para controlar un bot tanque que limpia mazmorras: instalación, interfaz, combate, ajustes y comandos paso a paso.',
+      metaDescription: 'Usa DungeonClear en CoRe Legacy para controlar un bot tanque que limpia mazmorras: instalación, interfaz, combate y comandos paso a paso.',
       html:
         '<section class="guia-intro">' +
           '<p>El addon <strong>DungeonClear</strong> es una interfaz gráfica integrada en el juego diseñada para controlar de forma sencilla a un bot tanque dentro de una mazmorra. En lugar de escribir constantemente comandos en el chat, este addon te proporciona un panel para que el tanque limpie la mazmorra de forma autónoma: caminará de jefe en jefe, limpiará los enemigos en el camino (trash), esquivará obstáculos, recogerá botín, abrirá puertas y se recuperará de atascos.</p>' +

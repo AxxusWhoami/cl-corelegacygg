@@ -107,17 +107,17 @@
     <p style="font-style:italic;color:#8dd6f5;">CoRe Legacy no pretende simplemente recordar la era dorada de <strong style="color:#d4af37;">WoW CoRe</strong>. Pretende construir su siguiente capítulo.</p>';
 
   var TOS_META = {
-    title: 'Términos de Servicio — CoRe Legacy | Servidor privado de WoW WotLK 3.3.5a',
+    title: 'Términos de Servicio — CoRe Legacy',
     description: 'Términos de Servicio de CoRe Legacy, servidor WoW WotLK 3.3.5a. Reglas de cuenta, conducta, donaciones y derechos de la administración.'
   };
 
   var PRIVACY_META = {
-    title: 'Política de Privacidad — CoRe Legacy | Protección de datos en servidor WoW',
+    title: 'Política de Privacidad — CoRe Legacy',
     description: 'Política de Privacidad de CoRe Legacy, servidor WoW WotLK 3.3.5a. Qué datos recopilamos, cómo los protegemos, cookies y tus derechos.'
   };
 
   var ABOUT_META = {
-    title: 'Sobre nosotros — CoRe Legacy | El legado de WoW CoRe vuelve',
+    title: 'Sobre nosotros — CoRe Legacy',
     description: 'Conoce quiénes somos y hacia dónde va CoRe Legacy: un proyecto de antiguos miembros de WoW CoRe con nuevas mecánicas, QoL e IA.'
   };
 

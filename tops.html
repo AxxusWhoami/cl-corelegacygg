@@ -317,115 +317,115 @@
     <div class="max-w-5xl mx-auto">
       <!-- Breadcrumb -->
       <nav class="mb-6 reveal" aria-label="Migas de pan">
-        <ol class="flex items-center gap-2 text-xs" style="font-family:'Cinzel',Georgia,serif;color:#5a7a8a;letter-spacing:0.08em;">
+        <ol class="flex items-center gap-2 text-xs" style="font-family:'Cinzel',Georgia,serif;color:#5a7a8a;letter-spacing:0.08em;list-style:none;padding:0;margin:0;">
           <li><a href="/" style="color:#5a7a8a;text-decoration:none;" onmouseover="this.style.color='var(--ice-200)'" onmouseout="this.style.color='#5a7a8a'">Inicio</a></li>
-          <li style="color:#3a5a6a;">&rsaquo;</li>
-          <li style="color:var(--ice-200);">Tops y Comunidades</li>
+          <li style="color:#3a5a6a;" aria-hidden="true">&rsaquo;</li>
+          <li style="color:var(--ice-200);" aria-current="page">Tops y Comunidades</li>
         </ol>
       </nav>
 
       <!-- Title -->
-      <div class="text-center mb-10 reveal">
+      <header class="text-center mb-10 reveal">
         <h1 class="section-title mb-3">Tops y Comunidades</h1>
         <p style="font-family:'Cinzel',Georgia,serif;font-size:0.92rem;color:#8aaaba;letter-spacing:0.04em;line-height:1.7;max-width:560px;margin:0 auto;">
           Apoya a CoRe Legacy votando en los tops de servidores privados y descúbrelo en las comunidades de WoW más destacadas. Cada voto ayuda a que más jugadores nos encuentren.
         </p>
-      </div>
+      </header>
 
       <!-- Frost divider -->
       <div class="frost-divider mb-10 reveal"></div>
 
       <!-- Tops panel -->
-      <section class="tops-panel reveal">
-        <div class="tops-panel-header">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ice-200)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <span class="tops-panel-title">Vota y Descubre CoRe Legacy</span>
-        </div>
+      <section class="tops-panel reveal" aria-labelledby="tops-heading">
+        <header class="tops-panel-header">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ice-200)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <h2 id="tops-heading" class="tops-panel-title">Vota y Descubre CoRe Legacy</h2>
+        </header>
         <div class="tops-panel-body">
           <p class="tops-intro">
             <strong>Votar en los tops</strong> mejora la visibilidad de CoRe Legacy y nos ayuda a crecer como comunidad. <strong>¡Gracias por tu apoyo!</strong>
           </p>
 
-          <div class="tops-grid">
+          <ul class="tops-grid" role="list" style="list-style:none;padding:0;margin:0;">
             <!-- TopG -->
-            <article class="top-card">
-              <div class="top-card-icon">
+            <li><article class="top-card">
+              <div class="top-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
               </div>
-              <h2 class="top-card-name">TopG</h2>
+              <h3 class="top-card-name">TopG</h3>
               <p class="top-card-desc">Vota a CoRe Legacy en TopG, uno de los tops de servidores privados de WoW más populares.</p>
-              <a href="https://topg.org/wow-private-servers/server-685534" rel="nofollow noopener" target="_blank" class="top-card-btn">
+              <a href="https://topg.org/wow-private-servers/server-685534" rel="nofollow noopener noreferrer" target="_blank" class="top-card-btn">
                 Votar en TopG
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
-            </article>
+            </article></li>
 
             <!-- XtremeTop100 -->
-            <article class="top-card">
-              <div class="top-card-icon">
+            <li><article class="top-card">
+              <div class="top-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
               </div>
-              <h2 class="top-card-name">XtremeTop100</h2>
+              <h3 class="top-card-name">XtremeTop100</h3>
               <p class="top-card-desc">Apoya a CoRe Legacy votando en XtremeTop100, otro de los tops de referencia para servidores de WoW.</p>
-              <a href="https://www.xtremetop100.com/out.php?site=1132379551" rel="nofollow noopener" target="_blank" class="top-card-btn">
+              <a href="https://www.xtremetop100.com/out.php?site=1132379551" rel="nofollow noopener noreferrer" target="_blank" class="top-card-btn">
                 Votar en XtremeTop100
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
-            </article>
+            </article></li>
 
             <!-- Nostalgic.gg -->
-            <article class="top-card">
-              <div class="top-card-icon">
+            <li><article class="top-card">
+              <div class="top-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               </div>
-              <h2 class="top-card-name">Nostalgic.gg</h2>
+              <h3 class="top-card-name">Nostalgic.gg</h3>
               <p class="top-card-desc">Descubre el perfil de CoRe Legacy en Nostalgic.gg, el directorio de servidores privados de World of Warcraft.</p>
-              <a href="https://nostalgic.gg/en/world-of-warcraft/core-legacy" rel="nofollow noopener" target="_blank" class="top-card-btn">
+              <a href="https://nostalgic.gg/en/world-of-warcraft/core-legacy" rel="nofollow noopener noreferrer" target="_blank" class="top-card-btn">
                 Ver en Nostalgic.gg
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
-            </article>
+            </article></li>
 
             <!-- OwnedCore -->
-            <article class="top-card">
-              <div class="top-card-icon">
+            <li><article class="top-card">
+              <div class="top-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
-              <h2 class="top-card-name">OwnedCore</h2>
+              <h3 class="top-card-name">OwnedCore</h3>
               <p class="top-card-desc">Hilo oficial de CoRe Legacy en OwnedCore, uno de los foros de modding y servidores privados de WoW más activos.</p>
-              <a href="https://www.ownedcore.com/forums/showthread.php?t=1111671" rel="nofollow noopener" target="_blank" class="top-card-btn">
+              <a href="https://www.ownedcore.com/forums/showthread.php?t=1111671" rel="nofollow noopener noreferrer" target="_blank" class="top-card-btn">
                 Ver hilo en OwnedCore
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
-            </article>
+            </article></li>
 
             <!-- GitHub -->
-            <article class="top-card">
-              <div class="top-card-icon">
+            <li><article class="top-card">
+              <div class="top-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               </div>
-              <h2 class="top-card-name">GitHub</h2>
+              <h3 class="top-card-name">GitHub</h3>
               <p class="top-card-desc">Código abierto del módulo Dungeon Clear de CoRe Legacy disponible en GitHub para la comunidad.</p>
-              <a href="https://github.com/AxxusWhoami/mod-dungeon-clear" rel="nofollow noopener" target="_blank" class="top-card-btn">
+              <a href="https://github.com/AxxusWhoami/mod-dungeon-clear" rel="nofollow noopener noreferrer" target="_blank" class="top-card-btn">
                 Ver en GitHub
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
-            </article>
-          </div>
+            </article></li>
+          </ul>
 
-          <p class="tops-note">Los enlaces externos se abren en una nueva pestaña y no transfieren notoriedad (rel nofollow noopener).</p>
+          <p class="tops-note" role="note">Los enlaces externos se abren en una nueva pestaña y no transfieren notoriedad (rel nofollow noopener).</p>
         </div>
       </section>
     </div>
   </main>
 
   <!-- ===== Footer ===== -->
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="site-footer-bg">
       <div class="site-footer-content">
-        <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="64" height="64" class="rounded-lg mb-2" style="filter:drop-shadow(0 0 10px rgba(77,189,232,0.3));" />
-        <p class="site-footer-disclaimer">CoRe Legacy es un servidor privado no oficial de World of Warcraft. World of Warcraft y Blizzard Entertainment son marcas registradas de Blizzard Entertainment Inc. Este proyecto no está afiliado ni respaldado por Blizzard.</p>
-        <p class="site-footer-copy">&copy; 2026 CoRe Legacy. Todos los derechos reservados.</p>
+        <img src="/assets/logotipo_corelegacy.webp" alt="Logotipo de CoRe Legacy" width="64" height="64" class="rounded-lg mb-2" style="filter:drop-shadow(0 0 10px rgba(77,189,232,0.3));" />
+        <p class="site-footer-disclaimer"><strong>CoRe Legacy</strong> es un servidor privado no oficial de World of Warcraft. World of Warcraft y Blizzard Entertainment son marcas registradas de Blizzard Entertainment Inc. Este proyecto no está afiliado ni respaldado por Blizzard.</p>
+        <p class="site-footer-copy"><small>&copy; <time datetime="2026">2026</time> CoRe Legacy. Todos los derechos reservados.</small></p>
       </div>
     </div>
   </footer>

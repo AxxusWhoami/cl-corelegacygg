@@ -277,6 +277,109 @@
       margin-bottom: 0;
     }
 
+    /* ===== Calendar ===== */
+    .calendario-panel {
+      border: 1px solid #4bbde844;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
+      box-shadow: 0 0 20px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .calendario-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .calendario-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid #4bbde833;
+    }
+    .calendario-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--ice-100);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .calendario-panel-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+    .cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+    .cal-nav-btn {
+      width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
+      border: 1px solid #4bbde844; border-radius: 8px; background: rgba(8,18,30,0.6);
+      color: var(--ice-200); cursor: pointer; transition: all 0.2s ease;
+      font-size: 1.1rem; font-family: 'Cinzel',Georgia,serif;
+    }
+    .cal-nav-btn:hover {
+      border-color: #7dd8f8; color: #fff; box-shadow: 0 0 12px rgba(77,189,232,0.3);
+    }
+    .cal-nav-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.95rem; color: var(--ice-100);
+      letter-spacing: 0.05em; text-transform: capitalize;
+    }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
+    }
+    .cal-dow {
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.6rem;
+      color: #5a7a88; text-align: center; padding: 0.25rem 0;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cal-day {
+      aspect-ratio: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      border: 1px solid #1a305022; border-radius: 6px;
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.72rem;
+      color: #7a9aa8; cursor: default; position: relative;
+      transition: all 0.2s ease; min-height: 2.1rem; gap: 1px;
+    }
+    .cal-day.empty { border-color: transparent; }
+    .cal-day.today {
+      border-color: #7dd8f855; background: rgba(77,189,232,0.08);
+      color: #c8f0ff; font-weight: 700;
+    }
+    .cal-day.has-event { cursor: pointer; }
+    .cal-day.has-event:hover {
+      border-color: #7dd8f8aa; background: rgba(77,189,232,0.12);
+      transform: scale(1.06); z-index: 5;
+    }
+    .cal-dots {
+      display: flex; gap: 2px; margin-top: 1px; height: 5px;
+    }
+    .cal-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      box-shadow: 0 0 4px currentColor;
+    }
+    .cal-tooltip {
+      position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      background: rgba(2,14,30,0.97); border: 1px solid #4bbde866;
+      border-radius: 8px; padding: 0.5rem 0.75rem;
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.7rem;
+      color: #c8e8ff; white-space: nowrap; z-index: 20;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6); pointer-events: none;
+      opacity: 0; transition: opacity 0.2s ease;
+    }
+    .cal-day.has-event:hover .cal-tooltip { opacity: 1; }
+    .cal-legend {
+      display: flex; flex-wrap: wrap; gap: 0.4rem 0.7rem;
+      margin-top: 1rem; padding-top: 0.75rem;
+      border-top: 1px solid #1a305033;
+    }
+    .cal-legend-item {
+      display: flex; align-items: center; gap: 0.3rem;
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.65rem;
+      color: #7a9aa8; letter-spacing: 0.02em;
+    }
+    .cal-legend-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+      box-shadow: 0 0 4px currentColor;
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
       .news-header {
@@ -508,6 +611,29 @@
     </div>
   </section>
 
+  <!-- ===== Calendario de Festividades ===== -->
+  <section class="relative pt-8 pb-16 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(180deg, #050d18 0%, #081420 50%, #050d18 100%);">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal" style="max-width: 700px; margin: 0 auto;">
+        <div class="calendario-panel" style="width:100%; position:relative;">
+          <div class="calendario-panel-header">
+            <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">&#128197;</span>
+            <span class="calendario-panel-title">Calendario de Festividades</span>
+          </div>
+          <div class="calendario-panel-body">
+            <div class="cal-nav">
+              <button class="cal-nav-btn" type="button" id="calPrev" aria-label="Mes anterior">‹</button>
+              <span class="cal-nav-title" id="calMonthYear"></span>
+              <button class="cal-nav-btn" type="button" id="calNext" aria-label="Mes siguiente">›</button>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
+            <div class="cal-legend" id="calLegend"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   </main>
 
   <footer class="site-footer">
@@ -662,6 +788,130 @@
     }
     window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
+  })();
+  </script>
+  <script>
+  (function () {
+    'use strict';
+
+    var MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    var DOW_ES = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+
+    var FESTIVITIES = [
+      { name: 'Festival Lunar', color: '#9b8ce4', start: [1,23], end: [2,7] },
+      { name: 'El amor está en el aire', color: '#e84d6f', start: [2,2], end: [2,16] },
+      { name: 'Jardín Noble', color: '#f0c850', start: [4,5], end: [4,11] },
+      { name: 'Semana de los Niños', color: '#5dd8a8', start: [5,1], end: [5,7] },
+      { name: 'Festival de Fuego de Solsticio de Verano', color: '#ff8c42', start: [6,21], end: [7,5] },
+      { name: 'Festival de la Cosecha', color: '#d4a843', start: [9,7], end: [9,14] },
+      { name: 'Día de los Piratas', color: '#c8a060', start: [9,19], end: [9,19] },
+      { name: 'Fiesta de la Cerveza', color: '#e8a030', start: [9,20], end: [10,4] },
+      { name: 'Víspera de Todos los Santos', color: '#ff7a3d', start: [10,18], end: [11,1] },
+      { name: 'Día de los Muertos', color: '#b88ce4', start: [11,1], end: [11,2] },
+      { name: 'Generosidad del Peregrino', color: '#e8a850', start: [11,23], end: [11,29] },
+      { name: 'Fiesta de Invierno', color: '#5dd8f0', start: [12,18], end: [1,2] },
+      { name: 'Víspera de Año Nuevo', color: '#f0e850', start: [12,31], end: [1,1] },
+      { name: 'Feria de la Luna Negra', color: '#8d6ed4', darkmoon: true }
+    ];
+
+    function getEventsForDate(year, month, day) {
+      var events = [];
+      for (var i = 0; i < FESTIVITIES.length; i++) {
+        var ev = FESTIVITIES[i];
+        if (ev.darkmoon) {
+          var firstDow = new Date(year, month, 1).getDay();
+          var firstSunday = firstDow === 0 ? 1 : 8 - firstDow;
+          if (day >= firstSunday && day <= firstSunday + 6) events.push(ev);
+          continue;
+        }
+        var s = ev.start[0] * 100 + ev.start[1];
+        var e = ev.end[0] * 100 + ev.end[1];
+        var d = (month + 1) * 100 + day;
+        if (s <= e) {
+          if (d >= s && d <= e) events.push(ev);
+        } else {
+          if (d >= s || d <= e) events.push(ev);
+        }
+      }
+      return events;
+    }
+
+    function escapeHtml(s) {
+      var el = document.createElement('div');
+      el.textContent = s;
+      return el.innerHTML;
+    }
+
+    var grid = document.getElementById('calGrid');
+    var titleEl = document.getElementById('calMonthYear');
+    var legendEl = document.getElementById('calLegend');
+    if (!grid || !titleEl) return;
+
+    var viewDate = new Date();
+    viewDate.setDate(1);
+
+    function render() {
+      var year = viewDate.getFullYear();
+      var month = viewDate.getMonth();
+      var today = new Date();
+
+      titleEl.textContent = MONTHS_ES[month] + ' ' + year;
+
+      var html = '';
+      for (var i = 0; i < 7; i++) {
+        html += '<div class="cal-dow">' + DOW_ES[i] + '</div>';
+      }
+
+      var firstDay = new Date(year, month, 1).getDay();
+      var offset = firstDay === 0 ? 6 : firstDay - 1;
+      var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (var i = 0; i < offset; i++) {
+        html += '<div class="cal-day empty"></div>';
+      }
+
+      for (var d = 1; d <= daysInMonth; d++) {
+        var events = getEventsForDate(year, month, d);
+        var cls = 'cal-day';
+        if (year === today.getFullYear() && month === today.getMonth() && d === today.getDate()) cls += ' today';
+        if (events.length > 0) cls += ' has-event';
+
+        html += '<div class="' + cls + '">';
+        html += '<span>' + d + '</span>';
+        if (events.length > 0) {
+          html += '<div class="cal-dots">';
+          for (var j = 0; j < Math.min(events.length, 3); j++) {
+            html += '<span class="cal-dot" style="background:' + events[j].color + '; color:' + events[j].color + ';"></span>';
+          }
+          html += '</div>';
+          var names = events.map(function (e) { return e.name; }).join(' · ');
+          html += '<div class="cal-tooltip">' + escapeHtml(names) + '</div>';
+        }
+        html += '</div>';
+      }
+
+      grid.innerHTML = html;
+    }
+
+    function renderLegend() {
+      var html = '';
+      for (var i = 0; i < FESTIVITIES.length; i++) {
+        var ev = FESTIVITIES[i];
+        html += '<div class="cal-legend-item">';
+        html += '<span class="cal-legend-dot" style="background:' + ev.color + '; color:' + ev.color + ';"></span>';
+        html += escapeHtml(ev.name);
+        html += '</div>';
+      }
+      legendEl.innerHTML = html;
+    }
+
+    var prevBtn = document.getElementById('calPrev');
+    var nextBtn = document.getElementById('calNext');
+    if (prevBtn) prevBtn.addEventListener('click', function () { viewDate.setMonth(viewDate.getMonth() - 1); render(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { viewDate.setMonth(viewDate.getMonth() + 1); render(); });
+
+    render();
+    renderLegend();
   })();
   </script>
 </body>

@@ -36,6 +36,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^comunidad/?$ /comunidad.html [L]
 
+# Clean URLs: /noticias -> /noticias.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^noticias/?$ /noticias.html [L]
+
 # Clean URLs: /tops -> /tops.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

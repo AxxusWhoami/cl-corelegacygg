@@ -365,19 +365,30 @@
       opacity: 0; transition: opacity 0.2s ease;
     }
     .cal-day.has-event:hover .cal-tooltip { opacity: 1; }
+    .cal-layout {
+      display: grid; grid-template-columns: 1fr 280px; gap: 1.5rem; align-items: start;
+    }
     .cal-legend {
-      display: flex; flex-wrap: wrap; gap: 0.4rem 0.7rem;
-      margin-top: 1rem; padding-top: 0.75rem;
-      border-top: 1px solid #1a305033;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .cal-legend-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 0.85rem; color: var(--ice-100);
+      letter-spacing: 0.05em; margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem; border-bottom: 1px solid #1a305033;
     }
     .cal-legend-item {
-      display: flex; align-items: center; gap: 0.3rem;
-      font-family: 'Cinzel',Georgia,serif; font-size: 0.65rem;
-      color: #7a9aa8; letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.75rem;
+      color: #9ab8c8; letter-spacing: 0.02em; line-height: 1.4;
     }
+    .cal-legend-item:hover { color: #c8e8ff; }
     .cal-legend-dot {
-      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
-      box-shadow: 0 0 4px currentColor;
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      box-shadow: 0 0 6px currentColor;
+    }
+    @media (max-width: 768px) {
+      .cal-layout { grid-template-columns: 1fr; }
     }
 
     /* ===== Responsive ===== */
@@ -614,20 +625,27 @@
   <!-- ===== Calendario de Festividades ===== -->
   <section class="relative pt-8 pb-16 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(180deg, #050d18 0%, #081420 50%, #050d18 100%);">
     <div class="max-w-7xl mx-auto">
-      <div class="reveal" style="max-width: 700px; margin: 0 auto;">
+      <div class="reveal">
         <div class="calendario-panel" style="width:100%; position:relative;">
           <div class="calendario-panel-header">
             <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">&#128197;</span>
             <span class="calendario-panel-title">Calendario de Festividades</span>
           </div>
           <div class="calendario-panel-body">
-            <div class="cal-nav">
-              <button class="cal-nav-btn" type="button" id="calPrev" aria-label="Mes anterior">‹</button>
-              <span class="cal-nav-title" id="calMonthYear"></span>
-              <button class="cal-nav-btn" type="button" id="calNext" aria-label="Mes siguiente">›</button>
+            <div class="cal-layout">
+              <div>
+                <div class="cal-nav">
+                  <button class="cal-nav-btn" type="button" id="calPrev" aria-label="Mes anterior">‹</button>
+                  <span class="cal-nav-title" id="calMonthYear"></span>
+                  <button class="cal-nav-btn" type="button" id="calNext" aria-label="Mes siguiente">›</button>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+              </div>
+              <div>
+                <div class="cal-legend-title">Leyenda de Eventos</div>
+                <div class="cal-legend" id="calLegend"></div>
+              </div>
             </div>
-            <div class="cal-grid" id="calGrid"></div>
-            <div class="cal-legend" id="calLegend"></div>
           </div>
         </div>
       </div>

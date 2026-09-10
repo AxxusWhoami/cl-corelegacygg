@@ -2223,7 +2223,7 @@
       var cls = 'achievement-card filled' + (claimed ? '' : ' unclaimed');
       var html = '<div class="' + cls + '">';
       if (icon) {
-        html += '<img class="ach-icon' + (claimed ? '' : ' ach-icon-locked') + '" src="' + escapeHtml(icon) + '" alt="" loading="lazy" />';
+        html += '<img class="ach-icon' + (claimed ? '' : ' ach-icon-locked') + '" src="' + escapeHtml(icon) + '" alt="' + escapeHtml(entry.name || entry.label || '') + '" loading="lazy" />';
       }
       html += '<div class="ach-name">' + escapeHtml(entry.name || entry.label || '') + '</div>';
       if (claimed) {

@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Noticias CoRe Legacy: Novedades del Reino de Rasganorte</title>
-  <meta name="description" content="Mantente al día con las últimas noticias de CoRe Legacy: actualizaciones, eventos, parches y anuncios de la comunidad del servidor de WoW WotLK 3.3.5a." />
+  <meta name="description" content="Noticias del servidor privado WoW WotLK 3.3.5a CoRe Legacy: actualizaciones, parches, eventos, mejoras de playerbots y anuncios de la comunidad en español." />
+  <meta name="keywords" content="noticias CoRe Legacy, servidor privado WoW, WotLK 3.3.5a, actualizaciones, parches, playerbots, Rasganorte, WoW español" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="CoRe Legacy" />
   <meta name="theme-color" content="#050d18" />
@@ -71,6 +72,61 @@
         "position": 2,
         "name": "Noticias",
         "item": "https://corelegacy.gg/noticias"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "NewsArticle",
+        "headline": "Mejoras en los Playerbots: Adiós a los teletransportes inesperados!",
+        "datePublished": "2026-09-10",
+        "dateModified": "2026-09-10",
+        "author": { "@type": "Person", "name": "Homenixx" },
+        "publisher": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+        "image": "https://corelegacy.gg/assets/corelegacy_og-fb_images.png",
+        "url": "https://corelegacy.gg/noticias#news-1",
+        "inLanguage": "es-ES",
+        "articleSection": "Actualizaciones"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Actualización del Sistema de Bots: Nueva Evaluación de Riesgos en Capitales Enemigas",
+        "datePublished": "2026-09-07",
+        "dateModified": "2026-09-07",
+        "author": { "@type": "Person", "name": "Homenixx" },
+        "publisher": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+        "image": "https://corelegacy.gg/assets/corelegacy_og-fb_images.png",
+        "url": "https://corelegacy.gg/noticias#news-2",
+        "inLanguage": "es-ES",
+        "articleSection": "Actualizaciones"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Parche de Estabilidad: Mejoras de Rendimiento y Correcciones",
+        "datePublished": "2026-09-02",
+        "dateModified": "2026-09-02",
+        "author": { "@type": "Organization", "name": "Equipo de Desarrollo" },
+        "publisher": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+        "image": "https://corelegacy.gg/assets/corelegacy_og-fb_images.png",
+        "url": "https://corelegacy.gg/noticias#news-3",
+        "inLanguage": "es-ES",
+        "articleSection": "Parches"
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "¡Apertura Oficial de CoRe Legacy! Forja tu leyenda en Rasganorte",
+        "datePublished": "2026-09-01",
+        "dateModified": "2026-09-01",
+        "author": { "@type": "Person", "name": "Homenixx" },
+        "publisher": { "@type": "Organization", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" },
+        "image": "https://corelegacy.gg/assets/corelegacy_og-fb_images.png",
+        "url": "https://corelegacy.gg/noticias#news-4",
+        "inLanguage": "es-ES",
+        "articleSection": "Anuncios"
       }
     ]
   }
@@ -275,6 +331,15 @@
     }
     .news-content-inner p:last-child {
       margin-bottom: 0;
+    }
+    .news-content-inner a {
+      color: #00b4ff;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+    .news-content-inner a:hover {
+      color: #7dd8f8;
+      text-shadow: 0 0 8px rgba(77,189,232,0.3);
     }
     .news-content-inner h3 {
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
@@ -512,12 +577,12 @@
               <div class="news-accordion" id="newsAccordion">
 
                 <!-- News 1 -->
-                <div class="news-item" data-news="1">
+                <article class="news-item" data-news="1" id="news-1" aria-label="Mejoras en los Playerbots: Adiós a los teletransportes inesperados">
                   <div class="news-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="news-header-text">
                       <div class="news-title">Mejoras en los Playerbots: ¡Adiós a los teletransportes inesperados!</div>
                       <div class="news-meta">
-                        <span class="news-date">10/09/26</span>
+                        <time class="news-date" datetime="2026-09-10">10/09/26</time>
                         <span class="news-meta-sep">&#9670;</span>
                         <span class="news-author">Homenixx</span>
                       </div>
@@ -545,18 +610,18 @@
                       </ul>
                       <p><strong style="color:#fff;">Nota:</strong> Esta mejora ya se encuentra activa en el servidor. Solo necesitas invitar a los bots a tu grupo para que se aplique la nueva regla de <strong style="color:#fff;">seguimiento incondicional</strong>.</p>
                       <p>Queremos que vuestros grupos de playerbots sean los <strong style="color:#fff;">compañeros perfectos</strong> para vuestras hazañas, y creemos que daros el control absoluto sobre sus movimientos es el paso correcto para lograrlo. ¡Gracias por vuestros reportes de errores, que nos ayudan a seguir puliendo CoRe Legacy día a día!</p>
-                      <p>¿Qué rincón olvidado de Azeroth vais a explorar primero con vuestro nuevo grupo de bots inseparables?</p>
+                      <p>¿Qué rincón olvidado de Azeroth vais a explorar primero con vuestro nuevo grupo de bots inseparables? Si aún no conocéis el sistema, consultad nuestra <a href="/guias/guia-playerbots-ia-wow-wotlk-solitario" style="color:#00b4ff; text-decoration:underline;">guía completa de playerbots</a>.</p>
                     </div>
                   </div>
-                </div>
+                </article>
 
                 <!-- News 2 -->
-                <div class="news-item" data-news="2">
+                <article class="news-item" data-news="2" id="news-2" aria-label="Actualización del Sistema de Bots: Nueva Evaluación de Riesgos en Capitales Enemigas">
                   <div class="news-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="news-header-text">
                       <div class="news-title">Actualización del Sistema de Bots: Nueva Evaluación de Riesgos en Capitales Enemigas</div>
                       <div class="news-meta">
-                        <span class="news-date">07/09/26</span>
+                        <time class="news-date" datetime="2026-09-07">07/09/26</time>
                         <span class="news-meta-sep">&#9670;</span>
                         <span class="news-author">Homenixx</span>
                       </div>
@@ -587,15 +652,15 @@
                       <p>¡Gracias por ayudarnos a hacer de CoRe Legacy un lugar mejor para jugar! Nos vemos en el mundo.</p>
                     </div>
                   </div>
-                </div>
+                </article>
 
                 <!-- News 3 -->
-                <div class="news-item" data-news="3">
+                <article class="news-item" data-news="3" id="news-3" aria-label="Parche de Estabilidad: Mejoras de Rendimiento y Correcciones">
                   <div class="news-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="news-header-text">
                       <div class="news-title">Parche de Estabilidad: Mejoras de Rendimiento y Correcciones</div>
                       <div class="news-meta">
-                        <span class="news-date">02/09/26</span>
+                        <time class="news-date" datetime="2026-09-02">02/09/26</time>
                         <span class="news-meta-sep">&#9670;</span>
                         <span class="news-author">Equipo de Desarrollo</span>
                       </div>
@@ -609,18 +674,18 @@
                       <p>Hemos desplegado un <strong>parche de estabilidad</strong> enfocado en mejorar el rendimiento general del servidor y corregir varios errores reportados por la comunidad durante la fase de pruebas.</p>
                       <p>Entre las mejoras más destacadas se incluye una <strong>optimización del sistema de IA</strong> que reduce el consumo de recursos en horas de baja población, mejoras en el sistema de loot en área para grupos grandes y correcciones en varias misiones que presentaban problemas de progresión.</p>
                       <p>También se han corregido errores visuales en la interfaz del cliente y se ha mejorado la <strong>estabilidad de la conexión</strong> en campos de batalla con un alto número de participantes.</p>
-                      <p>Agradecemos a todos los jugadores que han reportado bugs a través de nuestro sistema de tickets. Cada reporte nos ayuda a hacer de CoRe Legacy un lugar mejor para todos. ¡Seguid enviándolos!</p>
+                      <p>Agradecemos a todos los jugadores que han reportado bugs a través de nuestro <a href="/reportar-bug" style="color:#00b4ff; text-decoration:underline;">sistema de reporte de bugs</a>. Cada reporte nos ayuda a hacer de CoRe Legacy un lugar mejor para todos. ¡Seguid enviándolos!</p>
                     </div>
                   </div>
-                </div>
+                </article>
 
                 <!-- News 4 -->
-                <div class="news-item" data-news="4">
+                <article class="news-item" data-news="4" id="news-4" aria-label="Apertura Oficial de CoRe Legacy: Forja tu leyenda en Rasganorte">
                   <div class="news-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="news-header-text">
                       <div class="news-title">&#9876;&#65039; ¡Apertura Oficial de CoRe Legacy! Forja tu leyenda en Rasganorte</div>
                       <div class="news-meta">
-                        <span class="news-date">01/09/26</span>
+                        <time class="news-date" datetime="2026-09-01">01/09/26</time>
                         <span class="news-meta-sep">&#9670;</span>
                         <span class="news-author">Homenixx</span>
                       </div>
@@ -644,9 +709,10 @@
                       <p>Simplemente visita al <strong>Maestro de Nivel</strong> ubicado en tu zona de inicio nada más crear tu personaje para canjear esta promoción de bienvenida. Tendrás todo lo necesario para empezar a equiparte en <strong>mazmorras heroicas y bandas</strong>.</p>
 
                       <p>¡Prepara tu armadura, afila tu espada y únete a la cruzada contra el <strong>Rey Exánime</strong>! La verdadera aventura te espera en el <strong>núcleo de Rasganorte</strong>.</p>
+                      <p>¿Aún no tienes cuenta? <a href="https://accounts.corelegacy.gg" target="_blank" rel="noopener" style="color:#00b4ff; text-decoration:underline;">Crea tu cuenta gratis</a> y únete a la aventura. Si necesitas ayuda para empezar, consulta nuestra <a href="/guias/guia-de-descarga-e-inicio-rapido" style="color:#00b4ff; text-decoration:underline;">guía de descarga e inicio rápido</a>.</p>
                     </div>
                   </div>
-                </div>
+                </article>
 
               </div>
             </div>

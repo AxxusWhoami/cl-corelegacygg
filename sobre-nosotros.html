@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre nosotros — CoRe Legacy</title>
+  <meta name="description" content="Conoce quiénes somos y hacia dónde va CoRe Legacy: un proyecto de antiguos miembros de WoW CoRe con nuevas mecánicas, QoL e IA." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/sobre-nosotros" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/sobre-nosotros" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/sobre-nosotros" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/sobre-nosotros" />
+
+  <meta property="og:title" content="Sobre nosotros — CoRe Legacy" />
+  <meta property="og:description" content="Conoce quiénes somos y hacia dónde va CoRe Legacy: un proyecto de antiguos miembros de WoW CoRe con nuevas mecánicas, QoL e IA." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://corelegacy.gg/sobre-nosotros" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_419" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/corelegacy_og-fb_images.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sobre nosotros — CoRe Legacy" />
+  <meta name="twitter:description" content="Conoce quiénes somos y hacia dónde va CoRe Legacy: un proyecto de antiguos miembros de WoW CoRe con nuevas mecánicas, QoL e IA." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/corelegacy_og-fb_images.png" />
+
+  <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
+  <link rel="preconnect" href="https://accounts.corelegacy.gg" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-29RVG4TWST"></script>
+  <script defer>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29RVG4TWST');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Sobre nosotros — CoRe Legacy",
+    "description": "Conoce quiénes somos y hacia dónde va CoRe Legacy: un proyecto de antiguos miembros de WoW CoRe con nuevas mecánicas, QoL e IA.",
+    "url": "https://corelegacy.gg/sobre-nosotros",
+    "inLanguage": "es-ES",
+    "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://corelegacy.gg/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sobre nosotros",
+        "item": "https://corelegacy.gg/sobre-nosotros"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CoRe Legacy" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <style>
+    .nav-link {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ice-200);
+      padding: 0.6rem 1.2rem;
+      position: relative;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      color: var(--frost);
+      text-shadow: 0 0 12px var(--ice-300);
+      text-decoration: underline;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ice-300), transparent);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 80%;
+      left: 10%;
+    }
+    .nav-link.active {
+      color: var(--frost);
+      text-shadow: 0 0 12px var(--ice-300);
+    }
+    .nav-link.active::after {
+      width: 80%;
+      left: 10%;
+    }
+
+    .about-hero {
+      position: relative;
+      overflow: hidden;
+      background-image: url('/public/hero-citadel.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+    }
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(0,10,25,0.5) 0%, rgba(0,5,15,0.3) 40%, rgba(5,13,24,0.98) 100%);
+    }
+    .about-content-wrap {
+      background: linear-gradient(180deg, #050d18 0%, #081420 50%, #050d18 100%);
+    }
+    .about-panel {
+      position: relative;
+      border: 1px solid #1a3a5a44;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,20,36,0.92) 0%, rgba(5,13,24,0.96) 100%);
+      box-shadow: 0 0 25px rgba(26,159,212,0.08), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(77,189,232,0.03);
+    }
+    .about-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.2) 0%, rgba(26,159,212,0.08) 50%, rgba(13,110,168,0.15) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .about-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(26,159,212,0.12) 0%, rgba(5,13,24,0.3) 100%);
+      border-bottom: 1px solid #1a3a5a33;
+    }
+    .about-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--frost);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .about-panel-body {
+      padding: 2rem 2.5rem 2.5rem;
+    }
+    .about-panel-body h2 {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1.15rem; color: var(--ice-100);
+      margin: 1.75rem 0 0.75rem; letter-spacing: 0.03em;
+      text-shadow: 0 0 8px rgba(77,189,232,0.15);
+    }
+    .about-panel-body h2:first-child { margin-top: 0; }
+    .about-panel-body p { margin-bottom: 0.75rem; line-height: 1.8; color: #b8d4e8; }
+    .about-panel-body strong { color: var(--frost); }
+
+    .skip-link {
+      position: fixed; top: -100px; left: 1rem; z-index: 10000;
+      padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
+      color: #fff; font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 0 0 10px 10px;
+      border: 1px solid #7dd8f8; border-top: none; text-decoration: none;
+      transition: top 0.25s ease;
+    }
+    .skip-link:focus { top: 0; }
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid #7dd8f8; outline-offset: 2px; border-radius: 4px;
+    }
+    .reading-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 9999;
+      background: linear-gradient(90deg, #1a9fd4 0%, #7dd8f8 50%, #c8f0ff 100%);
+      box-shadow: 0 0 10px #56c8f088; transition: width 0.1s linear; pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .about-panel-body { padding: 1.5rem 1.25rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#about-content" class="skip-link">Saltar al contenido</a>
+
+  <div id="snowContainer"></div>
+
+  <!-- ===== Header ===== -->
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="1352" height="1005" decoding="async" class="h-12 w-auto" style="filter: drop-shadow(0 0 8px #56c8f066);" />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
+          <a class="nav-link" href="/noticias">Noticias</a>
+          <a class="nav-link" href="/comunidad">Comunidad</a>
+          <a class="nav-link" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
+        <a class="nav-link block" href="/">Inicio</a>
+        <a class="nav-link block" href="/noticias">Noticias</a>
+        <a class="nav-link block" href="/comunidad">Comunidad</a>
+        <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <!-- ===== Hero ===== -->
+  <section class="about-hero relative flex flex-col items-center justify-center overflow-hidden" style="min-height: 50vh;">
+    <div class="about-hero-overlay"></div>
+    <div class="max-w-7xl mx-auto relative z-10 w-full" style="padding: 7rem 1rem 2.5rem;">
+      <div class="text-center reveal">
+        <h1 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:900;
+          font-size: clamp(2rem,5.5vw,4.5rem); line-height:1.1;
+          background: linear-gradient(180deg,#fff 0%,#d4f0ff 15%,#8dd6f5 30%,#4bbde8 50%,#1a9fd4 70%,#0d6ea8 85%,#063d6b 100%);
+          -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+          animation: textGlow 3s ease-in-out infinite; margin-bottom:1rem;">Sobre nosotros</h1>
+        <div class="frost-divider" style="width:120px; margin:0 auto 2rem;"></div>
+        <div style="max-width:680px; margin:0 auto;">
+          <p style="font-family:'Cinzel',Georgia,serif; font-size:0.95rem; line-height:1.85; color:#b8d4e8;">
+            Conoce la historia, la visión y el equipo detrás de CoRe Legacy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Content ===== -->
+  <section id="about-content" class="about-content-wrap relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <div class="about-panel reveal" style="width:100%;">
+        <div class="about-panel-header">
+          <span class="about-panel-title">Sobre nosotros</span>
+        </div>
+        <div class="about-panel-body">
+          <h2>CoRe Legacy nace con un objetivo claro</h2>
+          <p>CoRe Legacy nace con un objetivo claro: recuperar la esencia de una de las etapas más recordadas de <strong style="color:#d4af37;">WoW CoRe</strong> y llevarla a una nueva dimensión.</p>
+          <p>Tras años de experiencia y después de haber formado parte del equipo que hizo historia en <strong style="color:#d4af37;">WoW CoRe</strong>, antiguos miembros del staff se han reunido nuevamente para poner en marcha un proyecto que busca recuperar aquella experiencia que marcó a toda una generación de jugadores.</p>
+          <p>Al frente del proyecto se encuentra Homenixx, antiguo administrador y una de las figuras vinculadas a aquella etapa, acompañado por antiguos integrantes del equipo que comparten una misma visión: crear un servidor que permita volver a disfrutar de la esencia de <strong style="color:#d4af37;">WoW CoRe</strong>, pero incorporando las posibilidades y mejoras que ofrecen las tecnologías actuales.</p>
+
+          <h2>El legado de WoW CoRe vuelve</h2>
+          <p>CoRe Legacy pretende ser mucho más que un servidor basado en el recuerdo.</p>
+          <p>La intención es recuperar la esencia, identidad y filosofía de juego que caracterizaron a <strong style="color:#d4af37;">WoW CoRe</strong> durante su denominada era dorada, ofreciendo a los antiguos jugadores la oportunidad de regresar a un mundo que muchos dejaron atrás, reencontrarse con viejos compañeros, amigos, rivales y aliados, y volver a vivir experiencias que forman parte de la historia de la comunidad.</p>
+          <p>Pero esta vez, el pasado se encuentra con el futuro.</p>
+          <p>El proyecto parte de aquella experiencia para construir algo nuevo, incorporando nuevas mecánicas, sistemas propios y numerosas mejoras de calidad de vida (QoL) destinadas a hacer que la experiencia de juego sea más cómoda, dinámica y atractiva sin perder la esencia que hizo especial a aquella época.</p>
+
+          <h2>Nuevas mecánicas y mejoras de calidad de vida</h2>
+          <p>Uno de los pilares de CoRe Legacy es evolucionar la experiencia de juego sin convertirla en algo completamente diferente.</p>
+          <p>El servidor incorpora nuevas mecánicas diseñadas para aportar profundidad y variedad al gameplay, junto con diferentes sistemas de Quality of Life (QoL) que buscan reducir tareas repetitivas, mejorar la accesibilidad de determinadas funciones y facilitar la interacción del jugador con el mundo.</p>
+          <p>La filosofía es sencilla: mantener aquello que funcionaba y mejorar aquello que la tecnología y la experiencia actual permiten mejorar.</p>
+          <p>De esta manera, CoRe Legacy pretende ofrecer una experiencia familiar para quienes vivieron <strong style="color:#d4af37;">WoW CoRe</strong>, pero suficientemente renovada para sorprender también a quienes descubran el proyecto por primera vez.</p>
+
+          <h2>Inteligencia Artificial: una nueva forma de vivir Azeroth</h2>
+          <p>Uno de los elementos más innovadores y diferenciales del proyecto es la incorporación de Inteligencia Artificial en un entorno como World of Warcraft.</p>
+          <p>La IA abre la puerta a nuevas posibilidades dentro de un MMORPG clásico: personajes y sistemas capaces de ofrecer interacciones más dinámicas, experiencias más personalizadas y nuevas formas de relacionarse con el mundo del juego.</p>
+          <p>La incorporación de esta tecnología supone un paso más allá de los sistemas tradicionales utilizados en servidores privados y plantea una pregunta interesante:</p>
+          <p style="font-style:italic;color:#8dd6f5;">¿Qué ocurre cuando la Inteligencia Artificial entra en Azeroth?</p>
+          <p>CoRe Legacy busca explorar precisamente ese territorio, utilizando las nuevas posibilidades tecnológicas para enriquecer la experiencia del jugador y crear situaciones que difícilmente podían plantearse durante la época original de <strong style="color:#d4af37;">WoW CoRe</strong>.</p>
+
+          <h2>Volver a encontrarse</h2>
+          <p>Más allá de las mecánicas y de la tecnología, CoRe Legacy tiene un componente especialmente importante: la comunidad.</p>
+          <p>Para muchos jugadores, <strong style="color:#d4af37;">WoW CoRe</strong> no fue simplemente un servidor. Fue el lugar donde conocieron a sus amigos, crearon hermandades, participaron en batallas, conquistaron territorios, compartieron noches de juego y construyeron recuerdos que permanecen muchos años después.</p>
+          <p>CoRe Legacy pretende recuperar precisamente esa sensación.</p>
+          <p>El reencuentro con antiguos jugadores y miembros de la comunidad constituye una parte fundamental de este nuevo capítulo. Viejos nombres, viejas alianzas y viejas rivalidades pueden volver a encontrarse en un Azeroth conocido, pero al mismo tiempo renovado.</p>
+
+          <h2>Un legado que mira hacia el futuro</h2>
+          <p>CoRe Legacy representa el encuentro entre nostalgia, experiencia y tecnología.</p>
+          <p>Es el intento de recuperar la esencia de una época considerada por muchos como la era dorada de <strong style="color:#d4af37;">WoW CoRe</strong>, pero sin limitarse a reproducir el pasado.</p>
+          <p>Antiguos miembros del equipo, encabezados por Homenixx, vuelven a ponerse al frente de un proyecto que busca demostrar que el legado de aquella comunidad todavía puede tener un futuro.</p>
+          <p>El mundo que conocimos puede volver a abrir sus puertas.</p>
+          <p>Los viejos amigos pueden volver a encontrarse.</p>
+          <p>Y esta vez, Azeroth contará con algo que nunca tuvo antes: Inteligencia Artificial.</p>
+          <p style="font-style:italic;color:#8dd6f5;">CoRe Legacy no pretende simplemente recordar la era dorada de <strong style="color:#d4af37;">WoW CoRe</strong>. Pretende construir su siguiente capítulo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ===== CTA Download ===== -->
+  <section class="relative py-12 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(180deg, #050d18 0%, #020a14 100%);">
+    <div class="max-w-3xl mx-auto text-center">
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; align-items:center;">
+        <a href="https://accounts.corelegacy.gg/crear-cuenta" target="_blank" rel="noopener noreferrer"
+          style="display:inline-flex; align-items:center; gap:0.6rem; padding:0.8rem 2rem;
+          font-family:'Cinzel',Georgia,serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase;
+          color:#fff; background:linear-gradient(135deg,#1a9fd4,#0d6ea8); border:1px solid #7dd8f8;
+          border-radius:8px; text-decoration:none; box-shadow:0 0 15px rgba(77,189,232,0.3); transition:box-shadow 0.3s ease;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          Crear Cuenta
+        </a>
+        <a href="https://downloads.corelegacy.gg/CoRe%20Legacy.zip"
+          style="display:inline-flex; align-items:center; gap:0.6rem; padding:0.8rem 2rem;
+          font-family:'Cinzel',Georgia,serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase;
+          color:#d4af37; background:linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05));
+          border:1px solid #d4af3755; border-radius:8px; text-decoration:none;
+          box-shadow:0 0 12px rgba(212,175,55,0.15); transition:box-shadow 0.3s ease;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Descargar Cliente
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer-bg">
+      <div class="site-footer-content">
+        <p class="site-footer-disclaimer">
+          CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a.
+          Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.
+        </p>
+        <div class="site-footer-links">
+          <button class="site-footer-link" data-legal="tos">Términos de Servicio</button>
+          <span class="site-footer-sep">·</span>
+          <button class="site-footer-link" data-legal="privacy">Política de Privacidad</button>
+          <span class="site-footer-sep">·</span>
+          <a class="site-footer-link" href="/sobre-nosotros" style="background:none;border:none;cursor:pointer;font:inherit;color:inherit;text-decoration:none;">Sobre nosotros</a>
+        </div>
+        <div class="site-footer-social">
+          <a class="site-footer-social-link" href="https://www.facebook.com/corelegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="Facebook de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a class="site-footer-social-link" href="https://discord.gg/9AJ23YwDV" target="_blank" rel="noopener noreferrer nofollow" aria-label="Discord de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.instagram.com/corelegacygg/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Instagram de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.youtube.com/@CoReLegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="YouTube de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+        <p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Legal Modals (for TOS and Privacy links in footer) ===== -->
+  <div id="legalTosModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalTosTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <h1 class="legal-modal-title" id="legalTosTitle">Términos de Servicio</h1>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Términos de Servicio</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+  <div id="legalPrivacyModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalPrivacyTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <h1 class="legal-modal-title" id="legalPrivacyTitle">Política de Privacidad</h1>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Política de Privacidad</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/core.js"></script>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <button class="back-to-top" type="button" aria-label="Volver arriba">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="/assets/legal.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var bar = document.getElementById('readingProgress');
+    if (!bar) return;
+    function updateProgress() {
+      var st = window.scrollY || document.documentElement.scrollTop;
+      var sh = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = sh > 0 ? (st / sh) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  })();
+  </script>
+</body>
+</html>

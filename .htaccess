@@ -26,10 +26,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^calculadora/?$ /calculadora.html [L]
 
-# About deep link -> legal-page.php (serves correct meta tags)
+# Clean URL: /sobre-nosotros -> /sobre-nosotros.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^sobre-nosotros/?$ /legal-page.php [L]
+RewriteRule ^sobre-nosotros/?$ /sobre-nosotros.html [L]
 
 # Clean URLs: /comunidad -> /comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f

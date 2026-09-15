@@ -1,8 +1,29 @@
+/* ===== Guía page background (matches site identity) ===== */
+body {
+  background-color: var(--bg);
+  background-image: url('/public/hero-citadel.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(5,13,24,0.94) 0%, rgba(5,13,24,0.90) 40%, rgba(8,20,32,0.92) 70%, rgba(5,13,24,0.96) 100%);
+}
+
 /* ===== Guía page content ===== */
 .guia-page-wrap {
   max-width: 800px;
   margin: 0 auto;
   padding: 8rem 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
 }
 .guia-page-header {
   text-align: center;

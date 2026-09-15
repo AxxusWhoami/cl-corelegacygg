@@ -14,95 +14,127 @@
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/calculadora" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/calculadora" />
   </url>
   <url>
     <loc>https://corelegacy.gg/comunidad</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/comunidad" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/comunidad" />
   </url>
   <url>
     <loc>https://corelegacy.gg/sobre-nosotros</loc>
     <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/sobre-nosotros" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/sobre-nosotros" />
   </url>
   <url>
     <loc>https://corelegacy.gg/info-changelog</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/info-changelog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/info-changelog" />
   </url>
   <url>
     <loc>https://corelegacy.gg/guias/guia-de-descarga-e-inicio-rapido</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/guias/guia-de-descarga-e-inicio-rapido" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-de-descarga-e-inicio-rapido" />
   </url>
   <url>
     <loc>https://corelegacy.gg/guias/requisitos-de-hardware</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/guias/requisitos-de-hardware" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/requisitos-de-hardware" />
   </url>
   <url>
     <loc>https://corelegacy.gg/guias/guia-playerbots-ia-wow-wotlk-solitario</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/guias/guia-playerbots-ia-wow-wotlk-solitario" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-playerbots-ia-wow-wotlk-solitario" />
   </url>
   <url>
     <loc>https://corelegacy.gg/guias/guia-addon-dungeonclear</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/guias/guia-addon-dungeonclear" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-addon-dungeonclear" />
   </url>
   <url>
     <loc>https://corelegacy.gg/guias/guia-practica-avanzada-multibot</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/guias/guia-practica-avanzada-multibot" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-practica-avanzada-multibot" />
   </url>
   <url>
     <loc>https://corelegacy.gg/abrir-ticket</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/abrir-ticket" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/abrir-ticket" />
   </url>
   <url>
     <loc>https://corelegacy.gg/reportar-bug</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/reportar-bug" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/reportar-bug" />
   </url>
   <url>
     <loc>https://corelegacy.gg/highlights-gameplays</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/highlights-gameplays" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/highlights-gameplays" />
   </url>
   <url>
     <loc>https://corelegacy.gg/terminos-de-servicio</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/terminos-de-servicio" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/terminos-de-servicio" />
   </url>
   <url>
     <loc>https://corelegacy.gg/politica-de-privacidad</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/politica-de-privacidad" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/politica-de-privacidad" />
   </url>
   <url>
     <loc>https://corelegacy.gg/noticias</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/noticias" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/noticias" />
   </url>
   <url>
     <loc>https://corelegacy.gg/tops</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/tops" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/tops" />
   </url>
 </urlset>

@@ -785,6 +785,7 @@
 
     /* ===== Guías panel (frost) ===== */
     .guias-panel {
+      position: relative;
       border: 1px solid #4bbde844;
       border-radius: 14px;
       overflow: hidden;
@@ -875,13 +876,9 @@
       transform: translateX(4px);
     }
 
-    /* ===== Guía content (shared styles, used by card panel only) ===== */
-      line-height: 1.75;
-      color: #a8c4d8;
-    }
-
     /* ===== Ayuda y soporte panel (frost, compact) ===== */
     .ayuda-panel {
+      position: relative;
       border: 1px solid #4bbde844;
       border-radius: 14px;
       overflow: hidden;
@@ -1222,7 +1219,7 @@
               <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">🛡️</span>
               <span class="ayuda-panel-title">Ayuda y soporte</span>
             </div>
-            <div class="ayuda-panel-body" id="ayudaBody" style="justify-content:flex-start;align-items:stretch;text-align:left;">
+            <div class="ayuda-panel-body" id="ayudaBody">
               <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Contactar con un MJ (Abrir Ticket)

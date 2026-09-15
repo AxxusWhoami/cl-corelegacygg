@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Addon DungeonClear para WoW WotLK 3.3.5a | CoRe Legacy</title>
+  <meta name="description" content="Usa DungeonClear en CoRe Legacy para controlar un bot tanque que limpia mazmorras: instalación, interfaz, combate y comandos paso a paso." />
+  <link rel="canonical" href="https://corelegacy.gg/guias/guia-addon-dungeonclear" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/guias/guia-addon-dungeonclear" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/guias/guia-addon-dungeonclear" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-addon-dungeonclear" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <link rel="stylesheet" href="/assets/guia-page.css" />
+</head>
+<body>
+  <div id="snowContainer"></div>
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="1352" height="1005" decoding="async" class="h-12 w-auto" style="filter: drop-shadow(0 0 8px #56c8f066);" />
+        </a>
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
+          <a class="nav-link" href="/noticias">Noticias</a>
+          <a class="nav-link active" href="/comunidad">Comunidad</a>
+          <a class="nav-link" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
+        <a class="nav-link block" href="/">Inicio</a>
+        <a class="nav-link block" href="/noticias">Noticias</a>
+        <a class="nav-link block active" href="/comunidad">Comunidad</a>
+        <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="guia-page-wrap">
+      <div class="guia-page-header">
+        <h1 class="guia-page-title">Guía de Uso del Addon: DungeonClear</h1>
+        <div class="frost-divider mx-auto" style="max-width: 300px;"></div>
+        <a href="/comunidad" class="guia-page-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          Volver a Comunidad
+        </a>
+      </div>
+      <div class="guia-page-body">
+        <section class="guia-intro">
+          <p>El addon <strong>DungeonClear</strong> es una interfaz gráfica integrada en el juego diseñada para controlar de forma sencilla a un bot tanque dentro de una mazmorra. En lugar de escribir constantemente comandos en el chat, este addon te proporciona un panel para que el tanque limpie la mazmorra de forma autónoma: caminará de jefe en jefe, limpiará los enemigos en el camino (trash), esquivará obstáculos, recogerá botín, abrirá puertas y se recuperará de atascos.</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">1. Instalación y Preparación</h2>
+          <p class="guia-substep"><strong>Paso 1:</strong> Descarga el addon desde <a href="https://downloads.corelegacy.gg/DungeonClear.zip" target="_blank" rel="noopener noreferrer" class="guia-link">este enlace directo</a>.</p>
+          <p class="guia-substep"><strong>Paso 2:</strong> Descomprime el archivo descargado directamente en la carpeta de addons de tu juego:</p>
+          <p class="guia-note"><code>World of Warcraft / Interface / AddOns /</code></p>
+          <p class="guia-note"><em>Nota: La carpeta ya viene nombrada correctamente como <strong>DungeonClear</strong>, por lo que no necesitas hacer ningún cambio adicional.</em></p>
+          <p class="guia-substep"><strong>Paso 3:</strong> Inicia el juego y, en la pantalla de selección de personaje, asegúrate de activar el addon (marca la casilla "Cargar accesorios antiguos" o "Load out of date AddOns" en la esquina superior derecha si es necesario).</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">2. Interfaz y Botones Principales</h2>
+          <p>Para abrir o cerrar el panel del addon dentro del juego, escribe el comando <code>/dc</code> en el chat.</p>
+          <p class="guia-note"><em>Nota: Debes estar en un grupo que tenga un bot tanque activo para que los botones funcionen.</em></p>
+          <p>El panel principal cuenta con los siguientes controles:</p>
+          <ul class="guia-list">
+            <li><strong>On (Encender):</strong> Inicia la ruta de la mazmorra. El tanque tomará el control y comenzará a avanzar.</li>
+            <li><strong>Off (Apagar):</strong> Detiene el avance de la mazmorra. El tanque y los demás bots volverán a seguirte normalmente.</li>
+            <li><strong>Skip (Omitir):</strong> Salta el jefe u objetivo actual para continuar con el siguiente.</li>
+            <li><strong>Pause / Resume (Pausar / Reanudar):</strong> Congela al tanque en su posición actual sin cancelar la ruta, permitiéndote reanudarla con un clic después.</li>
+            <li><strong>Go (Ir):</strong> Aparece al lado del nombre de cada jefe. Envía al tanque directamente hacia ese jefe específico.</li>
+            <li><strong>Tiny (Minimizar):</strong> Reduce el panel a una delgada barra de una sola línea para que no estorbe en tu pantalla.</li>
+            <li><strong>Close (X):</strong> Oculta la ventana.</li>
+          </ul>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">3. Modos de Combate (Pull Modes)</h2>
+          <p>Puedes configurar cómo quieres que el tanque inicie los combates contra los grupos de enemigos (trash) en su camino a los jefes. Puedes cambiar esto antes de darle a "On".</p>
+          <ul class="guia-list">
+            <li><strong>Dynamic (Dinámico - Por defecto):</strong> Decide la mejor estrategia grupo por grupo. Ataca de frente a los grupos sencillos a toda velocidad, y utiliza estrategias más defensivas para atraer hacia atrás a los grupos peligrosos o muy juntos. Es el modo más recomendado.</li>
+            <li><strong>Leeroy (Pull Off):</strong> El tanque caminará directo hacia cada grupo y peleará en el lugar. Es un modo muy rápido, pero sin margen de seguridad (ideal si tienes mucho más nivel o equipo que la mazmorra).</li>
+            <li><strong>Advanced (Pull On):</strong> El tanque atraerá a todos los enemigos hacia una posición segura (campamento) antes de luchar. Es un modo lento y cuidadoso, ideal para mazmorras difíciles o bandas (raids).</li>
+          </ul>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">4. Estado y Lista de Jefes</h2>
+          <p>El panel te avisa en tiempo real de lo que ocurre sin generar "spam" molesto en tu chat:</p>
+          <ul class="guia-list">
+            <li><strong>Estado general:</strong> Te muestra si el bot está encendido (ON), apagado (OFF) o pausado (PAUSED).</li>
+            <li><strong>Actividad actual:</strong> Te describe qué está haciendo el tanque (avanzando, luchando contra un jefe, recogiendo botín, descansando o atascado en una puerta).</li>
+            <li><strong>Lista de Jefes:</strong> Enumera a todos los jefes de la mazmorra con sus estados:</li>
+          </ul>
+          <div class="guia-table-wrap">
+            <table class="guia-table">
+              <thead>
+                <tr>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Significado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Alive (Vivo)</th>
+                  <td>El jefe sigue en pie (puedes presionar "Go" para ir a por él).</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dead (Muerto)</th>
+                  <td>Derrotado durante la ruta actual.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Skipped (Omitido)</th>
+                  <td>Lo saltaste, pero puedes regresar usando "Go".</td>
+                </tr>
+                <tr>
+                  <th scope="row">Missing (Desaparecido)</th>
+                  <td>Estaba vivo pero el objetivo ya no está (ej. el cadáver desapareció).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">5. El Modo Reducido (Tiny Mode)</h2>
+          <p>Al presionar el botón <strong>Tiny</strong>, el panel se convierte en una sola línea fácil de colocar en cualquier esquina de tu pantalla. Desde esta pequeña barra puedes:</p>
+          <ul class="guia-list">
+            <li><strong>Clic izquierdo en el punto de estado:</strong> Iniciar la ruta, pausarla o reanudarla.</li>
+            <li><strong>Clic izquierdo en el punto de modo (Pull):</strong> Alternar rápidamente entre los modos Dinámico, Leeroy o Avanzado.</li>
+            <li><strong>Clic derecho en la barra:</strong> Volver a expandir la ventana a su tamaño original.</li>
+            <li><strong>Arrastrar:</strong> Mover la barra por la pantalla.</li>
+          </ul>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">6. Configuración Avanzada (Settings)</h2>
+          <p>El servidor tiene valores por defecto, pero puedes ajustar cómo se comporta tu tanque de forma personal:</p>
+          <p class="guia-substep"><strong>Paso 1:</strong> Presiona <strong>Escape</strong> para abrir el Menú del Juego.</p>
+          <p class="guia-substep"><strong>Paso 2:</strong> Ve a <strong>Interfaz → AddOns → DungeonClear → Settings</strong>.</p>
+          <p class="guia-substep"><strong>Paso 3:</strong> Aquí podrás ajustar opciones mediante deslizadores, como la calidad mínima para recoger botín, cuánto puede el tanque alejar a los enemigos, a qué distancia atrae al jefe, etc.</p>
+          <p class="guia-note"><em>Nota: Estos ajustes se guardan por personaje y se aplican automáticamente en tus propias rutas sin afectar a las configuraciones globales del servidor ni a otros jugadores.</em></p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">7. Comandos Rápidos de Chat</h2>
+          <p>Si prefieres usar macros o el chat directamente, el addon soporta los siguientes comandos:</p>
+          <div class="guia-table-wrap">
+            <table class="guia-table">
+              <thead>
+                <tr>
+                  <th scope="col">Comando</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>/dc</code></td><td>Abre o cierra la ventana del addon.</td></tr>
+                <tr><td><code>/dc on</code></td><td>Inicia la ruta.</td></tr>
+                <tr><td><code>/dc off</code></td><td>Detiene la ruta.</td></tr>
+                <tr><td><code>/dc skip</code></td><td>Omite el objetivo.</td></tr>
+                <tr><td><code>/dc pause</code></td><td>Pausa o reanuda.</td></tr>
+                <tr><td><code>/dc status</code></td><td>Actualiza la línea de estado si hubo algún fallo visual.</td></tr>
+                <tr><td><code>/dc bosses</code></td><td>Actualiza la lista de jefes.</td></tr>
+                <tr><td><code>/dc go &lt;ID_del_jefe&gt;</code></td><td>Envía al tanque a un jefe usando su número de identificación (Entry ID).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <p class="guia-footer">¡Nos vemos dentro del juego!</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-bg">
+      <div class="site-footer-content">
+        <p class="site-footer-disclaimer">
+          CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a.
+          Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.
+        </p>
+        <div class="site-footer-links">
+          <button class="site-footer-link" data-legal="tos">Términos de Servicio</button>
+          <span class="site-footer-sep">·</span>
+          <button class="site-footer-link" data-legal="privacy">Política de Privacidad</button>
+          <span class="site-footer-sep">·</span>
+          <a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a>
+        </div>
+        <div class="site-footer-social">
+          <a class="site-footer-social-link" href="https://www.facebook.com/corelegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="Facebook de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://discord.gg/9AJ23YwDV" target="_blank" rel="noopener noreferrer nofollow" aria-label="Discord de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.instagram.com/corelegacygg/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Instagram de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.youtube.com/@CoReLegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="YouTube de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+        <p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+  <script>
+  (function() {
+    var items = document.querySelectorAll('.guia-faq-item');
+    items.forEach(function(item) {
+      var btn = item.querySelector('.guia-faq-question');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var isOpen = item.classList.contains('open');
+        items.forEach(function(other) { other.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

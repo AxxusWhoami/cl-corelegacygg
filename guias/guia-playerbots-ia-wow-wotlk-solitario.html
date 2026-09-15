@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playerbots IA en WoW WotLK 3.3.5a | CoRe Legacy</title>
+  <meta name="description" content="Configura Playerbots con IA en CoRe Legacy: comandos, roles, estrategias y cómo superar mazmorras y bandas de WoW WotLK 3.3.5a." />
+  <link rel="canonical" href="https://corelegacy.gg/guias/guia-playerbots-ia-wow-wotlk-solitario" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/guias/guia-playerbots-ia-wow-wotlk-solitario" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/guias/guia-playerbots-ia-wow-wotlk-solitario" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-playerbots-ia-wow-wotlk-solitario" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <link rel="stylesheet" href="/assets/guia-page.css" />
+</head>
+<body>
+  <div id="snowContainer"></div>
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="1352" height="1005" decoding="async" class="h-12 w-auto" style="filter: drop-shadow(0 0 8px #56c8f066);" />
+        </a>
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
+          <a class="nav-link" href="/noticias">Noticias</a>
+          <a class="nav-link active" href="/comunidad">Comunidad</a>
+          <a class="nav-link" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
+        <a class="nav-link block" href="/">Inicio</a>
+        <a class="nav-link block" href="/noticias">Noticias</a>
+        <a class="nav-link block active" href="/comunidad">Comunidad</a>
+        <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="guia-page-wrap">
+      <div class="guia-page-header">
+        <h1 class="guia-page-title">Guía Definitiva de Playerbots: Cómo Jugar WoW WotLK en Solitario con IA</h1>
+        <div class="frost-divider mx-auto" style="max-width: 300px;"></div>
+        <a href="/comunidad" class="guia-page-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          Volver a Comunidad
+        </a>
+      </div>
+      <div class="guia-page-body">
+        <section class="guia-intro">
+          <p>¿Alguna vez has querido explorar todo el contenido de Northrend pero no tenías un grupo disponible? En CoRe Legacy, el mejor servidor wow para jugar en solitario 3.3.5a, la falta de jugadores ya no es un obstáculo. Gracias a nuestro sistema avanzado de bots Azerothcore, puedes reclutar tu propio escuadrón y dominar Azeroth a tu ritmo.</p>
+          <p>En esta guía SEO optimizada, te enseñaremos cómo aprender a jugar WoW 3.3.5a solo con compañeros controlados por IA, desde la configuración básica hasta estrategias avanzadas para limpiar las bandas más difíciles sin depender de terceros.</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">¿Qué son los Playerbots IA y por qué revolucionan el PvE?</h2>
+          <p>En CoRe Legacy, los bots no son simples scripts de seguimiento. Hablamos de NPCs impulsados por inteligencia artificial diseñados para simular de forma realista el comportamiento, los errores y los aciertos de jugadores humanos. Al aventurarte en nuestro servidor privado wow 3.3.5a npc con inteligencia artificial, tus compañeros:</p>
+          <ul class="guia-list">
+            <li>Ejecutan rotaciones de daño y curación óptimas analizando el estado del combate en tiempo real.</li>
+            <li>Tienen programación de bots que hacen mecánicas de bosses WotLK, apartándose del fuego y cambiando de objetivo cuando es necesario.</li>
+            <li>Cuentan con un cerebro propio, convirtiéndonos en el primer servidor WoW IA modelo de lenguaje integrado, lo que permite una interacción profunda y dinámica.</li>
+          </ul>
+          <p>Ya sea para subir de nivel con bots en wow wrath of the lich king o farmear reputaciones complejas, tu grupo de compañeros IA para misiones y farmeo WoW está siempre listo.</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">El Cerebro del Grupo: Servidor WoW WotLK con Chat Interactivo</h2>
+          <p>Lo que realmente separa a CoRe Legacy del resto es nuestra integración de IA conversacional. No solo les das órdenes de combate; puedes hablar con ellos.</p>
+          <p>Disfruta de un chat de rol inmersivo con bots WoW WotLK. Escríbeles por el canal de grupo (<code>/p</code>) o mediante susurros (<code>/w</code>). El modelo de lenguaje interpretará tus palabras, responderá acorde a la raza y clase del bot, y te dará consejos tácticos. Si les preguntas "¿Queda mucho maná?" o "¡Cuidado con el jefe!", la IA procesará el contexto de la mazmorra y te responderá de forma natural, haciendo de este servidor wow wotlk chat interactivo con npcs la experiencia más inmersiva del panorama actual.</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">Comandos Esenciales para Controlar Playerbots WotLK</h2>
+          <p>Para comunicarte rápidamente en combate, hemos simplificado los comandos para controlar playerbots wotlk. Puedes escribirlos en el chat o utilizarlos en tus macros y scripts para bots azerothcore 3.3.5a.</p>
+          <p>Saber configurar la inteligencia artificial de playerbots WotLK empieza por estos atajos:</p>
+          <div class="guia-table-wrap">
+            <table class="guia-table">
+              <thead>
+                <tr>
+                  <th scope="col">Comando Básico</th>
+                  <th scope="col">Función de la IA</th>
+                  <th scope="col">Cuándo Utilizarlo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><code>.bot add [Nombre]</code></th>
+                  <td>El bot acepta instantáneamente la invitación.</td>
+                  <td>Para armar tu grupo antes de entrar a una mazmorra.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>.bot remove [Nombre]</code></th>
+                  <td>Disuelve el vínculo con la IA.</td>
+                  <td>Si necesitas cambiar la composición de clases de tu equipo.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>.bot stay</code></th>
+                  <td>Fuerza a los bots a ignorar su script de movimiento.</td>
+                  <td>Ideal para evitar áreas de daño (AoE) o emboscadas mortales.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>.bot follow</code></th>
+                  <td>La IA reanuda el seguimiento del líder.</td>
+                  <td>Tras finalizar un combate, revivir o reposicionarte.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>.bot attack</code></th>
+                  <td>Sobrescribe el objetivo actual de la IA.</td>
+                  <td>Para el pulling controlado o hacer focus de daño masivo.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">IA por Roles: Formando el Escuadrón Perfecto</h2>
+          <p>Para jugar mazmorras wotlk en solitario con bots y no morir en el intento, necesitas entender cómo nuestra IA procesa cada rol:</p>
+          <h3 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Tanques: El Escudo Inteligente</h3>
+          <p>Los Guerreros, Paladines y usuarios con talentos caballero de la muerte tanque wotlk 3.3.5 están programados para mantener la amenaza (agro) en múltiples objetivos. Usarán sus habilidades defensivas (cooldowns) si prevén daño letal o su salud cae por debajo del 30%.</p>
+          <h3 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Sanadores: IA Reactiva</h3>
+          <p>Los healers gestionan su maná inteligentemente. Priorizan la salud del tanque y disipan perjuicios críticos (magias, maldiciones) en milisegundos, una ventaja que convierte hacer mazmorras heroicas wotlk con grupo de bots en una experiencia fluida.</p>
+          <h3 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">DPS: Daño Automatizado</h3>
+          <p>Los atacantes ejecutan rotaciones perfectas basadas en las mejores guías de clase wotlk 3.3.5a pve español. Magos, brujos y pícaros asisten con interrupciones (kicks) instantáneas cuando un enemigo lanza un hechizo peligroso.</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">Endgame IA: Hacer Bandas WotLK solo con Compañeros</h2>
+          <p>El mayor logro en CoRe Legacy es la progresión PvE en solitario servidor WoW WotLK. ¿Es posible limpiar ICC? Sí, pero la simulación de jugadores reales en servidor privado WoW requiere que lideres como un verdadero Raid Leader.</p>
+          <ul class="guia-list">
+            <li><strong>Posicionamiento Táctico:</strong> Usa el comando <code>.bot stay</code> para dejar a tus rangos a 30 metros del jefe, evitando ataques de cono frontal.</li>
+            <li><strong>Gestión del Control de Masas:</strong> Marca enemigos con iconos (Calavera, Cruz). La IA reconoce estas marcas para enfocar el daño o aplicar Polimorfia.</li>
+            <li><strong>Equipamiento Estratégico:</strong> La IA es tan fuerte como su equipo. Fármea para mejorar las estadísticas de armadura tier 10 wotlk 3.3.5a de tus bots.</li>
+          </ul>
+          <p>Con táctica y macros, matar al rey exánime 3.3.5a en solitario será la prueba definitiva de tu habilidad como comandante de IA.</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">Macros de Supervivencia PvE con Bots</h2>
+          <p>Mejora tu tiempo de reacción con estas macros útiles para pve pvp wow 3.3.5a:</p>
+          <h3 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Macro de Ataque Coordinado (Focus IA)</h3>
+          <pre class="guia-code-block"><code>/targetenemy [noharm][dead]
+/cast [Tu Habilidad de Inicio]
+/say .bot attack</code></pre>
+          <p>Esta macro lanza tu ataque inicial y fuerza a la IA a priorizar de forma agresiva a ese mismo objetivo, ignorando a otros enemigos.</p>
+          <h3 class="guia-step-title" style="font-size:1.05rem; margin-top:1.5rem;">Macro de Retirada Táctica / Posición Segura</h3>
+          <pre class="guia-code-block"><code>/stopcasting
+/say .bot stay
+/yell ¡Mantengan la posición! ¡Cuidado con el área!</code></pre>
+          <p>Un salvavidas absoluto. Al incluir <code>/stopcasting</code>, tu personaje reacciona al instante. La IA se anclará al suelo, permitiéndote salvar a tus bots de ataques AoE letales de jefes de banda, o esconderlos detrás de una pared para romper la línea de visión de hechiceros enemigos. Un simple <code>.bot follow</code> los devolverá a la acción.</p>
+        </section>
+        <section class="guia-section">
+          <h2 class="guia-step-title">Únete a la Revolución de la IA en CoRe Legacy</h2>
+          <p>Experimenta la evolución de los servidores privados. Si estás buscando descargar cliente wow wotlk 3.3.5a español y sumergirte en un ecosistema vivo donde nunca estarás solo, únete hoy.</p>
+          <ul class="guia-list">
+            <li><a href="https://accounts.corelegacy.gg/crear-cuenta" target="_blank" rel="noopener noreferrer" class="guia-link">Crear cuenta servidor wow wotlk gratis</a></li>
+            <li><a href="https://discord.gg/9AJ23YwDV" target="_blank" rel="noopener noreferrer" class="guia-link">Únete a nuestro Discord servidor wow core legacy español</a></li>
+            <li><a href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer" class="guia-link">Visita nuestra tienda de recompensas web servidor wow wotlk</a></li>
+          </ul>
+          <p class="guia-note"><em>CoRe Legacy: Tu mundo, tu escuadrón, la mejor inteligencia artificial.</em></p>
+        </section>
+        <p class="guia-footer">¡Nos vemos dentro del juego!</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-bg">
+      <div class="site-footer-content">
+        <p class="site-footer-disclaimer">
+          CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a.
+          Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.
+        </p>
+        <div class="site-footer-links">
+          <button class="site-footer-link" data-legal="tos">Términos de Servicio</button>
+          <span class="site-footer-sep">·</span>
+          <button class="site-footer-link" data-legal="privacy">Política de Privacidad</button>
+          <span class="site-footer-sep">·</span>
+          <a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a>
+        </div>
+        <div class="site-footer-social">
+          <a class="site-footer-social-link" href="https://www.facebook.com/corelegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="Facebook de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://discord.gg/9AJ23YwDV" target="_blank" rel="noopener noreferrer nofollow" aria-label="Discord de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.instagram.com/corelegacygg/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Instagram de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.youtube.com/@CoReLegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="YouTube de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+        <p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+  <script>
+  (function() {
+    var items = document.querySelectorAll('.guia-faq-item');
+    items.forEach(function(item) {
+      var btn = item.querySelector('.guia-faq-question');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var isOpen = item.classList.contains('open');
+        items.forEach(function(other) { other.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

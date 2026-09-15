@@ -51,10 +51,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(terminos-de-servicio|politica-de-privacidad)/?$ /legal-page.php [L]
 
-# Guía deep links -> comunidad.html (modal opened via JS based on path)
+# Guía deep links -> standalone guide pages
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^guias/([a-z0-9-]+)/?$ /comunidad.html [L]
+RewriteRule ^guias/([a-z0-9-]+)/?$ /guias/$1.html [L]
 
 # Deep links para abrir modales directamente -> comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f

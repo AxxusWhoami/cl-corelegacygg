@@ -253,7 +253,59 @@
   color: #a8c4d8;
 }
 
+/* ===== Related Guides ===== */
+.guia-related {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(77,189,232,0.12);
+}
+.guia-related-title {
+  font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ice-100);
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(77,189,232,0.15);
+}
+.guia-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+.guia-related-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(77,189,232,0.15);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(8,22,36,0.4) 0%, rgba(4,12,22,0.4) 100%);
+  text-decoration: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.guia-related-card:hover {
+  border-color: rgba(77,189,232,0.4);
+  box-shadow: 0 0 12px rgba(77,189,232,0.12);
+  transform: translateY(-2px);
+}
+.guia-related-card.current {
+  border-color: rgba(77,189,232,0.3);
+  background: linear-gradient(180deg, rgba(77,189,232,0.08) 0%, rgba(4,12,22,0.4) 100%);
+  cursor: default;
+  pointer-events: none;
+}
+.guia-related-icon { font-size: 1.2rem; flex-shrink: 0; }
+.guia-related-name {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.78rem;
+  color: #a8c4d8;
+  line-height: 1.4;
+}
+.guia-related-card.current .guia-related-name { color: var(--ice-100); }
+
 @media (max-width: 640px) {
   .guia-page-wrap { padding: 6rem 1rem 3rem; }
   .guia-page-body { padding: 1.25rem 1rem 1.75rem; }
+  .guia-related-grid { grid-template-columns: 1fr; }
 }

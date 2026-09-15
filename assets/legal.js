@@ -71,41 +71,6 @@
     <p>Nos reservamos el derecho de actualizar esta Política de Privacidad a medida que el proyecto CoRe Legacy evolucione o se añadan nuevas características web. Cualquier cambio se verá reflejado en esta página con su respectiva fecha de actualización.</p>\
     <p class="legal-footer-note">Última actualización: Junio de 2026</p>';
 
-  var ABOUT_HTML = '\
-    <h2>CoRe Legacy nace con un objetivo claro</h2>\
-    <p>CoRe Legacy nace con un objetivo claro: recuperar la esencia de una de las etapas más recordadas de <strong style="color:#d4af37;">WoW CoRe</strong> y llevarla a una nueva dimensión.</p>\
-    <p>Tras años de experiencia y después de haber formado parte del equipo que hizo historia en <strong style="color:#d4af37;">WoW CoRe</strong>, antiguos miembros del staff se han reunido nuevamente para poner en marcha un proyecto que busca recuperar aquella experiencia que marcó a toda una generación de jugadores.</p>\
-    <p>Al frente del proyecto se encuentra Homenixx, antiguo administrador y una de las figuras vinculadas a aquella etapa, acompañado por antiguos integrantes del equipo que comparten una misma visión: crear un servidor que permita volver a disfrutar de la esencia de <strong style="color:#d4af37;">WoW CoRe</strong>, pero incorporando las posibilidades y mejoras que ofrecen las tecnologías actuales.</p>\
-    <h2>El legado de WoW CoRe vuelve</h2>\
-    <p>CoRe Legacy pretende ser mucho más que un servidor basado en el recuerdo.</p>\
-    <p>La intención es recuperar la esencia, identidad y filosofía de juego que caracterizaron a <strong style="color:#d4af37;">WoW CoRe</strong> durante su denominada era dorada, ofreciendo a los antiguos jugadores la oportunidad de regresar a un mundo que muchos dejaron atrás, reencontrarse con viejos compañeros, amigos, rivales y aliados, y volver a vivir experiencias que forman parte de la historia de la comunidad.</p>\
-    <p>Pero esta vez, el pasado se encuentra con el futuro.</p>\
-    <p>El proyecto parte de aquella experiencia para construir algo nuevo, incorporando nuevas mecánicas, sistemas propios y numerosas mejoras de calidad de vida (QoL) destinadas a hacer que la experiencia de juego sea más cómoda, dinámica y atractiva sin perder la esencia que hizo especial a aquella época.</p>\
-    <h2>Nuevas mecánicas y mejoras de calidad de vida</h2>\
-    <p>Uno de los pilares de CoRe Legacy es evolucionar la experiencia de juego sin convertirla en algo completamente diferente.</p>\
-    <p>El servidor incorpora nuevas mecánicas diseñadas para aportar profundidad y variedad al gameplay, junto con diferentes sistemas de Quality of Life (QoL) que buscan reducir tareas repetitivas, mejorar la accesibilidad de determinadas funciones y facilitar la interacción del jugador con el mundo.</p>\
-    <p>La filosofía es sencilla: mantener aquello que funcionaba y mejorar aquello que la tecnología y la experiencia actual permiten mejorar.</p>\
-    <p>De esta manera, CoRe Legacy pretende ofrecer una experiencia familiar para quienes vivieron <strong style="color:#d4af37;">WoW CoRe</strong>, pero suficientemente renovada para sorprender también a quienes descubran el proyecto por primera vez.</p>\
-    <h2>Inteligencia Artificial: una nueva forma de vivir Azeroth</h2>\
-    <p>Uno de los elementos más innovadores y diferenciales del proyecto es la incorporación de Inteligencia Artificial en un entorno como World of Warcraft.</p>\
-    <p>La IA abre la puerta a nuevas posibilidades dentro de un MMORPG clásico: personajes y sistemas capaces de ofrecer interacciones más dinámicas, experiencias más personalizadas y nuevas formas de relacionarse con el mundo del juego.</p>\
-    <p>La incorporación de esta tecnología supone un paso más allá de los sistemas tradicionales utilizados en servidores privados y plantea una pregunta interesante:</p>\
-    <p style="font-style:italic;color:#8dd6f5;">¿Qué ocurre cuando la Inteligencia Artificial entra en Azeroth?</p>\
-    <p>CoRe Legacy busca explorar precisamente ese territorio, utilizando las nuevas posibilidades tecnológicas para enriquecer la experiencia del jugador y crear situaciones que difícilmente podían plantearse durante la época original de <strong style="color:#d4af37;">WoW CoRe</strong>.</p>\
-    <h2>Volver a encontrarse</h2>\
-    <p>Más allá de las mecánicas y de la tecnología, CoRe Legacy tiene un componente especialmente importante: la comunidad.</p>\
-    <p>Para muchos jugadores, <strong style="color:#d4af37;">WoW CoRe</strong> no fue simplemente un servidor. Fue el lugar donde conocieron a sus amigos, crearon hermandades, participaron en batallas, conquistaron territorios, compartieron noches de juego y construyeron recuerdos que permanecen muchos años después.</p>\
-    <p>CoRe Legacy pretende recuperar precisamente esa sensación.</p>\
-    <p>El reencuentro con antiguos jugadores y miembros de la comunidad constituye una parte fundamental de este nuevo capítulo. Viejos nombres, viejas alianzas y viejas rivalidades pueden volver a encontrarse en un Azeroth conocido, pero al mismo tiempo renovado.</p>\
-    <h2>Un legado que mira hacia el futuro</h2>\
-    <p>CoRe Legacy representa el encuentro entre nostalgia, experiencia y tecnología.</p>\
-    <p>Es el intento de recuperar la esencia de una época considerada por muchos como la era dorada de <strong style="color:#d4af37;">WoW CoRe</strong>, pero sin limitarse a reproducir el pasado.</p>\
-    <p>Antiguos miembros del equipo, encabezados por Homenixx, vuelven a ponerse al frente de un proyecto que busca demostrar que el legado de aquella comunidad todavía puede tener un futuro.</p>\
-    <p>El mundo que conocimos puede volver a abrir sus puertas.</p>\
-    <p>Los viejos amigos pueden volver a encontrarse.</p>\
-    <p>Y esta vez, Azeroth contará con algo que nunca tuvo antes: Inteligencia Artificial.</p>\
-    <p style="font-style:italic;color:#8dd6f5;">CoRe Legacy no pretende simplemente recordar la era dorada de <strong style="color:#d4af37;">WoW CoRe</strong>. Pretende construir su siguiente capítulo.</p>';
-
   var TOS_META = {
     title: 'Términos de Servicio — CoRe Legacy',
     description: 'Términos de Servicio de CoRe Legacy, servidor WoW WotLK 3.3.5a. Reglas de cuenta, conducta, donaciones y derechos de la administración.'
@@ -114,11 +79,6 @@
   var PRIVACY_META = {
     title: 'Política de Privacidad — CoRe Legacy',
     description: 'Política de Privacidad de CoRe Legacy, servidor WoW WotLK 3.3.5a. Qué datos recopilamos, cómo los protegemos, cookies y tus derechos.'
-  };
-
-  var ABOUT_META = {
-    title: 'Sobre nosotros — CoRe Legacy',
-    description: 'Conoce quiénes somos y hacia dónde va CoRe Legacy: un proyecto de antiguos miembros de WoW CoRe con nuevas mecánicas, QoL e IA.'
   };
 
   var originalTitle = document.title;
@@ -157,8 +117,7 @@
 
   var MODAL_MAP = {
     tos:     { id: 'legalTosModal',     meta: TOS_META,     path: '/terminos-de-servicio' },
-    privacy: { id: 'legalPrivacyModal', meta: PRIVACY_META, path: '/politica-de-privacidad' },
-    about:   { id: 'legalAboutModal',   meta: ABOUT_META,   path: '/sobre-nosotros' }
+    privacy: { id: 'legalPrivacyModal', meta: PRIVACY_META, path: '/politica-de-privacidad' }
   };
 
   function openModalByName(name) {
@@ -172,7 +131,6 @@
     var path = window.location.pathname.replace(/\/+$/, '');
     if (path === '/terminos-de-servicio') openModalByName('tos');
     else if (path === '/politica-de-privacidad') openModalByName('privacy');
-    else if (path === '/sobre-nosotros') openModalByName('about');
   }
 
   function closeModal(modal) {
@@ -182,7 +140,7 @@
     updateMetaDescription(originalDescription);
     updateCanonical(originalCanonical);
     var path = window.location.pathname.replace(/\/+$/, '');
-    if (path === '/terminos-de-servicio' || path === '/politica-de-privacidad' || path === '/sobre-nosotros') {
+    if (path === '/terminos-de-servicio' || path === '/politica-de-privacidad') {
       history.pushState({}, '', '/');
     }
   }
@@ -190,16 +148,13 @@
   function initLegal() {
     var tosModal = document.getElementById('legalTosModal');
     var privacyModal = document.getElementById('legalPrivacyModal');
-    var aboutModal = document.getElementById('legalAboutModal');
     if (!tosModal || !privacyModal) return;
 
     var tosBody = tosModal.querySelector('.legal-modal-body');
     var privacyBody = privacyModal.querySelector('.legal-modal-body');
-    var aboutBody = aboutModal ? aboutModal.querySelector('.legal-modal-body') : null;
 
     if (tosBody) tosBody.innerHTML = TOS_HTML;
     if (privacyBody) privacyBody.innerHTML = PRIVACY_HTML;
-    if (aboutBody) aboutBody.innerHTML = ABOUT_HTML;
 
     document.querySelectorAll('[data-legal="tos"]').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
@@ -217,17 +172,7 @@
       });
     });
 
-    document.querySelectorAll('[data-legal="about"]').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (aboutModal) {
-          openModal(aboutModal, ABOUT_META, '/sobre-nosotros');
-          history.pushState({ legal: 'about' }, '', '/sobre-nosotros');
-        }
-      });
-    });
-
-    var allModals = [tosModal, privacyModal, aboutModal].filter(Boolean);
+    var allModals = [tosModal, privacyModal].filter(Boolean);
 
     allModals.forEach(function (modal) {
       var closeBtn = modal.querySelector('.legal-modal-close');
@@ -260,10 +205,9 @@
   var legalInitialized = false;
   function initializeLegal() {
     if (legalInitialized) return;
-    var aboutModal = document.getElementById('legalAboutModal');
     var tosModal = document.getElementById('legalTosModal');
     var privacyModal = document.getElementById('legalPrivacyModal');
-    if (!tosModal || !privacyModal || !aboutModal) return;
+    if (!tosModal || !privacyModal) return;
     legalInitialized = true;
     initLegal();
   }

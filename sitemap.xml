@@ -90,6 +90,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-aumentar-fps-dxvk-vulkan" />
   </url>
   <url>
+    <loc>https://corelegacy.gg/guias/guia-de-cero-a-heroe-playerbots</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/guias/guia-de-cero-a-heroe-playerbots" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-de-cero-a-heroe-playerbots" />
+  </url>
+  <url>
     <loc>https://corelegacy.gg/abrir-ticket</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>

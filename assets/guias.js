@@ -25,6 +25,10 @@
     'guia-aumentar-fps-dxvk-vulkan': {
       title: 'Aumentar FPS con DXVK y Vulkan',
       icon: '⚡'
+    },
+    'guia-de-cero-a-heroe-playerbots': {
+      title: 'De Cero a Héroe: Cómo Empezar tu Aventura con Playerbots',
+      icon: '🛡️'
     }
   };
 

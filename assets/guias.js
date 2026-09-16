@@ -21,6 +21,10 @@
     'guia-addon-dungeonclear': {
       title: 'Guía de Uso del Addon: DungeonClear',
       icon: '🤖'
+    },
+    'guia-aumentar-fps-dxvk-vulkan': {
+      title: 'Aumentar FPS con DXVK y Vulkan',
+      icon: '⚡'
     }
   };
 

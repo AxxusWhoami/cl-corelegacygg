@@ -372,6 +372,13 @@ body::before {
   margin-bottom: 0.75rem;
   align-self: flex-start;
 }
+.dxvk-profile-badge.gold {
+  color: var(--gold-bright);
+  border-color: rgba(212,168,67,0.45);
+  background: linear-gradient(180deg, rgba(212,168,67,0.15) 0%, rgba(240,200,80,0.06) 100%);
+  text-shadow: 0 0 10px rgba(240,200,80,0.3);
+  box-shadow: 0 0 12px rgba(212,168,67,0.15);
+}
 .dxvk-profile-name {
   font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
   font-weight: 700;

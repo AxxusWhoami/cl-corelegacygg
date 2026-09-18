@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía para Buscar Playerbots para tu Grupo o Banda | CoRe Legacy</title>
+  <meta name="description" content="Aprende a usar el sistema de búsqueda ¿Quién? y el comando /who para encontrar playerbots del nivel, clase y zona exactos que necesitas para completar tu grupo o banda en WoW WotLK 3.3.5a." />
+  <meta name="keywords" content="buscar playerbots, comando who wow, reclutar bots grupo, filtrar bots nivel clase zona, playerbots banda wow wotlk, core legacy guia playerbots, encontrar tanque sanador dps bot" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta property="og:title" content="Guía para Buscar Playerbots para tu Grupo o Banda | CoRe Legacy" />
+  <meta property="og:description" content="Aprende a usar el sistema de búsqueda ¿Quién? y el comando /who para encontrar playerbots del nivel, clase y zona exactos que necesitas." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_419" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/corelegacy_og-fb_images.png" />
+  <meta property="og:image:alt" content="CoRe Legacy — Guía de búsqueda de playerbots" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Guía para Buscar Playerbots para tu Grupo o Banda | CoRe Legacy" />
+  <meta name="twitter:description" content="Aprende a usar el sistema de búsqueda ¿Quién? y el comando /who para encontrar playerbots del nivel, clase y zona exactos que necesitas." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/corelegacy_og-fb_images.png" />
+  <meta name="twitter:image:alt" content="CoRe Legacy — Guía de búsqueda de playerbots" />
+  <link rel="canonical" href="https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <link rel="stylesheet" href="/assets/guia-page.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://corelegacy.gg/"},
+      {"@type":"ListItem","position":2,"name":"Comunidad","item":"https://corelegacy.gg/comunidad"},
+      {"@type":"ListItem","position":3,"name":"Buscar Playerbots para tu Grupo o Banda","item":"https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Guía para Buscar Playerbots para tu Grupo o Banda",
+    "description": "Aprende a usar el sistema de búsqueda ¿Quién? y el comando /who para encontrar playerbots del nivel, clase y zona exactos que necesitas para completar tu grupo o banda.",
+    "inLanguage": "es-ES",
+    "author": {"@type":"Organization","name":"CoRe Legacy","url":"https://corelegacy.gg/"},
+    "publisher": {"@type":"Organization","name":"CoRe Legacy","url":"https://corelegacy.gg/"},
+    "about": "Playerbots search system for World of Warcraft: Wrath of the Lich King 3.3.5a"
+  }
+  </script>
+</head>
+<body>
+  <div id="snowContainer"></div>
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="1352" height="1005" decoding="async" class="h-12 w-auto" style="filter: drop-shadow(0 0 8px #56c8f066);" />
+        </a>
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
+          <a class="nav-link" href="/noticias">Noticias</a>
+          <a class="nav-link active" href="/comunidad">Comunidad</a>
+          <a class="nav-link" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
+        <a class="nav-link block" href="/">Inicio</a>
+        <a class="nav-link block" href="/noticias">Noticias</a>
+        <a class="nav-link block active" href="/comunidad">Comunidad</a>
+        <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="guia-page-wrap">
+      <div class="guia-page-header">
+        <h1 class="guia-page-title">Guía para Buscar Playerbots para tu Grupo o Banda</h1>
+        <div class="frost-divider mx-auto" style="max-width: 300px;"></div>
+        <a href="/comunidad" class="guia-page-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          Volver a Comunidad
+        </a>
+      </div>
+      <div class="guia-page-body">
+        <section class="guia-intro">
+          <p>El sistema de búsqueda de la pestaña <strong>¿Quién?</strong> (o el comando <code>/who</code> en el chat) es la herramienta principal para localizar playerbots que puedan cubrir los huecos en tu grupo para mazmorras, misiones o bandas.</p>
+          <p>Al usar parámetros ocultos, puedes filtrar exactamente el nivel, la clase y la ubicación de los bots para encontrar el rol específico (Tanque, Sanador o DPS) que necesitas en ese momento.</p>
+        </section>
+
+        <section class="guia-section">
+          <h2 class="guia-step-title">Filtros de Búsqueda para Reclutamiento</h2>
+          <p>Puedes escribir estos comandos directamente en el chat o en la barra de texto superior de la ventana de búsqueda (tecla <code>O</code> por defecto, pestaña <strong>¿Quién?</strong>).</p>
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;">
+              <thead>
+                <tr style="background: linear-gradient(180deg, rgba(86,200,240,0.15), rgba(86,200,240,0.05)); border-bottom: 2px solid rgba(86,200,240,0.3);">
+                  <th style="padding:0.75rem 1rem; text-align:left; font-family:'Cinzel',Georgia,serif; color:#f0c850; letter-spacing:0.03em;">Filtro</th>
+                  <th style="padding:0.75rem 1rem; text-align:left; font-family:'Cinzel',Georgia,serif; color:#f0c850; letter-spacing:0.03em;">Sintaxis</th>
+                  <th style="padding:0.75rem 1rem; text-align:left; font-family:'Cinzel',Georgia,serif; color:#f0c850; letter-spacing:0.03em;">Ejemplo</th>
+                  <th style="padding:0.75rem 1rem; text-align:left; font-family:'Cinzel',Georgia,serif; color:#f0c850; letter-spacing:0.03em;">Utilidad para el Jugador</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8;"><strong>Nivel</strong></td>
+                  <td style="padding:0.75rem 1rem; color:#b8a060; font-family:monospace;">[Mínimo]-[Máximo]</td>
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8; font-family:monospace;">15-21 o 80</td>
+                  <td style="padding:0.75rem 1rem; color:#c0c0c0;">Buscar bots que estén en el rango de nivel exacto para entrar a tu mazmorra sin penalizar la experiencia.</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02);">
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8;"><strong>Clase</strong></td>
+                  <td style="padding:0.75rem 1rem; color:#b8a060; font-family:monospace;">c-"Clase"</td>
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8; font-family:monospace;">c-"Sacerdote"</td>
+                  <td style="padding:0.75rem 1rem; color:#c0c0c0;">Encontrar la clase que te falta. Útil para buscar Sanadores (Sacerdote, Druida) o Tanques (Guerrero, Paladín).</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8;"><strong>Zona</strong></td>
+                  <td style="padding:0.75rem 1rem; color:#b8a060; font-family:monospace;">z-"Nombre"</td>
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8; font-family:monospace;">z-"Dalaran"</td>
+                  <td style="padding:0.75rem 1rem; color:#c0c0c0;">Buscar bots que estén inactivos en las capitales, ya que suelen responder más rápido a las invitaciones que los que están en combate.</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02);">
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8;"><strong>Raza</strong></td>
+                  <td style="padding:0.75rem 1rem; color:#b8a060; font-family:monospace;">r-"Raza"</td>
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8; font-family:monospace;">r-"Chamán"</td>
+                  <td style="padding:0.75rem 1rem; color:#c0c0c0;">Buscar razas específicas si necesitas beneficios concretos para tu grupo (como Ansia de sangre/Heroísmo).</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8;"><strong>Nombre</strong></td>
+                  <td style="padding:0.75rem 1rem; color:#b8a060; font-family:monospace;">n-"Nombre"</td>
+                  <td style="padding:0.75rem 1rem; color:#e8e8e8; font-family:monospace;">n-"Botname"</td>
+                  <td style="padding:0.75rem 1rem; color:#c0c0c0;">Buscar a un bot específico con el que ya has jugado antes para volver a invitarlo.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="guia-note"><em>Nota: El uso de las comillas <code>""</code> es obligatorio si el nombre de la clase o zona tiene más de una palabra, como <code>z-"Páramos de Poniente"</code>, pero es recomendable usarlas siempre para evitar errores de búsqueda.</em></p>
+        </section>
+
+        <section class="guia-section">
+          <h2 class="guia-step-title">Ejemplos Prácticos de Búsqueda</h2>
+          <p>La ventana de resultados tiene un límite de 50 personajes. Para no llenarla de resultados que no te sirven, combina los filtros separándolos con un espacio:</p>
+          <ul class="guia-list">
+            <li><strong>Buscar un Tanque para Minas de la Muerte (Niveles 15-20):</strong><br /><code>/who 15-20 c-"Guerrero" z-"Ventormenta"</code><br /><span style="color:#c0c0c0;">Busca guerreros del nivel adecuado que estén descansando en la ciudad.</span></li>
+            <li><strong>Buscar un Sanador de nivel máximo para Mazmorras Heroicas:</strong><br /><code>/who 80 c-"Paladín"</code> o <code>/who 80 c-"Chamán"</code></li>
+            <li><strong>Buscar DPS a distancia para misiones de mundo en Rasganorte:</strong><br /><code>/who 70-73 c-"Cazador" z-"Tundra Boreal"</code></li>
+          </ul>
+          <p class="guia-note"><em>Consejo de Reclutamiento: Una vez que encuentres al bot ideal en la lista, simplemente haz clic derecho sobre su nombre y selecciona <strong>Invitar</strong>. La mayoría de los playerbots están programados para aceptar automáticamente las invitaciones de grupo si no están ya en uno.</em></p>
+        </section>
+        <p class="guia-footer">¡Nos vemos dentro del juego!</p>
+      </div>
+      <nav class="guia-related" aria-label="Guías relacionadas">
+        <h2 class="guia-related-title">Guías relacionadas</h2>
+        <div class="guia-related-grid">
+          <a class="guia-related-card" href="/guias/guia-playerbots-ia-wow-wotlk-solitario"><span class="guia-related-icon">🤖</span><span class="guia-related-name">Playerbots: Jugar WoW en Solitario con IA</span></a>
+          <a class="guia-related-card" href="/guias/guia-practica-avanzada-multibot"><span class="guia-related-icon">🎮</span><span class="guia-related-name">Guía Práctica y Avanzada de MultiBot</span></a>
+          <a class="guia-related-card" href="/guias/guia-de-cero-a-heroe-playerbots"><span class="guia-related-icon">🛡️</span><span class="guia-related-name">De Cero a Héroe con Playerbots</span></a>
+          <a class="guia-related-card" href="/guias/guia-de-descarga-e-inicio-rapido"><span class="guia-related-icon">📥</span><span class="guia-related-name">Guía de Descarga e Inicio Rápido</span></a>
+          <a class="guia-related-card" href="/guias/guia-addon-dungeonclear"><span class="guia-related-icon">🤖</span><span class="guia-related-name">Guía del Addon DungeonClear</span></a>
+        </div>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-bg">
+      <div class="site-footer-content">
+        <p class="site-footer-disclaimer">
+          CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a.
+          Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.
+        </p>
+        <div class="site-footer-links">
+          <button class="site-footer-link" data-legal="tos">Términos de Servicio</button>
+          <span class="site-footer-sep">·</span>
+          <button class="site-footer-link" data-legal="privacy">Política de Privacidad</button>
+          <span class="site-footer-sep">·</span>
+          <a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a>
+        </div>
+        <div class="site-footer-social">
+          <a class="site-footer-social-link" href="https://www.facebook.com/corelegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="Facebook de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://discord.gg/9AJ23YwDV" target="_blank" rel="noopener noreferrer nofollow" aria-label="Discord de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.instagram.com/corelegacygg/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Instagram de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.youtube.com/@CoReLegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="YouTube de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+        <p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+</body>
+</html>

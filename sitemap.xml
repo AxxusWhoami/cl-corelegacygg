@@ -98,6 +98,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-de-cero-a-heroe-playerbots" />
   </url>
   <url>
+    <loc>https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/guias/guia-buscar-playerbots-grupo-banda" />
+  </url>
+  <url>
     <loc>https://corelegacy.gg/abrir-ticket</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>

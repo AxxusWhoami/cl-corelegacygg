@@ -29,6 +29,10 @@
     'guia-de-cero-a-heroe-playerbots': {
       title: 'De Cero a Héroe: Cómo Empezar tu Aventura con Playerbots',
       icon: '🛡️'
+    },
+    'guia-buscar-playerbots-grupo-banda': {
+      title: 'Buscar Playerbots para tu Grupo o Banda',
+      icon: '🔍'
     }
   };
 

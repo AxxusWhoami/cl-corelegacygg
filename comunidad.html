@@ -783,6 +783,68 @@
     }
 
 
+    /* ===== Recluta a un Amigo panel (frost) ===== */
+    .raa-panel {
+      position: relative;
+      border: 1px solid #4bbde844;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
+      box-shadow: 0 0 20px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .raa-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .raa-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid #4bbde833;
+    }
+    .raa-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--ice-100);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .raa-panel-body {
+      padding: 1.5rem 1.5rem 2rem;
+    }
+    .raa-intro {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.85rem; line-height: 1.8; color: #a8c8d8;
+      margin: 0 0 1.25rem; letter-spacing: 0.02em;
+    }
+    .raa-reward {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid #f0c85044;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(40,28,10,0.4) 0%, rgba(20,14,6,0.3) 100%);
+    }
+    .raa-reward-icon {
+      font-size: 1.5rem; flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(240,200,80,0.4));
+      line-height: 1.4;
+    }
+    .raa-reward-text {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.8rem; line-height: 1.7; color: #d4c080;
+      letter-spacing: 0.02em;
+    }
+    .raa-reward-text strong {
+      color: #f0c850;
+      text-shadow: 0 0 8px rgba(240,200,80,0.2);
+    }
+    .raa-note {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.72rem; line-height: 1.6; color: #6a8a98;
+      letter-spacing: 0.03em;
+      margin: 1rem 0 0;
+      text-align: center;
+    }
+
     /* ===== Guías panel (frost) ===== */
     .guias-panel {
       position: relative;
@@ -1247,6 +1309,27 @@
                   Enviar tu contenido
                 </button>
               </div>
+            </div>
+          </div>
+
+          <div class="raa-panel" style="width:100%;">
+            <div class="raa-panel-header">
+              <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">🤝</span>
+              <span class="raa-panel-title">Recluta a un Amigo</span>
+            </div>
+            <div class="raa-panel-body">
+              <p class="raa-intro">
+                Explorar Azeroth siempre es mejor en compañía. A través del programa <strong>Recluta a un Amigo</strong>, tú y tus compañeros de batalla podéis disfrutar juntos de la aventura desde el primer minuto y beneficiaros de ventajas exclusivas.
+              </p>
+              <div class="raa-reward">
+                <span class="raa-reward-icon">🎁</span>
+                <span class="raa-reward-text">
+                  <strong>Recompensa de 50 Créditos:</strong> Cuando el jugador invitado alcance el nivel 80 con su segundo personaje, tanto el reclutador como él recibirán <strong>50 créditos</strong> para gastar en la tienda.
+                </span>
+              </div>
+              <p class="raa-note">
+                El personaje creado con la promoción no cuenta para esta recompensa.
+              </p>
             </div>
           </div>
         </div>

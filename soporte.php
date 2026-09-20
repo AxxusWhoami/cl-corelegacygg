@@ -44,6 +44,8 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
   <link rel="preconnect" href="https://www.googletagmanager.com" />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
   <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+  <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=spTurnstileCallback" async defer></script>
 
   <script defer src="https://www.googletagmanager.com/gtag/js?id=G-29RVG4TWST"></script>
   <script defer>
@@ -322,7 +324,239 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
       .support-panel-body { padding: 1.5rem 1.25rem 2rem; }
       .search-input { font-size: 0.9rem; padding: 0.9rem 1rem 0.9rem 3rem; }
     }
+
+    /* ===== Category grid ===== */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .cat-card {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem; padding: 1.5rem 1rem; border-radius: 12px;
+      border: 1px solid #1a3a5a44; background: linear-gradient(180deg, rgba(8,20,36,0.6) 0%, rgba(5,13,24,0.8) 100%);
+      cursor: pointer; transition: all 0.3s ease; text-align: center;
+    }
+    .cat-card:hover {
+      border-color: #4bbde866; box-shadow: 0 0 16px rgba(77,189,232,0.12); transform: translateY(-3px);
+    }
+    .cat-card-icon { font-size: 2rem; filter: drop-shadow(0 0 8px rgba(77,189,232,0.3)); }
+    .cat-card:hover .cat-card-icon { filter: drop-shadow(0 0 12px rgba(77,189,232,0.5)); }
+    .cat-card-title {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.78rem; color: #b8d4e8;
+      letter-spacing: 0.04em; line-height: 1.3;
+    }
+    .cat-card:hover .cat-card-title { color: #d4f0ff; }
+
+    /* ===== FAQ Panel ===== */
+    .faq-panel { display: none; }
+    .faq-panel.open { display: block; }
+    .faq-panel-inner { position: relative; }
+    .faq-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.8rem; color: #7da8c4;
+      background: none; border: none; cursor: pointer; margin-bottom: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    .faq-back:hover { color: #7dd8f8; }
+    .faq-item { border-bottom: 1px solid #1a3a5a33; padding: 1rem 0; }
+    .faq-q {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.9rem; color: #d4f0ff; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color 0.3s ease;
+    }
+    .faq-q:hover { color: #8dd6f5; }
+    .faq-q .faq-arrow { transition: transform 0.3s ease; flex-shrink: 0; }
+    .faq-item.open .faq-q .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.82rem; line-height: 1.7; color: #a8c8d8;
+    }
+    .faq-item.open .faq-a { max-height: 500px; padding-top: 0.75rem; }
+
+    /* ===== Ayuda y soporte panel ===== */
+    .ayuda-panel {
+      position: relative; border: 1px solid #4bbde844; border-radius: 14px; overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
+      box-shadow: 0 0 20px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5);
+      max-width: 500px; margin: 0 auto;
+    }
+    .ayuda-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .ayuda-panel-header {
+      display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid #4bbde833;
+    }
+    .ayuda-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700; font-size: 1rem;
+      color: var(--ice-100); letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .ayuda-panel-body {
+      padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 1rem; text-align: center;
+    }
+    .ayuda-ticket-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.05em; padding: 0.8rem 1.5rem; border-radius: 10px;
+      border: 1px solid #4bbde8; cursor: pointer; color: #d4f0ff;
+      background: linear-gradient(180deg, rgba(77,189,232,0.2) 0%, rgba(13,110,168,0.1) 100%);
+      transition: all 0.3s ease;
+    }
+    .ayuda-ticket-btn:hover { box-shadow: 0 0 20px rgba(77,189,232,0.3); transform: translateY(-2px); }
+    .ayuda-ticket-btn svg { flex-shrink: 0; }
+    .ayuda-bug-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.05em; padding: 0.8rem 1.5rem; border-radius: 10px;
+      border: 1px solid #a08050; cursor: pointer; color: #f0d8a8;
+      background: linear-gradient(180deg, rgba(160,128,80,0.15) 0%, rgba(100,70,30,0.08) 100%);
+      transition: all 0.3s ease;
+    }
+    .ayuda-bug-btn:hover { box-shadow: 0 0 20px rgba(160,128,80,0.3); transform: translateY(-2px); }
+    .ayuda-bug-btn svg { flex-shrink: 0; }
+
+    /* ===== Modal styles ===== */
+    .hl-modal-backdrop {
+      position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center;
+      background: rgba(2,10,20,0.85); backdrop-filter: blur(6px);
+      opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .hl-modal-backdrop.open { opacity: 1; visibility: visible; }
+    .hl-modal {
+      position: relative; width: min(680px, 94vw); max-height: 88vh;
+      background: linear-gradient(180deg, #0a1828 0%, #050d18 100%);
+      border: 1px solid rgba(77,189,232,0.25); border-radius: 14px;
+      box-shadow: 0 0 40px rgba(77,189,232,0.15), 0 20px 60px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: scale(0.94); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hl-modal-backdrop.open .hl-modal { transform: scale(1); }
+    .hl-modal-header {
+      display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.5rem;
+      background: linear-gradient(180deg, rgba(77,189,232,0.12) 0%, rgba(4,10,20,0.3) 100%);
+      border-bottom: 1px solid rgba(77,189,232,0.2);
+    }
+    .hl-modal-title {
+      margin: 0; font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700;
+      font-size: 1rem; color: var(--ice-100); letter-spacing: 0.04em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .hl-modal-close {
+      background: none; border: none; color: var(--ice-200); font-size: 1.5rem;
+      cursor: pointer; padding: 0 0.5rem; line-height: 1; transition: color 0.3s ease;
+    }
+    .hl-modal-close:hover { color: var(--frost); }
+    .hl-modal-body {
+      padding: 1.5rem 2rem 2rem; overflow-y: auto;
+      scrollbar-width: thin; scrollbar-color: #4bbde855 transparent;
+    }
+    .hl-modal-body::-webkit-scrollbar { width: 8px; }
+    .hl-modal-body::-webkit-scrollbar-track { background: transparent; }
+    .hl-modal-body::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #4bbde855, #1a9fd433); border-radius: 4px;
+    }
+    .hl-form { display: flex; flex-direction: column; gap: 0.85rem; }
+    .hl-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    @media (max-width: 600px) { .hl-form-row { grid-template-columns: 1fr; } }
+    .hl-field { display: flex; flex-direction: column; gap: 0.3rem; }
+    .hl-field label {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.75rem; color: #6a8a98; letter-spacing: 0.05em;
+    }
+    .hl-field input, .hl-field textarea, .hl-field select {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem; color: #d4f0ff;
+      background: rgba(4,12,22,0.6); border: 1px solid #4bbde833; border-radius: 8px;
+      padding: 0.6rem 0.75rem; outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hl-field input:focus, .hl-field textarea:focus, .hl-field select:focus {
+      border-color: #4bbde8; box-shadow: 0 0 10px rgba(77,189,232,0.15);
+    }
+    .hl-field textarea { resize: vertical; min-height: 70px; }
+    .hl-field select { cursor: pointer; }
+    .hl-field select option { background: #081420; color: #d4f0ff; }
+    .hl-file-area { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .hl-file-area input[type=file] {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.82rem; color: #d4f0ff;
+      background: rgba(4,12,22,0.6); border: 1px solid #4bbde833; border-radius: 8px;
+      padding: 0.5rem 0.6rem; cursor: pointer; max-width: 260px; transition: border-color 0.3s ease;
+    }
+    .hl-file-area input[type=file]:hover { border-color: #4bbde866; }
+    .hl-file-hint {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem; color: #6a8a98; letter-spacing: 0.04em;
+    }
+    .hl-submit {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; padding: 0.7rem 1.5rem; border-radius: 8px;
+      border: 1px solid #4bbde8; cursor: pointer; color: #d4f0ff;
+      background: linear-gradient(180deg, rgba(77,189,232,0.2) 0%, rgba(13,110,168,0.1) 100%);
+      transition: all 0.3s ease; align-self: flex-start;
+    }
+    .hl-submit:hover { box-shadow: 0 0 16px rgba(77,189,232,0.25); transform: translateY(-1px); }
+    .hl-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .hl-msg {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.8rem; padding: 0.6rem 0.75rem;
+      border-radius: 8px; letter-spacing: 0.03em; display: none;
+    }
+    .hl-msg.success { display: block; background: rgba(93,216,168,0.1); border: 1px solid #5dd8a844; color: #5dd8a8; }
+    .hl-msg.error { display: block; background: rgba(160,80,80,0.1); border: 1px solid #a0505044; color: #a07070; }
+    .hl-input-error { border-color: #a05050 !important; box-shadow: 0 0 8px rgba(160,80,80,0.2) !important; }
+    .hl-field-error {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem; color: #e08080;
+      letter-spacing: 0.03em; margin-top: 0.15rem;
+    }
+    .hl-disclaimer { margin-top: 14px; font-size: 12px; line-height: 1.6; color: #8a8a8a; text-align: center; }
+    .cf-turnstile { min-height: 65px; display: flex; align-items: flex-start; }
+    .cf-turnstile iframe { border-radius: 6px; }
+
+    /* ===== Bug report categories ===== */
+    .bug-cat-grid { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .bug-cat-card {
+      border: 1px solid #4bbde833; border-radius: 10px; padding: 0.85rem 1rem; cursor: pointer;
+      background: linear-gradient(180deg, rgba(8,22,36,0.5) 0%, rgba(4,12,22,0.5) 100%);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    .bug-cat-card:hover { border-color: #4bbde866; box-shadow: 0 0 12px rgba(77,189,232,0.1); transform: translateX(3px); }
+    .bug-cat-card.selected {
+      border-color: #4bbde8; background: linear-gradient(180deg, rgba(77,189,232,0.12) 0%, rgba(13,110,168,0.06) 100%);
+      box-shadow: 0 0 16px rgba(77,189,232,0.15);
+    }
+    .bug-cat-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700; font-size: 0.82rem;
+      color: var(--ice-100); letter-spacing: 0.04em; margin-bottom: 0.25rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .bug-cat-check {
+      width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1.5px solid #4bbde855;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
+    }
+    .bug-cat-card.selected .bug-cat-check {
+      border-color: #4bbde8; background: #4bbde8; box-shadow: 0 0 8px rgba(77,189,232,0.4);
+    }
+    .bug-cat-card.selected .bug-cat-check::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #050d18; }
+    .bug-cat-desc {
+      font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem; line-height: 1.6;
+      color: #8a9aa8; letter-spacing: 0.02em; padding-left: 1.6rem;
+    }
+    .bug-form-section { display: none; flex-direction: column; gap: 0.85rem; }
+    .bug-form-section.visible { display: flex; }
+    .bug-step-label {
+      margin-top: 0; font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700;
+      font-size: 0.85rem; color: #8dd6f5; letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #4bbde833;
+    }
   </style>
+
+  <script type="application/ld+json" id="faqJsonLd">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": []
+  }
+  </script>
 </head>
 <body>
   <a href="#support-content" class="skip-link">Saltar al contenido</a>
@@ -400,12 +634,213 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
     </div>
   </section>
 
-  <!-- ===== Content (blank for now) ===== -->
+  <!-- ===== Category Cards ===== -->
   <section id="support-content" class="support-content-wrap relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto">
-      <!-- Contenido adicional se añadirá aquí -->
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center reveal" style="margin-bottom: 2rem;">
+        <h2 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:800; font-size: clamp(1.2rem,2.5vw,1.6rem); color: #d4f0ff; letter-spacing: 0.04em; margin-bottom: 0.5rem;">Explora la Base de Conocimiento</h2>
+        <div class="frost-divider" style="width: 80px; margin: 0 auto;"></div>
+        <p style="font-family:'Cinzel',Georgia,serif; font-size: 0.8rem; color: #7da8c4; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem;">Selecciona una categoría</p>
+      </div>
+      <div class="cat-grid reveal">
+        <div class="cat-card" data-faq="primeros-pasos"><div class="cat-card-icon">🧭</div><div class="cat-card-title">Primeros pasos</div></div>
+        <div class="cat-card" data-faq="personajes-clases"><div class="cat-card-icon">🧙</div><div class="cat-card-title">Personajes y clases</div></div>
+        <div class="cat-card" data-faq="combate-mecanicas"><div class="cat-card-icon">⚔️</div><div class="cat-card-title">Combate y mecánicas</div></div>
+        <div class="cat-card" data-faq="niveles-progresion"><div class="cat-card-icon">📈</div><div class="cat-card-title">Niveles y progresión</div></div>
+        <div class="cat-card" data-faq="mundo-exploracion"><div class="cat-card-icon">🗺️</div><div class="cat-card-title">Mundo y exploración</div></div>
+        <div class="cat-card" data-faq="misiones"><div class="cat-card-icon">📜</div><div class="cat-card-title">Misiones</div></div>
+        <div class="cat-card" data-faq="mazmorras-raids"><div class="cat-card-icon">🏰</div><div class="cat-card-title">Mazmorras y Raids</div></div>
+        <div class="cat-card" data-faq="pvp"><div class="cat-card-icon">🛡️</div><div class="cat-card-title">PvP</div></div>
+        <div class="cat-card" data-faq="economia"><div class="cat-card-icon">💰</div><div class="cat-card-title">Economía</div></div>
+        <div class="cat-card" data-faq="profesiones"><div class="cat-card-icon">🔨</div><div class="cat-card-title">Profesiones</div></div>
+        <div class="cat-card" data-faq="objetos-equipamiento"><div class="cat-card-icon">🎒</div><div class="cat-card-title">Objetos y equipamiento</div></div>
+        <div class="cat-card" data-faq="talentos-builds"><div class="cat-card-icon">🏹</div><div class="cat-card-title">Talentos y builds</div></div>
+        <div class="cat-card" data-faq="comunidad"><div class="cat-card-icon">👥</div><div class="cat-card-title">Comunidad</div></div>
+        <div class="cat-card" data-faq="interfaz-addons"><div class="cat-card-icon">🖥️</div><div class="cat-card-title">Interfaz y AddOns</div></div>
+      </div>
     </div>
   </section>
+
+  <!-- ===== Ayuda y soporte (botones) ===== -->
+  <section class="support-content-wrap relative px-4 sm:px-6 lg:px-8" style="padding-top:0; padding-bottom:3rem;">
+    <div class="max-w-5xl mx-auto">
+      <div class="ayuda-panel">
+        <div class="ayuda-panel-header">
+          <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">🛡️</span>
+          <span class="ayuda-panel-title">Ayuda y soporte</span>
+        </div>
+        <div class="ayuda-panel-body" id="ayudaBody">
+          <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Contactar con un MJ (Abrir Ticket)
+          </button>
+          <button type="button" class="ayuda-bug-btn" id="bgOpenModal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+            Reportar Bug
+          </button>
+          <p style="margin:0.75rem 0 0; font-family:'Cinzel',Georgia,serif; font-size:0.85rem; text-align:center; color:#d4af37; text-shadow:0 0 8px rgba(212,175,55,0.4); letter-spacing:0.04em;">Administrador: Homenixx</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEO: Static FAQ content for crawlers (noscript fallback) ===== -->
+  <noscript>
+  <section id="seo-faqs" style="max-width:800px; margin:0 auto; padding:2rem 1rem;">
+    <h2>Preguntas frecuentes de CoRe Legacy</h2>
+    <h3>¿Qué es CoRe Legacy?</h3>
+    <p>CoRe Legacy es un servidor privado de World of Warcraft basado en Wrath of the Lich King 3.3.5a.</p>
+    <h3>¿Cómo puedo reportar un bug?</h3>
+    <p>Utiliza el sistema oficial de Reportar Bug disponible en la sección de soporte de CoRe Legacy.</p>
+    <h3>¿Cómo puedo contactar con un MJ?</h3>
+    <p>CoRe Legacy dispone de un sistema de tickets para contactar con un MJ.</p>
+  </section>
+  </noscript>
+
+  <!-- ===== FAQ Panel ===== -->
+  <section id="faqPanel" class="support-content-wrap relative px-4 sm:px-6 lg:px-8" style="padding-top: 0; padding-bottom: 4rem;">
+    <div class="max-w-5xl mx-auto">
+      <div class="faq-panel" id="faqPanelContent">
+        <div class="faq-panel-inner">
+          <button class="faq-back" id="faqBackBtn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Volver a categorías
+          </button>
+          <div id="faqCategoryContent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Modal de contacto con MJ (ticket) ===== -->
+  <div id="tkModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="tkModalTitle">
+    <div class="hl-modal">
+      <div class="hl-modal-header">
+        <h1 class="hl-modal-title" id="tkModalTitle">Contactar con un MJ (Abrir Ticket)</h1>
+        <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="hl-modal-body">
+        <form class="hl-form" id="tkForm">
+          <div class="hl-form-row">
+            <div class="hl-field">
+              <label for="tkPlayerName">Nombre del personaje</label>
+              <input type="text" id="tkPlayerName" name="player_name" maxlength="32" required placeholder="Tu nombre en el servidor" />
+            </div>
+            <div class="hl-field">
+              <label for="tkAccount">Cuenta</label>
+              <input type="text" id="tkAccount" name="account" maxlength="32" required placeholder="Nombre de tu cuenta" />
+            </div>
+          </div>
+          <div class="hl-form-row">
+            <div class="hl-field">
+              <label for="tkEmail">Email de contacto</label>
+              <input type="email" id="tkEmail" name="email" maxlength="120" required placeholder="tucorreo@ejemplo.com" />
+            </div>
+            <div class="hl-field">
+              <label for="tkCategory">Categoría</label>
+              <select id="tkCategory" name="category" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="general">Consulta general</option>
+                <option value="account">Problema de cuenta</option>
+                <option value="stuck">Personaje atascado</option>
+                <option value="harassment">Denuncia de jugador</option>
+                <option value="collab">Colaboración o aportaciones</option>
+                <option value="other">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="hl-field">
+            <label for="tkSubject">Asunto</label>
+            <input type="text" id="tkSubject" name="subject" maxlength="120" required placeholder="Resumen breve de tu consulta" />
+          </div>
+          <div class="hl-field">
+            <label for="tkDescription">Descripción</label>
+            <textarea id="tkDescription" name="description" maxlength="1000" required placeholder="Describe tu problema o consulta con el mayor detalle posible..."></textarea>
+          </div>
+          <div class="hl-field">
+            <label for="tkScreenshots">Capturas de pantalla (opcional, hasta 10). Mantén pulsada la tecla Ctrl para seleccionar múltiples imágenes.</label>
+            <div class="hl-file-area">
+              <input type="file" id="tkScreenshots" name="screenshots[]" accept="image/jpeg,image/png,image/gif,image/webp" multiple />
+              <span class="hl-file-hint" id="tkFileHint">JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes</span>
+            </div>
+          </div>
+          <div class="hl-field">
+            <label>Verificación de seguridad</label>
+            <div class="cf-turnstile" id="tkTurnstile" data-sitekey="<?php echo htmlspecialchars($turnstileKey); ?>" data-action="ticket_submit" data-theme="dark"></div>
+          </div>
+          <button type="submit" class="hl-submit" id="tkSubmit">Abrir ticket</button>
+          <div class="hl-msg" id="tkMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal de reporte de bugs ===== -->
+  <div id="bgModal" class="hl-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bgModalTitle">
+    <div class="hl-modal" style="width:min(720px,94vw);">
+      <div class="hl-modal-header">
+        <h1 class="hl-modal-title" id="bgModalTitle">Reportar Bug</h1>
+        <button class="hl-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="hl-modal-body">
+        <h2 class="bug-step-label">Paso 1 — Selecciona la categoría del bug</h2>
+        <div class="bug-cat-grid" id="bgCatGrid">
+          <div class="bug-cat-card" data-cat="quests"><div class="bug-cat-title"><span class="bug-cat-check"></span>Misiones (Quests)</div><div class="bug-cat-desc">Misiones que no se pueden entregar, objetivos bugueados, eventos atascados o NPCs de misión desaparecidos.</div></div>
+          <div class="bug-cat-card" data-cat="spells"><div class="bug-cat-title"><span class="bug-cat-check"></span>Clases y Hechizos</div><div class="bug-cat-desc">Talentos que no se aplican bien, daño o curación incorrectos, auras/buffos que no funcionan, o mecánicas de mascota rotas.</div></div>
+          <div class="bug-cat-card" data-cat="pve"><div class="bug-cat-title"><span class="bug-cat-check"></span>Mazmorras y Bandas (PvE)</div><div class="bug-cat-desc">Mecánicas de jefes (bosses) rotas, puertas que no se abren, scripts de banda que no se inician, o problemas con los bloqueos (saves).</div></div>
+          <div class="bug-cat-card" data-cat="pvp"><div class="bug-cat-title"><span class="bug-cat-check"></span>Campos de Batalla y Arenas (PvP)</div><div class="bug-cat-desc">Problemas de emparejamiento, cálculo de índices (MMR), o fallos en las mecánicas de captura de banderas o bases.</div></div>
+          <div class="bug-cat-card" data-cat="loot"><div class="bug-cat-title"><span class="bug-cat-check"></span>Objetos y Botín (Loot)</div><div class="bug-cat-desc">Tasas de drop incorrectas, objetos que no otorgan las estadísticas indicadas, o problemas con las profesiones.</div></div>
+          <div class="bug-cat-card" data-cat="npc"><div class="bug-cat-title"><span class="bug-cat-check"></span>NPCs y Entorno</div><div class="bug-cat-desc">Enemigos cayendo por debajo del mapa, rutas de patrulla erráticas, o personajes atascados (stuck).</div></div>
+          <div class="bug-cat-card" data-cat="bots"><div class="bug-cat-title"><span class="bug-cat-check"></span>IA de Playerbots y Chat</div><div class="bug-cat-desc">Comportamiento errático de los bots del servidor, fallos al darles órdenes, o respuestas inesperadas/rotas en el sistema de chat integrado.</div></div>
+          <div class="bug-cat-card" data-cat="web"><div class="bug-cat-title"><span class="bug-cat-check"></span>Cuenta y Tienda Web</div><div class="bug-cat-desc">Problemas al recibir objetos comprados, fallos en el sistema de donaciones/votos, o errores al iniciar sesión en el panel.</div></div>
+          <div class="bug-cat-card" data-cat="exploits"><div class="bug-cat-title"><span class="bug-cat-check"></span>Exploits o Abuso</div><div class="bug-cat-desc">Una categoría discreta para que los jugadores reporten a otros aprovechándose de bugs o usando programas externos.</div></div>
+          <div class="bug-cat-card" data-cat="other"><div class="bug-cat-title"><span class="bug-cat-check"></span>Otros</div><div class="bug-cat-desc">Cualquier problema menor que no encaje en las categorías anteriores.</div></div>
+        </div>
+        <div class="bug-form-section" id="bgFormSection">
+          <h2 class="bug-step-label">Paso 2 — Describe el bug</h2>
+          <form class="hl-form" id="bgForm">
+            <div class="hl-form-row">
+              <div class="hl-field">
+                <label for="bgPlayerName">Nombre del personaje</label>
+                <input type="text" id="bgPlayerName" name="player_name" maxlength="32" required placeholder="Tu nombre en el servidor" />
+              </div>
+              <div class="hl-field">
+                <label for="bgAccount">Cuenta</label>
+                <input type="text" id="bgAccount" name="account" maxlength="32" required placeholder="Nombre de tu cuenta" />
+              </div>
+            </div>
+            <div class="hl-field">
+              <label for="bgEmail">Email de contacto</label>
+              <input type="email" id="bgEmail" name="email" maxlength="120" required placeholder="tucorreo@ejemplo.com" />
+            </div>
+            <div class="hl-field">
+              <label for="bgSubject">Asunto</label>
+              <input type="text" id="bgSubject" name="subject" maxlength="120" required placeholder="Resumen breve del bug" />
+            </div>
+            <div class="hl-field">
+              <label for="bgDescription">Descripción del bug</label>
+              <textarea id="bgDescription" name="description" maxlength="2000" required placeholder="Describe el bug con el mayor detalle posible: qué ocurrió, qué esperabas que ocurriera, pasos para reproducirlo, y cualquier información relevante..."></textarea>
+            </div>
+            <div class="hl-field">
+              <label for="bgScreenshots">Capturas de pantalla (opcional, hasta 10). Mantén pulsada la tecla Ctrl para seleccionar múltiples imágenes.</label>
+              <div class="hl-file-area">
+                <input type="file" id="bgScreenshots" name="screenshots[]" accept="image/jpeg,image/png,image/gif,image/webp" multiple />
+                <span class="hl-file-hint" id="bgFileHint">JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes</span>
+              </div>
+            </div>
+            <div class="hl-field">
+              <label>Verificación de seguridad</label>
+              <div class="cf-turnstile" id="bgTurnstile" data-sitekey="<?php echo htmlspecialchars($turnstileKey); ?>" data-action="bug_report" data-theme="dark"></div>
+            </div>
+            <button type="submit" class="hl-submit" id="bgSubmit">Enviar reporte</button>
+            <div class="hl-msg" id="bgMsg"></div>
+            <p class="hl-disclaimer">Al enviar este formulario, tu reporte se almacena y se añade a nuestra cola de reportes. No respondemos a estos formularios salvo que necesitemos más información sobre el bug.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </main>
 
   <footer class="site-footer">
@@ -635,6 +1070,447 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
         searchResults.classList.remove('visible');
         searchInput.setAttribute('aria-expanded', 'false');
       }
+    });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var faqData = {
+      'primeros-pasos': {
+        title: 'Primeros pasos',
+        items: [
+          { q: '¿Cómo descargo e instalo el cliente?', a: 'Visita la sección de descargas en nuestra web y descarga el cliente preparado de WoW 3.3.5a. Descomprime el archivo, ejecuta Wow.exe e introduce tu usuario y contraseña.' },
+          { q: '¿Necesito cambiar el realmlist?', a: 'No. El cliente preparado ya incluye el realmlist configurado (logon.corelegacy.gg). No necesitas modificar ningún archivo.' },
+          { q: '¿Cómo creo una cuenta?', a: 'Ve a la sección de Cuenta en nuestra web, pulsa en Registrarse y rellena el formulario con tu usuario, email y contraseña. Podrás jugar inmediatamente.' },
+          { q: '¿El juego es gratis?', a: 'Sí. CoRe Legacy es un servidor privado gratuito. No necesitas suscripción de Blizzard para jugar.' }
+        ]
+      },
+      'personajes-clases': {
+        title: 'Personajes y clases',
+        items: [
+          { q: '¿Qué clases están disponibles?', a: 'Todas las clases de WotLK están disponibles: Guerrero, Paladín, Cazador, Pícaro, Sacerdote, Caballero de la Muerte, Chamán, Mago, Brujo, Monje (no disponible en 3.3.5a), y Druida.' },
+          { q: '¿Puedo tener varios personajes?', a: 'Sí, puedes crear hasta 10 personajes por cuenta en distintos reinos.' },
+          { q: '¿Cómo cambio de especialización?', a: 'Visita a un instructor de clase en cualquier ciudad capital y solicita un cambio de especialización. También puedes usar la calculadora de talentos en nuestra web.' }
+        ]
+      },
+      'combate-mecanicas': {
+        title: 'Combate y mecánicas',
+        items: [
+          { q: '¿Cómo funciona el combate en WotLK?', a: 'El combate sigue las mecánicas clásicas de WoW 3.3.5a: auto-ataques, habilidades con tiempo de reutilización, recursos (rabia, maná, energía, runas) y posicionamiento.' },
+          { q: '¿Qué son los cooldowns?', a: 'Los cooldowns son tiempos de reutilización de habilidades. Algunas habilidades potentes tienen cooldowns largos para equilibrar el juego.' }
+        ]
+      },
+      'niveles-progresion': {
+        title: 'Niveles y progresión',
+        items: [
+          { q: '¿Cuál es el nivel máximo?', a: 'El nivel máximo en WotLK es 80. Puedes subir de nivel haciendo misiones, mazmorras, PvP o matando criaturas.' },
+          { q: '¿Puedo subir al 80 directamente?', a: 'Sí, CoRe Legacy ofrece una promoción de bienvenida con subida gratuita al nivel 80 que incluye equipo inicial, oro y montura.' }
+        ]
+      },
+      'mundo-exploracion': {
+        title: 'Mundo y exploración',
+        items: [
+          { q: '¿Qué zonas están disponibles?', a: 'Todas las zonas de WotLK están disponibles: Rasganorte (Norte de Azeroth), los Reinos del Este, Kalimdor, y las nuevas zonas de Wrath of the Lich King.' },
+          { q: '¿Cómo viajo entre continentes?', a: 'Puedes viajar en barco, zepelín o usando portales en ciudades capitales.' }
+        ]
+      },
+      'misiones': {
+        title: 'Misiones',
+        items: [
+          { q: '¿Cómo encuentro misiones?', a: 'Los NPCs con misiones tienen un símbolo de exclamación dorado sobre su cabeza. También puedes usar el rastreador de misiones del mapa.' },
+          { q: '¿Puedo hacer misiones en grupo?', a: 'Sí, muchas misiones de grupo requieren varios jugadores. Con el sistema de Playerbots puedes completarlas incluso jugando solo.' }
+        ]
+      },
+      'mazmorras-raids': {
+        title: 'Mazmorras y Raids',
+        items: [
+          { q: '¿Qué mazmorras están disponibles?', a: 'Todas las mazmorras de WotLK están disponibles: Naxxramas, Ulduar, Prueba del Cruzado, Ciudadela de la Corona de Hielo y más.' },
+          { q: '¿Cómo entro en una raid?', a: 'Las raids requieren grupos de 10 o 25 jugadores. Puedes unirte a un grupo existente o usar Playerbots para completarlas.' }
+        ]
+      },
+      'pvp': {
+        title: 'PvP',
+        items: [
+          { q: '¿Qué modalidades PvP hay?', a: 'Campos de batalla (Warsong Gulch, Arathi Basin, Alterac Valley, Eye of the Storm, Strand of the Ancients, Isle of Conquest), Arenas (2v2, 3v3, 5v5) y PvP al aire libre.' },
+          { q: '¿Cómo funcionan los rankings de arena?', a: 'Los equipos de arena ganan o pierden puntos de MR según sus victorias y derrotas. Consulta las estadísticas en nuestra sección de Tops.' }
+        ]
+      },
+      'economia': {
+        title: 'Economía',
+        items: [
+          { q: '¿Cómo gano oro?', a: 'Puedes ganar oro completando misiones, vendiendo objetos a NPCs, en la casa de subastas, o mediante profesiones de recolección.' },
+          { q: '¿Hay casa de subastas?', a: 'Sí, hay casas de subastas en las ciudades capitales donde puedes comprar y vender objetos con otros jugadores.' }
+        ]
+      },
+      'profesiones': {
+        title: 'Profesiones',
+        items: [
+          { q: '¿Qué profesiones hay?', a: 'Hay profesiones de recolección (Minería, Herboristería, Desuello), de producción (Herrería, Joyería, Ingeniería, Alquimia, Encantamiento, Sastrería, Peletería) y secundarias (Cocina, Pesca, Primeros Auxilios).' },
+          { q: '¿Puedo tener varias profesiones?', a: 'Puedes tener 2 profesiones principales y todas las secundarias.' }
+        ]
+      },
+      'objetos-equipamiento': {
+        title: 'Objetos y equipamiento',
+        items: [
+          { q: '¿Cómo consigo mejor equipo?', a: 'Puedes conseguir equipo en mazmorras, raids, PvP, misiones, la casa de subastas o la tienda de CoRe Legacy.' },
+          { q: '¿Qué son los conjuntos de equipo?', a: 'Los conjuntos (sets) otorgan bonificaciones adicionales cuando equipas varias piezas del mismo conjunto. Se consiguen principalmente en raids.' }
+        ]
+      },
+      'talentos-builds': {
+        title: 'Talentos y builds',
+        items: [
+          { q: '¿Cómo funcionan los talentos?', a: 'Cada clase tiene tres árboles de talentos. Subes de nivel y ganas puntos de talento que puedes asignar en cada árbol para especializar tu personaje.' },
+          { q: '¿Puedo cambiar mis talentos?', a: 'Sí, puedes visitar a un instructor de clase para resetear tus talentos. También puedes usar la calculadora de talentos en nuestra web para planificar tu build.' }
+        ]
+      },
+      'comunidad': {
+        title: 'Comunidad',
+        items: [
+          { q: '¿Cómo contacto con un MJ?', a: 'Puedes abrir un ticket usando el botón "Contactar con un MJ" en esta página. Proporciona toda la información posible sobre tu problema.' },
+          { q: '¿Cómo reporto un bug?', a: 'Usa el botón "Reportar Bug" en esta página, selecciona la categoría y describe el problema con el mayor detalle posible.' },
+          { q: '¿Dónde puedo hablar con la comunidad?', a: 'Únete a nuestro Discord y síguenos en Facebook, Instagram y YouTube. Los enlaces están en el pie de página.' }
+        ]
+      },
+      'interfaz-addons': {
+        title: 'Interfaz y AddOns',
+        items: [
+          { q: '¿Puedo usar addons?', a: 'Sí, CoRe Legacy soporta addons compatibles con WoW 3.3.5a. Incluye addons propios como MultiBot y DungeonClear.' },
+          { q: '¿Cómo instalo un addon?', a: 'Coloca la carpeta del addon en la carpeta Interface/AddOns dentro de tu directorio de WoW. Asegúrate de activar los addons en la pantalla de selección de personaje.' }
+        ]
+      }
+    };
+
+    var catCards = document.querySelectorAll('.cat-card');
+    var faqPanel = document.getElementById('faqPanelContent');
+    var faqBackBtn = document.getElementById('faqBackBtn');
+    var faqContent = document.getElementById('faqCategoryContent');
+    if (!catCards.length || !faqPanel) return;
+
+    function renderFaqCategory(catId) {
+      var cat = faqData[catId];
+      if (!cat) return;
+      var html = '<h2 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-weight:800; font-size:1.3rem; color:#d4f0ff; margin-bottom:1rem;">' + cat.title + '</h2>';
+      cat.items.forEach(function (item) {
+        html += '<div class="faq-item">'
+          + '<div class="faq-q">' + item.q + '<svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></div>'
+          + '<div class="faq-a"><p style="margin:0; padding-right:1.5rem;">' + item.a + '</p></div>'
+          + '</div>';
+      });
+      faqContent.innerHTML = html;
+
+      faqContent.querySelectorAll('.faq-item').forEach(function (item) {
+        var q = item.querySelector('.faq-q');
+        q.addEventListener('click', function () { item.classList.toggle('open'); });
+      });
+
+      var jsonLdEl = document.getElementById('faqJsonLd');
+      if (jsonLdEl) {
+        var allFaqs = [];
+        cat.items.forEach(function (item) {
+          allFaqs.push({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } });
+        });
+        jsonLdEl.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: allFaqs });
+      }
+    }
+
+    catCards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        var catId = this.getAttribute('data-faq');
+        if (faqData[catId]) {
+          renderFaqCategory(catId);
+          faqPanel.classList.add('open');
+          faqPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    if (faqBackBtn) {
+      faqBackBtn.addEventListener('click', function () {
+        faqPanel.classList.remove('open');
+        document.getElementById('support-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  })();
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+    window.spTurnstileCallback = function () {};
+
+    var openBtn = document.getElementById('tkOpenModal');
+    var modal = document.getElementById('tkModal');
+    var form = document.getElementById('tkForm');
+    var msgEl = document.getElementById('tkMsg');
+    var submitBtn = document.getElementById('tkSubmit');
+    var turnstileContainer = document.getElementById('tkTurnstile');
+    if (!openBtn || !modal || !form) return;
+
+    var turnstileWidgetId = null;
+    var turnstileReady = false;
+    var MAX_SIZE = 10 * 1024 * 1024;
+    var MAX_FILES = 10;
+    var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
+    var fileInput = document.getElementById('tkScreenshots');
+    var fileHint = document.getElementById('tkFileHint');
+    var FILE_HINT = 'JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes';
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        clearError(fileInput);
+        var files = fileInput.files;
+        if (files && files.length > 0) { fileHint.textContent = files.length + ' imagen(es) seleccionada(s)'; }
+        else { fileHint.textContent = FILE_HINT; }
+      });
+    }
+
+    function renderTurnstile() {
+      if (turnstileWidgetId !== null || !turnstileContainer) return;
+      if (typeof window.turnstile === 'undefined') return;
+      turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: turnstileContainer.getAttribute('data-sitekey'),
+        theme: 'dark', action: 'ticket_submit',
+        callback: function () { turnstileReady = true; },
+        'expired-callback': function () { turnstileReady = false; },
+        'error-callback': function () { turnstileReady = false; }
+      });
+    }
+    function resetTurnstile() {
+      turnstileReady = false;
+      if (turnstileWidgetId !== null && typeof window.turnstile !== 'undefined') { window.turnstile.reset(turnstileWidgetId); }
+    }
+    function openModal() {
+      modal.classList.add('open'); document.body.style.overflow = 'hidden'; renderTurnstile();
+      if (window.location.pathname !== '/abrir-ticket') { history.pushState({ modal: 'abrir-ticket' }, '', '/abrir-ticket'); }
+    }
+    function closeModal() {
+      modal.classList.remove('open'); document.body.style.overflow = '';
+      msgEl.className = 'hl-msg'; msgEl.textContent = ''; clearErrors(); resetTurnstile();
+      if (window.location.pathname === '/abrir-ticket') { history.pushState({ modal: null }, '', '/soporte'); }
+    }
+    function showError(el, msg) {
+      el.classList.add('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (!hint) { hint = document.createElement('span'); hint.className = 'hl-field-error'; el.parentNode.appendChild(hint); }
+      hint.textContent = msg;
+    }
+    function clearError(el) {
+      el.classList.remove('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (hint) hint.remove();
+    }
+    function clearErrors() {
+      form.querySelectorAll('.hl-input-error').forEach(function (el) { el.classList.remove('hl-input-error'); });
+      form.querySelectorAll('.hl-field-error').forEach(function (el) { el.remove(); });
+    }
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    openBtn.addEventListener('click', openModal);
+    modal.querySelector('.hl-modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+    window.addEventListener('popstate', function () {
+      if (window.location.pathname === '/abrir-ticket') { openModal(); }
+      else if (modal.classList.contains('open')) {
+        modal.classList.remove('open'); document.body.style.overflow = '';
+        msgEl.className = 'hl-msg'; msgEl.textContent = ''; clearErrors(); resetTurnstile();
+      }
+    });
+    if (window.location.pathname === '/abrir-ticket') { openModal(); }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); clearErrors(); msgEl.className = 'hl-msg'; msgEl.textContent = '';
+      var nameInput = document.getElementById('tkPlayerName');
+      var accountInput = document.getElementById('tkAccount');
+      var emailInput = document.getElementById('tkEmail');
+      var categoryInput = document.getElementById('tkCategory');
+      var subjectInput = document.getElementById('tkSubject');
+      var descInput = document.getElementById('tkDescription');
+      var valid = true;
+      if (!nameInput.value.trim()) { showError(nameInput, 'Introduce el nombre de tu personaje.'); valid = false; } else { clearError(nameInput); }
+      if (!accountInput.value.trim()) { showError(accountInput, 'Introduce el nombre de tu cuenta.'); valid = false; } else { clearError(accountInput); }
+      if (!emailInput.value.trim()) { showError(emailInput, 'Introduce tu email de contacto.'); valid = false; } else if (!isValidEmail(emailInput.value.trim())) { showError(emailInput, 'El email no tiene un formato válido.'); valid = false; } else { clearError(emailInput); }
+      if (!categoryInput.value) { showError(categoryInput, 'Selecciona una categoría.'); valid = false; } else { clearError(categoryInput); }
+      if (!subjectInput.value.trim()) { showError(subjectInput, 'Introduce un asunto.'); valid = false; } else { clearError(subjectInput); }
+      if (!descInput.value.trim()) { showError(descInput, 'Describe tu problema o consulta.'); valid = false; } else { clearError(descInput); }
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        if (fileInput.files.length > MAX_FILES) { showError(fileInput, 'Solo puedes adjuntar un máximo de 10 imágenes.'); valid = false; }
+        else {
+          for (var fi = 0; fi < fileInput.files.length; fi++) {
+            var sf = fileInput.files[fi];
+            if (IMG_ACCEPT.indexOf(sf.type) === -1) { showError(fileInput, 'El formato de "' + sf.name + '" no es válido.'); valid = false; break; }
+            else if (sf.size > MAX_SIZE) { showError(fileInput, '"' + sf.name + '" supera el tamaño máximo de 10 MB.'); valid = false; break; }
+          }
+          if (valid) clearError(fileInput);
+        }
+      }
+      var turnstileToken = turnstileWidgetId !== null && typeof window.turnstile !== 'undefined' ? window.turnstile.getResponse(turnstileWidgetId) : '';
+      if (!turnstileToken) { msgEl.className = 'hl-msg error'; msgEl.textContent = 'Completa la verificación de seguridad antes de enviar.'; return; }
+      if (!valid) { msgEl.className = 'hl-msg error'; msgEl.textContent = 'Revisa los campos marcados antes de enviar.'; return; }
+      submitBtn.disabled = true; submitBtn.textContent = 'Enviando...';
+      var fd = new FormData(form); fd.append('cf_turnstile_response', turnstileToken);
+      var xhr = new XMLHttpRequest(); xhr.open('POST', '/api/ticket.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        submitBtn.disabled = false; submitBtn.textContent = 'Abrir ticket'; resetTurnstile();
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data && data.ok) {
+            msgEl.className = 'hl-msg success'; msgEl.textContent = data.message || 'Ticket enviado.';
+            form.reset(); if (fileHint) fileHint.textContent = FILE_HINT; resetTurnstile(); setTimeout(closeModal, 2500);
+          } else { msgEl.className = 'hl-msg error'; msgEl.textContent = (data && data.message) || 'Error al enviar.'; }
+        } catch (err) { msgEl.className = 'hl-msg error'; msgEl.textContent = 'Error de conexión.'; }
+      };
+      xhr.send(fd);
+    });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var openBtn = document.getElementById('bgOpenModal');
+    var modal = document.getElementById('bgModal');
+    var form = document.getElementById('bgForm');
+    var msgEl = document.getElementById('bgMsg');
+    var submitBtn = document.getElementById('bgSubmit');
+    var turnstileContainer = document.getElementById('bgTurnstile');
+    var catCards = document.querySelectorAll('.bug-cat-card');
+    var formSection = document.getElementById('bgFormSection');
+    if (!openBtn || !modal || !form) return;
+
+    var selectedCategory = '';
+    var turnstileWidgetId = null;
+    var turnstileReady = false;
+    var MAX_SIZE = 10 * 1024 * 1024;
+    var MAX_FILES = 10;
+    var IMG_ACCEPT = ['image/jpeg','image/png','image/gif','image/webp'];
+    var fileInput = document.getElementById('bgScreenshots');
+    var fileHint = document.getElementById('bgFileHint');
+    var FILE_HINT = 'JPG, PNG, GIF o WebP · máx. 10 MB por imagen · hasta 10 imágenes';
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        clearError(fileInput);
+        var files = fileInput.files;
+        if (files && files.length > 0) { fileHint.textContent = files.length + ' imagen(es) seleccionada(s)'; }
+        else { fileHint.textContent = FILE_HINT; }
+      });
+    }
+
+    function renderTurnstile() {
+      if (turnstileWidgetId !== null || !turnstileContainer) return;
+      if (typeof window.turnstile === 'undefined') return;
+      turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: turnstileContainer.getAttribute('data-sitekey'),
+        theme: 'dark', action: 'bug_report',
+        callback: function () { turnstileReady = true; },
+        'expired-callback': function () { turnstileReady = false; },
+        'error-callback': function () { turnstileReady = false; }
+      });
+    }
+    function resetTurnstile() {
+      turnstileReady = false;
+      if (turnstileWidgetId !== null && typeof window.turnstile !== 'undefined') { window.turnstile.reset(turnstileWidgetId); }
+    }
+    function openModal() {
+      modal.classList.add('open'); document.body.style.overflow = 'hidden';
+      if (window.location.pathname !== '/reportar-bug') { history.pushState({ modal: 'reportar-bug' }, '', '/reportar-bug'); }
+    }
+    function closeModal() {
+      modal.classList.remove('open'); document.body.style.overflow = '';
+      msgEl.className = 'hl-msg'; msgEl.textContent = ''; clearErrors(); resetTurnstile();
+      if (window.location.pathname === '/reportar-bug') { history.pushState({ modal: null }, '', '/soporte'); }
+    }
+    function showError(el, msg) {
+      el.classList.add('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (!hint) { hint = document.createElement('span'); hint.className = 'hl-field-error'; el.parentNode.appendChild(hint); }
+      hint.textContent = msg;
+    }
+    function clearError(el) {
+      el.classList.remove('hl-input-error');
+      var hint = el.parentNode.querySelector('.hl-field-error');
+      if (hint) hint.remove();
+    }
+    function clearErrors() {
+      form.querySelectorAll('.hl-input-error').forEach(function (el) { el.classList.remove('hl-input-error'); });
+      form.querySelectorAll('.hl-field-error').forEach(function (el) { el.remove(); });
+    }
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    openBtn.addEventListener('click', openModal);
+    modal.querySelector('.hl-modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+    window.addEventListener('popstate', function () {
+      if (window.location.pathname === '/reportar-bug') { openModal(); }
+      else if (modal.classList.contains('open')) {
+        modal.classList.remove('open'); document.body.style.overflow = '';
+        msgEl.className = 'hl-msg'; msgEl.textContent = ''; clearErrors(); resetTurnstile();
+      }
+    });
+    if (window.location.pathname === '/reportar-bug') { openModal(); }
+
+    catCards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        catCards.forEach(function (c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+        selectedCategory = card.getAttribute('data-cat');
+        if (!formSection.classList.contains('visible')) { formSection.classList.add('visible'); renderTurnstile(); }
+        msgEl.className = 'hl-msg'; msgEl.textContent = '';
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); clearErrors(); msgEl.className = 'hl-msg'; msgEl.textContent = '';
+      if (!selectedCategory) { msgEl.className = 'hl-msg error'; msgEl.textContent = 'Selecciona una categoría de bug antes de enviar.'; return; }
+      var nameInput = document.getElementById('bgPlayerName');
+      var accountInput = document.getElementById('bgAccount');
+      var emailInput = document.getElementById('bgEmail');
+      var subjectInput = document.getElementById('bgSubject');
+      var descInput = document.getElementById('bgDescription');
+      var valid = true;
+      if (!nameInput.value.trim()) { showError(nameInput, 'Introduce el nombre de tu personaje.'); valid = false; } else { clearError(nameInput); }
+      if (!accountInput.value.trim()) { showError(accountInput, 'Introduce el nombre de tu cuenta.'); valid = false; } else { clearError(accountInput); }
+      if (!emailInput.value.trim()) { showError(emailInput, 'Introduce tu email de contacto.'); valid = false; } else if (!isValidEmail(emailInput.value.trim())) { showError(emailInput, 'El email no tiene un formato válido.'); valid = false; } else { clearError(emailInput); }
+      if (!subjectInput.value.trim()) { showError(subjectInput, 'Introduce un asunto.'); valid = false; } else { clearError(subjectInput); }
+      if (!descInput.value.trim()) { showError(descInput, 'Describe el bug.'); valid = false; } else { clearError(descInput); }
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        if (fileInput.files.length > MAX_FILES) { showError(fileInput, 'Solo puedes adjuntar un máximo de 10 imágenes.'); valid = false; }
+        else {
+          for (var fi = 0; fi < fileInput.files.length; fi++) {
+            var sf = fileInput.files[fi];
+            if (IMG_ACCEPT.indexOf(sf.type) === -1) { showError(fileInput, 'El formato de "' + sf.name + '" no es válido.'); valid = false; break; }
+            else if (sf.size > MAX_SIZE) { showError(fileInput, '"' + sf.name + '" supera el tamaño máximo de 10 MB.'); valid = false; break; }
+          }
+          if (valid) clearError(fileInput);
+        }
+      }
+      var turnstileToken = turnstileWidgetId !== null && typeof window.turnstile !== 'undefined' ? window.turnstile.getResponse(turnstileWidgetId) : '';
+      if (!turnstileToken) { msgEl.className = 'hl-msg error'; msgEl.textContent = 'Completa la verificación de seguridad antes de enviar.'; return; }
+      if (!valid) { msgEl.className = 'hl-msg error'; msgEl.textContent = 'Revisa los campos marcados antes de enviar.'; return; }
+      submitBtn.disabled = true; submitBtn.textContent = 'Enviando...';
+      var fd = new FormData(form); fd.append('category', selectedCategory); fd.append('cf_turnstile_response', turnstileToken);
+      var xhr = new XMLHttpRequest(); xhr.open('POST', '/api/bugreport.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        submitBtn.disabled = false; submitBtn.textContent = 'Enviar reporte'; resetTurnstile();
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data && data.ok) {
+            msgEl.className = 'hl-msg success'; msgEl.textContent = data.message || 'Reporte enviado.';
+            form.reset(); catCards.forEach(function (c) { c.classList.remove('selected'); });
+            selectedCategory = ''; formSection.classList.remove('visible');
+            if (fileHint) fileHint.textContent = FILE_HINT; resetTurnstile(); setTimeout(closeModal, 2500);
+          } else { msgEl.className = 'hl-msg error'; msgEl.textContent = (data && data.message) || 'Error al enviar.'; }
+        } catch (err) { msgEl.className = 'hl-msg error'; msgEl.textContent = 'Error de conexión.'; }
+      };
+      xhr.send(fd);
     });
   })();
   </script>

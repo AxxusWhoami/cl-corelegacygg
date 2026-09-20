@@ -8,6 +8,8 @@
     { "source": "/caracteristicas/", "destination": "/index.html" },
     { "source": "/sobre-nosotros", "destination": "/sobre-nosotros.html" },
     { "source": "/sobre-nosotros/", "destination": "/sobre-nosotros.html" },
+    { "source": "/soporte", "destination": "/soporte.php" },
+    { "source": "/soporte/", "destination": "/soporte.php" },
     { "source": "/terminos-de-servicio", "destination": "/index.html" },
     { "source": "/terminos-de-servicio/", "destination": "/index.html" },
     { "source": "/politica-de-privacidad", "destination": "/index.html" },

@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "npx tailwindcss -i ./assets/tailwind-input.css -o ./assets/tailwind.css --minify",
-    "dev": "npx serve . -p 5173"
+    "dev": "npx serve . -p 5173",
+    "sitemap": "node scripts/generate-sitemap.js"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"

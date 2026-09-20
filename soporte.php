@@ -982,8 +982,7 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
       }
 
       var html = '';
-      var max = Math.min(scored.length, 6);
-      for (var i = 0; i < max; i++) {
+      for (var i = 0; i < scored.length; i++) {
         var a = scored[i].article;
         html += '<div class="search-result-item" role="option" tabindex="0" data-title="' + escapeHtml(a.title) + '">'
           + '<div class="search-result-icon">' + a.icon + '</div>'
@@ -1163,7 +1162,7 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
       if (!cat) return;
       var html = '<h2 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-weight:800; font-size:1.3rem; color:#d4f0ff; margin-bottom:1rem;">' + cat.title + '</h2>';
       cat.items.forEach(function (item) {
-        html += '<div class="faq-item open">'
+        html += '<div class="faq-item">'
           + '<div class="faq-q">' + item.q + '<svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></div>'
           + '<div class="faq-a"><p style="margin:0; padding-right:1.5rem;">' + item.a + '</p></div>'
           + '</div>';

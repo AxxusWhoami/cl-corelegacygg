@@ -638,6 +638,9 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
 
   <!-- ===== Ayuda y soporte (botones) ===== -->
   <section class="support-content-wrap relative px-4 sm:px-6 lg:px-8" style="padding-top:0; padding-bottom:3rem;">
+    <p style="max-width:600px; margin:0 auto 1.25rem; text-align:center; font-family:'Cinzel',Georgia,serif; font-size:0.9rem; line-height:1.6; color:#a8c4d4; letter-spacing:0.02em;">
+      Antes de abrir un ticket, echa un vistazo a las preguntas frecuentes de arriba &mdash; la mayoria de dudas se resuelven en segundos sin esperar a un MJ.
+    </p>
     <div style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:1rem; max-width:600px; margin:0 auto;">
       <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>

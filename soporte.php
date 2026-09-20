@@ -374,31 +374,6 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
     }
     .faq-item.open .faq-a { max-height: 500px; padding-top: 0.75rem; }
 
-    /* ===== Ayuda y soporte panel ===== */
-    .ayuda-panel {
-      position: relative; border: 1px solid #4bbde844; border-radius: 14px; overflow: hidden;
-      background: linear-gradient(180deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
-      box-shadow: 0 0 20px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5);
-      max-width: 500px; margin: 0 auto;
-    }
-    .ayuda-panel::before {
-      content: ''; position: absolute; inset: -2px; border-radius: 16px;
-      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
-      z-index: -1; opacity: 0.5; pointer-events: none;
-    }
-    .ayuda-panel-header {
-      display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem;
-      background: linear-gradient(180deg, rgba(77,189,232,0.15) 0%, rgba(4,10,20,0.3) 100%);
-      border-bottom: 1px solid #4bbde833;
-    }
-    .ayuda-panel-title {
-      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700; font-size: 1rem;
-      color: var(--ice-100); letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
-    }
-    .ayuda-panel-body {
-      padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 1rem; text-align: center;
-    }
     .ayuda-ticket-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%;
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-weight: 700; font-size: 0.85rem;
@@ -663,24 +638,15 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
 
   <!-- ===== Ayuda y soporte (botones) ===== -->
   <section class="support-content-wrap relative px-4 sm:px-6 lg:px-8" style="padding-top:0; padding-bottom:3rem;">
-    <div class="max-w-5xl mx-auto">
-      <div class="ayuda-panel">
-        <div class="ayuda-panel-header">
-          <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">🛡️</span>
-          <span class="ayuda-panel-title">Ayuda y soporte</span>
-        </div>
-        <div class="ayuda-panel-body" id="ayudaBody">
-          <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            Contactar con un MJ (Abrir Ticket)
-          </button>
-          <button type="button" class="ayuda-bug-btn" id="bgOpenModal">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
-            Reportar Bug
-          </button>
-          <p style="margin:0.75rem 0 0; font-family:'Cinzel',Georgia,serif; font-size:0.85rem; text-align:center; color:#d4af37; text-shadow:0 0 8px rgba(212,175,55,0.4); letter-spacing:0.04em;">Administrador: Homenixx</p>
-        </div>
-      </div>
+    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; max-width:500px; margin:0 auto;">
+      <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Contactar con un MJ (Abrir Ticket)
+      </button>
+      <button type="button" class="ayuda-bug-btn" id="bgOpenModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+        Reportar Bug
+      </button>
     </div>
   </section>
 

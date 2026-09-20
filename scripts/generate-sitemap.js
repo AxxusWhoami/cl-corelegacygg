@@ -17,6 +17,7 @@ const pages = [
   { url: '/calculadora', file: 'calculadora.html', priority: '0.8', changefreq: 'weekly' },
   { url: '/tops', file: 'tops.html', priority: '0.6', changefreq: 'monthly' },
   { url: '/sobre-nosotros', file: 'sobre-nosotros.html', priority: '0.5', changefreq: 'monthly' },
+  { url: '/soporte', file: 'soporte.php', priority: '0.8', changefreq: 'weekly' },
   { url: '/guias/guia-de-descarga-e-inicio-rapido', file: 'guias/guia-de-descarga-e-inicio-rapido.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/guias/requisitos-de-hardware', file: 'guias/requisitos-de-hardware.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/guias/guia-playerbots-ia-wow-wotlk-solitario', file: 'guias/guia-playerbots-ia-wow-wotlk-solitario.html', priority: '0.7', changefreq: 'monthly' },

@@ -1,0 +1,640 @@
+<?php
+require_once __DIR__ . '/params.php';
+$turnstileKey = $TURNSTILE_SITE_KEY;
+?>
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Soporte — CoRe Legacy</title>
+  <meta name="description" content="Centro de Soporte de CoRe Legacy. Busca respuestas rápidas a tus dudas, abre un ticket con un MJ o reporta un bug. ¿En qué podemos ayudarte, héroe?" />
+  <meta name="keywords" content="soporte core legacy, ayuda wow wotlk, ticket mj core legacy, reportar bug wow, preguntas frecuentes core legacy, soporte servidor privado wow, contacto core legacy, faq wow 3.3.5a" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="publisher" content="CoRe Legacy" />
+  <meta name="language" content="es-ES" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/soporte" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/soporte" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/soporte" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/soporte" />
+
+  <meta property="og:title" content="Centro de Soporte — CoRe Legacy" />
+  <meta property="og:description" content="Busca respuestas rápidas a tus dudas, abre un ticket con un MJ o reporta un bug. ¿En qué podemos ayudarte, héroe?" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://corelegacy.gg/soporte" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_419" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/corelegacy_og-fb_images.png" />
+  <meta property="og:image:alt" content="CoRe Legacy — Centro de Soporte" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Centro de Soporte — CoRe Legacy" />
+  <meta name="twitter:description" content="Busca respuestas rápidas a tus dudas, abre un ticket con un MJ o reporta un bug." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/corelegacy_og-fb_images.png" />
+  <meta name="twitter:image:alt" content="CoRe Legacy — Centro de Soporte" />
+
+  <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
+  <link rel="preconnect" href="https://accounts.corelegacy.gg" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-29RVG4TWST"></script>
+  <script defer>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29RVG4TWST');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Centro de Soporte — CoRe Legacy",
+    "description": "Busca respuestas rápidas a tus dudas, abre un ticket con un MJ o reporta un bug. ¿En qué podemos ayudarte, héroe?",
+    "url": "https://corelegacy.gg/soporte",
+    "inLanguage": "es-ES",
+    "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://corelegacy.gg/" },
+      { "@type": "ListItem", "position": 2, "name": "Centro de Soporte", "item": "https://corelegacy.gg/soporte" }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CoRe Legacy" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <style>
+    .nav-link {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ice-200);
+      padding: 0.6rem 1.2rem;
+      position: relative;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      color: var(--frost);
+      text-shadow: 0 0 12px var(--ice-300);
+      text-decoration: underline;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ice-300), transparent);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 80%;
+      left: 10%;
+    }
+    .nav-link.active {
+      color: var(--frost);
+      text-shadow: 0 0 12px var(--ice-300);
+    }
+    .nav-link.active::after {
+      width: 80%;
+      left: 10%;
+    }
+
+    .support-hero {
+      position: relative;
+      overflow: hidden;
+      background-image: url('/public/hero-citadel.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+    }
+    .support-hero-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(0,10,25,0.5) 0%, rgba(0,5,15,0.3) 40%, rgba(5,13,24,0.98) 100%);
+    }
+    .support-content-wrap {
+      background: linear-gradient(180deg, #050d18 0%, #081420 50%, #050d18 100%);
+    }
+
+    /* ===== Search Bar ===== */
+    .search-container {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .search-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input-wrap svg {
+      position: absolute;
+      left: 1.25rem;
+      width: 22px;
+      height: 22px;
+      color: #4bbde8aa;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .search-input {
+      width: 100%;
+      padding: 1.1rem 1.25rem 1.1rem 3.25rem;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 1rem;
+      color: #d4f0ff;
+      background: linear-gradient(180deg, rgba(8,20,36,0.95) 0%, rgba(5,13,24,0.98) 100%);
+      border: 1px solid #1a3a5a66;
+      border-radius: 14px;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 30px rgba(77,189,232,0.08), 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .search-input::placeholder {
+      color: #4bbde877;
+      letter-spacing: 0.03em;
+    }
+    .search-input:focus {
+      border-color: #4bbde8;
+      box-shadow: 0 0 36px rgba(77,189,232,0.22), 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .search-results {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgba(8,20,36,0.98) 0%, rgba(5,13,24,0.99) 100%);
+      border: 1px solid #1a3a5a66;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 30px rgba(77,189,232,0.1);
+      overflow: hidden;
+      z-index: 50;
+      display: none;
+    }
+    .search-results.visible { display: block; }
+    .search-result-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(26,58,90,0.3);
+      transition: background 0.2s ease;
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover {
+      background: rgba(77,189,232,0.08);
+    }
+    .search-result-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: rgba(77,189,232,0.1);
+      border: 1px solid rgba(77,189,232,0.2);
+      font-size: 1.1rem;
+    }
+    .search-result-text { flex: 1; min-width: 0; }
+    .search-result-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.9rem;
+      color: #d4f0ff;
+      margin-bottom: 0.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .search-result-desc {
+      font-size: 0.78rem;
+      color: #7da8c4;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .search-no-results {
+      padding: 1.25rem;
+      text-align: center;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.85rem;
+      color: #7da8c4;
+    }
+
+    /* ===== Support Panels ===== */
+    .support-panel {
+      position: relative;
+      border: 1px solid #1a3a5a44;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,20,36,0.92) 0%, rgba(5,13,24,0.96) 100%);
+      box-shadow: 0 0 25px rgba(26,159,212,0.08), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(77,189,232,0.03);
+    }
+    .support-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.2) 0%, rgba(26,159,212,0.08) 50%, rgba(13,110,168,0.15) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .support-panel-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, rgba(26,159,212,0.12) 0%, rgba(5,13,24,0.3) 100%);
+      border-bottom: 1px solid #1a3a5a33;
+    }
+    .support-panel-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1rem; color: var(--frost);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .support-panel-body {
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .skip-link {
+      position: fixed; top: -100px; left: 1rem; z-index: 10000;
+      padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
+      color: #fff; font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 0 0 10px 10px;
+      border: 1px solid #7dd8f8; border-top: none; text-decoration: none;
+      transition: top 0.25s ease;
+    }
+    .skip-link:focus { top: 0; }
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid #7dd8f8; outline-offset: 2px; border-radius: 4px;
+    }
+    .reading-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 9999;
+      background: linear-gradient(90deg, #1a9fd4 0%, #7dd8f8 50%, #c8f0ff 100%);
+      box-shadow: 0 0 10px #56c8f088; transition: width 0.1s linear; pointer-events: none;
+    }
+
+    .btn-cta-primary, .btn-cta-secondary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-cta-primary::after, .btn-cta-secondary::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s ease, height 0.5s ease;
+      pointer-events: none;
+    }
+    .btn-cta-primary:active::after, .btn-cta-secondary:active::after {
+      width: 300px; height: 300px;
+    }
+
+    @media (max-width: 768px) {
+      .support-panel-body { padding: 1.5rem 1.25rem 2rem; }
+      .search-input { font-size: 0.9rem; padding: 0.9rem 1rem 0.9rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#support-content" class="skip-link">Saltar al contenido</a>
+
+  <div id="snowContainer"></div>
+
+  <!-- ===== Header ===== -->
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <img src="/assets/logotipo_corelegacy.webp" alt="CoRe Legacy" width="1352" height="1005" decoding="async" class="h-12 w-auto" style="filter: drop-shadow(0 0 8px #56c8f066);" />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
+          <a class="nav-link" href="/noticias">Noticias</a>
+          <a class="nav-link" href="/comunidad">Comunidad</a>
+          <a class="nav-link" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
+        <a class="nav-link block" href="/">Inicio</a>
+        <a class="nav-link block" href="/noticias">Noticias</a>
+        <a class="nav-link block" href="/comunidad">Comunidad</a>
+        <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <!-- ===== Hero with Search ===== -->
+  <section class="support-hero relative flex flex-col items-center justify-center overflow-hidden" style="min-height: 60vh;">
+    <div class="support-hero-overlay"></div>
+    <div class="max-w-7xl mx-auto relative z-10 w-full" style="padding: 8rem 1rem 3rem;">
+      <div class="text-center reveal">
+        <h1 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:900;
+          font-size: clamp(2rem,5.5vw,4.5rem); line-height:1.1;
+          background: linear-gradient(180deg,#fff 0%,#d4f0ff 15%,#8dd6f5 30%,#4bbde8 50%,#1a9fd4 70%,#0d6ea8 85%,#063d6b 100%);
+          -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+          animation: textGlow 3s ease-in-out infinite; margin-bottom:0.75rem;">Centro de Soporte</h1>
+        <div class="frost-divider" style="width:120px; margin:0 auto 1.5rem;"></div>
+        <p style="font-family:'Cinzel',Georgia,serif; font-size:1.05rem; line-height:1.85; color:#b8d4e8; margin-bottom:2.5rem;">
+          ¿En qué podemos ayudarte, héroe?
+        </p>
+
+        <!-- ===== Smart Search Bar ===== -->
+        <div class="search-container">
+          <div class="search-input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="faqSearch" class="search-input" placeholder="Busca una pregunta o escribe tu duda..."
+              autocomplete="off" aria-label="Buscar en la base de conocimientos" aria-expanded="false" aria-controls="faqSearchResults" />
+          </div>
+          <div class="search-results" id="faqSearchResults" role="listbox" aria-label="Resultados de búsqueda"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Content (blank for now) ===== -->
+  <section id="support-content" class="support-content-wrap relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <!-- Contenido adicional se añadirá aquí -->
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-bg">
+      <div class="site-footer-content">
+        <p class="site-footer-disclaimer">
+          CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a.
+          Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.
+        </p>
+        <div class="site-footer-links">
+          <button class="site-footer-link" data-legal="tos">Términos de Servicio</button>
+          <span class="site-footer-sep">·</span>
+          <button class="site-footer-link" data-legal="privacy">Política de Privacidad</button>
+          <span class="site-footer-sep">·</span>
+          <a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a>
+        </div>
+        <div class="site-footer-social">
+          <a class="site-footer-social-link" href="https://www.facebook.com/corelegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="Facebook de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a class="site-footer-social-link" href="https://discord.gg/9AJ23YwDV" target="_blank" rel="noopener noreferrer nofollow" aria-label="Discord de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.instagram.com/corelegacygg/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Instagram de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a class="site-footer-social-link" href="https://www.youtube.com/@CoReLegacygg" target="_blank" rel="noopener noreferrer nofollow" aria-label="YouTube de CoRe Legacy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+        <p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Legal Modals ===== -->
+  <div id="legalTosModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalTosTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <h1 class="legal-modal-title" id="legalTosTitle">Términos de Servicio</h1>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Términos de Servicio</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+  <div id="legalPrivacyModal" class="legal-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="legalPrivacyTitle">
+    <div class="legal-modal">
+      <div class="legal-modal-header">
+        <h1 class="legal-modal-title" id="legalPrivacyTitle">Política de Privacidad</h1>
+        <button class="legal-modal-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="legal-modal-body"></div>
+      <div class="legal-modal-footer">
+        <span class="legal-modal-note">CoRe Legacy — Política de Privacidad</span>
+        <button class="legal-modal-accept" type="button">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <button class="back-to-top" type="button" aria-label="Volver arriba">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ===== Reading Progress ===== */
+    var bar = document.getElementById('readingProgress');
+    if (bar) {
+      function updateProgress() {
+        var st = window.scrollY || document.documentElement.scrollTop;
+        var sh = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = sh > 0 ? (st / sh) * 100 : 0;
+        bar.style.width = pct + '%';
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    }
+
+    /* ===== FAQ Knowledge Base ===== */
+    var faqArticles = [
+      { icon: '📥', title: '¿Cómo descargo e instalo el cliente?', desc: 'Guía paso a paso para descargar el cliente de CoRe Legacy y empezar a jugar en minutos.', keywords: 'descargar instalar cliente conexion realmlist wow.exe' },
+      { icon: '🖥️', title: '¿Cuáles son los requisitos de hardware?', desc: 'Conoce los requisitos mínimos y recomendados para jugar a CoRe Legacy sin problemas.', keywords: 'requisitos hardware ram cpu gpu grafica requisitos minimos' },
+      { icon: '🤖', title: '¿Qué son los Playerbots y cómo funcionan?', desc: 'Descubre cómo jugar WoW en solitario con compañeros controlados por inteligencia artificial.', keywords: 'playerbots bots ia companions solitario jugar solo' },
+      { icon: '🎮', title: '¿Cómo uso el addon MultiBot?', desc: 'Guía completa del addon MultiBot para controlar tus altbots de forma visual e intuitiva.', keywords: 'multibot addon altbots interfaz control grupo' },
+      { icon: '⚔️', title: '¿Cómo funciona el addon DungeonClear?', desc: 'Aprende a usar DungeonClear para que un bot tanque limpie mazmorras de forma autónoma.', keywords: 'dungeonclear addon mazmorra tanque bot limpiar' },
+      { icon: '⚡', title: '¿Cómo aumento los FPS con DXVK y Vulkan?', desc: 'Optimiza el rendimiento del juego con DXVK y Vulkan. Perfiles listos para descargar.', keywords: 'fps dxvk vulkan rendimiento optimizar lag stuttering' },
+      { icon: '🔑', title: '¿Cómo creo una cuenta?', desc: 'Crea tu cuenta gratuita en CoRe Legacy y empieza tu aventura en Rasganorte.', keywords: 'crear cuenta registro registrarse nueva cuenta' },
+      { icon: '🔒', title: '¿Cómo recupero mi contraseña?', desc: 'Restablece tu contraseña si has olvidado la de tu cuenta de CoRe Legacy.', keywords: 'contraseña recuperar olvidar resetear restablecer password' },
+      { icon: '🛒', title: '¿Cómo funciona la tienda?', desc: 'Información sobre la tienda de CoRe Legacy, métodos de pago y productos disponibles.', keywords: 'tienda pagar compra productos donacion vip' },
+      { icon: '🧊', title: '¿El servidor está online? ¿Cómo veo el estado?', desc: 'Consulta el estado del reino y los tiempos de mantenimiento programado.', keywords: 'servidor online estado down caido mantenimiento reinicio' },
+      { icon: '📜', title: '¿Cuáles son las normas del servidor?', desc: 'Lee las reglas de CoRe Legacy sobre comportamiento, exploits y sanciones.', keywords: 'normas reglas baneo sancion comportamiento exploits' },
+      { icon: '💬', title: '¿Cómo hablo con los bots por chat?', desc: 'Aprende a comunicarte con tus playerbots mediante susurros y el chat de grupo.', keywords: 'chat bots susurro hablar comunicacion whisper grupo' },
+      { icon: '🏰', title: '¿Cómo participo en bandas y mazmorras?', desc: 'Únete a mazmorras heroicas y bandas con tus bots o con otros jugadores reales.', keywords: 'bandas raid mazmorras heroicas grupo dungeon raid' },
+      { icon: '🏆', title: '¿Cómo funcionan los rankings de arena?', desc: 'Consulta los rankings de arena PvP y los primeros del reino de CoRe Legacy.', keywords: 'arena pvp ranking primeros reino ratings' },
+      { icon: '🗺️', title: '¿Cómo busco playerbots para mi grupo?', desc: 'Usa el comando /who y los filtros para encontrar bots del nivel y clase que necesitas.', keywords: 'buscar playerbots who comando filtrar nivel clase zona' },
+      { icon: '🐛', title: '¿Cómo reporto un bug?', desc: 'Reporta errores del juego para que el equipo pueda corregirlos lo antes posible.', keywords: 'bug reportar error glitch fallo reporte' },
+      { icon: '🎫', title: '¿Cómo abro un ticket con un MJ?', desc: 'Contacta con el equipo de soporte abriendo un ticket para recibir ayuda personalizada.', keywords: 'ticket mj soporte ayuda contacto abrir' },
+      { icon: '🔄', title: '¿Cómo cambio de especialización o talentos?', desc: 'Usa la calculadora de talentos para planificar tu build y cambia de spec en el juego.', keywords: 'talentos spec especializacion build calculadora cambiar' }
+    ];
+
+    /* ===== Smart Search ===== */
+    var searchInput = document.getElementById('faqSearch');
+    var searchResults = document.getElementById('faqSearchResults');
+
+    if (!searchInput || !searchResults) return;
+
+    function normalize(s) {
+      return s.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function renderResults(query) {
+      if (query.trim() === '') {
+        searchResults.classList.remove('visible');
+        searchResults.innerHTML = '';
+        searchInput.setAttribute('aria-expanded', 'false');
+        return;
+      }
+
+      var nq = normalize(query);
+      var scored = [];
+
+      faqArticles.forEach(function (article) {
+        var nt = normalize(article.title);
+        var nd = normalize(article.desc);
+        var nk = normalize(article.keywords);
+        var score = 0;
+
+        if (nt.indexOf(nq) !== -1) score += 10;
+        if (nk.indexOf(nq) !== -1) score += 8;
+        if (nd.indexOf(nq) !== -1) score += 4;
+
+        nq.split(/\s+/).forEach(function (word) {
+          if (word.length < 2) return;
+          if (nt.indexOf(word) !== -1) score += 3;
+          if (nk.indexOf(word) !== -1) score += 2;
+          if (nd.indexOf(word) !== -1) score += 1;
+        });
+
+        if (score > 0) scored.push({ article: article, score: score });
+      });
+
+      scored.sort(function (a, b) { return b.score - a.score; });
+
+      if (scored.length === 0) {
+        searchResults.innerHTML = '<div class="search-no-results">No se encontraron resultados para "' + escapeHtml(query) + '". Prueba con otras palabras clave.</div>';
+        searchResults.classList.add('visible');
+        searchInput.setAttribute('aria-expanded', 'true');
+        return;
+      }
+
+      var html = '';
+      var max = Math.min(scored.length, 6);
+      for (var i = 0; i < max; i++) {
+        var a = scored[i].article;
+        html += '<div class="search-result-item" role="option" tabindex="0" data-title="' + escapeHtml(a.title) + '">'
+          + '<div class="search-result-icon">' + a.icon + '</div>'
+          + '<div class="search-result-text">'
+          + '<div class="search-result-title">' + escapeHtml(a.title) + '</div>'
+          + '<div class="search-result-desc">' + escapeHtml(a.desc) + '</div>'
+          + '</div>'
+          + '</div>';
+      }
+
+      searchResults.innerHTML = html;
+      searchResults.classList.add('visible');
+      searchInput.setAttribute('aria-expanded', 'true');
+
+      var items = searchResults.querySelectorAll('.search-result-item');
+      items.forEach(function (item) {
+        item.addEventListener('click', function () {
+          searchInput.value = this.getAttribute('data-title');
+          searchResults.classList.remove('visible');
+          searchInput.setAttribute('aria-expanded', 'false');
+        });
+        item.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    var debounceTimer;
+    searchInput.addEventListener('input', function () {
+      clearTimeout(debounceTimer);
+      var val = this.value;
+      debounceTimer = setTimeout(function () { renderResults(val); }, 150);
+    });
+
+    searchInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        searchResults.classList.remove('visible');
+        this.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!searchResults.contains(e.target) && e.target !== searchInput) {
+        searchResults.classList.remove('visible');
+        searchInput.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

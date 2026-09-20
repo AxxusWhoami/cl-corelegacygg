@@ -344,6 +344,7 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
           <a class="nav-link" href="/noticias">Noticias</a>
           <a class="nav-link" href="/comunidad">Comunidad</a>
           <a class="nav-link" href="/info-changelog">Server y Changelog</a>
+          <a class="nav-link" href="/soporte">Soporte</a>
           <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
         </nav>
 
@@ -361,6 +362,7 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
         <a class="nav-link block" href="/noticias">Noticias</a>
         <a class="nav-link block" href="/comunidad">Comunidad</a>
         <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
+        <a class="nav-link block" href="/soporte">Soporte</a>
         <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
       </div>
     </div>

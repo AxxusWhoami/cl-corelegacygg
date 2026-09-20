@@ -638,7 +638,7 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
 
   <!-- ===== Ayuda y soporte (botones) ===== -->
   <section class="support-content-wrap relative px-4 sm:px-6 lg:px-8" style="padding-top:0; padding-bottom:3rem;">
-    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; max-width:500px; margin:0 auto;">
+    <div style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:1rem; max-width:600px; margin:0 auto;">
       <button type="button" class="ayuda-ticket-btn" id="tkOpenModal">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Contactar con un MJ (Abrir Ticket)

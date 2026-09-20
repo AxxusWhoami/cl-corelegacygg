@@ -319,6 +319,54 @@
       .search-input { font-size: 0.9rem; padding: 0.9rem 1rem 0.9rem 3rem; }
     }
 
+    /* ===== Category Cards (compact) ===== */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.75rem;
+    }
+    .cat-card {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 1px solid #1a3a5a44;
+      background: linear-gradient(180deg, rgba(8,20,36,0.92) 0%, rgba(5,13,24,0.96) 100%);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cat-card:hover {
+      transform: translateY(-3px);
+      border-color: #4bbde855;
+      box-shadow: 0 0 20px rgba(77,189,232,0.12), 0 6px 20px rgba(0,0,0,0.4);
+    }
+    .cat-card-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: rgba(77,189,232,0.08);
+      border: 1px solid rgba(77,189,232,0.12);
+      font-size: 1.15rem;
+      transition: transform 0.25s ease;
+    }
+    .cat-card:hover .cat-card-icon {
+      transform: scale(1.08);
+    }
+    .cat-card-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #d4f0ff;
+      letter-spacing: 0.03em;
+      line-height: 1.3;
+    }
   </style>
 </head>
 <body>
@@ -397,10 +445,72 @@
     </div>
   </section>
 
-  <!-- ===== Content (blank for now) ===== -->
+  <!-- ===== Category Cards ===== -->
   <section id="support-content" class="support-content-wrap relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto">
-      <!-- Contenido adicional se añadirá aquí -->
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center reveal" style="margin-bottom: 2rem;">
+        <h2 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:800; font-size: clamp(1.2rem,2.5vw,1.6rem); color: #d4f0ff; letter-spacing: 0.04em; margin-bottom: 0.5rem;">Explora la Base de Conocimiento</h2>
+        <div class="frost-divider" style="width: 80px; margin: 0 auto;"></div>
+        <p style="font-family:'Cinzel',Georgia,serif; font-size: 0.8rem; color: #7da8c4; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem;">Selecciona una categoría</p>
+      </div>
+      <div class="cat-grid reveal">
+        <div class="cat-card" data-faq="primeros-pasos">
+          <div class="cat-card-icon">🧭</div>
+          <div class="cat-card-title">Primeros pasos</div>
+        </div>
+        <div class="cat-card" data-faq="personajes-clases">
+          <div class="cat-card-icon">🧙</div>
+          <div class="cat-card-title">Personajes y clases</div>
+        </div>
+        <div class="cat-card" data-faq="combate-mecanicas">
+          <div class="cat-card-icon">⚔️</div>
+          <div class="cat-card-title">Combate y mecánicas</div>
+        </div>
+        <div class="cat-card" data-faq="niveles-progresion">
+          <div class="cat-card-icon">📈</div>
+          <div class="cat-card-title">Niveles y progresión</div>
+        </div>
+        <div class="cat-card" data-faq="mundo-exploracion">
+          <div class="cat-card-icon">🗺️</div>
+          <div class="cat-card-title">Mundo y exploración</div>
+        </div>
+        <div class="cat-card" data-faq="misiones">
+          <div class="cat-card-icon">📜</div>
+          <div class="cat-card-title">Misiones</div>
+        </div>
+        <div class="cat-card" data-faq="mazmorras-raids">
+          <div class="cat-card-icon">🏰</div>
+          <div class="cat-card-title">Mazmorras y Raids</div>
+        </div>
+        <div class="cat-card" data-faq="pvp">
+          <div class="cat-card-icon">🛡️</div>
+          <div class="cat-card-title">PvP</div>
+        </div>
+        <div class="cat-card" data-faq="economia">
+          <div class="cat-card-icon">💰</div>
+          <div class="cat-card-title">Economía</div>
+        </div>
+        <div class="cat-card" data-faq="profesiones">
+          <div class="cat-card-icon">🔨</div>
+          <div class="cat-card-title">Profesiones</div>
+        </div>
+        <div class="cat-card" data-faq="objetos-equipamiento">
+          <div class="cat-card-icon">🎒</div>
+          <div class="cat-card-title">Objetos y equipamiento</div>
+        </div>
+        <div class="cat-card" data-faq="talentos-builds">
+          <div class="cat-card-icon">🏹</div>
+          <div class="cat-card-title">Talentos y builds</div>
+        </div>
+        <div class="cat-card" data-faq="comunidad">
+          <div class="cat-card-icon">👥</div>
+          <div class="cat-card-title">Comunidad</div>
+        </div>
+        <div class="cat-card" data-faq="interfaz-addons">
+          <div class="cat-card-icon">🖥️</div>
+          <div class="cat-card-title">Interfaz y AddOns</div>
+        </div>
+      </div>
     </div>
   </section>
   </main>

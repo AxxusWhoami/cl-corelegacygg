@@ -1157,15 +1157,38 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
     var faqContent = document.getElementById('faqCategoryContent');
     if (!catCards.length || !faqPanel) return;
 
+    var catIcons = {
+      'primeros-pasos': '🧭',
+      'personajes-clases': '🧙',
+      'combate-mecanicas': '⚔️',
+      'niveles-progresion': '📈',
+      'mundo-exploracion': '🗺️',
+      'misiones': '📜',
+      'mazmorras-raids': '🏰',
+      'pvp': '🛡️',
+      'economia': '💰',
+      'profesiones': '🔨',
+      'objetos-equipamiento': '🎒',
+      'talentos-builds': '🏹',
+      'comunidad': '👥',
+      'interfaz-addons': '🖥️'
+    };
+
     function renderFaqCategory(catId) {
-      var cat = faqData[catId];
-      if (!cat) return;
-      var html = '<h2 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-weight:800; font-size:1.3rem; color:#d4f0ff; margin-bottom:1rem;">' + cat.title + '</h2>';
-      cat.items.forEach(function (item) {
-        html += '<div class="faq-item">'
-          + '<div class="faq-q">' + item.q + '<svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></div>'
-          + '<div class="faq-a"><p style="margin:0; padding-right:1.5rem;">' + item.a + '</p></div>'
-          + '</div>';
+      if (!faqData[catId]) return;
+      var html = '';
+      var allFaqs = [];
+      Object.keys(faqData).forEach(function (categoryId) {
+        var cat = faqData[categoryId];
+        html += '<h2 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-weight:800; font-size:1.3rem; color:#d4f0ff; margin:1.5rem 0 1rem;">'
+          + catIcons[categoryId] + ' ' + cat.title + '</h2>';
+        cat.items.forEach(function (item) {
+          html += '<div class="faq-item">'
+            + '<div class="faq-q">' + item.q + '<svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></div>'
+            + '<div class="faq-a"><p style="margin:0; padding-right:1.5rem;">' + item.a + '</p></div>'
+            + '</div>';
+          allFaqs.push({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } });
+        });
       });
       faqContent.innerHTML = html;
 
@@ -1176,10 +1199,6 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
 
       var jsonLdEl = document.getElementById('faqJsonLd');
       if (jsonLdEl) {
-        var allFaqs = [];
-        cat.items.forEach(function (item) {
-          allFaqs.push({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } });
-        });
         jsonLdEl.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: allFaqs });
       }
     }

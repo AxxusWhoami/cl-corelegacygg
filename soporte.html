@@ -367,7 +367,187 @@
       letter-spacing: 0.03em;
       line-height: 1.3;
     }
+
+    /* ===== FAQ Accordion ===== */
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .faq-panel.open {
+      max-height: 9999px;
+      opacity: 1;
+    }
+    .faq-panel-inner {
+      padding-top: 2.5rem;
+    }
+    .faq-intro {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+    .faq-intro h3 {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 800;
+      font-size: clamp(1.1rem,2.2vw,1.4rem);
+      color: #d4f0ff;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.03em;
+    }
+    .faq-intro p {
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: #7da8c4;
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border: 1px solid #1a3a5a44;
+      border-radius: 10px;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(180deg, rgba(8,20,36,0.92) 0%, rgba(5,13,24,0.96) 100%);
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .faq-item:hover {
+      border-color: #4bbde833;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .faq-item.open {
+      border-color: #4bbde855;
+      box-shadow: 0 0 20px rgba(77,189,232,0.08), 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #d4f0ff;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+    .faq-question:hover { color: #7dd8f8; }
+    .faq-question-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background: rgba(77,189,232,0.08);
+      border: 1px solid rgba(77,189,232,0.12);
+      color: #4bbde8;
+      transition: transform 0.3s ease, background 0.2s ease;
+    }
+    .faq-item.open .faq-question-icon {
+      transform: rotate(45deg);
+      background: rgba(77,189,232,0.15);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 1.25rem 1rem;
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: #9bb8cc;
+    }
+    .faq-answer-inner ul {
+      margin: 0.5rem 0 0.5rem 1.25rem;
+      padding: 0;
+    }
+    .faq-answer-inner li {
+      margin-bottom: 0.3rem;
+    }
+    .faq-answer-inner strong {
+      color: #b8d4e8;
+      font-weight: 700;
+    }
+    .faq-cta {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding: 2rem;
+      border-radius: 14px;
+      border: 1px solid #1a3a5a44;
+      background: linear-gradient(180deg, rgba(8,20,36,0.92) 0%, rgba(5,13,24,0.96) 100%);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .faq-cta h4 {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #d4f0ff;
+      margin-bottom: 0.5rem;
+    }
+    .faq-cta p {
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.8rem;
+      color: #7da8c4;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .faq-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
+      border: 1px solid #4bbde855;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .faq-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(77,189,232,0.25);
+    }
+    .faq-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.78rem;
+      color: #7da8c4;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .faq-back:hover { color: #7dd8f8; }
   </style>
+
+  <script type="application/ld+json" id="faqJsonLd">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": []
+  }
+  </script>
 </head>
 <body>
   <a href="#support-content" class="skip-link">Saltar al contenido</a>
@@ -509,6 +689,21 @@
         <div class="cat-card" data-faq="interfaz-addons">
           <div class="cat-card-icon">🖥️</div>
           <div class="cat-card-title">Interfaz y AddOns</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ Panel ===== -->
+  <section id="faqPanel" class="support-content-wrap relative px-4 sm:px-6 lg:px-8" style="padding-top: 0; padding-bottom: 4rem;">
+    <div class="max-w-5xl mx-auto">
+      <div class="faq-panel" id="faqPanelContent">
+        <div class="faq-panel-inner">
+          <button class="faq-back" id="faqBackBtn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Volver a categorías
+          </button>
+          <div id="faqCategoryContent"></div>
         </div>
       </div>
     </div>
@@ -745,5 +940,216 @@
     });
   })();
   </script>
-</body>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var faqData = {
+      'primeros-pasos': {
+        icon: '🧭',
+        title: 'Primeros pasos en CoRe Legacy',
+        intro: '¿Quieres volver a jugar a World of Warcraft: Wrath of the Lich King 3.3.5a? En esta sección encontrarás las respuestas a las preguntas más frecuentes sobre cómo empezar a jugar en CoRe Legacy, crear tu cuenta, descargar el cliente, instalar el juego y entrar por primera vez en Azeroth.',
+        cta: {
+          title: '¿Listo para empezar?',
+          text: 'Crea tu cuenta gratuita de CoRe Legacy, descarga el cliente de World of Warcraft 3.3.5a y prepárate para volver a Rasganorte.',
+          btn: 'Crear cuenta gratuita',
+          link: 'https://accounts.corelegacy.gg'
+        },
+        faqs: [
+          { q: '¿Qué es CoRe Legacy?', a: 'CoRe Legacy es un servidor privado de World of Warcraft basado en Wrath of the Lich King 3.3.5a. El proyecto recupera la experiencia clásica de esta versión de WoW incorporando mejoras de calidad de vida, sistemas propios, inteligencia artificial y herramientas pensadas para facilitar tanto el juego individual como el juego en grupo.' },
+          { q: '¿Qué versión de World of Warcraft utiliza CoRe Legacy?', a: 'CoRe Legacy utiliza World of Warcraft: Wrath of the Lich King 3.3.5a, correspondiente a la versión clásica de WotLK. Esta versión incluye Rasganorte, el Caballero de la Muerte, mazmorras y bandas de Wrath of the Lich King, PvP, profesiones, talentos y el contenido característico de esta expansión.' },
+          { q: '¿Se puede jugar gratis a WoW en CoRe Legacy?', a: 'Sí. CoRe Legacy permite crear una cuenta y acceder al servidor sin una suscripción mensual. El registro y el acceso al servidor son gratuitos. Consulta siempre las condiciones y características actuales publicadas en la web oficial de CoRe Legacy.' },
+          { q: '¿Necesito una suscripción de World of Warcraft para jugar en CoRe Legacy?', a: 'No necesitas una suscripción de Blizzard para acceder al servidor de CoRe Legacy. CoRe Legacy funciona como un servidor privado independiente para World of Warcraft 3.3.5a y proporciona su propio sistema de cuentas y cliente de juego.' },
+          { q: '¿Necesito una cuenta de Blizzard para jugar en CoRe Legacy?', a: 'No. Para jugar necesitas una cuenta de CoRe Legacy. La cuenta que utilizas para entrar al servidor es independiente de una cuenta de Blizzard.' },
+          { q: '¿Cómo puedo empezar a jugar a CoRe Legacy?', a: 'Empezar es sencillo:\n<ul><li>Crea una cuenta gratuita de CoRe Legacy.</li><li>Descarga el cliente de World of Warcraft 3.3.5a.</li><li>Descomprime el cliente.</li><li>Abre Wow.exe.</li><li>Introduce tu usuario y contraseña.</li><li>Crea tu personaje y comienza tu aventura.</li></ul>El cliente oficial de CoRe Legacy está preparado para que el proceso de configuración sea lo más sencillo posible.' },
+          { q: '¿Dónde puedo descargar WoW 3.3.5a para CoRe Legacy?', a: 'Puedes descargar el cliente de World of Warcraft 3.3.5a preparado para CoRe Legacy desde la web oficial del servidor. El cliente está diseñado como una versión Ready to Play, por lo que no requiere una instalación tradicional.' },
+          { q: '¿Tengo que instalar World of Warcraft?', a: 'No necesitas realizar una instalación tradicional si utilizas el cliente proporcionado por CoRe Legacy. Después de descargarlo, debes descomprimir los archivos en una carpeta de tu ordenador y ejecutar Wow.exe.' },
+          { q: '¿Cómo instalar WoW 3.3.5a para CoRe Legacy?', a: 'La instalación es muy sencilla:\n<ul><li>Descarga el cliente de CoRe Legacy.</li><li>Localiza el archivo descargado.</li><li>Descomprime su contenido.</li><li>Elige una carpeta de destino.</li><li>Abre la carpeta del juego.</li><li>Ejecuta Wow.exe.</li></ul>No necesitas utilizar un instalador convencional.' },
+          { q: '¿Tengo que cambiar el Realmlist?', a: 'No. El cliente preparado por CoRe Legacy incluye el Realmlist configurado para conectarse al servidor. No necesitas modificar manualmente archivos ni introducir la dirección del servidor.' },
+          { q: '¿Cuál es el Realmlist de CoRe Legacy?', a: 'El Realmlist publicado actualmente por CoRe Legacy es:\n<strong>logon.corelegacy.gg</strong>\nSi utilizas el cliente oficial preparado por CoRe Legacy, no necesitas introducirlo manualmente porque ya viene configurado.' },
+          { q: '¿Qué hago después de descargar el cliente?', a: 'Una vez descargado el cliente: Descargar → Descomprimir → Abrir la carpeta → Ejecutar Wow.exe → Iniciar sesión. No es necesario realizar una instalación compleja ni modificar el Realmlist cuando utilizas el cliente preparado por CoRe Legacy.' },
+          { q: '¿Puedo utilizar un cliente de WoW 3.3.5a que ya tengo?', a: 'Si quieres utilizar un cliente diferente al proporcionado por CoRe Legacy, es recomendable consultar primero las instrucciones oficiales del servidor. El cliente oficial está preparado específicamente para facilitar la conexión y ya incorpora las configuraciones necesarias.' },
+          { q: '¿Qué es WoW 3.3.5a?', a: 'WoW 3.3.5a es una de las versiones más conocidas de World of Warcraft: Wrath of the Lich King. Es la versión asociada tradicionalmente con el contenido completo de WotLK y es utilizada por numerosos proyectos de servidores privados de WoW.' },
+          { q: '¿Qué significa WotLK?', a: 'WotLK significa Wrath of the Lich King, la expansión de World of Warcraft centrada en la historia del Rey Exánime y Rasganorte. CoRe Legacy está basado en WotLK 3.3.5a.' },
+          { q: '¿Qué es Rasganorte?', a: 'Rasganorte es el continente principal de la expansión Wrath of the Lich King. Es el territorio donde se desarrolla gran parte de la aventura de WotLK y donde los jugadores se enfrentan al poder del Rey Exánime.' },
+          { q: '¿Qué razas puedo elegir en CoRe Legacy?', a: 'CoRe Legacy utiliza la estructura de razas de Wrath of the Lich King 3.3.5a. Puedes elegir entre las razas disponibles para la Horda y la Alianza en esta expansión, teniendo en cuenta las restricciones de cada facción y clase.' },
+          { q: '¿Qué clases puedo jugar?', a: 'Puedes jugar las clases disponibles en Wrath of the Lich King 3.3.5a, incluyendo:\n<ul><li>Guerrero</li><li>Paladín</li><li>Cazador</li><li>Pícaro</li><li>Sacerdote</li><li>Caballero de la Muerte</li><li>Chamán</li><li>Mago</li><li>Brujo</li><li>Druida</li></ul>Cada clase tiene diferentes posibilidades de juego, talentos y roles.' },
+          { q: '¿Qué clase debería elegir si soy nuevo en WoW?', a: 'No existe una única clase correcta para todos los jugadores. Si estás empezando, piensa primero en el estilo de juego que prefieres:\n<ul><li><strong>Tanque:</strong> protege al grupo y mantiene la amenaza.</li><li><strong>Sanador:</strong> mantiene con vida a los miembros del grupo.</li><li><strong>DPS:</strong> se centra principalmente en causar daño.</li><li><strong>Cuerpo a cuerpo:</strong> combate principalmente a corta distancia.</li><li><strong>A distancia:</strong> utiliza ataques y hechizos desde lejos.</li></ul>También puedes consultar las guías específicas de clases de CoRe Legacy.' },
+          { q: '¿Qué personaje debería crear para empezar?', a: 'Depende de cómo quieras jugar. Si quieres jugar principalmente en solitario, algunas clases disponen de herramientas especialmente útiles para sobrevivir y progresar por su cuenta. Si quieres hacer mazmorras y bandas, puedes elegir entre DPS, sanador o tanque. Además, CoRe Legacy cuenta con sistemas de IA y compañeros que pueden facilitar determinadas experiencias de juego en solitario o con grupos incompletos.' },
+          { q: '¿Puedo jugar solo en CoRe Legacy?', a: 'Sí. CoRe Legacy incorpora sistemas de Playerbots e inteligencia artificial destinados a mantener el mundo activo y facilitar determinadas actividades incluso cuando no hay suficientes jugadores humanos disponibles. Esto permite disfrutar de contenido PvE y otras actividades sin depender siempre de encontrar un grupo completo.' },
+          { q: '¿Qué son los Playerbots de CoRe Legacy?', a: 'Los Playerbots son personajes controlados por el sistema que pueden participar en el mundo y acompañar a los jugadores. En CoRe Legacy forman parte de su sistema de mundo vivo y están diseñados para ayudar a mantener actividad en Azeroth y facilitar determinadas experiencias de juego.' },
+          { q: '¿Qué tiene de diferente CoRe Legacy respecto a otros servidores de WoW 3.3.5a?', a: 'CoRe Legacy combina la base de WoW WotLK 3.3.5a con diferentes sistemas propios. Entre sus características publicadas se encuentran:\n<ul><li>Inteligencia artificial.</li><li>Playerbots.</li><li>Mundo dinámico.</li><li>Mejoras de calidad de vida.</li><li>Sistemas PvE y PvP.</li><li>Cliente optimizado.</li><li>Vulkan/DXVK.</li><li>Parche 4K.</li><li>Sistemas propios de progresión y personalización.</li></ul>' },
+          { q: '¿CoRe Legacy tiene PvE?', a: 'Sí. Puedes disfrutar de contenido PvE de Wrath of the Lich King, incluyendo mazmorras y bandas, además de los sistemas propios del servidor. El sistema de IA está diseñado, entre otras cosas, para facilitar la formación de grupos y permitir disfrutar de contenido PvE con mayor flexibilidad.' },
+          { q: '¿CoRe Legacy tiene PvP?', a: 'Sí. CoRe Legacy incluye contenido PvP de WotLK y dispone de sistemas destinados a facilitar la participación en campos de batalla y otras modalidades PvP. El servidor también dispone de estadísticas de arena y clasificación de equipos.' },
+          { q: '¿Puedo jugar con amigos?', a: 'Sí. Puedes jugar con otros jugadores de la comunidad, formar grupos, crear una hermandad y participar juntos en contenido PvE y PvP. También puedes combinar jugadores humanos con los sistemas de IA disponibles en el servidor.' },
+          { q: '¿Hay que estar en un grupo para jugar?', a: 'No. Puedes explorar Azeroth, completar misiones y progresar por tu cuenta. Cuando quieras realizar contenido grupal, puedes utilizar los sistemas de búsqueda de grupos y las funcionalidades de IA disponibles en CoRe Legacy.' },
+          { q: '¿Puedo subir un personaje al nivel 80 directamente?', a: 'Sí. CoRe Legacy publica actualmente una promoción de bienvenida con una subida gratuita al nivel 80. El personaje que utiliza esta promoción recibe también equipo inicial, oro, habilidades de clase, rangos de hechizos, bolsas y una montura terrestre. La promoción también puede utilizarse con Caballeros de la Muerte bajo las condiciones indicadas por el servidor.' },
+          { q: '¿Qué incluye la subida gratuita a nivel 80?', a: 'Según las condiciones publicadas actualmente, el boost incluye:\n<ul><li>Nivel 80.</li><li>Equipo inicial.</li><li>1.000 monedas de oro.</li><li>Habilidades de clase.</li><li>Rangos de hechizos.</li><li>Bolsas.</li><li>Montura terrestre.</li></ul>La promoción está pensada para que los jugadores puedan acceder rápidamente al contenido de nivel máximo.' },
+          { q: '¿La subida a nivel 80 es obligatoria?', a: 'No. La promoción permite comenzar directamente en nivel 80, pero puedes disfrutar también de la progresión tradicional de WoW y subir tu personaje mediante la experiencia y el contenido del juego.' },
+          { q: '¿Puedo usar el boost de nivel 80 con un Caballero de la Muerte?', a: 'Sí. CoRe Legacy indica que la promoción también puede utilizarse con Caballeros de la Muerte. En ese caso, el sistema permite saltarse las cadenas iniciales del Bastión de Ébano y comenzar directamente en Rasganorte.' },
+          { q: '¿El personaje que utiliza el boost puede conseguir Primero del Reino Nivel 80?', a: 'No. Los personajes que utilizan la promoción de subida a nivel 80 no pueden conseguir los logros relacionados con Primero del Reino Nivel 80, según las condiciones publicadas por CoRe Legacy.' },
+          { q: '¿Necesito un ordenador potente para jugar a WoW 3.3.5a?', a: 'WoW 3.3.5a es un juego antiguo y sus requisitos base son modestos en comparación con los juegos modernos. El cliente de CoRe Legacy incorpora optimizaciones destinadas a mejorar el rendimiento en equipos actuales, incluyendo Vulkan/DXVK y el parche 4K.' },
+          { q: '¿Qué es Vulkan en CoRe Legacy?', a: 'Vulkan es una API gráfica moderna que puede utilizarse para mejorar la forma en que el juego se comunica con la tarjeta gráfica. El cliente de CoRe Legacy incluye optimización mediante Vulkan/DXVK para proporcionar una experiencia más fluida en equipos compatibles.' },
+          { q: '¿Qué es DXVK?', a: 'DXVK es una tecnología que permite traducir determinadas llamadas gráficas de Direct3D para ejecutarlas mediante Vulkan. En el cliente de CoRe Legacy se utiliza como parte de las optimizaciones gráficas incluidas en el cliente preparado para el servidor.' },
+          { q: '¿Qué es el parche 4K de WoW 3.3.5a?', a: 'El llamado 4K Patch incluido en el cliente de CoRe Legacy no significa que el juego utilice texturas 4K. Su función principal es aumentar la capacidad de memoria que puede utilizar el cliente, ayudando a evitar determinados problemas de estabilidad asociados al cliente clásico. CoRe Legacy indica que su cliente puede utilizar hasta 4 GB de RAM mediante esta modificación.' },
+          { q: '¿El parche 4K añade gráficos HD?', a: 'No. El nombre "4K Patch" puede resultar confuso. En el cliente de CoRe Legacy hace referencia a una modificación relacionada con la memoria del cliente y no significa que se hayan añadido texturas 4K o gráficos HD.' },
+          { q: '¿Qué hago si Wow.exe no se abre?', a: 'Si utilizas el cliente de CoRe Legacy y el juego no se inicia, uno de los problemas posibles está relacionado con la compatibilidad de Vulkan/DXVK con determinadas tarjetas gráficas. CoRe Legacy indica que, en tarjetas que no soportan Vulkan, puedes retirar d3d9.dll y dxgi.dll de la carpeta principal del juego para utilizar el renderizador DirectX 9 nativo.' },
+          { q: '¿Tengo que modificar archivos del juego para conectarme?', a: 'Normalmente no. Si utilizas el cliente oficial preparado por CoRe Legacy, el Realmlist ya viene configurado y no necesitas realizar modificaciones manuales.' },
+          { q: '¿Qué hago si he cambiado el Realmlist por error?', a: 'Si has modificado el Realmlist manualmente y ya no puedes conectarte, restaura la configuración del cliente proporcionado por CoRe Legacy. La opción más sencilla es utilizar una copia limpia del cliente oficial y evitar modificar sus archivos de configuración.' },
+          { q: '¿Qué hago si mi contraseña no funciona?', a: 'Comprueba primero que estás utilizando las credenciales de tu cuenta de CoRe Legacy y que has escrito correctamente el usuario y la contraseña. Si continúas teniendo problemas, utiliza las opciones de recuperación de cuenta disponibles en la plataforma de gestión de cuentas.' },
+          { q: '¿Cómo recupero mi contraseña de CoRe Legacy?', a: 'Puedes utilizar la opción de recuperación de contraseña disponible en el sistema de gestión de cuentas de CoRe Legacy. Si no puedes recuperar el acceso, utiliza los canales oficiales de soporte del servidor.' },
+          { q: '¿Dónde gestiono mi cuenta de CoRe Legacy?', a: 'CoRe Legacy dispone de una plataforma específica de gestión de cuentas desde la que puedes iniciar sesión, crear cuentas, gestionar determinadas opciones y acceder a funciones relacionadas con la cuenta.' },
+          { q: '¿CoRe Legacy tiene autenticación de dos factores?', a: 'Sí. La plataforma de cuentas de CoRe Legacy dispone de una opción de autenticación de dos factores (2FA) para aumentar la seguridad de las cuentas.' },
+          { q: '¿Cómo protejo mi cuenta de CoRe Legacy?', a: 'Utiliza una contraseña exclusiva, evita compartir tus credenciales y activa la autenticación de dos factores cuando esté disponible. Nunca introduzcas tu contraseña en páginas que no pertenezcan a CoRe Legacy.' },
+          { q: '¿Puedo tener varios personajes?', a: 'Sí. Puedes crear y gestionar personajes dentro de los límites establecidos actualmente por CoRe Legacy. Consulta las reglas y características del servidor para conocer las condiciones vigentes.' },
+          { q: '¿Puedo cambiar el nombre de mi personaje?', a: 'La plataforma de gestión de cuentas de CoRe Legacy contempla actualmente servicios relacionados con cambios de nombre, raza y facción. Las condiciones y posibles costes deben consultarse en la tienda del servidor.' },
+          { q: '¿Puedo cambiar de raza o facción?', a: 'CoRe Legacy dispone actualmente de opciones de gestión relacionadas con cambios de raza y facción a través de su plataforma de cuentas. Consulta las condiciones concretas antes de realizar el cambio.' },
+          { q: '¿Qué puedo comprar en la tienda de CoRe Legacy?', a: 'La plataforma de CoRe Legacy incluye actualmente opciones como monturas, títulos, conjuntos de equipo, glifos, mascotas, juguetes, cofres de oro y determinados servicios para personajes. También dispone de sistemas de créditos y Titanio para determinadas mejoras.' },
+          { q: '¿Es obligatorio comprar algo para jugar?', a: 'No. La experiencia básica del servidor puede comenzar sin necesidad de realizar compras. Las opciones disponibles en la tienda son independientes del proceso básico de registro y acceso al servidor.' },
+          { q: '¿Hay una comunidad de CoRe Legacy?', a: 'Sí. CoRe Legacy dispone de una comunidad alrededor del servidor y herramientas para compartir contenido, consultar estadísticas y participar en la actividad del reino. La web también dispone de secciones dedicadas a guías y comunidad.' },
+          { q: '¿Hay soporte para jugadores nuevos?', a: 'Sí. CoRe Legacy dispone de mecanismos de ayuda y soporte, incluyendo la posibilidad de contactar con un MJ mediante ticket y de reportar bugs.' },
+          { q: '¿Cómo puedo reportar un bug?', a: 'Utiliza el sistema oficial de Reportar Bug disponible en la sección de comunidad/soporte de CoRe Legacy. Proporciona toda la información posible: personaje, zona, misión, hechizo, objeto, pasos para reproducir el problema y, cuando sea útil, capturas de pantalla.' },
+          { q: '¿Cómo puedo contactar con un MJ?', a: 'CoRe Legacy dispone de un sistema de tickets para contactar con un MJ. Utilízalo para problemas que necesiten intervención del equipo de soporte y proporciona información precisa sobre lo ocurrido.' },
+          { q: '¿CoRe Legacy está disponible en español?', a: 'Sí. El proyecto está orientado a la comunidad hispanohablante y la web ofrece información y contenido en español.' },
+          { q: '¿Puedo jugar desde España?', a: 'Sí. Puedes acceder al servidor desde España siempre que dispongas de una conexión compatible y cumplas las condiciones de acceso del servidor.' },
+          { q: '¿Puedo jugar desde Latinoamérica?', a: 'Sí. CoRe Legacy está orientado también a jugadores de Latinoamérica y otros países de habla hispana. La latencia dependerá de tu ubicación y de la ruta de conexión hasta los servidores.' },
+          { q: '¿A qué hora puedo jugar en CoRe Legacy?', a: 'El servidor está diseñado para ofrecer actividad durante todo el día. Uno de los objetivos del sistema de IA y Playerbots es mantener el mundo activo incluso durante periodos con menor presencia de jugadores humanos.' },
+          { q: '¿Qué hago si tengo lag?', a: 'Primero comprueba tu conexión a Internet y la latencia hacia el servidor. Después verifica que ningún programa esté consumiendo excesivamente ancho de banda y que tu cliente esté correctamente configurado. Si el problema persiste, consulta el estado del servidor y contacta con soporte proporcionando información sobre tu conexión y el problema observado.' },
+          { q: '¿Qué hago si el juego se cierra inesperadamente?', a: 'Comprueba primero que estás utilizando el cliente actualizado de CoRe Legacy. Si utilizas Vulkan/DXVK y el juego no se inicia o se cierra, comprueba la compatibilidad de tu tarjeta gráfica. En determinados equipos puede ser necesario retirar d3d9.dll y dxgi.dll para utilizar DirectX 9.' },
+          { q: '¿Qué hago si el juego da error #132?', a: 'El cliente de CoRe Legacy incorpora un parche 4K destinado, entre otras cosas, a solucionar problemas relacionados con el límite de memoria del cliente clásico. Si continúas experimentando errores #132, comprueba que estás utilizando correctamente el cliente proporcionado por CoRe Legacy y contacta con soporte si el problema persiste.' },
+          { q: '¿Dónde puedo encontrar las guías de CoRe Legacy?', a: 'La web de CoRe Legacy dispone de una sección de guías y comunidad donde se publican contenidos destinados a ayudar a los jugadores. Entre ellas se incluyen guías sobre el inicio rápido, Playerbots, sistemas del servidor y otras funcionalidades.' },
+          { q: '¿Es CoRe Legacy un servidor Blizzlike?', a: 'CoRe Legacy utiliza como base World of Warcraft WotLK 3.3.5a, pero incorpora sistemas y mejoras propias que van más allá de una experiencia completamente vanilla de esa versión. Entre sus características diferenciadoras están la IA, Playerbots, mejoras de calidad de vida y otros sistemas propios del proyecto.' },
+          { q: '¿Qué significa que CoRe Legacy tenga un mundo vivo?', a: 'El concepto de mundo vivo hace referencia al sistema mediante el cual CoRe Legacy utiliza jugadores autónomos controlados por IA para mantener actividad en el mundo. La cantidad de bots puede adaptarse a la presencia de jugadores reales, de manera que el servidor pueda mantener actividad tanto en periodos de alta como de baja población.' },
+          { q: '¿Puedo hacer mazmorras sin encontrar cinco jugadores?', a: 'El sistema de IA de CoRe Legacy está diseñado para facilitar la creación de grupos y permitir determinadas experiencias PvE utilizando compañeros controlados por el sistema. Esto resulta especialmente útil para jugadores que prefieren jugar solos o que no quieren depender de encontrar un grupo completo.' },
+          { q: '¿Puedo jugar WoW 3.3.5a sin depender de otros jugadores?', a: 'Sí. Aunque World of Warcraft está diseñado como un MMORPG, CoRe Legacy incorpora sistemas de IA y Playerbots que permiten disfrutar de determinadas actividades con compañeros controlados por el servidor. Puedes combinar esta experiencia con el juego tradicional junto a otros jugadores.' },
+          { q: '¿CoRe Legacy tiene contenido para jugadores nuevos y veteranos?', a: 'Sí. Los jugadores que conocen WotLK pueden utilizar la promoción de nivel 80 para acceder rápidamente al contenido de nivel máximo, mientras que los jugadores nuevos pueden aprender progresivamente las mecánicas de World of Warcraft.' },
+          { q: '¿Puedo jugar a mi ritmo?', a: 'Sí. Puedes elegir entre subir de nivel de forma tradicional, utilizar la promoción disponible, realizar misiones, explorar Azeroth, desarrollar profesiones, hacer PvE, participar en PvP o jugar con sistemas de IA.' },
+          { q: '¿Qué debería hacer después de crear mi personaje?', a: 'Si eres nuevo en WotLK, una buena forma de empezar es:\n<ul><li>Aprende las habilidades básicas de tu clase.</li><li>Configura tus barras y teclas.</li><li>Completa algunas misiones.</li><li>Aprende a utilizar talentos y equipo.</li><li>Consigue tus primeras profesiones.</li><li>Experimenta con mazmorras.</li><li>Descubre los sistemas propios de CoRe Legacy.</li></ul>Si ya conoces WoW, puedes utilizar la promoción de nivel 80 y comenzar directamente a preparar tu personaje para contenido de nivel máximo.' },
+          { q: '¿Qué profesiones puedo aprender?', a: 'Puedes aprender las profesiones disponibles en Wrath of the Lich King 3.3.5a. Las profesiones se dividen principalmente entre profesiones de recolección y profesiones de fabricación, además de las profesiones secundarias.' },
+          { q: '¿Qué son los talentos en WoW 3.3.5a?', a: 'Los talentos permiten personalizar las capacidades de tu personaje. En WotLK cada clase dispone de diferentes árboles de talentos que permiten especializarse en diferentes estilos de juego y roles. La elección de talentos puede cambiar considerablemente la forma de jugar una clase.' },
+          { q: '¿Qué es el nivel máximo en WotLK 3.3.5a?', a: 'El nivel máximo de personaje en Wrath of the Lich King 3.3.5a es 80. CoRe Legacy dispone además de una promoción que permite comenzar directamente en nivel 80 bajo las condiciones publicadas por el servidor.' },
+          { q: '¿Qué es una mazmorra en WoW?', a: 'Una mazmorra es una instancia PvE diseñada normalmente para un grupo de jugadores. En ella encontrarás enemigos, jefes, recompensas y diferentes mecánicas que requieren cooperación entre los integrantes del grupo.' },
+          { q: '¿Qué es una raid en WoW?', a: 'Una raid o banda es contenido PvE diseñado para grupos de mayor tamaño y dificultad. Wrath of the Lich King incluye bandas muy conocidas como Naxxramas, Ulduar, Prueba del Cruzado y Ciudadela de la Corona de Hielo.' },
+          { q: '¿Qué es PvE?', a: 'PvE significa Player versus Environment. Es el contenido en el que los jugadores se enfrentan a enemigos controlados por el juego, como criaturas, jefes, mazmorras y bandas.' },
+          { q: '¿Qué es PvP?', a: 'PvP significa Player versus Player. Es el contenido en el que los jugadores se enfrentan directamente a otros jugadores, incluyendo campos de batalla y arenas.' },
+          { q: '¿Qué es un servidor privado de World of Warcraft?', a: 'Un servidor privado de WoW es un servidor independiente del servicio oficial de Blizzard que ejecuta una implementación propia del juego. CoRe Legacy es un proyecto independiente basado en World of Warcraft: Wrath of the Lich King 3.3.5a.' },
+          { q: '¿CoRe Legacy pertenece a Blizzard?', a: 'No. CoRe Legacy es un proyecto independiente y no oficial. World of Warcraft y sus elementos relacionados son propiedad de Blizzard Entertainment.' },
+          { q: '¿Por qué jugar a WoW 3.3.5a en CoRe Legacy?', a: 'CoRe Legacy combina la experiencia de Wrath of the Lich King 3.3.5a con sistemas diseñados para solucionar algunas de las limitaciones habituales de los MMORPG clásicos. Entre ellos se encuentran la IA, Playerbots, mejoras de calidad de vida, sistemas PvE/PvP y un cliente preparado para facilitar la conexión.' },
+          { q: '¿Cuál es el primer paso para jugar a CoRe Legacy?', a: 'El primer paso es crear una cuenta gratuita. Después descarga el cliente oficial de CoRe Legacy, descomprímelo y ejecuta Wow.exe. En pocos pasos podrás comenzar tu aventura en Azeroth.' }
+        ]
+      }
+    };
+
+    var faqPanel = document.getElementById('faqPanelContent');
+    var faqContent = document.getElementById('faqCategoryContent');
+    var faqBackBtn = document.getElementById('faqBackBtn');
+    var catCards = document.querySelectorAll('.cat-card');
+    var jsonLdEl = document.getElementById('faqJsonLd');
+
+    function renderFaqCategory(catId) {
+      var data = faqData[catId];
+      if (!data) return;
+
+      var html = '<div class="faq-intro">';
+      html += '<h3>' + data.icon + ' ' + escapeHtml(data.title) + '</h3>';
+      html += '<p>' + escapeHtml(data.intro) + '</p>';
+      html += '</div>';
+      html += '<div class="faq-list">';
+
+      data.faqs.forEach(function (faq, i) {
+        html += '<div class="faq-item" id="faq-' + i + '">';
+        html += '<div class="faq-question" tabindex="0" role="button" aria-expanded="false">';
+        html += '<span>' + escapeHtml(faq.q) + '</span>';
+        html += '<span class="faq-question-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>';
+        html += '</div>';
+        html += '<div class="faq-answer"><div class="faq-answer-inner">' + faq.a.replace(/\n/g, '<br>') + '</div></div>';
+        html += '</div>';
+      });
+
+      html += '</div>';
+
+      if (data.cta) {
+        html += '<div class="faq-cta">';
+        html += '<h4>' + escapeHtml(data.cta.title) + '</h4>';
+        html += '<p>' + escapeHtml(data.cta.text) + '</p>';
+        html += '<a class="faq-cta-btn" href="' + data.cta.link + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(data.cta.btn) + '</a>';
+        html += '</div>';
+      }
+
+      faqContent.innerHTML = html;
+      updateJsonLd(data);
+
+      var items = faqContent.querySelectorAll('.faq-item');
+      items.forEach(function (item) {
+        var question = item.querySelector('.faq-question');
+        var answer = item.querySelector('.faq-answer');
+
+        function toggle() {
+          var isOpen = item.classList.contains('open');
+          if (isOpen) {
+            answer.style.maxHeight = '0';
+            item.classList.remove('open');
+            question.setAttribute('aria-expanded', 'false');
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            item.classList.add('open');
+            question.setAttribute('aria-expanded', 'true');
+          }
+        }
+
+        question.addEventListener('click', toggle);
+        question.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
+    }
+
+    function updateJsonLd(data) {
+      if (!jsonLdEl) return;
+      var entity = data.faqs.map(function (faq) {
+        return {
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.a.replace(/<[^>]*>/g, '').replace(/\n/g, ' ')
+          }
+        };
+      });
+      jsonLdEl.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: entity
+      });
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    catCards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        var catId = this.getAttribute('data-faq');
+        if (faqData[catId]) {
+          renderFaqCategory(catId);
+          faqPanel.classList.add('open');
+          faqPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    if (faqBackBtn) {
+      faqBackBtn.addEventListener('click', function () {
+        faqPanel.classList.remove('open');
+        document.getElementById('support-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  })();
+  </script>
 </html>

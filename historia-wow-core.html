@@ -227,6 +227,80 @@
     @media (max-width: 768px) {
       .about-panel-body { padding: 1.5rem 1.25rem 2rem; }
     }
+
+    /* ===== Carousel ===== */
+    .expocomic-carousel {
+      position: relative;
+      margin: 1.5rem 0 0.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #1a3a5a55;
+      box-shadow: 0 0 20px rgba(26,159,212,0.1), 0 8px 30px rgba(0,0,0,0.4);
+      background: #050d18;
+    }
+    .expocomic-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .expocomic-slide {
+      min-width: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: #050d18;
+    }
+    .expocomic-slide img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+    .expocomic-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid #4bbde866;
+      background: rgba(5,13,24,0.8);
+      backdrop-filter: blur(4px);
+      color: #d4f0ff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    }
+    .expocomic-btn:hover {
+      background: rgba(26,159,212,0.3);
+      border-color: #4bbde8;
+      box-shadow: 0 0 20px rgba(77,189,232,0.4);
+    }
+    .expocomic-btn.prev { left: 0.75rem; }
+    .expocomic-btn.next { right: 0.75rem; }
+    .expocomic-dots {
+      position: absolute;
+      bottom: 0.75rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 0.5rem;
+      z-index: 5;
+    }
+    .expocomic-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none; cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+    .expocomic-dot.active {
+      background: #4bbde8;
+      box-shadow: 0 0 8px rgba(77,189,232,0.6);
+      transform: scale(1.2);
+    }
+    @media (max-width: 768px) {
+      .expocomic-slide img { max-height: 320px; }
+      .expocomic-btn { width: 36px; height: 36px; }
+    }
   </style>
 </head>
 <body>
@@ -322,6 +396,23 @@
 
           <h2>Expocómic y Expomanga (Madrid)</h2>
           <p>Fue ya en el año <strong>2010</strong> cuando WoW CoRe asistía a los eventos Expocómic y Expomanga de Madrid, donde repartían mascotas y monturas a todos los que se pasaban a verlos. Además, una gran lona de <strong>10m por 3m</strong> de publicidad de WoW CoRe era el fondo del escenario principal. Una anécdota fue que la organización del salón trajo a varios dobladores de series y pelis y uno de ellos se asombró al ver la lona, señalando a un Pandaren y comentando que él había puesto varias de las voces del juego.</p>
+
+          <div class="expocomic-carousel" id="expocomicCarousel">
+            <div class="expocomic-track" id="expocomicTrack">
+              <div class="expocomic-slide"><img src="/assets/poster_wowcore_expocomic_1.jpg" alt="WoW CoRe en Expocómic 2010 - Foto 1" loading="lazy" /></div>
+              <div class="expocomic-slide"><img src="/assets/poster_wowcore_expocomic_2.jpg" alt="WoW CoRe en Expocómic 2010 - Foto 2" loading="lazy" /></div>
+              <div class="expocomic-slide"><img src="/assets/poster_wowcore_expocomic_3.jpg" alt="WoW CoRe en Expocómic 2010 - Foto 3" loading="lazy" /></div>
+              <div class="expocomic-slide"><img src="/assets/poster_wowcore_expocomic_4.jpg" alt="WoW CoRe en Expocómic 2010 - Foto 4" loading="lazy" /></div>
+              <div class="expocomic-slide"><img src="/assets/poster_wowcore_expocomic_5.jpg" alt="WoW CoRe en Expocómic 2010 - Foto 5" loading="lazy" /></div>
+            </div>
+            <button class="expocomic-btn prev" type="button" aria-label="Imagen anterior" onclick="expocomicCarouselGo(-1)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="expocomic-btn next" type="button" aria-label="Imagen siguiente" onclick="expocomicCarouselGo(1)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <div class="expocomic-dots" id="expocomicDots"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -455,6 +546,54 @@
   </button>
 
   <script src="/assets/legal.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var track = document.getElementById('expocomicTrack');
+    var dotsContainer = document.getElementById('expocomicDots');
+    if (!track || !dotsContainer) return;
+    var slides = track.querySelectorAll('.expocomic-slide');
+    var current = 0;
+    var total = slides.length;
+
+    for (var i = 0; i < total; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'expocomic-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Ir a la imagen ' + (i + 1));
+      dot.addEventListener('click', function (idx) {
+        return function () { current = idx; updateCarousel(); };
+      }(i));
+      dotsContainer.appendChild(dot);
+    }
+    var dots = dotsContainer.querySelectorAll('.expocomic-dot');
+
+    function updateCarousel() {
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.toggle('active', i === current);
+      }
+    }
+
+    window.expocomicCarouselGo = function (dir) {
+      current = (current + dir + total) % total;
+      updateCarousel();
+    };
+
+    var autoplay = setInterval(function () {
+      current = (current + 1) % total;
+      updateCarousel();
+    }, 5000);
+
+    var carousel = document.getElementById('expocomicCarousel');
+    carousel.addEventListener('mouseenter', function () { clearInterval(autoplay); });
+    carousel.addEventListener('mouseleave', function () {
+      autoplay = setInterval(function () {
+        current = (current + 1) % total;
+        updateCarousel();
+      }, 5000);
+    });
+  })();
+  </script>
   <script>
   (function () {
     'use strict';

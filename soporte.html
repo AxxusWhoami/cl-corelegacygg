@@ -1960,24 +1960,32 @@
 
       html += '</div>';
 
-      if (data.cta) {
-        html += '<div class="faq-cta">';
-        html += '<div class="frost-divider" style="width:120px; margin:0 auto 1.5rem;"></div>';
-        html += '<h4>' + escapeHtml(data.cta.title) + '</h4>';
-        html += '<p>' + escapeHtml(data.cta.text) + '</p>';
-        if (data.cta.tagline) {
-          html += '<p class="faq-cta-tagline">' + escapeHtml(data.cta.tagline) + '</p>';
-        }
-        html += '<div class="faq-cta-buttons">';
-        html += '<a class="faq-cta-btn-primary" href="' + data.cta.linkPrimary + '" target="_blank" rel="noopener noreferrer">';
-        html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>';
-        html += escapeHtml(data.cta.btnPrimary) + '</a>';
-        html += '<a class="faq-cta-btn-secondary" href="' + data.cta.linkSecondary + '" download>';
-        html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
-        html += escapeHtml(data.cta.btnSecondary) + '</a>';
-        html += '</div>';
-        html += '</div>';
+      var cta = data.cta || {
+        title: '¿Listo para jugar?',
+        text: 'Crea tu cuenta gratuita de CoRe Legacy, descarga el cliente de World of Warcraft 3.3.5a y prepárate para volver a Azeroth.',
+        tagline: 'CoRe Legacy — Wrath of the Lich King 3.3.5a · Tu aventura. Tu legado. Azeroth vuelve a estar vivo.',
+        btnPrimary: 'Crear Cuenta',
+        linkPrimary: 'https://accounts.corelegacy.gg/crear-cuenta',
+        btnSecondary: 'Descargar Cliente',
+        linkSecondary: 'https://downloads.corelegacy.gg/CoRe%20Legacy.zip'
+      };
+
+      html += '<div class="faq-cta">';
+      html += '<div class="frost-divider" style="width:120px; margin:0 auto 1.5rem;"></div>';
+      html += '<h4>' + escapeHtml(cta.title) + '</h4>';
+      html += '<p>' + escapeHtml(cta.text) + '</p>';
+      if (cta.tagline) {
+        html += '<p class="faq-cta-tagline">' + escapeHtml(cta.tagline) + '</p>';
       }
+      html += '<div class="faq-cta-buttons">';
+      html += '<a class="faq-cta-btn-primary" href="' + cta.linkPrimary + '" target="_blank" rel="noopener noreferrer">';
+      html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>';
+      html += escapeHtml(cta.btnPrimary) + '</a>';
+      html += '<a class="faq-cta-btn-secondary" href="' + cta.linkSecondary + '" download>';
+      html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+      html += escapeHtml(cta.btnSecondary) + '</a>';
+      html += '</div>';
+      html += '</div>';
 
       faqContent.innerHTML = html;
       updateJsonLd(data);

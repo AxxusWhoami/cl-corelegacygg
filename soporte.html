@@ -1517,8 +1517,9 @@
         title: 'Primeros pasos en CoRe Legacy',
         intro: '¿Quieres volver a jugar a World of Warcraft: Wrath of the Lich King 3.3.5a? En esta sección encontrarás las respuestas a las preguntas más frecuentes sobre cómo empezar a jugar en CoRe Legacy, crear tu cuenta, descargar el cliente, instalar el juego y entrar por primera vez en Azeroth.',
         cta: {
-          title: 'Tu Aventura en Rasganorte Te Espera',
-          text: 'Crea tu cuenta gratis y descarga el cliente para empezar a jugar hoy mismo. CoRe Legacy te ofrece un mundo vivo, inteligencia artificial, PvE, PvP y comunidad activa las 24 horas.',
+          title: '¿Listo para empezar?',
+          text: 'Crea tu cuenta gratuita de CoRe Legacy, descarga el cliente de World of Warcraft 3.3.5a y prepárate para volver a Rasganorte.',
+          tagline: 'CoRe Legacy — Wrath of the Lich King 3.3.5a · Tu aventura. Tu legado. Azeroth vuelve a estar vivo.',
           btnPrimary: 'Crear Cuenta',
           linkPrimary: 'https://accounts.corelegacy.gg/crear-cuenta',
           btnSecondary: 'Descargar Cliente',
@@ -1647,6 +1648,9 @@
         html += '<div class="frost-divider" style="width:120px; margin:0 auto 1.5rem;"></div>';
         html += '<h4>' + escapeHtml(data.cta.title) + '</h4>';
         html += '<p>' + escapeHtml(data.cta.text) + '</p>';
+        if (data.cta.tagline) {
+          html += '<p style="margin-top:-0.5rem; font-size:0.82rem; color:#8dd6f5; letter-spacing:0.04em;">' + escapeHtml(data.cta.tagline) + '</p>';
+        }
         html += '<div class="faq-cta-buttons">';
         html += '<a class="faq-cta-btn-primary" href="' + data.cta.linkPrimary + '" target="_blank" rel="noopener noreferrer">';
         html += '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>';

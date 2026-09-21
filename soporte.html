@@ -510,6 +510,16 @@
       color: #b8d4e8;
       margin-bottom: 2rem;
     }
+    .faq-cta-tagline {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #8dd6f5;
+      letter-spacing: 0.04em;
+      margin-top: -0.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 8px rgba(77,189,232,0.2);
+    }
     .faq-cta-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -1649,7 +1659,7 @@
         html += '<h4>' + escapeHtml(data.cta.title) + '</h4>';
         html += '<p>' + escapeHtml(data.cta.text) + '</p>';
         if (data.cta.tagline) {
-          html += '<p style="margin-top:-0.5rem; font-size:0.82rem; color:#8dd6f5; letter-spacing:0.04em;">' + escapeHtml(data.cta.tagline) + '</p>';
+          html += '<p class="faq-cta-tagline">' + escapeHtml(data.cta.tagline) + '</p>';
         }
         html += '<div class="faq-cta-buttons">';
         html += '<a class="faq-cta-btn-primary" href="' + data.cta.linkPrimary + '" target="_blank" rel="noopener noreferrer">';
@@ -1762,6 +1772,14 @@
     window.__faqData = faqData;
     window.__renderFaqCategory = renderFaqCategory;
     window.__faqPanel = faqPanel;
+
+    if (window.location.hash === '#primeros-pasos' || window.location.hash === '#faq') {
+      renderFaqCategory('primeros-pasos');
+      faqPanel.classList.add('open');
+      setTimeout(function () {
+        faqPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   })();
   </script>
 

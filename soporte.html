@@ -934,62 +934,62 @@
         <p style="font-family:'Cinzel',Georgia,serif; font-size: 0.8rem; color: #7da8c4; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem;">Selecciona una categoría</p>
       </div>
       <div class="cat-grid reveal">
-        <div class="cat-card" data-faq="primeros-pasos">
+        <a class="cat-card" data-faq="primeros-pasos" href="#primeros-pasos" id="cat-primeros-pasos">
           <div class="cat-card-icon">🧭</div>
           <div class="cat-card-title">Primeros pasos</div>
-        </div>
-        <div class="cat-card" data-faq="personajes-clases">
+        </a>
+        <a class="cat-card" data-faq="personajes-clases" href="#personajes-clases" id="cat-personajes-clases">
           <div class="cat-card-icon">🧙</div>
           <div class="cat-card-title">Personajes y clases</div>
-        </div>
-        <div class="cat-card" data-faq="combate-mecanicas">
+        </a>
+        <a class="cat-card" data-faq="combate-mecanicas" href="#combate-mecanicas" id="cat-combate-mecanicas">
           <div class="cat-card-icon">⚔️</div>
           <div class="cat-card-title">Combate y mecánicas</div>
-        </div>
-        <div class="cat-card" data-faq="niveles-progresion">
+        </a>
+        <a class="cat-card" data-faq="niveles-progresion" href="#niveles-progresion" id="cat-niveles-progresion">
           <div class="cat-card-icon">📈</div>
           <div class="cat-card-title">Niveles y progresión</div>
-        </div>
-        <div class="cat-card" data-faq="mundo-exploracion">
+        </a>
+        <a class="cat-card" data-faq="mundo-exploracion" href="#mundo-exploracion" id="cat-mundo-exploracion">
           <div class="cat-card-icon">🗺️</div>
           <div class="cat-card-title">Mundo y exploración</div>
-        </div>
-        <div class="cat-card" data-faq="misiones">
+        </a>
+        <a class="cat-card" data-faq="misiones" href="#misiones" id="cat-misiones">
           <div class="cat-card-icon">📜</div>
           <div class="cat-card-title">Misiones</div>
-        </div>
-        <div class="cat-card" data-faq="mazmorras-raids">
+        </a>
+        <a class="cat-card" data-faq="mazmorras-raids" href="#mazmorras-raids" id="cat-mazmorras-raids">
           <div class="cat-card-icon">🏰</div>
           <div class="cat-card-title">Mazmorras y Raids</div>
-        </div>
-        <div class="cat-card" data-faq="pvp">
+        </a>
+        <a class="cat-card" data-faq="pvp" href="#pvp" id="cat-pvp">
           <div class="cat-card-icon">🛡️</div>
           <div class="cat-card-title">PvP</div>
-        </div>
-        <div class="cat-card" data-faq="economia">
+        </a>
+        <a class="cat-card" data-faq="economia" href="#economia" id="cat-economia">
           <div class="cat-card-icon">💰</div>
           <div class="cat-card-title">Economía</div>
-        </div>
-        <div class="cat-card" data-faq="profesiones">
+        </a>
+        <a class="cat-card" data-faq="profesiones" href="#profesiones" id="cat-profesiones">
           <div class="cat-card-icon">🔨</div>
           <div class="cat-card-title">Profesiones</div>
-        </div>
-        <div class="cat-card" data-faq="objetos-equipamiento">
+        </a>
+        <a class="cat-card" data-faq="objetos-equipamiento" href="#objetos-equipamiento" id="cat-objetos-equipamiento">
           <div class="cat-card-icon">🎒</div>
           <div class="cat-card-title">Objetos y equipamiento</div>
-        </div>
-        <div class="cat-card" data-faq="talentos-builds">
+        </a>
+        <a class="cat-card" data-faq="talentos-builds" href="#talentos-builds" id="cat-talentos-builds">
           <div class="cat-card-icon">🏹</div>
           <div class="cat-card-title">Talentos y builds</div>
-        </div>
-        <div class="cat-card" data-faq="comunidad">
+        </a>
+        <a class="cat-card" data-faq="comunidad" href="#comunidad" id="cat-comunidad">
           <div class="cat-card-icon">👥</div>
           <div class="cat-card-title">Comunidad</div>
-        </div>
-        <div class="cat-card" data-faq="interfaz-addons">
+        </a>
+        <a class="cat-card" data-faq="interfaz-addons" href="#interfaz-addons" id="cat-interfaz-addons">
           <div class="cat-card-icon">🖥️</div>
           <div class="cat-card-title">Interfaz y AddOns</div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -3784,9 +3784,13 @@
     })();
 
     catCards.forEach(function (card) {
-      card.addEventListener('click', function () {
+      card.addEventListener('click', function (e) {
+        e.preventDefault();
         var catId = this.getAttribute('data-faq');
         if (faqData[catId]) {
+          if (window.location.hash !== '#' + catId) {
+            history.pushState(null, '', '#' + catId);
+          }
           renderFaqCategory(catId);
           faqPanel.classList.add('open');
           faqPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -3805,13 +3809,29 @@
     window.__renderFaqCategory = renderFaqCategory;
     window.__faqPanel = faqPanel;
 
-    if (window.location.hash === '#primeros-pasos' || window.location.hash === '#faq') {
+    var hash = window.location.hash.replace('#', '');
+    if (hash && faqData[hash]) {
+      renderFaqCategory(hash);
+      faqPanel.classList.add('open');
+      setTimeout(function () {
+        faqPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    } else if (hash === 'faq') {
       renderFaqCategory('primeros-pasos');
       faqPanel.classList.add('open');
       setTimeout(function () {
         faqPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
+
+    window.addEventListener('hashchange', function () {
+      var newHash = window.location.hash.replace('#', '');
+      if (newHash && faqData[newHash]) {
+        renderFaqCategory(newHash);
+        faqPanel.classList.add('open');
+        faqPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   })();
   </script>
 

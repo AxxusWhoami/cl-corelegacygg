@@ -51,6 +51,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^tops/?$ /tops.html [L]
 
+# Clean URL: /historia-wow-core -> /historia-wow-core.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^historia-wow-core/?$ /historia-wow-core.html [L]
+
 # Legal deep links -> legal-page.php (serves correct meta tags)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

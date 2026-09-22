@@ -1,5 +1,14 @@
 RewriteEngine On
 
+# Prevent browsers from caching HTML pages (always serve latest version)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
 # Block direct access to sensitive files
 RewriteRule ^params\.php$ - [F,L]
 RewriteRule ^\.env$ - [F,L]
@@ -34,7 +43,7 @@ RewriteRule ^sobre-nosotros/?$ /sobre-nosotros.html [L]
 # Clean URL: /soporte -> /soporte.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^soporte/?$ /soporte.php [L]
+RewriteRule ^soporte/?$ /soporte.html [L]
 
 # Clean URLs: /comunidad -> /comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f

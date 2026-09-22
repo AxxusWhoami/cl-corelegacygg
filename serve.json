@@ -10,13 +10,23 @@
     { "source": "/sobre-nosotros/", "destination": "/sobre-nosotros.html" },
     { "source": "/soporte", "destination": "/soporte.html" },
     { "source": "/soporte/", "destination": "/soporte.html" },
-    { "source": "/terminos-de-servicio", "destination": "/index.html" },
-    { "source": "/terminos-de-servicio/", "destination": "/index.html" },
-    { "source": "/politica-de-privacidad", "destination": "/index.html" },
-    { "source": "/politica-de-privacidad/", "destination": "/index.html" },
+    { "source": "/noticias", "destination": "/noticias.html" },
+    { "source": "/noticias/", "destination": "/noticias.html" },
+    { "source": "/tops", "destination": "/tops.html" },
+    { "source": "/tops/", "destination": "/tops.html" },
+    { "source": "/historia-wow-core", "destination": "/historia-wow-core.html" },
+    { "source": "/historia-wow-core/", "destination": "/historia-wow-core.html" },
+    { "source": "/calculadora", "destination": "/calculadora.html" },
+    { "source": "/calculadora/", "destination": "/calculadora.html" },
+    { "source": "/terminos-de-servicio", "destination": "/legal-page.php" },
+    { "source": "/terminos-de-servicio/", "destination": "/legal-page.php" },
+    { "source": "/politica-de-privacidad", "destination": "/legal-page.php" },
+    { "source": "/politica-de-privacidad/", "destination": "/legal-page.php" },
     { "source": "/abrir-ticket", "destination": "/comunidad.html" },
     { "source": "/abrir-ticket/", "destination": "/comunidad.html" },
     { "source": "/reportar-bug", "destination": "/comunidad.html" },
-    { "source": "/reportar-bug/", "destination": "/comunidad.html" }
+    { "source": "/reportar-bug/", "destination": "/comunidad.html" },
+    { "source": "/highlights-gameplays", "destination": "/comunidad.html" },
+    { "source": "/highlights-gameplays/", "destination": "/comunidad.html" }
   ]
 }

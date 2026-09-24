@@ -2,7 +2,7 @@
 
 [![Open in Bolt](https://bolt.new/static/open-in-bolt.svg)](https://bolt.new/~/sb1-cmghnodx)
 
-Sitio web del servidor privado de World of Warcraft: Wrath of the Lich King (WotLK) 3.3.5a **CoRe Legacy**. Pagina de aterrizaje, comunidad, guias, registro de cuenta, estado del reino y changelog, con estetica visual de hielo y oro inspirada en Rasganorte.
+Sitio web del servidor privado de World of Warcraft: Wrath of the Lich King (WotLK) 3.3.5a **CoRe Legacy**. Pagina de aterrizaje, comunidad, guias, registro de cuenta, estado del reino y changelog, con estetica visual de hielo y oro inspirada en Rasganorte..
 
 ## Tecnologia
 

@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 }
 
 require __DIR__ . '/../params.php';
+require __DIR__ . '/ratelimit.php';
+check_rate_limit($DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
 
 function respond(int $status, array $payload): void
 {
@@ -98,7 +100,7 @@ $REALM_FIRST_IDS = [
 
 // TTL de 1 hora para el caché de Redis (3600 segundos).
 $CACHE_TTL = 3600;
-$cacheKey  = $REDIS_PREFIX . 'realmfirst:v3';
+$cacheKey  = $ARMORY_REDIS_PREFIX . 'realmfirst:v3';
 
 // ¿Es una petición de refresco del cron?
 $isRefresh = isset($_GET['refresh']) && $_GET['refresh'] === '1';
@@ -108,8 +110,8 @@ if (!$isRefresh) {
     if (class_exists('Redis', false)) {
         try {
             $redis = new Redis();
-            if ($redis->connect($REDIS_SOCK, 0, 2) === true) {
-                $redis->select((int) $REDIS_DB);
+            if ($redis->connect($ARMORY_REDIS_SOCKET, 0, 2) === true) {
+                $redis->select((int) $ARMORY_REDIS_DB);
                 $raw = $redis->get($cacheKey);
                 if (is_string($raw) && $raw !== '') {
                     $cached = json_decode($raw, true);
@@ -200,8 +202,8 @@ $payload = [
 if (class_exists('Redis', false)) {
     try {
         $redis = new Redis();
-        if ($redis->connect($REDIS_SOCK, 0, 2) === true) {
-            $redis->select((int) $REDIS_DB);
+        if ($redis->connect($ARMORY_REDIS_SOCKET, 0, 2) === true) {
+            $redis->select((int) $ARMORY_REDIS_DB);
             $redis->setex($cacheKey, $CACHE_TTL, json_encode($payload, JSON_UNESCAPED_UNICODE));
         }
     } catch (Exception $e) {

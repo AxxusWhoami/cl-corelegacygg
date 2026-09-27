@@ -583,6 +583,65 @@
       opacity: 0.7;
     }
 
+    /* ===== Banner horizontal: Armería ===== */
+    .armery-banner {
+      position: relative;
+      border: 1px solid #4bbde844;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(8,18,30,0.95) 0%, rgba(4,10,20,0.98) 100%);
+      box-shadow: 0 0 25px rgba(77,189,232,0.1), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(77,189,232,0.03);
+    }
+    .armery-banner::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.3) 0%, rgba(26,159,212,0.1) 50%, rgba(13,110,168,0.25) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .armery-banner-inner {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.5rem 2rem;
+    }
+    .armery-banner-text { flex: 1; min-width: 0; }
+    .armery-banner-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+    .armery-banner-icon {
+      font-size: 1.6rem; line-height: 1;
+      filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));
+    }
+    .armery-banner-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700; font-size: 1.05rem; color: var(--ice-100);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(77,189,232,0.3);
+    }
+    .armery-banner-desc {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.85rem; line-height: 1.7; color: #a8c8d8;
+      margin: 0;
+    }
+    .armery-banner-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em;
+      color: #d4f0ff;
+      background: linear-gradient(180deg, rgba(77,189,232,0.2) 0%, rgba(13,110,168,0.1) 100%);
+      border: 1px solid #4bbde8; border-radius: 10px;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      box-shadow: 0 0 16px rgba(77,189,232,0.15);
+      transition: all 0.3s ease;
+    }
+    .armery-banner-btn:hover {
+      box-shadow: 0 0 24px rgba(77,189,232,0.35);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .armery-banner-inner { flex-direction: column; align-items: flex-start; gap: 1.25rem; padding: 1.25rem 1rem; }
+      .armery-banner-btn { width: 100%; justify-content: center; }
+      .armery-banner-title { font-size: 0.95rem; }
+      .armery-banner-desc { font-size: 0.78rem; line-height: 1.6; }
+    }
 
     /* ===== Highlights de la comunidad ===== */
     .hl-panel {
@@ -1143,6 +1202,25 @@
             </div>
           </div>
 
+          <!-- ===== Banner horizontal: Armería ===== -->
+          <div class="armery-banner" style="width:100%; margin-top:2.5rem;">
+            <div class="armery-banner-inner">
+              <div class="armery-banner-text">
+                <div class="armery-banner-header">
+                  <span class="armery-banner-icon">🛡️</span>
+                  <span class="armery-banner-title">Busca Héroes y Bots en la Armería</span>
+                </div>
+                <p class="armery-banner-desc">
+                  ¿Te preguntas quién domina las arenas o quieres espiar el equipo de tus rivales antes de la gran batalla? La <strong>Armería de CoRe Legacy</strong> te abre las puertas del conocimiento: busca cualquier personaje del reino, consulta su equipamiento, logros, estadísticas de arena y mucho más. Y si juegas con playerbots, también puedes localizarlos y seguir su progreso.
+                </p>
+              </div>
+              <a href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer" class="armery-banner-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Abrir la Armería
+              </a>
+            </div>
+          </div>
+
           <!-- ===== Arena Stats Panel ===== -->
           <div class="arena-panel" style="width:100%; margin-top:2.5rem;">
             <div class="arena-panel-header">
@@ -1249,36 +1327,6 @@
             </div>
           </div>
 
-          <div class="raa-panel" style="width:100%;">
-            <div class="raa-panel-header">
-              <span style="font-size:1.6rem; line-height:1; filter: drop-shadow(0 0 8px rgba(77,189,232,0.5));">🛡️</span>
-              <span class="raa-panel-title">Busca Héroes y Bots en la Armería</span>
-            </div>
-            <div class="raa-panel-body">
-              <p class="raa-intro">
-                ¿Te preguntas quién domina las arenas o quieres espiar el equipo de tus rivales antes de la gran batalla? La <strong>Armería de CoRe Legacy</strong> te abre las puertas del conocimiento: busca cualquier personaje del reino, consulta su equipamiento, logros, estadísticas de arena y mucho más. Y si juegas con playerbots, también puedes localizarlos y seguir su progreso. Conviértete en el estratega que tu hermandad necesita.
-              </p>
-              <div class="raa-reward">
-                <span class="raa-reward-icon">⚔️</span>
-                <span class="raa-reward-text">
-                  <strong>Conoce a tu enemigo:</strong> Revisa los mejores equipos de arena, descubre qué builds arrasan en PvE y prepara tu contraataque antes de pisar el campo de batalla.
-                </span>
-              </div>
-              <div style="text-align:center;">
-                <a href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer"
-                   style="display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.25rem; padding:0.7rem 1.5rem;
-                          font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:0.82rem; font-weight:700; letter-spacing:0.06em;
-                          color:#d4f0ff; background:linear-gradient(180deg, rgba(77,189,232,0.2) 0%, rgba(13,110,168,0.1) 100%);
-                          border:1px solid #4bbde8; border-radius:10px; text-decoration:none; cursor:pointer;
-                          box-shadow:0 0 16px rgba(77,189,232,0.15); transition:all 0.3s ease;"
-                   onmouseover="this.style.boxShadow='0 0 24px rgba(77,189,232,0.35)'; this.style.transform='translateY(-2px)';"
-                   onmouseout="this.style.boxShadow='0 0 16px rgba(77,189,232,0.15)'; this.style.transform='translateY(0)';">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  Abrir la Armería
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
 
       </div>

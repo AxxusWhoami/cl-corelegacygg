@@ -555,6 +555,7 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
           <a class="nav-link" href="/info-changelog">Server y Changelog</a>
           <a class="nav-link" href="/soporte">Soporte</a>
           <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+          <a class="nav-link" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
         </nav>
 
         <div class="flex items-center gap-3">
@@ -573,6 +574,7 @@ $turnstileKey = $TURNSTILE_SITE_KEY;
         <a class="nav-link block" href="/info-changelog">Server y Changelog</a>
         <a class="nav-link block" href="/soporte">Soporte</a>
         <a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
+        <a class="nav-link block" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
       </div>
     </div>
   </header>

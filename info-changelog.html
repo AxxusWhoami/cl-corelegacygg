@@ -537,6 +537,20 @@
                   </div>
                 </div>
               </div>
+              <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1rem; position:relative; z-index:1;" id="statusStats">
+                <div style="flex:1 1 80px; padding:0.6rem 0.8rem; background:rgba(13,110,168,0.06); border:1px solid #1a3a5a33; border-radius:8px; text-align:center;">
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:0.6rem; color:#5a6878; letter-spacing:0.1em; text-transform:uppercase;">Jugadores</div>
+                  <div id="statusPlayers" style="font-family:'Cinzel',Georgia,serif; font-size:1.1rem; color:#56f0a8; margin-top:0.2rem;">—</div>
+                </div>
+                <div style="flex:1 1 80px; padding:0.6rem 0.8rem; background:rgba(13,110,168,0.06); border:1px solid #1a3a5a33; border-radius:8px; text-align:center;">
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:0.6rem; color:#5a6878; letter-spacing:0.1em; text-transform:uppercase;">Uptime</div>
+                  <div id="statusUptime" style="font-family:'Cinzel',Georgia,serif; font-size:1.1rem; color:#7dd8f8; margin-top:0.2rem;">—</div>
+                </div>
+                <div style="flex:1 1 80px; padding:0.6rem 0.8rem; background:rgba(13,110,168,0.06); border:1px solid #1a3a5a33; border-radius:8px; text-align:center;">
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:0.6rem; color:#5a6878; letter-spacing:0.1em; text-transform:uppercase;">Récord</div>
+                  <div id="statusMax" style="font-family:'Cinzel',Georgia,serif; font-size:1.1rem; color:#f0c850; margin-top:0.2rem;">—</div>
+                </div>
+              </div>
               <div style="margin-top:1.25rem; padding:0.75rem 1rem; background:rgba(13,110,168,0.08); border:1px solid #1a3a5a44; border-radius:8px; position:relative; z-index:1;">
                 <span style="font-family:'Cinzel',Georgia,serif; font-size:0.7rem; color:#7a8a98; letter-spacing:0.12em; text-transform:uppercase; display:block; margin-bottom:0.35rem;">Realmlist</span>
                 <div style="display:flex; align-items:center; gap:0.5rem;">
@@ -770,6 +784,19 @@
       var loginRow = document.getElementById('statusLogin');
       var realmRow = document.getElementById('statusRealm');
       var meta = document.getElementById('statusMeta');
+      var playersEl = document.getElementById('statusPlayers');
+      var uptimeEl = document.getElementById('statusUptime');
+      var maxEl = document.getElementById('statusMax');
+
+      function formatUptime(seconds) {
+        if (!seconds || seconds < 1) return '—';
+        var d = Math.floor(seconds / 86400);
+        var h = Math.floor((seconds % 86400) / 3600);
+        var m = Math.floor((seconds % 3600) / 60);
+        if (d > 0) return d + 'd ' + h + 'h';
+        if (h > 0) return h + 'h ' + m + 'm';
+        return m + 'm';
+      }
 
       function setStatus(row, online, label) {
         var dot = row.querySelector('.status-dot');
@@ -791,6 +818,9 @@
             var realmOnline = d.server_status === 1;
             setStatus(loginRow, logonOnline, logonOnline ? 'ONLINE' : 'OFFLINE');
             setStatus(realmRow, realmOnline, realmOnline ? 'ONLINE' : 'OFFLINE');
+            if (playersEl) playersEl.textContent = realmOnline ? (d.players_online || 0) : '0';
+            if (uptimeEl) uptimeEl.textContent = realmOnline ? formatUptime(d.uptime) : '—';
+            if (maxEl) maxEl.textContent = (d.maxplayers || 0);
             var now = new Date();
             var hh = String(now.getHours()).padStart(2, '0');
             var mm = String(now.getMinutes()).padStart(2, '0');
@@ -800,6 +830,9 @@
           .catch(function () {
             setStatus(loginRow, false, 'ERROR');
             setStatus(realmRow, false, 'ERROR');
+            if (playersEl) playersEl.textContent = '—';
+            if (uptimeEl) uptimeEl.textContent = '—';
+            if (maxEl) maxEl.textContent = '—';
             meta.textContent = 'Error de conexión · Reintentando en 60s';
           });
       }

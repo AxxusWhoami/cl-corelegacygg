@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 function check_rate_limit(
-    bool $enabled,
+    int $enabled,
     string $socket,
     string $pass,
     int $db,
@@ -21,7 +21,7 @@ function check_rate_limit(
     int $windowSeconds,
     int $maxRequests
 ): void {
-    if (!$enabled) {
+    if ($enabled !== 1) {
         return;
     }
 

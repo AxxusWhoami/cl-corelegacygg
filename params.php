@@ -29,7 +29,7 @@ $DDOS_REDIS_SOCKET = '/var/run/redis/redis-ddos.sock';
 $DDOS_REDIS_PASS   = '';
 $DDOS_REDIS_DB     = 0;
 $DDOS_REDIS_PREFIX = 'corelegacy:';
-$DDOS_REDIS_ENABLE = 0;
+$DDOS_REDIS_ENABLE = 1;
 
 /* ── Redis connection (Unix socket) Armory maxmemory-policy volatile-lru ─ */
 $ARMORY_REDIS_SOCKET = '/var/run/redis/redis-armory.sock';

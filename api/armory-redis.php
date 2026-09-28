@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function armory_redis_read(string $key): mixed
+function armory_redis_read(string $key)
 {
     global $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
 
@@ -31,7 +31,7 @@ function armory_redis_read(string $key): mixed
     }
 }
 
-function armory_redis_read_first(array $keys): mixed
+function armory_redis_read_first(array $keys)
 {
     foreach ($keys as $key) {
         $value = armory_redis_read($key);

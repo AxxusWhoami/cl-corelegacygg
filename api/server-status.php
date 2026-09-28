@@ -27,10 +27,15 @@ $serverStatus = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'status');
 $logonStatus  = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'logon_status');
 
 if ($serverStatus === null && $logonStatus === null) {
-    http_response_code(503);
+    http_response_code(200);
     echo json_encode([
-        'ok' => false,
-        'message' => 'El estado del servidor no está disponible temporalmente.',
+        'ok' => true,
+        'data' => [
+            'logon_status' => 0,
+            'server_status' => 0,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ],
+        'message' => 'Estado del servidor no disponible temporalmente.',
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }

@@ -34,9 +34,9 @@ $DDOS_REDIS_ENABLE = 0;
 /* ── Redis connection (Unix socket) Armory maxmemory-policy volatile-lru ─ */
 $ARMORY_REDIS_SOCKET = '/var/run/redis/redis-armory.sock';
 $ARMORY_REDIS_PASS   = '';
-$ARMORY_REDIS_DB     = 0;
+$ARMORY_REDIS_DB     = 1;
 $ARMORY_REDIS_PREFIX = 'corelegacy:';
-$ARMORY_REDIS_ENABLE = 0;
+$ARMORY_REDIS_ENABLE = 1;
 
 // ===== PHPMailer — configuración de envío de correo =====
 // Credenciales del servidor SMTP y datos del remitente por defecto.

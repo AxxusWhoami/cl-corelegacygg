@@ -38,6 +38,11 @@ $ARMORY_REDIS_DB     = 1;
 $ARMORY_REDIS_PREFIX = 'corelegacy:';
 $ARMORY_REDIS_ENABLE = 1;
 
+// ===== Comprobación en vivo de los servicios de juego =====
+$GAME_SERVER_HOST = '127.0.0.1';
+$GAME_LOGON_PORT  = 3724;
+$GAME_WORLD_PORT  = 8085;
+
 // ===== PHPMailer — configuración de envío de correo =====
 // Credenciales del servidor SMTP y datos del remitente por defecto.
 $MAIL_HOST       = 'pro3.mail.ovh.net';     // Servidor SMTP

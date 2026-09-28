@@ -69,3 +69,26 @@ function armory_redis_read_int(string $key): ?int
         return null;
     }
 }
+
+function armory_redis_write(string $key, string $value, int $ttlSeconds): bool
+{
+    global $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
+
+    if (!class_exists('Redis', false)) {
+        return false;
+    }
+
+    try {
+        $redis = new Redis();
+        if ($redis->connect($ARMORY_REDIS_SOCKET, 0, 1) !== true) {
+            return false;
+        }
+        if ($ARMORY_REDIS_PASS !== '') {
+            $redis->auth($ARMORY_REDIS_PASS);
+        }
+        $redis->select((int) $ARMORY_REDIS_DB);
+        return $redis->setex($key, $ttlSeconds, $value);
+    } catch (Throwable $e) {
+        return false;
+    }
+}

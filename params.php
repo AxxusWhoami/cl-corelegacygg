@@ -2,13 +2,18 @@
 // Configuración de conexión a MySQL para Core Legacy.
 // Rellena estos valores con las credenciales reales del servidor.
 
-$DB_HOST = '127.0.0.1';
-$DB_USER = 'corelegacygg';
-$DB_PASS = 'A0M34kn0DH96tZ';
-$DB_AUTH = 'corelegacygg';
-$DB_CHAR = 'acore_characters';
-$DB_WEB  = 'corelegacygg';
-$DB_PORT = 3306;
+$DB_HOST    = '127.0.0.1';
+$DB_USER    = 'corelegacygg';
+$DB_PASS    = 'A0M34kn0DH96tZ';
+$DB_AUTH    = 'corelegacygg';
+$DB_CHAR    = 'acore_characters';
+$DB_WEB     = 'corelegacygg';
+$DB_PORT    = 3306;
+$DB_CHARSET = 'utf8mb4';
+
+// Tablas del changelog en la base de datos web
+$TABLE_CHANGELOG_COMMITS = 'changelog_commits';
+$TABLE_CHANGELOG_LANG     = 'changelog_lang';
 
 // ===== OpenAI — análisis de builds =====
 $openai_key = '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';

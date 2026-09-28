@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 require __DIR__ . '/../params.php';
 require __DIR__ . '/ratelimit.php';
 require __DIR__ . '/armory-redis.php';
-check_rate_limit($DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
+check_rate_limit($DDOS_REDIS_ENABLE, $DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
 
 $validLocales = ['enUS', 'esES', 'frFR', 'deDE'];
 $locale = isset($_GET['locale']) ? trim($_GET['locale']) : 'enUS';

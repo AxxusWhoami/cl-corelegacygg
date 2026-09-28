@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 function armory_redis_read(string $key)
 {
-    global $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
+    global $ARMORY_REDIS_ENABLE, $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
 
-    if (!class_exists('Redis', false)) {
+    if (!$ARMORY_REDIS_ENABLE || !class_exists('Redis', false)) {
         return null;
     }
 
@@ -45,9 +45,9 @@ function armory_redis_read_first(array $keys)
 
 function armory_redis_read_int(string $key): ?int
 {
-    global $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
+    global $ARMORY_REDIS_ENABLE, $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
 
-    if (!class_exists('Redis', false)) {
+    if (!$ARMORY_REDIS_ENABLE || !class_exists('Redis', false)) {
         return null;
     }
 
@@ -72,9 +72,9 @@ function armory_redis_read_int(string $key): ?int
 
 function armory_redis_write(string $key, string $value, int $ttlSeconds): bool
 {
-    global $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
+    global $ARMORY_REDIS_ENABLE, $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
 
-    if (!class_exists('Redis', false)) {
+    if (!$ARMORY_REDIS_ENABLE || !class_exists('Redis', false)) {
         return false;
     }
 

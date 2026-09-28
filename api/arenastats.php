@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 
 require __DIR__ . '/../params.php';
 require __DIR__ . '/ratelimit.php';
-check_rate_limit($DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
+check_rate_limit($DDOS_REDIS_ENABLE, $DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
 
 function respond(int $status, array $payload): void
 {
@@ -52,7 +52,7 @@ $isRefresh = isset($_GET['refresh']) && $_GET['refresh'] === '1';
 
 // ---- Peticiones web normales: leer SIEMPRE de Redis ----
 if (!$isRefresh) {
-    if (class_exists('Redis', false)) {
+    if ($ARMORY_REDIS_ENABLE && class_exists('Redis', false)) {
         try {
             $redis = new Redis();
             if ($redis->connect($ARMORY_REDIS_SOCKET, 0, 2) === true) {
@@ -180,7 +180,7 @@ $payload = [
 ];
 
 // Guardar en Redis con TTL de 1 hora.
-if (class_exists('Redis', false)) {
+if ($ARMORY_REDIS_ENABLE && class_exists('Redis', false)) {
     try {
         $redis = new Redis();
         if ($redis->connect($ARMORY_REDIS_SOCKET, 0, 2) === true) {

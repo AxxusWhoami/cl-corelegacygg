@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 require __DIR__ . '/../params.php';
 require __DIR__ . '/ratelimit.php';
 require __DIR__ . '/armory-redis.php';
-check_rate_limit($DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
+check_rate_limit($DDOS_REDIS_ENABLE, $DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
 
 $serverStatus = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'status');
 $logonStatus  = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'logon_status');

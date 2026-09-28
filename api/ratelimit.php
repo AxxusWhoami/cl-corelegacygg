@@ -5,7 +5,7 @@
 //
 // Uso:
 //   require __DIR__ . '/ratelimit.php';
-//   check_rate_limit($DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB,
+//   check_rate_limit($DDOS_REDIS_ENABLE, $DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB,
 //                     $DDOS_REDIS_PREFIX, 60, 30); // 30 peticiones por 60 segundos
 //
 // Si Redis no está disponible, la petición continúa sin bloqueo (fail-open).
@@ -13,6 +13,7 @@
 declare(strict_types=1);
 
 function check_rate_limit(
+    bool $enabled,
     string $socket,
     string $pass,
     int $db,
@@ -20,6 +21,10 @@ function check_rate_limit(
     int $windowSeconds,
     int $maxRequests
 ): void {
+    if (!$enabled) {
+        return;
+    }
+
     $ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 
     // Detrás de Cloudflare: usar CF-Connecting-IP si está presente.

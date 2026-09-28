@@ -23,45 +23,29 @@ require __DIR__ . '/ratelimit.php';
 require __DIR__ . '/armory-redis.php';
 check_rate_limit($DDOS_REDIS_ENABLE, $DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
 
-$redis = armory_redis_connect();
+$serverStatus = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'status');
+$logonStatus  = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'logon_status');
 
-if ($redis === null) {
+if ($serverStatus === null && $logonStatus === null) {
     http_response_code(200);
     echo json_encode([
         'ok' => true,
         'data' => [
-            'logon_status'   => 0,
-            'server_status'  => 0,
-            'players_online' => 0,
-            'starttime'      => 0,
-            'uptime'         => 0,
-            'maxplayers'     => 0,
-            'updated_at'     => date('Y-m-d H:i:s'),
+            'logon_status' => 0,
+            'server_status' => 0,
+            'updated_at' => date('Y-m-d H:i:s'),
         ],
         'message' => 'Estado del servidor no disponible temporalmente.',
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$prefix = $ARMORY_REDIS_PREFIX;
-
-$status        = (int) $redis->get($prefix . 'status');
-$logonStatus  = (int) $redis->get($prefix . 'logon_status');
-$playersOnline = (int) $redis->get($prefix . 'players_online');
-$starttime     = (int) $redis->get($prefix . 'starttime');
-$uptime        = (int) $redis->get($prefix . 'uptime');
-$maxplayers    = (int) $redis->get($prefix . 'maxplayers');
-
 http_response_code(200);
 echo json_encode([
     'ok' => true,
     'data' => [
-        'logon_status'   => $logonStatus,
-        'server_status'  => $status,
-        'players_online' => $playersOnline,
-        'starttime'      => $starttime,
-        'uptime'         => $uptime,
-        'maxplayers'     => $maxplayers,
-        'updated_at'     => date('Y-m-d H:i:s'),
+        'logon_status' => $logonStatus ?? 0,
+        'server_status' => $serverStatus ?? 0,
+        'updated_at' => date('Y-m-d H:i:s'),
     ],
 ], JSON_UNESCAPED_UNICODE);

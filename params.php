@@ -38,33 +38,6 @@ $ARMORY_REDIS_DB     = 1;
 $ARMORY_REDIS_PREFIX = 'corelegacy:';
 $ARMORY_REDIS_ENABLE = 1;
 
-/**
- * Devuelve una conexión Redis al socket Armory (DB 1, sin contraseña).
- * Devuelve null si Redis está deshabilitado o la extensión no existe.
- */
-function armory_redis_connect(): ?Redis
-{
-    global $ARMORY_REDIS_ENABLE, $ARMORY_REDIS_SOCKET, $ARMORY_REDIS_PASS, $ARMORY_REDIS_DB;
-
-    if (!$ARMORY_REDIS_ENABLE || !class_exists('Redis', false)) {
-        return null;
-    }
-
-    try {
-        $redis = new Redis();
-        if ($redis->connect($ARMORY_REDIS_SOCKET, 0, 1) !== true) {
-            return null;
-        }
-        if ($ARMORY_REDIS_PASS !== '') {
-            $redis->auth($ARMORY_REDIS_PASS);
-        }
-        $redis->select((int) $ARMORY_REDIS_DB);
-        return $redis;
-    } catch (Throwable $e) {
-        return null;
-    }
-}
-
 // ===== PHPMailer — configuración de envío de correo =====
 // Credenciales del servidor SMTP y datos del remitente por defecto.
 $MAIL_HOST       = 'pro3.mail.ovh.net';     // Servidor SMTP

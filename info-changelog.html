@@ -703,7 +703,7 @@
   <script>
     // ===== Changelog fetch =====
     (function loadChangelog() {
-      var API_URL = 'https://apis.corelegacy.gg/changelog.php?locale=esES';
+      var API_URL = '/api/changelog.php?locale=esES';
       var body = document.getElementById('changelogBody');
       var loading = document.getElementById('changelogLoading');
 
@@ -766,7 +766,7 @@
 
     // ===== Realm status live fetch =====
     (function loadRealmStatus() {
-      var API_URL = 'https://apis.corelegacy.gg/realm_status.php?function=getstatus';
+      var API_URL = '/api/server-status.php';
       var loginRow = document.getElementById('statusLogin');
       var realmRow = document.getElementById('statusRealm');
       var meta = document.getElementById('statusMeta');
@@ -786,7 +786,7 @@
             return res.json();
           })
           .then(function (res) {
-            var d = res.data || {};
+            var d = (res && res.data) || {};
             var logonOnline = d.logon_status === 1;
             var realmOnline = d.server_status === 1;
             setStatus(loginRow, logonOnline, logonOnline ? 'ONLINE' : 'OFFLINE');

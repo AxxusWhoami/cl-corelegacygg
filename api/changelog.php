@@ -42,10 +42,16 @@ if (is_array($cached)) {
     exit;
 }
 
+if (!class_exists('mysqli', false)) {
+    http_response_code(200);
+    echo json_encode(['ok' => true, 'data' => [], 'message' => 'Base de datos no disponible en este entorno.'], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
 $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_WEB, $DB_PORT);
 if ($mysqli->connect_errno) {
-    http_response_code(500);
-    echo json_encode(['ok' => false, 'message' => 'No se pudo conectar a la base de datos.'], JSON_UNESCAPED_UNICODE);
+    http_response_code(200);
+    echo json_encode(['ok' => true, 'data' => [], 'message' => 'No se pudo conectar a la base de datos.'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 $mysqli->set_charset($DB_CHARSET);

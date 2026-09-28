@@ -23,49 +23,29 @@ require __DIR__ . '/ratelimit.php';
 require __DIR__ . '/armory-redis.php';
 check_rate_limit($DDOS_REDIS_ENABLE, $DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
 
-function check_tcp_port(string $host, int $port, float $timeout = 1.5): int
-{
-    $errno  = 0;
-    $errstr = '';
-    $sock = @fsockopen($host, $port, $errno, $errstr, $timeout);
-    if ($sock === false) {
-        return 0;
-    }
-    fclose($sock);
-    return 1;
-}
+$serverStatus = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'status');
+$logonStatus  = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'logon_status');
 
-$cacheKey    = $ARMORY_REDIS_PREFIX . 'server_status:v2';
-$cacheTtl    = 30;
-$cached      = armory_redis_read($cacheKey);
-$forceRefresh = isset($_GET['refresh']) && $_GET['refresh'] === '1';
-
-if (!$forceRefresh && is_array($cached) && isset($cached['logon_status'], $cached['server_status'])) {
+if ($serverStatus === null && $logonStatus === null) {
     http_response_code(200);
     echo json_encode([
-        'ok'   => true,
+        'ok' => true,
         'data' => [
-            'logon_status'  => (int) $cached['logon_status'],
-            'server_status' => (int) $cached['server_status'],
-            'updated_at'    => $cached['updated_at'] ?? date('Y-m-d H:i:s'),
+            'logon_status' => 0,
+            'server_status' => 0,
+            'updated_at' => date('Y-m-d H:i:s'),
         ],
+        'message' => 'Estado del servidor no disponible temporalmente.',
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$logonStatus  = check_tcp_port($GAME_SERVER_HOST, $GAME_LOGON_PORT);
-$serverStatus = check_tcp_port($GAME_SERVER_HOST, $GAME_WORLD_PORT);
-
-$payload = [
-    'logon_status'  => $logonStatus,
-    'server_status' => $serverStatus,
-    'updated_at'    => date('Y-m-d H:i:s'),
-];
-
-armory_redis_write($cacheKey, json_encode($payload, JSON_UNESCAPED_UNICODE), $cacheTtl);
-
 http_response_code(200);
 echo json_encode([
-    'ok'   => true,
-    'data' => $payload,
+    'ok' => true,
+    'data' => [
+        'logon_status' => $logonStatus ?? 0,
+        'server_status' => $serverStatus ?? 0,
+        'updated_at' => date('Y-m-d H:i:s'),
+    ],
 ], JSON_UNESCAPED_UNICODE);

@@ -23,17 +23,26 @@ require __DIR__ . '/ratelimit.php';
 require __DIR__ . '/armory-redis.php';
 check_rate_limit($DDOS_REDIS_ENABLE, $DDOS_REDIS_SOCKET, $DDOS_REDIS_PASS, $DDOS_REDIS_DB, $DDOS_REDIS_PREFIX, 60, 30);
 
-$serverStatus = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'status');
-$logonStatus  = armory_redis_read_int($ARMORY_REDIS_PREFIX . 'logon_status');
+$prefix    = $ARMORY_REDIS_PREFIX;
+$serverStatus = armory_redis_read_int($prefix . 'status');
+$logonStatus  = armory_redis_read_int($prefix . 'logon_status');
+$playersOnline = armory_redis_read_int($prefix . 'players_online');
+$starttime    = armory_redis_read_int($prefix . 'starttime');
+$uptime      = armory_redis_read_int($prefix . 'uptime');
+$maxPlayers  = armory_redis_read_int($prefix . 'maxplayers');
 
 if ($serverStatus === null && $logonStatus === null) {
     http_response_code(200);
     echo json_encode([
         'ok' => true,
         'data' => [
-            'logon_status' => 0,
-            'server_status' => 0,
-            'updated_at' => date('Y-m-d H:i:s'),
+            'logon_status'   => 0,
+            'server_status'  => 0,
+            'players_online' => 0,
+            'starttime'      => 0,
+            'uptime'         => 0,
+            'max_players'    => 0,
+            'updated_at'     => date('Y-m-d H:i:s'),
         ],
         'message' => 'Estado del servidor no disponible temporalmente.',
     ], JSON_UNESCAPED_UNICODE);
@@ -44,8 +53,12 @@ http_response_code(200);
 echo json_encode([
     'ok' => true,
     'data' => [
-        'logon_status' => $logonStatus ?? 0,
-        'server_status' => $serverStatus ?? 0,
-        'updated_at' => date('Y-m-d H:i:s'),
+        'logon_status'   => $logonStatus ?? 0,
+        'server_status'  => $serverStatus ?? 0,
+        'players_online' => $playersOnline ?? 0,
+        'starttime'      => $starttime ?? 0,
+        'uptime'         => $uptime ?? 0,
+        'max_players'    => $maxPlayers ?? 0,
+        'updated_at'     => date('Y-m-d H:i:s'),
     ],
 ], JSON_UNESCAPED_UNICODE);

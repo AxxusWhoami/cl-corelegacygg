@@ -537,6 +537,20 @@
                   </div>
                 </div>
               </div>
+              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; margin-top:1.25rem; position:relative; z-index:1;">
+                <div style="text-align:center; padding:0.75rem 0.5rem; background:rgba(13,110,168,0.08); border:1px solid #1a3a5a44; border-radius:8px;">
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:1.5rem; font-weight:700; color:#a8d8f0; line-height:1;" id="statPlayers">—</div>
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:0.62rem; color:#7a8a98; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.35rem;">Jugadores Online</div>
+                </div>
+                <div style="text-align:center; padding:0.75rem 0.5rem; background:rgba(13,110,168,0.08); border:1px solid #1a3a5a44; border-radius:8px;">
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:1.5rem; font-weight:700; color:#a8d8f0; line-height:1;" id="statUptime">—</div>
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:0.62rem; color:#7a8a98; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.35rem;">Uptime</div>
+                </div>
+                <div style="text-align:center; padding:0.75rem 0.5rem; background:rgba(13,110,168,0.08); border:1px solid #1a3a5a44; border-radius:8px;">
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:1.5rem; font-weight:700; color:#a8d8f0; line-height:1;" id="statMaxPlayers">—</div>
+                  <div style="font-family:'Cinzel',Georgia,serif; font-size:0.62rem; color:#7a8a98; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.35rem;">Record Online</div>
+                </div>
+              </div>
               <div style="margin-top:1.25rem; padding:0.75rem 1rem; background:rgba(13,110,168,0.08); border:1px solid #1a3a5a44; border-radius:8px; position:relative; z-index:1;">
                 <span style="font-family:'Cinzel',Georgia,serif; font-size:0.7rem; color:#7a8a98; letter-spacing:0.12em; text-transform:uppercase; display:block; margin-bottom:0.35rem;">Realmlist</span>
                 <div style="display:flex; align-items:center; gap:0.5rem;">
@@ -548,7 +562,7 @@
                 </div>
               </div>
               <div style="margin-top:1rem; font-size:0.68rem; color:#5a6878; letter-spacing:0.08em; position:relative; z-index:1;" id="statusMeta">
-                Todos los sistemas operativos
+                Cargando datos en tiempo real…
               </div>
             </div>
           </div>
@@ -765,6 +779,74 @@
     })();
 
 
+
+    // ===== Realm status live fetch =====
+    (function loadRealmStatus() {
+      var API_URL = '/api/server-status.php';
+      var loginRow = document.getElementById('statusLogin');
+      var realmRow = document.getElementById('statusRealm');
+      var meta = document.getElementById('statusMeta');
+      var statPlayers = document.getElementById('statPlayers');
+      var statUptime = document.getElementById('statUptime');
+      var statMaxPlayers = document.getElementById('statMaxPlayers');
+
+      function setStatus(row, online, label) {
+        var dot = row.querySelector('.status-dot');
+        var state = row.querySelector('.status-row-state');
+        dot.className = 'status-dot ' + (online ? 'status-dot-online' : 'status-dot-offline');
+        state.className = 'status-row-state ' + (online ? 'online' : 'offline');
+        state.textContent = label;
+      }
+
+      function formatUptime(seconds) {
+        if (!seconds || seconds < 1) return '0s';
+        var d = Math.floor(seconds / 86400);
+        var h = Math.floor((seconds % 86400) / 3600);
+        var m = Math.floor((seconds % 3600) / 60);
+        if (d > 0) return d + 'd ' + h + 'h';
+        if (h > 0) return h + 'h ' + m + 'm';
+        return m + 'm';
+      }
+
+      function formatNumber(n) {
+        if (n === null || n === undefined) return '—';
+        return n.toLocaleString('es-ES');
+      }
+
+      function update() {
+        fetch(API_URL)
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function (res) {
+            var d = (res && res.data) || {};
+            var logonOnline = d.logon_status === 1;
+            var realmOnline = d.server_status === 1;
+            setStatus(loginRow, logonOnline, logonOnline ? 'ONLINE' : 'OFFLINE');
+            setStatus(realmRow, realmOnline, realmOnline ? 'ONLINE' : 'OFFLINE');
+            statPlayers.textContent = formatNumber(d.players_online);
+            statUptime.textContent = formatUptime(d.uptime);
+            statMaxPlayers.textContent = formatNumber(d.max_players);
+            var now = new Date();
+            var hh = String(now.getHours()).padStart(2, '0');
+            var mm = String(now.getMinutes()).padStart(2, '0');
+            var ss = String(now.getSeconds()).padStart(2, '0');
+            meta.textContent = 'Última actualización: ' + hh + ':' + mm + ':' + ss + ' · Próxima en 60s';
+          })
+          .catch(function () {
+            setStatus(loginRow, false, 'ERROR');
+            setStatus(realmRow, false, 'ERROR');
+            statPlayers.textContent = '—';
+            statUptime.textContent = '—';
+            statMaxPlayers.textContent = '—';
+            meta.textContent = 'Error de conexión · Reintentando en 60s';
+          });
+      }
+
+      update();
+      setInterval(update, 60000);
+    })();
 
     // ===== Copy realmlist to clipboard =====
     (function copyRealmlist() {

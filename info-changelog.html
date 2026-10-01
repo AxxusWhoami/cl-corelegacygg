@@ -521,18 +521,18 @@
               </p>
               <div style="display:flex; flex-direction:column; gap:1rem; position:relative; z-index:1;" id="statusList">
                 <div class="status-row" id="statusLogin">
-                  <span class="status-dot status-dot-online"></span>
+                  <span class="status-dot status-dot-offline"></span>
                   <div class="status-row-text">
                     <span class="status-row-title">Servidor de Login</span>
-                    <span class="status-row-state online">ONLINE</span>
+                    <span class="status-row-state loading">CONECTANDO…</span>
                     <span class="status-row-desc">Sistema de autenticación y cuentas operativo</span>
                   </div>
                 </div>
                 <div class="status-row" id="statusRealm">
-                  <span class="status-dot status-dot-online"></span>
+                  <span class="status-dot status-dot-offline"></span>
                   <div class="status-row-text">
                     <span class="status-row-title">Reino CoRe Legacy</span>
-                    <span class="status-row-state online">ONLINE</span>
+                    <span class="status-row-state loading">CONECTANDO…</span>
                     <span class="status-row-desc">Mundo activo, guardando progreso</span>
                   </div>
                 </div>
@@ -548,7 +548,7 @@
                 </div>
               </div>
               <div style="margin-top:1rem; font-size:0.68rem; color:#5a6878; letter-spacing:0.08em; position:relative; z-index:1;" id="statusMeta">
-                Todos los sistemas operativos
+                Conectando con el servidor…
               </div>
             </div>
           </div>
@@ -765,6 +765,47 @@
     })();
 
 
+
+    // ===== Realm status live fetch =====
+    (function loadRealmStatus() {
+      var API_URL = '/api/server-status.php';
+      var loginRow = document.getElementById('statusLogin');
+      var realmRow = document.getElementById('statusRealm');
+      var meta = document.getElementById('statusMeta');
+
+      function setRow(row, online) {
+        var dot = row.querySelector('.status-dot');
+        var state = row.querySelector('.status-row-state');
+        dot.className = 'status-dot ' + (online ? 'status-dot-online' : 'status-dot-offline');
+        state.className = 'status-row-state ' + (online ? 'online' : 'offline');
+        state.textContent = online ? 'ONLINE' : 'OFFLINE';
+      }
+
+      function update() {
+        fetch(API_URL)
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function (res) {
+            var d = (res && res.data) || {};
+            setRow(loginRow, d.logon_status === 1);
+            setRow(realmRow, d.server_status === 1);
+            var both = d.logon_status === 1 && d.server_status === 1;
+            meta.textContent = both
+              ? 'Todos los sistemas operativos'
+              : 'Algunos servicios no disponibles';
+          })
+          .catch(function () {
+            setRow(loginRow, false);
+            setRow(realmRow, false);
+            meta.textContent = 'Error de conexión con el servidor';
+          });
+      }
+
+      update();
+      setInterval(update, 60000);
+    })();
 
     // ===== Copy realmlist to clipboard =====
     (function copyRealmlist() {

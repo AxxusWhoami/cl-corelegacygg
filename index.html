@@ -1681,15 +1681,15 @@
     style="background-image: url('/public/hero-citadel.webp'); background-size: cover; background-position: center; background-attachment: scroll;">
     <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, rgba(0,10,25,0.5) 0%, rgba(0,5,15,0.3) 40%, rgba(0,10,25,0.85) 100%);"></div>
 
-    <!-- Migraciones badge (left-aligned, same height as subtitle) -->
-    <a href="/migraciones"
-       style="position:absolute; left:1.5rem; top:50%; transform:translateY(-50%); z-index:20;
-              display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.9rem;
+    <!-- Migraciones badge - Desktop: left-aligned at subtitle height -->
+    <a href="/migraciones" class="hidden md:inline-flex"
+       style="position:absolute; left:1.5rem; top:50%; transform:translateY(-50%); margin-top:1.3rem; z-index:20;
+              align-items:center; gap:0.4rem; padding:0.35rem 0.9rem;
               font-family:'Cinzel',Georgia,serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em;
               text-transform:uppercase; text-decoration:none;
               color:#b8d4e8; background:rgba(8,20,36,0.85); border:1px solid #1a3a5a66;
               border-radius:999px; backdrop-filter:blur(4px);
-              box-shadow:0 0 12px rgba(77,189,232,0.1); transition:all 0.3s ease; pointer-events:auto;"
+              box-shadow:0 0 12px rgba(77,189,232,0.1); transition:all 0.3s ease;"
        onmouseover="this.style.borderColor='#4bbde888'; this.style.boxShadow='0 0 20px rgba(77,189,232,0.25)'; this.style.transform='translateY(-50%) translateY(-1px)';"
        onmouseout="this.style.borderColor='#1a3a5a66'; this.style.boxShadow='0 0 12px rgba(77,189,232,0.1)'; this.style.transform='translateY(-50%)';">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#4bbde8;"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -1710,6 +1710,17 @@
       <p style="font-family:'Cinzel',Georgia,serif; font-size:clamp(0.85rem,2vw,1.1rem); color:#a8d8f0; letter-spacing:0.3em; text-transform:uppercase; text-shadow:0 0 12px #56c8f088;">
         CoRe Legacy — Wrath of the Lich King 3.3.5a
       </p>
+      <!-- Migraciones badge - Mobile: centered below subtitle -->
+      <a href="/migraciones" class="inline-flex md:hidden"
+         style="align-items:center; gap:0.4rem; padding:0.3rem 0.9rem;
+                font-family:'Cinzel',Georgia,serif; font-size:0.68rem; font-weight:700; letter-spacing:0.08em;
+                text-transform:uppercase; text-decoration:none;
+                color:#b8d4e8; background:rgba(8,20,36,0.85); border:1px solid #1a3a5a66;
+                border-radius:999px; backdrop-filter:blur(4px);
+                box-shadow:0 0 12px rgba(77,189,232,0.1); transition:all 0.3s ease;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#4bbde8;"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        Migraciones: <span style="color:#4ade80; text-shadow:0 0 8px rgba(74,222,128,0.5);">abiertas</span>
+      </a>
       <p style="font-family:'Cinzel',Georgia,serif; font-size:clamp(0.78rem,1.6vw,0.95rem); color:#8dd6f5; letter-spacing:0.08em; max-width:640px; margin:0 auto; line-height:1.6; text-shadow:0 0 10px rgba(86,200,240,0.4);">
         Juega gratis a World of Warcraft (WoW) en nuestro servidor privado de WoW WotLK 3.3.5a con IA, mundo vivo, PvE y PvP. Crea tu cuenta gratis y descarga el cliente para empezar a jugar hoy mismo.
       </p>

@@ -109,6 +109,14 @@
         btn.style.boxShadow = '0 0 16px rgba(77,189,232,0.15)';
       }
     });
+    audio.addEventListener('ended', function () {
+      audio.currentTime = 0;
+      playIcon.style.display = '';
+      stopIcon.style.display = 'none';
+      btn.setAttribute('aria-label', 'Reproducir música');
+      btn.title = 'Reproducir música';
+      btn.style.boxShadow = '0 0 16px rgba(77,189,232,0.15)';
+    });
   })();
 
   // ===== Back-to-top button =====

@@ -65,6 +65,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^historia-wow-core/?$ /historia-wow-core.html [L]
 
+# Clean URL: /migraciones -> /migraciones.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^migraciones/?$ /migraciones.html [L]
+
 # Legal deep links -> legal-page.php (serves correct meta tags)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

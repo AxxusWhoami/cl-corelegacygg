@@ -16,6 +16,8 @@
     { "source": "/tops/", "destination": "/tops.html" },
     { "source": "/historia-wow-core", "destination": "/historia-wow-core.html" },
     { "source": "/historia-wow-core/", "destination": "/historia-wow-core.html" },
+    { "source": "/migraciones", "destination": "/migraciones.html" },
+    { "source": "/migraciones/", "destination": "/migraciones.html" },
     { "source": "/calculadora", "destination": "/calculadora.html" },
     { "source": "/calculadora/", "destination": "/calculadora.html" },
     { "source": "/terminos-de-servicio", "destination": "/legal-page.php" },

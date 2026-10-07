@@ -84,6 +84,33 @@
     }
   })();
 
+  // ===== Hero audio toggle =====
+  (function heroAudio() {
+    var btn = document.getElementById('hero-audio-toggle');
+    var audio = document.getElementById('hero-audio');
+    var playIcon = document.getElementById('hero-audio-play-icon');
+    var stopIcon = document.getElementById('hero-audio-stop-icon');
+    if (!btn || !audio) return;
+    btn.addEventListener('click', function () {
+      if (audio.paused) {
+        audio.play();
+        playIcon.style.display = 'none';
+        stopIcon.style.display = '';
+        btn.setAttribute('aria-label', 'Detener música');
+        btn.title = 'Detener música';
+        btn.style.boxShadow = '0 0 24px rgba(77,189,232,0.4)';
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        playIcon.style.display = '';
+        stopIcon.style.display = 'none';
+        btn.setAttribute('aria-label', 'Reproducir música');
+        btn.title = 'Reproducir música';
+        btn.style.boxShadow = '0 0 16px rgba(77,189,232,0.15)';
+      }
+    });
+  })();
+
   // ===== Back-to-top button =====
   (function backToTop() {
     var btn = document.querySelector('.back-to-top');

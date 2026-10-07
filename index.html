@@ -1728,6 +1728,19 @@
 
     </div>
 
+    <!-- Audio Play/Stop button -->
+    <button id="hero-audio-toggle" aria-label="Reproducir música" title="Reproducir música"
+       style="position:absolute; bottom:1.5rem; right:1.5rem; z-index:20;
+              display:inline-flex; align-items:center; justify-content:center;
+              width:3rem; height:3rem; border-radius:50%; cursor:pointer;
+              color:#d4f0ff; background:rgba(8,20,36,0.85); border:1px solid #4bbde866;
+              backdrop-filter:blur(4px); box-shadow:0 0 16px rgba(77,189,232,0.15);
+              transition:all 0.3s ease; pointer-events:auto;">
+      <svg id="hero-audio-play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="hero-audio-stop-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" style="display:none;"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+    </button>
+    <audio id="hero-audio" src="/assets/corelegacy.gg.mp3" loop preload="none"></audio>
+
   </section>
 
   <!-- ===== Main Content: Features ===== -->

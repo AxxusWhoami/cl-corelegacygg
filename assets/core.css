@@ -556,6 +556,14 @@ body {
   .back-to-top { bottom: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; }
 }
 
+/* ===== Migraciones badge responsive ===== */
+.migraciones-badge-desktop { display: none; }
+.migraciones-badge-mobile { display: inline-flex; }
+@media (min-width: 768px) {
+  .migraciones-badge-desktop { display: inline-flex; }
+  .migraciones-badge-mobile { display: none; }
+}
+
 /* ===== Focus-visible for keyboard navigation ===== */
 .nav-link:focus-visible,
 .back-to-top:focus-visible,

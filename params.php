@@ -2,7 +2,6 @@
 // Configuración de conexión a MySQL para Core Legacy.
 // Rellena estos valores con las credenciales reales del servidor.
 
-// Realm 1 CoRe Legacy
 $DB_HOST    = '127.0.0.1';
 $DB_USER    = 'corelegacygg';
 $DB_PASS    = 'A0M34kn0DH96tZ';
@@ -11,14 +10,6 @@ $DB_CHAR    = 'acore_characters';
 $DB_WEB     = 'corelegacygg';
 $DB_PORT    = 3306;
 $DB_CHARSET = 'utf8mb4';
-
-// Realm 2 RPP
-$RPP_DB_HOST    = '127.0.0.1';
-$RPP_DB_USER    = 'corelegacygg';
-$RPP_DB_PASS    = 'A0M34kn0DH96tZ';
-$RPP_DB_CHAR    = 'acore_characters_rpp';
-$RPP_DB_PORT    = 3306;
-$RPP_DB_CHARSET = 'utf8mb4';
 
 // Tablas del changelog en la base de datos web
 $TABLE_CHANGELOG_COMMITS = 'changelog_commits';

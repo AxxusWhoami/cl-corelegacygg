@@ -742,10 +742,6 @@
           entries = entries.filter(function (e) {
             return !/NO PÚBLICO|NOT PUBLIC/i.test(e.commit || '');
           });
-          entries = entries.filter(function (e) {
-            var c = (e.commit || '').trim();
-            return !/^test[\(:]/i.test(c);
-          });
           if (entries.length === 0) {
             body.innerHTML = '<div class="changelog-loading">No hay entradas en el changelog todavía.</div>';
             return;

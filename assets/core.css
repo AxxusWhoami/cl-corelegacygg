@@ -591,3 +591,246 @@ body {
   box-shadow: 0 0 36px rgba(77,189,232,0.55), 0 6px 20px rgba(0,0,0,0.4);
   transform: translateY(-2px);
 }
+
+/* ===== Section Title (shared) ===== */
+.section-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  background: linear-gradient(180deg, #ffffff 0%, #a8e4ff 40%, #1a9fd4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 24px #56c8f055;
+  letter-spacing: 0.05em;
+}
+
+/* ===== Skip Link (shared accessibility) ===== */
+.skip-link {
+  position: fixed; top: -100px; left: 1rem; z-index: 10000;
+  padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
+  color: #fff; font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem;
+  letter-spacing: 0.1em; text-transform: uppercase; border-radius: 0 0 10px 10px;
+  border: 1px solid #7dd8f8; border-top: none; text-decoration: none;
+  transition: top 0.25s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ===== Focus-visible global (shared accessibility) ===== */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid #7dd8f8; outline-offset: 2px; border-radius: 4px;
+}
+
+/* ===== Reading Progress (shared) ===== */
+.reading-progress {
+  position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 9999;
+  background: linear-gradient(90deg, #1a9fd4 0%, #7dd8f8 50%, #c8f0ff 100%);
+  box-shadow: 0 0 10px #56c8f088; transition: width 0.1s linear; pointer-events: none;
+}
+
+/* ===== Panel variants (shared) ===== */
+.cl-panel {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.cl-panel::before {
+  content: ''; position: absolute; inset: -2px; border-radius: 16px;
+  z-index: -1; opacity: 0.5; pointer-events: none;
+}
+.cl-panel-header {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  flex-shrink: 0;
+}
+.cl-panel-title {
+  font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+  font-weight: 700; font-size: 1rem;
+  letter-spacing: 0.06em;
+}
+.cl-panel-body { padding: 1rem 1.25rem; overflow-y: auto; flex: 1; }
+
+.cl-panel--ice {
+  border: 1px solid #1a3a5a44;
+  background: linear-gradient(180deg, rgba(8,20,36,0.92) 0%, rgba(5,13,24,0.96) 100%);
+  box-shadow: 0 0 25px rgba(26,159,212,0.08), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(77,189,232,0.03);
+}
+.cl-panel--ice::before {
+  background: linear-gradient(135deg, rgba(77,189,232,0.2) 0%, rgba(26,159,212,0.08) 50%, rgba(13,110,168,0.15) 100%);
+}
+.cl-panel--ice .cl-panel-header {
+  background: linear-gradient(180deg, rgba(26,159,212,0.12) 0%, rgba(5,13,24,0.3) 100%);
+  border-bottom: 1px solid #1a3a5a33;
+}
+.cl-panel--ice .cl-panel-title { color: var(--frost); text-shadow: 0 0 10px rgba(77,189,232,0.3); }
+
+.cl-panel--gold {
+  border: 1px solid #d4a84344;
+  background: linear-gradient(180deg, rgba(30,22,8,0.92) 0%, rgba(12,10,4,0.96) 100%);
+  box-shadow: 0 0 25px rgba(212,168,67,0.12), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(240,200,80,0.04);
+}
+.cl-panel--gold::before {
+  background: linear-gradient(135deg, rgba(240,200,80,0.3) 0%, rgba(212,168,67,0.1) 50%, rgba(180,120,30,0.2) 100%);
+}
+.cl-panel--gold .cl-panel-header {
+  background: linear-gradient(180deg, rgba(212,168,67,0.18) 0%, rgba(20,14,4,0.3) 100%);
+  border-bottom: 1px solid #d4a84333;
+}
+.cl-panel--gold .cl-panel-title { color: var(--gold-bright); text-shadow: 0 0 10px rgba(212,168,67,0.3); }
+
+.cl-panel--neon {
+  border: 1px solid #00b4ff33;
+  background: linear-gradient(180deg, rgba(5,13,24,0.92) 0%, rgba(2,10,20,0.96) 100%);
+  box-shadow: 0 0 25px rgba(0,180,255,0.08), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,180,255,0.03);
+}
+.cl-panel--neon::before {
+  background: linear-gradient(135deg, rgba(0,180,255,0.2) 0%, rgba(0,120,200,0.08) 50%, rgba(0,80,160,0.12) 100%);
+}
+.cl-panel--neon .cl-panel-header {
+  background: linear-gradient(180deg, rgba(0,180,255,0.12) 0%, rgba(5,13,24,0.3) 100%);
+  border-bottom: 1px solid #00b4ff22;
+}
+.cl-panel--neon .cl-panel-title { color: #00b4ff; text-shadow: 0 0 10px rgba(0,180,255,0.3); }
+
+/* ===== Skeleton loader ===== */
+@keyframes skeletonShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.cl-skeleton {
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(26,58,90,0.3) 0%, rgba(77,189,232,0.08) 50%, rgba(26,58,90,0.3) 100%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+.cl-skeleton-line { height: 14px; margin-bottom: 8px; border-radius: 4px; }
+.cl-skeleton-line:last-child { margin-bottom: 0; width: 60%; }
+
+/* ===== Changelog date group separator ===== */
+.cl-date-group {
+  font-family: 'Cinzel Decorative', Georgia, serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 0 0.35rem;
+  border-top: 1px solid #d4a84322;
+  margin-top: 0.5rem;
+  text-shadow: 0 0 8px rgba(212,168,67,0.2);
+}
+.cl-date-group:first-child { border-top: none; margin-top: 0; }
+
+/* ===== Changelog load-more button ===== */
+.cl-load-more {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.65rem 2rem;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  background: rgba(212,168,67,0.08);
+  border: 1px solid #d4a84344;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.cl-load-more:hover {
+  background: rgba(212,168,67,0.15);
+  border-color: #f0c85066;
+  box-shadow: 0 0 16px rgba(240,200,80,0.2);
+  color: #f0c850;
+}
+.cl-load-more:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+/* ===== News share buttons ===== */
+.news-share {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #00b4ff22;
+}
+.news-share-label {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.74rem;
+  color: #5a8aa8;
+  letter-spacing: 0.06em;
+  margin-right: 0.25rem;
+}
+.news-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #00b4ff33;
+  background: rgba(0,180,255,0.06);
+  color: #00b4ff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.news-share-btn:hover {
+  border-color: #00b4ff66;
+  background: rgba(0,180,255,0.12);
+  color: #7dd8f8;
+  box-shadow: 0 0 12px rgba(0,180,255,0.2);
+  transform: translateY(-2px);
+}
+.news-share-btn:focus-visible {
+  outline: 2px solid #7dd8f8;
+  outline-offset: 2px;
+}
+.news-share-btn svg { width: 16px; height: 16px; }
+.news-share-copied {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.72rem;
+  color: #2ecc40;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.news-share-copied.visible { opacity: 1; }
+
+/* ===== Feature card cursor glow ===== */
+.feature-card-glow {
+  position: relative;
+}
+.feature-card-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle 200px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(77,189,232,0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.feature-card-glow:hover::after { opacity: 1; }
+
+/* ===== Varied reveal animations ===== */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleInUp {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.reveal.reveal-left.visible { animation: fadeInLeft 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+.reveal.reveal-right.visible { animation: fadeInRight 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+.reveal.reveal-scale.visible { animation: scaleInUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }

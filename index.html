@@ -1654,7 +1654,7 @@
 
         <!-- CTA + Mobile toggle -->
         <div class="flex items-center gap-3">
-          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
@@ -1801,7 +1801,7 @@
 
       <!-- ===== Welcome Card ===== -->
       <div class="reveal" style="margin-bottom:2.5rem;">
-        <div class="feature-card intro" style="max-width: none;">
+        <div class="feature-card feature-card-glow intro reveal reveal-scale" style="max-width: none;">
           <div class="feature-card-img-wrap" style="height: 280px;">
             <img class="feature-card-img" src="/public/hero-citadel.webp" alt="Bienvenida a CoRe Legacy" width="1408" height="768" loading="lazy" decoding="async" style="height: 280px;" />
           </div>
@@ -1823,7 +1823,7 @@
 
       <!-- ===== Context Article ===== -->
       <div class="mb-12 reveal">
-        <article class="feature-card intro" style="max-width: none;">
+        <article class="feature-card feature-card-glow intro reveal reveal-scale" style="max-width: none;">
           <div class="feature-card-body" style="padding: 2.5rem 2.5rem 2.5rem;">
             <h3 style="font-family:'Cinzel Decorative',Georgia,serif; font-size:clamp(1.5rem,3.5vw,2.2rem); font-weight:800; line-height:1.2; margin-bottom:1.25rem;
               background: linear-gradient(180deg,#fff 0%,#d4f0ff 20%,#8dd6f5 45%,#4bbde8 70%,#1a9fd4 100%);
@@ -2215,7 +2215,7 @@
 
       <!-- Feature Cards -->
       <div class="feature-masonry" id="featureGrid">
-        <div class="feature-card reveal" style="animation-delay:0s;">
+        <div class="feature-card feature-card-glow reveal" style="animation-delay:0s;">
           <div class="feature-card-img-wrap"><img class="feature-card-img" src="/assets/transfiguracion_web.webp" alt="Sistema de Transfiguración" width="600" height="400" loading="lazy" /></div>
           <div class="feature-card-body">
             <div class="feature-card-tag">Personalización</div>
@@ -2226,7 +2226,7 @@
         <div class="chain-vertical">
           <img src="/assets/chainsweb.png" alt="Cadena decorativa" width="146" height="264" class="chain-img" loading="lazy" decoding="async" fetchpriority="low" style="width:33px; height:60px; object-fit:fill; transform:scaleX(0.73); filter:drop-shadow(0 0 5px rgba(86,200,240,0.25));" />
         </div>
-        <div class="feature-card reveal" style="animation-delay:0.05s;">
+        <div class="feature-card feature-card-glow reveal reveal-left" style="animation-delay:0.05s;">
           <div class="feature-card-img-wrap"><img class="feature-card-img" src="/assets/mounts-achievements-account.webp" alt="Monturas y Logros Compartidos entre Cuenta" width="600" height="400" loading="lazy" /></div>
           <div class="feature-card-body">
             <div class="feature-card-tag">Personalización</div>
@@ -2237,7 +2237,7 @@
         <div class="chain-vertical">
           <img src="/assets/chainsweb.png" alt="Cadena decorativa" width="146" height="264" class="chain-img" loading="lazy" decoding="async" fetchpriority="low" style="width:33px; height:60px; object-fit:fill; transform:scaleX(0.73); filter:drop-shadow(0 0 5px rgba(86,200,240,0.25));" />
         </div>
-        <div class="feature-card reveal" style="animation-delay:0.1s;">
+ class="feature-card feature-card-glow reveal reveal-right"glow reveal" style="animation-delay:0.1s;">
           <div class="feature-card-img-wrap"><img class="feature-card-img" src="/assets/AoELoot-Respawn.webp" alt="Loot en Área y Respawn Dinámico" width="600" height="400" loading="lazy" /></div>
           <div class="feature-card-body">
             <div class="feature-card-tag">Jugabilidad</div>
@@ -2248,7 +2248,7 @@
         <div class="chain-vertical">
           <img src="/assets/chainsweb.png" alt="Cadena decorativa" width="146" height="264" class="chain-img" loading="lazy" decoding="async" fetchpriority="low" style="width:33px; height:60px; object-fit:fill; transform:scaleX(0.73); filter:drop-shadow(0 0 5px rgba(86,200,240,0.25));" />
         </div>
-        <div class="feature-card reveal" style="animation-delay:0.15s;">
+        <div class="feature-card feature-card-glow reveal" style="animation-delay:0.15s;">
           <div class="feature-card-img-wrap"><img class="feature-card-img" src="/assets/Beauregard_el_huesolucido.png" alt="Beauregard el Huesolúcido: Encantamientos al Instante" width="600" height="400" loading="lazy" /></div>
           <div class="feature-card-body">
             <div class="feature-card-tag">Jugabilidad</div>
@@ -2270,7 +2270,7 @@
         <div class="chain-vertical">
           <img src="/assets/chainsweb.png" alt="Cadena decorativa" width="146" height="264" class="chain-img" loading="lazy" decoding="async" fetchpriority="low" style="width:33px; height:60px; object-fit:fill; transform:scaleX(0.73); filter:drop-shadow(0 0 5px rgba(86,200,240,0.25));" />
         </div>
-        <div class="feature-card reveal" style="animation-delay:0.25s;">
+        <div class="feature-card reveal reveal-left" style="animation-delay:0.25s;">
           <div class="feature-card-img-wrap"><img class="feature-card-img luxor-image" src="/assets/Luxor_el_illusionista.png" alt="Luxor el Ilusionista: El Toque Final para tus Armas" width="600" height="400" loading="lazy" /></div>
           <div class="feature-card-body">
             <div class="feature-card-tag">Personalización</div>
@@ -2281,7 +2281,7 @@
         <div class="chain-vertical">
           <img src="/assets/chainsweb.png" alt="Cadena decorativa" width="146" height="264" class="chain-img" loading="lazy" decoding="async" fetchpriority="low" style="width:33px; height:60px; object-fit:fill; transform:scaleX(0.73); filter:drop-shadow(0 0 5px rgba(86,200,240,0.25));" />
         </div>
-        <div class="feature-card reveal" style="animation-delay:0.3s;">
+ class="feature-card reveal reveal-right"card reveal" style="animation-delay:0.3s;">
           <div class="feature-card-img-wrap"><img class="feature-card-img" src="/assets/lucius_sombra_banquero_elite.png" alt="Banco Extendido: Almacenamiento Infinito y Compartido" width="600" height="400" loading="lazy" /></div>
           <div class="feature-card-body">
             <div class="feature-card-tag">Jugabilidad</div>

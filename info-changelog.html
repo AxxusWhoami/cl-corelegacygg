@@ -404,23 +404,6 @@
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
       .snow-particle { display: none; }
     }
-    .skip-link {
-      position: fixed; top: -100px; left: 1rem; z-index: 10000;
-      padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
-      color: #fff; font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem;
-      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 0 0 10px 10px;
-      border: 1px solid #7dd8f8; border-top: none; text-decoration: none;
-      transition: top 0.25s ease;
-    }
-    .skip-link:focus { top: 0; }
-    a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-      outline: 2px solid #7dd8f8; outline-offset: 2px; border-radius: 4px;
-    }
-    .reading-progress {
-      position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 9999;
-      background: linear-gradient(90deg, #1a9fd4 0%, #7dd8f8 50%, #c8f0ff 100%);
-      box-shadow: 0 0 10px #56c8f088; transition: width 0.1s linear; pointer-events: none;
-    }
   </style>
 </head>
 <body>
@@ -451,8 +434,8 @@
 
         <!-- CTA + Mobile toggle -->
         <div class="flex items-center gap-3">
-          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
           </button>
@@ -619,7 +602,19 @@
             <span class="changelog-panel-title">Changelog de Correcciones</span>
           </div>
           <div class="changelog-panel-body" id="changelogBody">
-            <div class="changelog-loading" id="changelogLoading">Cargando changelog…</div>
+            <div id="changelogSkeleton">
+              <div class="cl-skeleton cl-skeleton-line" style="width:80%"></div>
+              <div class="cl-skeleton cl-skeleton-line" style="width:50%"></div>
+              <div style="height:12px"></div>
+              <div class="cl-skeleton cl-skeleton-line" style="width:70%"></div>
+              <div class="cl-skeleton cl-skeleton-line" style="width:45%"></div>
+              <div style="height:12px"></div>
+              <div class="cl-skeleton cl-skeleton-line" style="width:75%"></div>
+              <div class="cl-skeleton cl-skeleton-line" style="width:55%"></div>
+              <div style="height:12px"></div>
+              <div class="cl-skeleton cl-skeleton-line" style="width:65%"></div>
+              <div class="cl-skeleton cl-skeleton-line" style="width:40%"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -705,7 +700,11 @@
     (function loadChangelog() {
       var API_URL = '/api/changelog.php?locale=esES';
       var body = document.getElementById('changelogBody');
-      var loading = document.getElementById('changelogLoading');
+      var skeleton = document.getElementById('changelogSkeleton');
+      var INITIAL_PAGE_SIZE = 15;
+      var LOAD_MORE_STEP = 15;
+      var allEntries = [];
+      var visibleCount = 0;
 
       function escapeHtml(str) {
         return String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -722,10 +721,63 @@
         return d[2] + ' ' + monthNames[parseInt(d[1], 10) - 1] + ' ' + d[0];
       }
 
+      function formatDateLabel(dateStr) {
+        if (!dateStr) return '';
+        var parts = dateStr.split(' ');
+        var date = parts[0] || '';
+        var d = date.split('-');
+        if (d.length !== 3) return date;
+        var months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        return parseInt(d[2], 10) + ' de ' + months[parseInt(d[1], 10) - 1] + ' de ' + d[0];
+      }
+
+      function getDateKey(dateStr) {
+        if (!dateStr) return '';
+        return dateStr.split(' ')[0] || '';
+      }
+
       function parseCommitPrefix(commit) {
         var match = commit.match(/^(\w+)\(([^)]+)\)/);
         if (!match) return { prefix: '', scope: '', message: commit };
         return { prefix: match[1], scope: match[2], message: commit.replace(/^\w+\([^)]+\):\s*/, '') };
+      }
+
+      function renderEntry(e) {
+        var commit = (e.commit || '').replace(/\s*\(#[0-9]+\)\s*/g, ' ').trim();
+        var parsed = parseCommitPrefix(commit);
+        var scopeLabel = parsed.scope ? '<span class="cl-scope">' + escapeHtml(parsed.scope) + '</span> ' : '';
+        var prefixBadge = parsed.prefix ? '<span class="cl-tag cl-tag-prefix">' + escapeHtml(parsed.prefix) + '</span> ' : '';
+        return '<div class="changelog-entry">'
+          + '<div class="changelog-version">'
+          + prefixBadge + scopeLabel + escapeHtml(parsed.message)
+          + '</div>'
+          + '<div class="changelog-date">' + formatDate(e.dateadd) + '</div>'
+          + '</div>';
+      }
+
+      function renderEntries() {
+        var html = '';
+        var lastDateKey = '';
+        for (var i = 0; i < visibleCount && i < allEntries.length; i++) {
+          var e = allEntries[i];
+          var dateKey = getDateKey(e.dateadd);
+          if (dateKey !== lastDateKey) {
+            html += '<div class="cl-date-group">' + escapeHtml(formatDateLabel(e.dateadd)) + '</div>';
+            lastDateKey = dateKey;
+          }
+          html += renderEntry(e);
+        }
+        if (visibleCount < allEntries.length) {
+          html += '<button class="cl-load-more" type="button" id="clLoadMore">Cargar más</button>';
+        }
+        body.innerHTML = html;
+        var loadMoreBtn = document.getElementById('clLoadMore');
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', function () {
+            visibleCount = Math.min(visibleCount + LOAD_MORE_STEP, allEntries.length);
+            renderEntries();
+          });
+        }
       }
 
       fetch(API_URL)
@@ -746,18 +798,9 @@
             body.innerHTML = '<div class="changelog-loading">No hay entradas en el changelog todavía.</div>';
             return;
           }
-          body.innerHTML = entries.map(function (e) {
-            var commit = (e.commit || '').replace(/\s*\(#[0-9]+\)\s*/g, ' ').trim();
-            var parsed = parseCommitPrefix(commit);
-            var scopeLabel = parsed.scope ? '<span class="cl-scope">' + escapeHtml(parsed.scope) + '</span> ' : '';
-            var prefixBadge = parsed.prefix ? '<span class="cl-tag cl-tag-prefix">' + escapeHtml(parsed.prefix) + '</span> ' : '';
-            return '<div class="changelog-entry">'
-              + '<div class="changelog-version">'
-              + prefixBadge + scopeLabel + escapeHtml(parsed.message)
-              + '</div>'
-              + '<div class="changelog-date">' + formatDate(e.dateadd) + '</div>'
-              + '</div>';
-          }).join('');
+          allEntries = entries;
+          visibleCount = Math.min(INITIAL_PAGE_SIZE, entries.length);
+          renderEntries();
         })
         .catch(function (err) {
           body.innerHTML = '<div class="changelog-error">No se pudo cargar el changelog. Inténtalo más tarde.</div>';
@@ -850,23 +893,8 @@
   <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 
   <button class="back-to-top" type="button" aria-label="Volver arriba">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
-  <script>
-  (function () {
-    'use strict';
-    var bar = document.getElementById('readingProgress');
-    if (!bar) return;
-    function updateProgress() {
-      var st = window.scrollY || document.documentElement.scrollTop;
-      var sh = document.documentElement.scrollHeight - window.innerHeight;
-      var pct = sh > 0 ? (st / sh) * 100 : 0;
-      bar.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
-  })();
-  </script>
 
   <script src="/assets/legal.js"></script>
 </body>

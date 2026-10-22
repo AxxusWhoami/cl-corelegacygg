@@ -45,10 +45,40 @@
     var toggle = document.getElementById('mobileToggle');
     var nav = document.getElementById('mobileNav');
     if (!toggle || !nav) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'mobileNav');
     toggle.addEventListener('click', function () {
       var isHidden = nav.style.display === 'none' || !nav.style.display;
       nav.style.display = isHidden ? 'flex' : 'none';
       nav.classList.toggle('hidden', !isHidden);
+      toggle.setAttribute('aria-expanded', String(isHidden));
+    });
+  })();
+
+  // ===== Reading progress bar (shared) =====
+  (function readingProgress() {
+    var bar = document.getElementById('readingProgress');
+    if (!bar) return;
+    function updateProgress() {
+      var st = window.scrollY || document.documentElement.scrollTop;
+      var sh = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = sh > 0 ? (st / sh) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  })();
+
+  // ===== Feature card cursor glow =====
+  (function featureCardGlow() {
+    var cards = document.querySelectorAll('.feature-card-glow');
+    if (cards.length === 0) return;
+    cards.forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--glow-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--glow-y', (e.clientY - rect.top) + 'px');
+      });
     });
   })();
 
@@ -158,4 +188,43 @@
       window.addEventListener('load', load);
     }
   })();
+})();
+
+// ===== News share buttons =====
+(function newsShare() {
+  'use strict';
+  var buttons = document.querySelectorAll('.news-share-btn');
+  if (!buttons.length) return;
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var type = this.getAttribute('data-share');
+      var article = this.closest('.news-item');
+      if (!article) return;
+      var title = article.getAttribute('aria-label') || document.title;
+      var url = window.location.origin + window.location.pathname + '#' + article.id;
+      if (type === 'facebook') {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank', 'noopener,noreferrer,width=600,height=400');
+      } else if (type === 'twitter') {
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url), '_blank', 'noopener,noreferrer,width=600,height=400');
+      } else if (type === 'copy') {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(function() {
+            btn.classList.add('news-share-copied');
+            setTimeout(function() { btn.classList.remove('news-share-copied'); }, 2000);
+          }).catch(function() {});
+        } else {
+          var tmp = document.createElement('textarea');
+          tmp.value = url;
+          document.body.appendChild(tmp);
+          tmp.select();
+          try { document.execCommand('copy'); } catch(e) {}
+          document.body.removeChild(tmp);
+          btn.classList.add('news-share-copied');
+          setTimeout(function() { btn.classList.remove('news-share-copied'); }, 2000);
+        }
+      }
+    });
+  });
 })();

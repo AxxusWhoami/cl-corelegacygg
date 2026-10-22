@@ -583,7 +583,7 @@
 
         <!-- CTA + Mobile toggle -->
         <div class="flex items-center gap-3">
-          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
@@ -696,6 +696,19 @@
                       <p>👉 <strong>.summonbots</strong></p>
                       <p>Si estás en un grupo o banda y eres el líder, al escribir este comando en el chat invocarás <strong>instantáneamente</strong> a todos los bots de tu party directamente a tu posición actual. Es la solución perfecta para reagruparse rápido al entrar a una mazmorra o antes de un pull importante.</p>
                       <p>¡Entrad ya, reunid a vuestro equipo ideal y conquistad el contenido! Nos vemos en el juego.</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -727,6 +740,19 @@
                       </ul>
                       <p>Todo el proceso de extracción de datos se realiza mediante un <strong>addon propio</strong>, muy ligero y fácil de usar, y cada solicitud es revisada manualmente por la administración para garantizar la integridad y el equilibrio del servidor.</p>
                       <p>🔗 Más información y solicitudes en: <a href="https://corelegacy.gg/migraciones" target="_blank" rel="noopener noreferrer" style="color:#00b4ff; text-decoration:underline;">https://corelegacy.gg/migraciones</a></p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -760,6 +786,19 @@
                       <p>Ya podéis acceder desde el menú principal de la web o entrar directamente a través del siguiente enlace:</p>
                       <p>🔗 Visitar la Armería de CoRe Legacy: <a href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer" style="color:#00b4ff; text-decoration:underline;">https://armeria.corelegacy.gg</a></p>
                       <p>¡Buscad a vuestro aliado ideal, completad el grupo y a por el loot!</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -790,6 +829,19 @@
                         <li><strong style="color:#fff;">Gestión de nombres duplicados:</strong> Al borrar un personaje, su nombre queda libre inmediatamente para el resto de la comunidad. Si al recuperar tu personaje descubres que otro jugador ha ocupado tu nombre original, el sistema lo restaurará con un nombre temporal. La próxima vez que inicies sesión e intentes entrar al mundo con ese personaje, el cliente del juego te pedirá que le asignes un nombre nuevo.</li>
                       </ul>
                       <p>Puedes acceder a esta nueva función y consultar la lista de tus personajes recuperables directamente en la gestión de cuentas: <a href="https://accounts.corelegacy.gg/restaurar-pj" target="_blank" rel="noopener noreferrer" style="color:#00b4ff; text-decoration:underline;">https://accounts.corelegacy.gg/restaurar-pj</a>.</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -821,6 +873,19 @@
                         <li><strong style="color:#fff;">Recompensa de 50 créditos:</strong> Cuando el jugador invitado alcance el nivel 80 con su segundo personaje (el personaje de la promoción no cuenta), tanto él como el reclutador recibiréis 50 créditos para gastar en la tienda.</li>
                       </ul>
                       <p>Invita a todos tus amigos y preparaos para conquistar el mundo juntos.</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -860,6 +925,19 @@
                       <p><strong style="color:#fff;">Nota:</strong> Esta mejora ya se encuentra activa en el servidor. Solo necesitas invitar a los bots a tu grupo para que se aplique la nueva regla de <strong style="color:#fff;">seguimiento incondicional</strong>.</p>
                       <p>Queremos que vuestros grupos de playerbots sean los <strong style="color:#fff;">compañeros perfectos</strong> para vuestras hazañas, y creemos que daros el control absoluto sobre sus movimientos es el paso correcto para lograrlo. ¡Gracias por vuestros reportes de errores, que nos ayudan a seguir puliendo CoRe Legacy día a día!</p>
                       <p>¿Qué rincón olvidado de Azeroth vais a explorar primero con vuestro nuevo grupo de bots inseparables? Si aún no conocéis el sistema, consultad nuestra <a href="/guias/guia-playerbots-ia-wow-wotlk-solitario" style="color:#00b4ff; text-decoration:underline;">guía completa de playerbots</a>.</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -899,6 +977,19 @@
                       <h3>Nuestro Compromiso</h3>
                       <p>En CoRe Legacy queremos que el sistema de bots sea una <strong style="color:#fff;">herramienta de apoyo para disfrutar del contenido</strong>, no un arma para interrumpir la experiencia de la facción rival. Con este cambio, garantizamos que las ciudades vuelvan a ser <strong style="color:#fff;">centros neurálgicos seguros</strong> para que todos podáis prepararos para vuestras próximas misiones sin contratiempos.</p>
                       <p>¡Gracias por ayudarnos a hacer de CoRe Legacy un lugar mejor para jugar! Nos vemos en el mundo.</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -924,6 +1015,19 @@
                       <p>Entre las mejoras más destacadas se incluye una <strong>optimización del sistema de IA</strong> que reduce el consumo de recursos en horas de baja población, mejoras en el sistema de loot en área para grupos grandes y correcciones en varias misiones que presentaban problemas de progresión.</p>
                       <p>También se han corregido errores visuales en la interfaz del cliente y se ha mejorado la <strong>estabilidad de la conexión</strong> en campos de batalla con un alto número de participantes.</p>
                       <p>Agradecemos a todos los jugadores que han reportado bugs a través de nuestro <a href="/reportar-bug" style="color:#00b4ff; text-decoration:underline;">sistema de reporte de bugs</a>. Cada reporte nos ayuda a hacer de CoRe Legacy un lugar mejor para todos. ¡Seguid enviándolos!</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -959,6 +1063,19 @@
 
                       <p>¡Prepara tu armadura, afila tu espada y únete a la cruzada contra el <strong>Rey Exánime</strong>! La verdadera aventura te espera en el <strong>núcleo de Rasganorte</strong>.</p>
                       <p>¿Aún no tienes cuenta? <a href="https://accounts.corelegacy.gg" target="_blank" rel="noopener" style="color:#00b4ff; text-decoration:underline;">Crea tu cuenta gratis</a> y únete a la aventura. Si necesitas ayuda para empezar, consulta nuestra <a href="/guias/guia-de-descarga-e-inicio-rapido" style="color:#00b4ff; text-decoration:underline;">guía de descarga e inicio rápido</a>.</p>
+
+                      <div class="news-share" role="group" aria-label="Compartir noticia">
+                        <span class="news-share-label">Compartir:</span>
+                        <a class="news-share-btn" href="#" data-share="facebook" aria-label="Compartir en Facebook" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="twitter" aria-label="Compartir en X" rel="noopener noreferrer nofollow">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a class="news-share-btn" href="#" data-share="copy" aria-label="Copiar enlace">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>

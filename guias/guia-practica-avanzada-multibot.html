@@ -63,6 +63,46 @@
     "about": "MultiBot addon for World of Warcraft: Wrath of the Lich King 3.3.5a"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "El addon no carga o no responde al hacer clic",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verifica la ruta de instalación. Es obligatorio que la carpeta se llame exactamente MultiBot (sin guiones ni números extra) y esté ubicada en tu ruta de World of Warcraft/Interface/AddOns/. Si el nombre de la carpeta tiene un \"-master\" al final (algo común al descargar de GitHub), debes borrarlo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "No veo a mis personajes en la lista",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Asegúrate de estar en la pestaña correcta (\"Mis Bots\"). Haz clic derecho en el filtro para forzar una actualización profunda con el servidor. Verifica también que no tengas puesto accidentalmente un Filtro de Clase (por ejemplo, buscar Brujos cuando solo tienes Guerreros)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Las estrategias de combate no se aplican (Los bots no hacen caso)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Esto significa que hay un problema de conexión temporal con el sistema central del servidor (conocido como el \"Bridge\"). Normalmente se soluciona reiniciando la inteligencia de los bots. Usa el botón Reset Bots o dales un Wipe desde su menú individual para forzar su reinicio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¡Sigo viendo mensajes de texto de los bots en el chat de grupo o susurros!",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Esto es completamente normal y no significa que el addon esté fallando. Aunque MultiBot fue diseñado específicamente para transformar tu experiencia en algo casi 100% visual y libre de comandos manuales, el sistema central del servidor en el que se basa (conocido históricamente como Playerbots) originalmente funcionaba de forma exclusiva a través de texto escrito. Por lo tanto, el servidor inteligente a veces sigue utilizando estos mensajes de chat como un sistema de respaldo o como \"alertas de estado\" orgánicas para informarte de eventos críticos que requieren tu atención urgente como líder del grupo. Ejemplos prácticos: es muy común que leas a tus bots avisándote por el chat de grupo diciendo \"Me estoy quedando sin maná\", si a tu cazador se le acabaron las flechas y susurra \"No puedo atacar\", si sus mochilas están completamente llenas al intentar despojar botín, o si te avisan de que no pueden curarte porque estás fuera de su línea de visión. En lugar de ver esto como un error del addon, considéralo como un canal de comunicación táctica inmersivo de tu equipo, como si realmente hablaran por radio. Si en algún momento sientes que la cantidad de texto es excesiva durante un combate de banda grande (40 bots hablando a la vez), recuerda que siempre puedes configurar una pestaña de chat separada en la interfaz predeterminada de WoW para agrupar los mensajes del grupo, o usar las \"Opciones\" en la barra principal de MultiBot para ajustar los límites de \"Mensajes por segundo\", manteniendo tu ventana de chat principal limpia y libre de spam."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div id="snowContainer"></div>
@@ -81,7 +121,7 @@
           <a class="nav-link" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
         </nav>
         <div class="flex items-center gap-3">
-          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú">
+          <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
             </svg>

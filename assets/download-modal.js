@@ -37,7 +37,7 @@
     + '<h2 id="downloadChoiceTitle" style="font-family:\'Cinzel Decorative\',Georgia,serif; font-size:1.25rem;'
     + ' font-weight:800; margin:0; background:linear-gradient(180deg,#fff 0%,#d4f0ff 40%,#4bbde8 100%);'
     + ' -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;'
-    + ' letter-spacing:0.03em;">Elige tu Cliente</h2>'
+    + ' letter-spacing:0.03em;">Clientes de World of Warcraft</h2>'
     + '<button type="button" id="downloadChoiceClose" aria-label="Cerrar"'
     + ' style="background:none; border:none; cursor:pointer; color:#7dd8f8; font-size:1.5rem; line-height:1;'
     + ' padding:0; transition:color 0.3s ease;">&times;</button>'

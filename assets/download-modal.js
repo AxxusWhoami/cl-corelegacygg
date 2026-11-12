@@ -133,6 +133,8 @@
     + ' transition:color 0.3s ease;">Ver caracter\u00edsticas</a>'
     + '</div>'
 
+    + '</div>'
+
     + '<div style="display:flex; align-items:center; justify-content:center; gap:0.5rem; padding:1rem 2rem 1.75rem;'
     + ' font-family:\'Cinzel\',Georgia,serif; font-size:0.85rem; font-weight:700; color:#39ff14;'
     + ' letter-spacing:0.04em; text-shadow:0 0 8px rgba(57,255,20,0.5);">'
@@ -140,7 +142,6 @@
     + ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="filter:drop-shadow(0 0 4px rgba(57,255,20,0.6));">'
     + '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>'
     + 'Descarga directa a m\u00e1xima velocidad</div>'
-    + '</div>'
     + '</div>';
 
   /* ---- Normal client requirements modal (blue theme) ---- */

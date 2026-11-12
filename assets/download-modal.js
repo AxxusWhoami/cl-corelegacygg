@@ -166,7 +166,14 @@
 
   /* ---- HD client requirements modal (golden theme, matching HD page) ---- */
   var reqHdHtml =
-    '<div id="reqHdModal" style="display:none; position:fixed; inset:0; z-index:10001;'
+    '<style>'
+    + '#reqHdModal > div::-webkit-scrollbar { width:8px; }'
+    + '#reqHdModal > div::-webkit-scrollbar-track { background:rgba(212,168,67,0.06); border-radius:4px; }'
+    + '#reqHdModal > div::-webkit-scrollbar-thumb { background:linear-gradient(180deg,#f0c850,#d4a843); border-radius:4px; }'
+    + '#reqHdModal > div::-webkit-scrollbar-thumb:hover { background:linear-gradient(180deg,#f0d870,#d4b853); }'
+    + '#reqHdModal > div { scrollbar-width:thin; scrollbar-color:#d4a843 rgba(212,168,67,0.06); }'
+    + '</style>'
+    + '<div id="reqHdModal" style="display:none; position:fixed; inset:0; z-index:10001;'
     + ' background:rgba(2,8,18,0.88); backdrop-filter:blur(6px);'
     + ' align-items:center; justify-content:center;" role="dialog" aria-modal="true" aria-labelledby="reqHdTitle">'
     + '<div style="max-width:680px; width:90vw; max-height:85vh; overflow-y:auto; border-radius:16px;'

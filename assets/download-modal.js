@@ -248,8 +248,8 @@
 
     var w3 = document.createElement('div');
     w3.innerHTML = reqHdHtml;
-    reqHdModal = w3.firstElementChild;
-    document.body.appendChild(reqHdModal);
+    reqHdModal = w3.querySelector('#reqHdModal');
+    document.body.appendChild(w3);
 
     // Choice modal
     modal.querySelector('#downloadChoiceClose').addEventListener('click', closeChoice);

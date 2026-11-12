@@ -2,6 +2,7 @@
   'use strict';
 
   var NORMAL_URL = 'https://cdn.corelegacy.gg/CoRe_Legacy.zip';
+  var HD_URL = 'https://cdn.corelegacy.gg/CoRe_Legacy_HD.zip';
   var HD_PAGE = '/descargar-wow-wotlk-hd';
 
   function trackDownload(clientType) {
@@ -260,7 +261,7 @@
     + ' font-family:\'Cinzel Decorative\',Georgia,serif; font-size:0.95rem; font-weight:800; color:#050d18;'
     + ' background:linear-gradient(135deg,#d4f0ff,#4bbde8); border:1px solid #8dd8f5;">1</div>'
     + '<div><h3 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-size:1rem; font-weight:700; color:#d4f0ff; margin:0 0 0.35rem;">Esperar que termine la descarga</h3>'
-    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.85rem; line-height:1.65; color:#b8d4e8; margin:0;">Tu descarga del archivo <strong style="color:#7dd8f8;">CoRe_Legacy.zip</strong> (~16,5 GB) ya se ha iniciado. Espera a que se complete completamente antes de continuar.</p></div>'
+    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.85rem; line-height:1.65; color:#b8d4e8; margin:0;">Tu descarga del archivo <strong id="installGuideFile" style="color:#7dd8f8;">CoRe_Legacy.zip</strong> (<span id="installGuideSize">~16,5 GB</span>) ya se ha iniciado. Espera a que se complete completamente antes de continuar.</p></div>'
     + '</div>'
     + '<div style="display:flex; gap:1rem; padding:1rem 0; border-bottom:1px solid #4bbde822;">'
     + '<div style="flex-shrink:0; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;'
@@ -314,14 +315,24 @@
 
     modal.querySelector('[data-dl="normal"]').addEventListener('click', function () {
       closeChoice();
+      installModal.querySelector('#installGuideTitle').textContent = 'Gu\u00eda de Instalaci\u00f3n R\u00e1pida';
+      installModal.querySelector('#installGuideFile').textContent = 'CoRe_Legacy.zip';
+      installModal.querySelector('#installGuideSize').textContent = '~16,5 GB';
       installModal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
       triggerDownload(NORMAL_URL);
       trackDownload(1);
     });
-    modal.querySelector('[data-dl="hd"]').addEventListener('click', function () {
-      trackDownload(2);
+    modal.querySelector('[data-dl="hd"]').addEventListener('click', function (e) {
+      e.preventDefault();
       closeChoice();
+      installModal.querySelector('#installGuideTitle').textContent = 'Gu\u00eda de Instalaci\u00f3n R\u00e1pida (HD)';
+      installModal.querySelector('#installGuideFile').textContent = 'CoRe_Legacy_HD.zip';
+      installModal.querySelector('#installGuideSize').textContent = '~40 GB';
+      installModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      triggerDownload(HD_URL);
+      trackDownload(2);
     });
     modal.querySelector('[data-req="normal"]').addEventListener('click', function () {
       openReq(reqNormalModal);

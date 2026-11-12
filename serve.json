@@ -29,6 +29,8 @@
     { "source": "/reportar-bug", "destination": "/comunidad.html" },
     { "source": "/reportar-bug/", "destination": "/comunidad.html" },
     { "source": "/highlights-gameplays", "destination": "/comunidad.html" },
-    { "source": "/highlights-gameplays/", "destination": "/comunidad.html" }
+    { "source": "/highlights-gameplays/", "destination": "/comunidad.html" },
+    { "source": "/descargar-wow-wotlk-hd", "destination": "/descargar-wow-wotlk-hd.html" },
+    { "source": "/descargar-wow-wotlk-hd/", "destination": "/descargar-wow-wotlk-hd.html" }
   ]
 }

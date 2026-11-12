@@ -79,6 +79,7 @@
     + ' font-family:\'Cinzel\',Georgia,serif; font-size:0.8rem; font-weight:700; color:#f0c850;'
     + ' text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em;'
     + ' transition:color 0.3s ease;">Requisitos</button>'
+    + '<span aria-hidden="true" style="margin-top:0.5rem; font-size:0.8rem; line-height:1.6; visibility:hidden;">Ver caracter\u00edsticas</span>'
     + '</div>'
 
     // Divider

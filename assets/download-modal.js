@@ -126,6 +126,10 @@
     + ' font-family:\'Cinzel\',Georgia,serif; font-size:0.8rem; font-weight:700; color:#f0c850;'
     + ' text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em;'
     + ' transition:color 0.3s ease;">Requisitos</button>'
+    + '<a href="https://corelegacy.gg/descargar-wow-wotlk-hd" target="_blank" rel="noopener"'
+    + ' style="margin-top:0.5rem; font-family:\'Cinzel\',Georgia,serif; font-size:0.8rem; font-weight:700;'
+    + ' color:#4bbde8; text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em;'
+    + ' transition:color 0.3s ease;">Ver caracter\u00edsticas</a>'
     + '</div>'
 
     + '</div>'

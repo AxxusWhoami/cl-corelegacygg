@@ -310,6 +310,71 @@
       box-shadow: 0 0 10px #56c8f088; transition: width 0.1s linear; pointer-events: none;
     }
 
+    .hd-faq-panel {
+      position: relative;
+      border: 1px solid #1a3a5a44;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(8,20,36,0.92) 0%, rgba(5,13,24,0.96) 100%);
+      box-shadow: 0 0 25px rgba(26,159,212,0.08), 0 12px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(77,189,232,0.03);
+      margin-bottom: 2.5rem;
+    }
+    .hd-faq-panel::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77,189,232,0.2) 0%, rgba(26,159,212,0.08) 50%, rgba(13,110,168,0.15) 100%);
+      z-index: -1; opacity: 0.5; pointer-events: none;
+    }
+    .hd-faq-item {
+      border-bottom: 1px solid rgba(26,159,212,0.12);
+    }
+    .hd-faq-item:last-child { border-bottom: none; }
+    .hd-faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 1.25rem 1.75rem;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Cinzel','Cinzel Decorative',Georgia,serif;
+      font-size: 0.95rem; font-weight: 700; color: var(--frost);
+      text-align: left; letter-spacing: 0.02em;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .hd-faq-question:hover {
+      background: rgba(77,189,232,0.05);
+      color: #c8f0ff;
+    }
+    .hd-faq-question-text {
+      flex: 1; padding-right: 1rem; line-height: 1.5;
+    }
+    .hd-faq-icon {
+      flex-shrink: 0; width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(77,189,232,0.3);
+      color: #7dd8f8; transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      font-size: 1.1rem; line-height: 1;
+    }
+    .hd-faq-item.open .hd-faq-icon {
+      transform: rotate(45deg);
+      border-color: rgba(77,189,232,0.7);
+      background: rgba(77,189,232,0.1);
+    }
+    .hd-faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .hd-faq-answer-inner {
+      padding: 0 1.75rem 1.25rem 1.75rem;
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.9rem; line-height: 1.8; color: #b8d4e8;
+    }
+    .hd-faq-answer-inner strong { color: var(--frost); }
+    .hd-faq-warning {
+      margin-top: 0.75rem; padding: 0.85rem 1rem;
+      background: rgba(212,168,67,0.06);
+      border: 1px solid rgba(212,168,67,0.25);
+      border-radius: 8px;
+      font-size: 0.85rem; color: #d4c080; line-height: 1.7;
+    }
+    .hd-faq-warning strong { color: #f0c850; }
+
     .req-modal-scroll {
       scrollbar-width: thin;
       scrollbar-color: #d4a843 #1a141000;
@@ -579,6 +644,77 @@
           <button type="button" class="req-modal-trigger" style="background:none; border:none; cursor:pointer; font-family:'Cinzel',Georgia,serif; font-size:0.85rem; color:#f0c850; text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em; font-weight:700; transition:color 0.3s ease;" onmouseover="this.style.color='#fff7e0';" onmouseout="this.style.color='#f0c850';">Requisitos Recomendados</button>
         </div>
 
+        <!-- ===== FAQ ===== -->
+        <div class="hd-faq-panel" style="padding: 2.5rem;" id="faq">
+          <h2 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.4rem; font-weight:700; color:var(--frost); margin-bottom:0.5rem; text-align:center; letter-spacing:0.03em; text-shadow:0 0 10px rgba(77,189,232,0.2);">
+            ❓ Preguntas Frecuentes (FAQ) sobre el Cliente HD
+          </h2>
+          <div class="frost-divider mx-auto" style="max-width:280px; margin-bottom:2rem;"></div>
+
+          <div class="hd-faq-item">
+            <button type="button" class="hd-faq-question" aria-expanded="false">
+              <span class="hd-faq-question-text">1. ¿El cliente Normal y el cliente HD se conectan a reinos distintos?</span>
+              <span class="hd-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="hd-faq-answer">
+              <div class="hd-faq-answer-inner">
+                No, ambos clientes se conectan exactamente al mismo reino de CoRe Legacy. El tipo de cliente que elijas descargar solo afecta a los gráficos y al rendimiento visual de tu ordenador. La jugabilidad no se ve afectada en absoluto; los jugadores del cliente normal y los del cliente HD juegan todos juntos en el mismo mundo.
+              </div>
+            </div>
+          </div>
+
+          <div class="hd-faq-item">
+            <button type="button" class="hd-faq-question" aria-expanded="false">
+              <span class="hd-faq-question-text">2. ¿Necesito crear una cuenta nueva para usar el cliente HD?</span>
+              <span class="hd-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="hd-faq-answer">
+              <div class="hd-faq-answer-inner">
+                En absoluto. Tu cuenta de CoRe Legacy es la misma y totalmente válida para ambos clientes. Si ya tienes una cuenta registrada con nosotros, simplemente abre el cliente HD e inicia sesión con tu usuario y contraseña de siempre.
+              </div>
+            </div>
+          </div>
+
+          <div class="hd-faq-item">
+            <button type="button" class="hd-faq-question" aria-expanded="false">
+              <span class="hd-faq-question-text">3. Ya estoy jugando con la versión normal, ¿puedo acceder a mis personajes con el cliente HD?</span>
+              <span class="hd-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="hd-faq-answer">
+              <div class="hd-faq-answer-inner">
+                ¡Sí, por supuesto! Toda la información de tus personajes (tu nivel, equipo, oro, hermandad, progreso en Míticas+, etc.) se guarda de forma segura en nuestro servidor, no en los archivos de tu ordenador. Al entrar con el cliente HD, tus personajes estarán exactamente donde los dejaste, pero ahora los verás con texturas en alta definición.
+              </div>
+            </div>
+          </div>
+
+          <div class="hd-faq-item">
+            <button type="button" class="hd-faq-question" aria-expanded="false">
+              <span class="hd-faq-question-text">4. ¿Puedo tener el cliente Normal y el cliente HD instalados a la vez?</span>
+              <span class="hd-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="hd-faq-answer">
+              <div class="hd-faq-answer-inner">
+                Sí, puedes tener ambos clientes instalados en tu ordenador sin ningún problema, siempre y cuando los guardes en carpetas separadas. Algunos jugadores prefieren tener ambos para alternar según el ordenador que estén utilizando (por ejemplo, usar el cliente HD en su PC de sobremesa y el normal en un portátil más modesto).
+              </div>
+            </div>
+          </div>
+
+          <div class="hd-faq-item">
+            <button type="button" class="hd-faq-question" aria-expanded="false">
+              <span class="hd-faq-question-text">5. ¿Qué hago si el cliente HD no se ejecuta o no abre al iniciarlo?</span>
+              <span class="hd-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="hd-faq-answer">
+              <div class="hd-faq-answer-inner">
+                Si al intentar ejecutar el cliente HD el juego no arranca por problemas de compatibilidad con tu hardware, puedes forzar el inicio utilizando la API gráfica nativa clásica. Para ello, simplemente borra los archivos <strong>d3d9.dll</strong> y <strong>dxgi.dll</strong> de la carpeta principal del juego.
+                <div class="hd-faq-warning">
+                  <strong>Advertencia importante:</strong> La nueva API de gráficos contenida en esos archivos está diseñada específicamente para optimizar el trabajo de las tarjetas gráficas actuales y aumentar drásticamente los FPS. Al eliminarlos para forzar el arranque clásico, es muy probable que experimentes una reducción importante en el rendimiento y los fotogramas por segundo (FPS) generales del juego.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -776,6 +912,82 @@
     if (closeBtn) closeBtn.addEventListener('click', close);
     modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.style.display === 'flex') close(); });
+  })();
+  </script>
+
+  <!-- ===== FAQ JSON-LD ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿El cliente Normal y el cliente HD se conectan a reinos distintos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, ambos clientes se conectan exactamente al mismo reino de CoRe Legacy. El tipo de cliente que elijas descargar solo afecta a los gráficos y al rendimiento visual de tu ordenador. La jugabilidad no se ve afectada en absoluto; los jugadores del cliente normal y los del cliente HD juegan todos juntos en el mismo mundo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito crear una cuenta nueva para usar el cliente HD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En absoluto. Tu cuenta de CoRe Legacy es la misma y totalmente válida para ambos clientes. Si ya tienes una cuenta registrada con nosotros, simplemente abre el cliente HD e inicia sesión con tu usuario y contraseña de siempre."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ya estoy jugando con la versión normal, ¿puedo acceder a mis personajes con el cliente HD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "¡Sí, por supuesto! Toda la información de tus personajes (tu nivel, equipo, oro, hermandad, progreso en Míticas+, etc.) se guarda de forma segura en nuestro servidor, no en los archivos de tu ordenador. Al entrar con el cliente HD, tus personajes estarán exactamente donde los dejaste, pero ahora los verás con texturas en alta definición."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo tener el cliente Normal y el cliente HD instalados a la vez?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, puedes tener ambos clientes instalados en tu ordenador sin ningún problema, siempre y cuando los guardes en carpetas separadas. Algunos jugadores prefieren tener ambos para alternar según el ordenador que estén utilizando (por ejemplo, usar el cliente HD en su PC de sobremesa y el normal en un portátil más modesto)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué hago si el cliente HD no se ejecuta o no abre al iniciarlo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si al intentar ejecutar el cliente HD el juego no arranca por problemas de compatibilidad con tu hardware, puedes forzar el inicio utilizando la API gráfica nativa clásica. Para ello, simplemente borra los archivos d3d9.dll y dxgi.dll de la carpeta principal del juego. Advertencia importante: La nueva API de gráficos contenida en esos archivos está diseñada específicamente para optimizar el trabajo de las tarjetas gráficas actuales y aumentar drásticamente los FPS. Al eliminarlos para forzar el arranque clásico, es muy probable que experimentes una reducción importante en el rendimiento y los fotogramas por segundo (FPS) generales del juego."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ===== FAQ Accordion ===== -->
+  <script>
+  (function () {
+    'use strict';
+    var faqItems = document.querySelectorAll('.hd-faq-item');
+    faqItems.forEach(function (item) {
+      var btn = item.querySelector('.hd-faq-question');
+      var answer = item.querySelector('.hd-faq-answer');
+      if (!btn || !answer) return;
+      btn.addEventListener('click', function () {
+        var isOpen = item.classList.contains('open');
+        faqItems.forEach(function (other) {
+          other.classList.remove('open');
+          other.querySelector('.hd-faq-question').setAttribute('aria-expanded', 'false');
+          other.querySelector('.hd-faq-answer').style.maxHeight = '0';
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
   })();
   </script>
 </body>

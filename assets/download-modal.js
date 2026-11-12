@@ -236,9 +236,54 @@
     + '</div>'
     + '</div>';
 
+  /* ---- Install guide modal (shown after triggering Normal download) ---- */
+  var installModalHtml =
+    '<div id="installGuideModal" style="display:none; position:fixed; inset:0; z-index:10002;'
+    + ' background:rgba(2,8,18,0.88); backdrop-filter:blur(6px);'
+    + ' align-items:center; justify-content:center;" role="dialog" aria-modal="true" aria-labelledby="installGuideTitle">'
+    + '<div style="max-width:560px; width:90vw; max-height:85vh; overflow-y:auto; border-radius:16px;'
+    + ' border:1px solid #4bbde855; box-shadow:0 0 50px rgba(77,189,232,0.15), 0 20px 60px rgba(0,0,0,0.7);'
+    + ' background:linear-gradient(180deg, rgba(8,20,36,0.98) 0%, rgba(5,13,24,0.99) 100%);">'
+    + '<div style="display:flex; align-items:center; justify-content:space-between; padding:1.5rem 2rem;'
+    + ' border-bottom:1px solid #4bbde833;">'
+    + '<h2 id="installGuideTitle" style="font-family:\'Cinzel Decorative\',Georgia,serif; font-size:1.25rem;'
+    + ' font-weight:800; margin:0; background:linear-gradient(180deg,#fff 0%,#d4f0ff 40%,#4bbde8 100%);'
+    + ' -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;'
+    + ' letter-spacing:0.03em;">Gu\u00eda de Instalaci\u00f3n R\u00e1pida</h2>'
+    + '<button type="button" id="installGuideClose" aria-label="Cerrar"'
+    + ' style="background:none; border:none; cursor:pointer; color:#7dd8f8; font-size:1.5rem; line-height:1;'
+    + ' padding:0; transition:color 0.3s ease;">&times;</button>'
+    + '</div>'
+    + '<div style="padding:1.75rem 2rem;">'
+    + '<div style="display:flex; gap:1rem; padding:1rem 0; border-bottom:1px solid #4bbde822;">'
+    + '<div style="flex-shrink:0; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;'
+    + ' font-family:\'Cinzel Decorative\',Georgia,serif; font-size:0.95rem; font-weight:800; color:#050d18;'
+    + ' background:linear-gradient(135deg,#d4f0ff,#4bbde8); border:1px solid #8dd8f5;">1</div>'
+    + '<div><h3 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-size:1rem; font-weight:700; color:#d4f0ff; margin:0 0 0.35rem;">Esperar que termine la descarga</h3>'
+    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.85rem; line-height:1.65; color:#b8d4e8; margin:0;">Tu descarga del archivo <strong style="color:#7dd8f8;">CoRe_Legacy.zip</strong> (~16,5 GB) ya se ha iniciado. Espera a que se complete completamente antes de continuar.</p></div>'
+    + '</div>'
+    + '<div style="display:flex; gap:1rem; padding:1rem 0; border-bottom:1px solid #4bbde822;">'
+    + '<div style="flex-shrink:0; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;'
+    + ' font-family:\'Cinzel Decorative\',Georgia,serif; font-size:0.95rem; font-weight:800; color:#050d18;'
+    + ' background:linear-gradient(135deg,#d4f0ff,#4bbde8); border:1px solid #8dd8f5;">2</div>'
+    + '<div><h3 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-size:1rem; font-weight:700; color:#d4f0ff; margin:0 0 0.35rem;">Extraer</h3>'
+    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.85rem; line-height:1.65; color:#b8d4e8; margin:0;">Una vez descargado, haz clic derecho sobre el archivo <strong style="color:#7dd8f8;">.zip</strong> y selecciona <strong style="color:#7dd8f8;">"Extraer todo"</strong>. Elige una carpeta de destino (por ejemplo, <em>C:\\CoRe_Legacy</em>) y espera a que finalice la extracci\u00f3n.</p></div>'
+    + '</div>'
+    + '<div style="display:flex; gap:1rem; padding:1rem 0;">'
+    + '<div style="flex-shrink:0; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;'
+    + ' font-family:\'Cinzel Decorative\',Georgia,serif; font-size:0.95rem; font-weight:800; color:#050d18;'
+    + ' background:linear-gradient(135deg,#d4f0ff,#4bbde8); border:1px solid #8dd8f5;">3</div>'
+    + '<div><h3 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-size:1rem; font-weight:700; color:#d4f0ff; margin:0 0 0.35rem;">Abrir Wow.exe y Jugar</h3>'
+    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.85rem; line-height:1.65; color:#b8d4e8; margin:0;">Entra en la carpeta extra\u00edda y ejecuta <strong style="color:#7dd8f8;">wow.exe</strong>. Inicia sesi\u00f3n con tu cuenta de CoRe Legacy, crea tu personaje y \u00a1disfruta de Rasganorte!</p></div>'
+    + '</div>'
+    + '</div>'
+    + '</div>'
+    + '</div>';
+
   var modal = null;
   var reqNormalModal = null;
   var reqHdModal = null;
+  var installModal = null;
 
   function ensureModals() {
     if (modal) return;
@@ -258,6 +303,11 @@
     reqHdModal = w3.querySelector('#reqHdModal');
     document.body.appendChild(w3);
 
+    var w4 = document.createElement('div');
+    w4.innerHTML = installModalHtml;
+    installModal = w4.firstElementChild;
+    document.body.appendChild(installModal);
+
     // Choice modal
     modal.querySelector('#downloadChoiceClose').addEventListener('click', closeChoice);
     modal.addEventListener('click', function (e) { if (e.target === modal) closeChoice(); });
@@ -266,6 +316,8 @@
       triggerDownload(NORMAL_URL);
       trackDownload(1);
       closeChoice();
+      installModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     });
     modal.querySelector('[data-dl="hd"]').addEventListener('click', function () {
       trackDownload(2);
@@ -285,8 +337,12 @@
     reqHdModal.querySelector('#reqHdClose').addEventListener('click', function () { closeReq(reqHdModal); });
     reqHdModal.addEventListener('click', function (e) { if (e.target === reqHdModal) closeReq(reqHdModal); });
 
+    installModal.querySelector('#installGuideClose').addEventListener('click', function () { installModal.style.display = 'none'; document.body.style.overflow = ''; });
+    installModal.addEventListener('click', function (e) { if (e.target === installModal) { installModal.style.display = 'none'; document.body.style.overflow = ''; } });
+
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
+      if (installModal && installModal.style.display === 'flex') { installModal.style.display = 'none'; document.body.style.overflow = ''; return; }
       if (reqNormalModal.style.display === 'flex') { closeReq(reqNormalModal); return; }
       if (reqHdModal.style.display === 'flex') { closeReq(reqHdModal); return; }
       if (modal.style.display === 'flex') { closeChoice(); return; }

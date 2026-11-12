@@ -2,7 +2,6 @@
   'use strict';
 
   var NORMAL_URL = 'https://cdn.corelegacy.gg/CoRe_Legacy.zip';
-  var HD_URL = 'https://cdn.corelegacy.gg/CoRe_Legacy_HD.zip';
   var HD_PAGE = '/descargar-wow-wotlk-hd';
 
   function trackDownload(clientType) {
@@ -24,6 +23,7 @@
     document.body.removeChild(a);
   }
 
+  /* ---- Download choice modal ---- */
   var modalHtml =
     '<div id="downloadChoiceModal" style="display:none; position:fixed; inset:0; z-index:10000;'
     + ' background:rgba(2,8,18,0.88); backdrop-filter:blur(6px);'
@@ -52,7 +52,7 @@
     + '<h3 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-size:1rem; font-weight:700;'
     + ' color:#d4f0ff; margin:0 0 0.35rem; letter-spacing:0.02em;">Cliente Normal</h3>'
     + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.8rem; line-height:1.6; color:#b8d4e8;'
-    + ' margin:0 0 1.25rem; flex:1;">Gráficos clásicos originales. Ideal para equipos modestos.</p>'
+    + ' margin:0 0 1.25rem; flex:1;">Gr\u00e1ficos cl\u00e1sicos originales. Ideal para equipos modestos.</p>'
     + '<button type="button" data-dl="normal"'
     + ' style="display:inline-flex; align-items:center; justify-content:center; gap:0.4rem;'
     + ' padding:0.65rem 1.5rem; font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif;'
@@ -65,6 +65,11 @@
     + '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/>'
     + '<line x1="12" y1="15" x2="12" y2="3"/></svg>'
     + 'Descargar</button>'
+    + '<button type="button" data-req="normal"'
+    + ' style="background:none; border:none; cursor:pointer; margin-top:0.75rem;'
+    + ' font-family:\'Cinzel\',Georgia,serif; font-size:0.8rem; font-weight:700; color:#f0c850;'
+    + ' text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em;'
+    + ' transition:color 0.3s ease;">Requisitos</button>'
     + '</div>'
 
     // Divider
@@ -79,7 +84,7 @@
     + '<h3 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif; font-size:1rem; font-weight:700;'
     + ' color:#7dd8f8; margin:0 0 0.35rem; letter-spacing:0.02em; text-shadow:0 0 8px rgba(77,189,232,0.2);">Cliente HD</h3>'
     + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.8rem; line-height:1.6; color:#b8d4e8;'
-    + ' margin:0 0 1.25rem; flex:1;">Texturas HD, agua moderna, iluminación avanzada y más FPS.</p>'
+    + ' margin:0 0 1.25rem; flex:1;">Texturas HD, agua moderna, iluminaci\u00f3n avanzada y m\u00e1s FPS.</p>'
     + '<a href="' + HD_PAGE + '" data-dl="hd"'
     + ' style="display:inline-flex; align-items:center; justify-content:center; gap:0.4rem;'
     + ' padding:0.65rem 1.5rem; font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif;'
@@ -92,53 +97,178 @@
     + '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/>'
     + '<line x1="12" y1="15" x2="12" y2="3"/></svg>'
     + 'Descargar</a>'
+    + '<button type="button" data-req="hd"'
+    + ' style="background:none; border:none; cursor:pointer; margin-top:0.75rem;'
+    + ' font-family:\'Cinzel\',Georgia,serif; font-size:0.8rem; font-weight:700; color:#f0c850;'
+    + ' text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em;'
+    + ' transition:color 0.3s ease;">Requisitos</button>'
     + '</div>'
 
     + '</div>'
     + '</div>'
     + '</div>';
 
+  /* ---- Normal client requirements modal (blue theme) ---- */
+  var reqNormalHtml =
+    '<div id="reqNormalModal" style="display:none; position:fixed; inset:0; z-index:10001;'
+    + ' background:rgba(2,8,18,0.88); backdrop-filter:blur(6px);'
+    + ' align-items:center; justify-content:center;" role="dialog" aria-modal="true" aria-labelledby="reqNormalTitle">'
+    + '<div style="max-width:680px; width:90vw; max-height:85vh; overflow-y:auto; border-radius:16px;'
+    + ' border:1px solid #4bbde855; box-shadow:0 0 50px rgba(77,189,232,0.15), 0 20px 60px rgba(0,0,0,0.7);'
+    + ' background:linear-gradient(180deg, rgba(8,20,36,0.98) 0%, rgba(5,13,24,0.99) 100%);">'
+    + '<div style="display:flex; align-items:center; justify-content:space-between; padding:1.5rem 2rem;'
+    + ' border-bottom:1px solid #4bbde833;">'
+    + '<h2 id="reqNormalTitle" style="font-family:\'Cinzel Decorative\',Georgia,serif; font-size:1.25rem;'
+    + ' font-weight:800; margin:0; background:linear-gradient(180deg,#fff 0%,#d4f0ff 40%,#4bbde8 100%);'
+    + ' -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;'
+    + ' letter-spacing:0.03em;">Requisitos del Sistema (Cliente Normal)</h2>'
+    + '<button type="button" id="reqNormalClose" aria-label="Cerrar"'
+    + ' style="background:none; border:none; cursor:pointer; color:#7dd8f8; font-size:1.5rem; line-height:1;'
+    + ' padding:0; transition:color 0.3s ease;">&times;</button>'
+    + '</div>'
+    + '<div style="padding:1.75rem 2rem;">'
+    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.88rem; line-height:1.75; color:#b8d4e8;'
+    + ' margin:0 0 1.5rem;">Para disfrutar de World of Warcraft: Wrath of the Lich King 3.3.5a con un rendimiento estable, recomendamos el siguiente hardware:</p>'
+    + '<table style="width:100%; border-collapse:collapse; font-family:\'Cinzel\',Georgia,serif;">'
+    + '<thead><tr>'
+    + '<th style="text-align:left; padding:0.75rem 1rem; font-size:0.8rem; font-weight:700; color:#4bbde8;'
+    + ' letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid #4bbde844;">Componente</th>'
+    + '<th style="text-align:left; padding:0.75rem 1rem; font-size:0.8rem; font-weight:700; color:#4bbde8;'
+    + ' letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid #4bbde844;">Requisitos Recomendados para WoW 3.3.5</th>'
+    + '</tr></thead><tbody>'
+    + '<tr style="border-bottom:1px solid #4bbde822;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4f0ff; font-weight:600;">Sistema Operativo</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8d4e8; line-height:1.6;">Windows Vista / Windows 7 / Windows 10 (Se requieren 64-bit para aprovechar el parche)</td></tr>'
+    + '<tr style="border-bottom:1px solid #4bbde822;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4f0ff; font-weight:600;">Procesador (CPU)</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8d4e8; line-height:1.6;">Intel Pentium D o AMD Athlon 64 X2 (o superior)</td></tr>'
+    + '<tr style="border-bottom:1px solid #4bbde822;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4f0ff; font-weight:600;">Memoria RAM</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8d4e8; line-height:1.6;">8 GB de RAM (El cliente necesita 4 GB dedicados)</td></tr>'
+    + '<tr style="border-bottom:1px solid #4bbde822;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4f0ff; font-weight:600;">Tarjeta Gr\u00e1fica (GPU)</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8d4e8; line-height:1.6;">Tarjeta gr\u00e1fica 3D con 256 MB de VRAM (NVIDIA GeForce 8600 / ATI Radeon HD 2600 o superior)</td></tr>'
+    + '<tr><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4f0ff; font-weight:600;">Almacenamiento</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8d4e8; line-height:1.6;">~25 GB de espacio libre</td></tr>'
+    + '</tbody></table>'
+    + '</div>'
+    + '</div>'
+    + '</div>';
+
+  /* ---- HD client requirements modal (golden theme, matching HD page) ---- */
+  var reqHdHtml =
+    '<div id="reqHdModal" style="display:none; position:fixed; inset:0; z-index:10001;'
+    + ' background:rgba(2,8,18,0.88); backdrop-filter:blur(6px);'
+    + ' align-items:center; justify-content:center;" role="dialog" aria-modal="true" aria-labelledby="reqHdTitle">'
+    + '<div style="max-width:680px; width:90vw; max-height:85vh; overflow-y:auto; border-radius:16px;'
+    + ' border:1px solid #d4a84355; box-shadow:0 0 50px rgba(212,168,67,0.15), 0 20px 60px rgba(0,0,0,0.7);'
+    + ' background:linear-gradient(180deg, rgba(20,16,8,0.98) 0%, rgba(8,6,2,0.99) 100%);">'
+    + '<div style="display:flex; align-items:center; justify-content:space-between; padding:1.5rem 2rem;'
+    + ' border-bottom:1px solid #d4a84333;">'
+    + '<h2 id="reqHdTitle" style="font-family:\'Cinzel Decorative\',Georgia,serif; font-size:1.25rem;'
+    + ' font-weight:800; margin:0; background:linear-gradient(180deg,#fff7e0 0%,#f0c850 50%,#d4a843 100%);'
+    + ' -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;'
+    + ' letter-spacing:0.03em;">Requisitos del Sistema (Versi\u00f3n HD)</h2>'
+    + '<button type="button" id="reqHdClose" aria-label="Cerrar"'
+    + ' style="background:none; border:none; cursor:pointer; color:#d4c080; font-size:1.5rem; line-height:1;'
+    + ' padding:0; transition:color 0.3s ease;">&times;</button>'
+    + '</div>'
+    + '<div style="padding:1.75rem 2rem;">'
+    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.88rem; line-height:1.75; color:#d4c080;'
+    + ' margin:0 0 1.5rem;">Para disfrutar de todos los beneficios gr\u00e1ficos, el nuevo motor de agua y la iluminaci\u00f3n avanzada sin sacrificar los FPS (especialmente en JcJ masivo o bandas), recomendamos el siguiente hardware:</p>'
+    + '<table style="width:100%; border-collapse:collapse; font-family:\'Cinzel\',Georgia,serif;">'
+    + '<thead><tr>'
+    + '<th style="text-align:left; padding:0.75rem 1rem; font-size:0.8rem; font-weight:700; color:#f0c850;'
+    + ' letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid #d4a84344;">Componente</th>'
+    + '<th style="text-align:left; padding:0.75rem 1rem; font-size:0.8rem; font-weight:700; color:#f0c850;'
+    + ' letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid #d4a84344;">Requisitos Recomendados para HD</th>'
+    + '</tr></thead><tbody>'
+    + '<tr style="border-bottom:1px solid #d4a84322;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4c080; font-weight:600;">Sistema Operativo</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8a060; line-height:1.6;">Windows 10 / Windows 11 (64-bit)</td></tr>'
+    + '<tr style="border-bottom:1px solid #d4a84322;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4c080; font-weight:600;">Procesador (CPU)</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8a060; line-height:1.6;">Procesador Quad Core moderno (Intel Core i3/i5 o AMD Ryzen 3/5)</td></tr>'
+    + '<tr style="border-bottom:1px solid #d4a84322;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4c080; font-weight:600;">Memoria RAM</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8a060; line-height:1.6;">8 GB de RAM (El cliente necesita 4 GB dedicados)</td></tr>'
+    + '<tr style="border-bottom:1px solid #d4a84322;"><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4c080; font-weight:600;">Tarjeta Gr\u00e1fica (GPU)</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8a060; line-height:1.6;">Tarjeta gr\u00e1fica dedicada con soporte para API modernas (NVIDIA GTX Serie 1050+ / AMD RX Serie 400+ o superior)</td></tr>'
+    + '<tr><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#d4c080; font-weight:600;">Almacenamiento</td><td style="padding:0.75rem 1rem; font-size:0.85rem; color:#b8a060; line-height:1.6;">~40 GB de espacio libre (Recomendado encarecidamente SSD / NVMe para reducir tiempos de carga)</td></tr>'
+    + '</tbody></table>'
+    + '<div style="margin-top:1.5rem; padding:1.25rem 1.5rem; background:rgba(212,168,67,0.06);'
+    + ' border:1px solid #d4a84333; border-radius:10px;">'
+    + '<p style="font-family:\'Cinzel\',Georgia,serif; font-size:0.82rem; line-height:1.7; color:#b8a060; margin:0;">'
+    + '<strong style="color:#f0c850;">\u00bfEl cliente no se abre?</strong> Prueba a eliminar los archivos '
+    + '<strong style="color:#d4c080;">d3d9.dll</strong>, <strong style="color:#d4c080;">dxgi.dll</strong> y '
+    + '<strong style="color:#d4c080;">dxvk.conf</strong> de la carpeta del juego. Si a\u00fan as\u00ed no arranca o tienes '
+    + 'problemas de rendimiento, deber\u00e1s usar la versi\u00f3n normal del cliente para jugar.</p>'
+    + '</div>'
+    + '</div>'
+    + '</div>'
+    + '</div>';
+
   var modal = null;
-  var closeBtn = null;
+  var reqNormalModal = null;
+  var reqHdModal = null;
 
-  function ensureModal() {
+  function ensureModals() {
     if (modal) return;
-    var wrapper = document.createElement('div');
-    wrapper.innerHTML = modalHtml;
-    modal = wrapper.firstElementChild;
+
+    var w1 = document.createElement('div');
+    w1.innerHTML = modalHtml;
+    modal = w1.firstElementChild;
     document.body.appendChild(modal);
-    closeBtn = modal.querySelector('#downloadChoiceClose');
 
-    closeBtn.addEventListener('click', close);
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) close();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.style.display === 'flex') close();
-    });
+    var w2 = document.createElement('div');
+    w2.innerHTML = reqNormalHtml;
+    reqNormalModal = w2.firstElementChild;
+    document.body.appendChild(reqNormalModal);
 
-    var normalBtn = modal.querySelector('[data-dl="normal"]');
-    normalBtn.addEventListener('click', function () {
+    var w3 = document.createElement('div');
+    w3.innerHTML = reqHdHtml;
+    reqHdModal = w3.firstElementChild;
+    document.body.appendChild(reqHdModal);
+
+    // Choice modal
+    modal.querySelector('#downloadChoiceClose').addEventListener('click', closeChoice);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeChoice(); });
+
+    modal.querySelector('[data-dl="normal"]').addEventListener('click', function () {
       triggerDownload(NORMAL_URL);
       trackDownload(1);
-      close();
+      closeChoice();
+    });
+    modal.querySelector('[data-dl="hd"]').addEventListener('click', function () {
+      trackDownload(2);
+      closeChoice();
+    });
+    modal.querySelector('[data-req="normal"]').addEventListener('click', function () {
+      closeChoice();
+      openReq(reqNormalModal);
+    });
+    modal.querySelector('[data-req="hd"]').addEventListener('click', function () {
+      closeChoice();
+      openReq(reqHdModal);
     });
 
-    var hdLink = modal.querySelector('[data-dl="hd"]');
-    hdLink.addEventListener('click', function () {
-      trackDownload(2);
-      close();
+    // Requirements modals
+    reqNormalModal.querySelector('#reqNormalClose').addEventListener('click', function () { closeReq(reqNormalModal); });
+    reqNormalModal.addEventListener('click', function (e) { if (e.target === reqNormalModal) closeReq(reqNormalModal); });
+
+    reqHdModal.querySelector('#reqHdClose').addEventListener('click', function () { closeReq(reqHdModal); });
+    reqHdModal.addEventListener('click', function (e) { if (e.target === reqHdModal) closeReq(reqHdModal); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (reqNormalModal.style.display === 'flex') { closeReq(reqNormalModal); return; }
+      if (reqHdModal.style.display === 'flex') { closeReq(reqHdModal); return; }
+      if (modal.style.display === 'flex') { closeChoice(); return; }
     });
   }
 
-  function open() {
-    ensureModal();
+  function openChoice() {
+    ensureModals();
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
 
-  function close() {
+  function closeChoice() {
     modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function openReq(m) {
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeReq(m) {
+    m.style.display = 'none';
     document.body.style.overflow = '';
   }
 
@@ -149,6 +279,6 @@
     if (href.indexOf('cdn.corelegacy.gg/CoRe_Legacy.zip') === -1) return;
     if (link.textContent.trim().indexOf('Descargar WoW 3.3.5') === -1) return;
     e.preventDefault();
-    open();
+    openChoice();
   });
 })();

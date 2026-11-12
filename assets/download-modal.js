@@ -228,11 +228,9 @@
       closeChoice();
     });
     modal.querySelector('[data-req="normal"]').addEventListener('click', function () {
-      closeChoice();
       openReq(reqNormalModal);
     });
     modal.querySelector('[data-req="hd"]').addEventListener('click', function () {
-      closeChoice();
       openReq(reqHdModal);
     });
 
@@ -269,6 +267,7 @@
 
   function closeReq(m) {
     m.style.display = 'none';
+    if (modal && modal.style.display === 'flex') return;
     document.body.style.overflow = '';
   }
 

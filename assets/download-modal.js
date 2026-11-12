@@ -313,11 +313,11 @@
     modal.addEventListener('click', function (e) { if (e.target === modal) closeChoice(); });
 
     modal.querySelector('[data-dl="normal"]').addEventListener('click', function () {
-      triggerDownload(NORMAL_URL);
-      trackDownload(1);
       closeChoice();
       installModal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
+      triggerDownload(NORMAL_URL);
+      trackDownload(1);
     });
     modal.querySelector('[data-dl="hd"]').addEventListener('click', function () {
       trackDownload(2);

@@ -375,6 +375,51 @@
     }
     .hd-faq-warning strong { color: #f0c850; }
 
+    .hd-download-info {
+      display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;
+      margin-top: 1.25rem; font-family: 'Cinzel',Georgia,serif;
+    }
+    .hd-download-info-item {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; color: #8dd6f5; letter-spacing: 0.03em;
+    }
+    .hd-download-info-item svg { color: #7dd8f8; flex-shrink: 0; }
+    .hd-updated-date {
+      display: block; text-align: center; margin-top: 0.75rem;
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.78rem;
+      color: #6a8aa0; letter-spacing: 0.04em;
+    }
+    .hd-normal-link {
+      display: inline-block; margin-top: 0.75rem;
+      font-family: 'Cinzel',Georgia,serif; font-size: 0.82rem;
+      color: #b8d4e8; text-decoration: none; letter-spacing: 0.03em;
+      transition: color 0.3s ease;
+    }
+    .hd-normal-link:hover { color: #7dd8f8; text-decoration: underline; text-underline-offset: 3px; }
+    .hd-normal-link svg { vertical-align: middle; margin-right: 0.3rem; }
+
+    .hd-install-step {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.25rem 0; border-bottom: 1px solid rgba(77,189,232,0.1);
+    }
+    .hd-install-step:last-of-type { border-bottom: none; }
+    .hd-install-step-num {
+      flex-shrink: 0; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 2px solid rgba(77,189,232,0.4);
+      font-family: 'Cinzel Decorative',Georgia,serif; font-size: 1.1rem; font-weight: 700;
+      color: #7dd8f8; background: rgba(77,189,232,0.08);
+    }
+    .hd-install-step-content h3 {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: 0.95rem; font-weight: 700; color: var(--frost);
+      margin: 0 0 0.35rem 0; letter-spacing: 0.02em;
+    }
+    .hd-install-step-content p {
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.85rem; line-height: 1.7; color: #b8d4e8; margin: 0;
+    }
+
     .req-modal-scroll {
       scrollbar-width: thin;
       scrollbar-color: #d4a843 #1a141000;
@@ -458,7 +503,7 @@
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:2rem;">
           <a href="https://cdn.corelegacy.gg/CoRe_Legacy_HD.zip" download
-             class="btn-cta-primary"
+             class="btn-cta-primary hd-download-trigger"
              style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2.25rem;
                     font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; font-weight:800; letter-spacing:0.06em;
                     color:#050d18; background:linear-gradient(135deg,#d4f0ff 0%,#8dd6f5 40%,#4bbde8 100%);
@@ -482,9 +527,29 @@
           </a>
         </div>
 
+        <div class="hd-download-info">
+          <span class="hd-download-info-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            ~40 GB
+          </span>
+          <span class="hd-download-info-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            CDN Máxima Velocidad
+          </span>
+        </div>
+
         <div style="text-align:center; margin-top:1.25rem;">
           <button type="button" class="req-modal-trigger" style="background:none; border:none; cursor:pointer; font-family:'Cinzel',Georgia,serif; font-size:0.85rem; color:#f0c850; text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em; font-weight:700; transition:color 0.3s ease;" onmouseover="this.style.color='#fff7e0';" onmouseout="this.style.color='#f0c850';">Requisitos Recomendados</button>
         </div>
+
+        <div style="text-align:center; margin-top:0.75rem;">
+          <a href="https://cdn.corelegacy.gg/CoRe_Legacy.zip" download class="hd-normal-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            ¿Prefieres el cliente normal?
+          </a>
+        </div>
+
+        <span class="hd-updated-date">Última actualización: 12 de noviembre de 2026</span>
       </div>
     </section>
 
@@ -499,63 +564,63 @@
           </h2>
           <div class="hd-gallery" id="hdGallery">
             <div class="hd-gallery-item" data-index="0" tabindex="0" role="button" aria-label="Ver imagen 1: Pantalla de inicio de sesión">
-              <img src="/assets/screenshots/01_logon.jpg" alt="Pantalla de inicio de sesión de WoW WotLK HD en CoRe Legacy" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/01_logon.webp" alt="Pantalla de inicio de sesión de WoW WotLK HD en CoRe Legacy" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="1" tabindex="0" role="button" aria-label="Ver imagen 2: Fiordo Aquilonal">
-              <img src="/assets/screenshots/02_fiordo_aquilonal.jpg" alt="Paisaje del Fiordo Aquilonal con texturas HD en CoRe Legacy" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/02_fiordo_aquilonal.webp" alt="Paisaje del Fiordo Aquilonal con texturas HD en CoRe Legacy" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="2" tabindex="0" role="button" aria-label="Ver imagen 3: Vallefresno">
-              <img src="/assets/screenshots/03_Vallefresno.jpg" alt="Vallefresno con gráficos mejorados en WoW HD 3.3.5a" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/03_Vallefresno.webp" alt="Vallefresno con gráficos mejorados en WoW HD 3.3.5a" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="3" tabindex="0" role="button" aria-label="Ver imagen 4: Ventormenta">
-              <img src="/assets/screenshots/04_Ventormenta.jpg" alt="Ciudad de Ventormenta con modelos HD en CoRe Legacy" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/04_Ventormenta.webp" alt="Ciudad de Ventormenta con modelos HD en CoRe Legacy" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="4" tabindex="0" role="button" aria-label="Ver imagen 5: Pantalla de carga">
-              <img src="/assets/screenshots/05_loadingscreen.jpg" alt="Pantalla de carga de WoW WotLK HD en alta definición" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/05_loadingscreen.webp" alt="Pantalla de carga de WoW WotLK HD en alta definición" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="5" tabindex="0" role="button" aria-label="Ver imagen 6: Creación de personaje">
-              <img src="/assets/screenshots/06_char_creation.jpg" alt="Pantalla de creación de personaje con modelos HD actualizados" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/06_char_creation.webp" alt="Pantalla de creación de personaje con modelos HD actualizados" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="6" tabindex="0" role="button" aria-label="Ver imagen 7: Ventormenta de noche">
-              <img src="/assets/screenshots/07_stormwing_night.jpg" alt="Ventormenta de noche con iluminación avanzada en WoW HD" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/07_stormwing_night.webp" alt="Ventormenta de noche con iluminación avanzada en WoW HD" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="7" tabindex="0" role="button" aria-label="Ver imagen 8: Modelos de personaje">
-              <img src="/assets/screenshots/08_models.jpg" alt="Modelos de personaje en alta definición en CoRe Legacy" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/08_models.webp" alt="Modelos de personaje en alta definición en CoRe Legacy" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="8" tabindex="0" role="button" aria-label="Ver imagen 9: Cielo y luz">
-              <img src="/assets/screenshots/09_skylinght.jpg" alt="Efectos de cielo e iluminación volumétrica en WoW WotLK HD" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/09_skylinght.webp" alt="Efectos de cielo e iluminación volumétrica en WoW WotLK HD" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="9" tabindex="0" role="button" aria-label="Ver imagen 10: Creación de personaje detallada">
-              <img src="/assets/screenshots/10_charcreation.jpg" alt="Creación de personaje con modelos detallados HD en WoW 3.3.5a" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/10_charcreation.webp" alt="Creación de personaje con modelos detallados HD en WoW 3.3.5a" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="10" tabindex="0" role="button" aria-label="Ver imagen 11: Ventormenta ampliada">
-              <img src="/assets/screenshots/11_stormwind.jpg" alt="Vista de Ventormenta con texturas en alta resolución" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/11_stormwind.webp" alt="Vista de Ventormenta con texturas en alta resolución" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="11" tabindex="0" role="button" aria-label="Ver imagen 12: Fiordo Aquilonal detallado">
-              <img src="/assets/screenshots/12_fiordo.jpg" alt="Fiordo Aquilonal con motor de agua moderno en WoW HD" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/12_fiordo.webp" alt="Fiordo Aquilonal con motor de agua moderno en WoW HD" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="12" tabindex="0" role="button" aria-label="Ver imagen 13: Teldrassil">
-              <img src="/assets/screenshots/13_teldrassil.jpg" alt="Teldrassil con entornos mejorados en WoW WotLK HD" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/13_teldrassil.webp" alt="Teldrassil con entornos mejorados en WoW WotLK HD" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="13" tabindex="0" role="button" aria-label="Ver imagen 14: Zangar">
-              <img src="/assets/screenshots/14_zangar.jpg" alt="Marisma de Zangar con iluminación realista en WoW HD" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/14_zangar.webp" alt="Marisma de Zangar con iluminación realista en WoW HD" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
             <div class="hd-gallery-item" data-index="14" tabindex="0" role="button" aria-label="Ver imagen 15: Ulduar">
-              <img src="/assets/screenshots/15_ulduar.jpg" alt="Ulduar con gráficos en alta definición en CoRe Legacy" loading="lazy" width="480" height="270" />
+              <img src="/assets/screenshots/15_ulduar.webp" alt="Ulduar con gráficos en alta definición en CoRe Legacy" loading="lazy" width="480" height="270" />
               <div class="hd-gallery-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
             </div>
           </div>
@@ -627,7 +692,7 @@
         <!-- Bottom CTA -->
         <div style="text-align:center; padding:2.5rem 2rem 0.5rem;">
           <a href="https://cdn.corelegacy.gg/CoRe_Legacy_HD.zip" download
-             class="btn-cta-primary"
+             class="btn-cta-primary hd-download-trigger"
              style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2.25rem;
                     font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; font-weight:800; letter-spacing:0.06em;
                     color:#050d18; background:linear-gradient(135deg,#d4f0ff 0%,#8dd6f5 40%,#4bbde8 100%);
@@ -638,9 +703,26 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Descargar Cliente HD
           </a>
+          <div class="hd-download-info">
+            <span class="hd-download-info-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              ~40 GB
+            </span>
+            <span class="hd-download-info-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              CDN Máxima Velocidad
+            </span>
+          </div>
           <div style="margin-top:1rem;">
             <button type="button" class="req-modal-trigger" style="background:none; border:none; cursor:pointer; font-family:'Cinzel',Georgia,serif; font-size:0.85rem; color:#f0c850; text-decoration:underline; text-underline-offset:3px; letter-spacing:0.04em; font-weight:700; transition:color 0.3s ease;" onmouseover="this.style.color='#fff7e0';" onmouseout="this.style.color='#f0c850';">Requisitos Recomendados</button>
           </div>
+          <div style="margin-top:0.75rem;">
+            <a href="https://cdn.corelegacy.gg/CoRe_Legacy.zip" download class="hd-normal-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              ¿Prefieres el cliente normal?
+            </a>
+          </div>
+          <span class="hd-updated-date">Última actualización: 12 de noviembre de 2026</span>
         </div>
 
         <!-- ===== FAQ ===== -->
@@ -914,7 +996,103 @@
   })();
   </script>
 
-  <!-- ===== FAQ JSON-LD ===== -->
+  <!-- ===== Installation Guide Modal ===== -->
+  <div id="installModal" class="req-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="installModalTitle" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(2,8,18,0.88); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+    <div class="req-modal-scroll" style="max-width:560px; width:90vw; max-height:85vh; overflow-y:auto; border-radius:16px; border:1px solid #4bbde855; box-shadow:0 0 50px rgba(77,189,232,0.15), 0 20px 60px rgba(0,0,0,0.7); background:linear-gradient(180deg, rgba(8,20,36,0.98) 0%, rgba(5,13,24,0.99) 100%);">
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:1.5rem 2rem; border-bottom:1px solid #4bbde833;">
+        <h2 id="installModalTitle" style="font-family:'Cinzel Decorative',Georgia,serif; font-size:1.25rem; font-weight:800; margin:0; background:linear-gradient(180deg,#fff 0%,#d4f0ff 40%,#4bbde8 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:0.03em;">Guía de Instalación Rápida</h2>
+        <button type="button" id="installModalClose" aria-label="Cerrar" style="background:none; border:none; cursor:pointer; color:#7dd8f8; font-size:1.5rem; line-height:1; padding:0; transition:color 0.3s ease;" onmouseover="this.style.color='#d4f0ff';" onmouseout="this.style.color='#7dd8f8';">&times;</button>
+      </div>
+      <div style="padding:1.75rem 2rem;">
+        <div class="hd-install-step">
+          <div class="hd-install-step-num">1</div>
+          <div class="hd-install-step-content">
+            <h3>Descargar</h3>
+            <p>Haz clic en el botón de descarga para obtener el archivo <strong style="color:var(--frost);">CoRe_Legacy_HD.zip</strong> (~40 GB). La descarga se realiza desde nuestra CDN a máxima velocidad.</p>
+          </div>
+        </div>
+        <div class="hd-install-step">
+          <div class="hd-install-step-num">2</div>
+          <div class="hd-install-step-content">
+            <h3>Extraer</h3>
+            <p>Una vez descargado, haz clic derecho sobre el archivo <strong style="color:var(--frost);">.zip</strong> y selecciona <strong style="color:var(--frost);">"Extraer todo"</strong>. Elige una carpeta de destino (por ejemplo, <em>C:\CoRe_Legacy_HD</em>) y espera a que finalice la extracción.</p>
+          </div>
+        </div>
+        <div class="hd-install-step">
+          <div class="hd-install-step-num">3</div>
+          <div class="hd-install-step-content">
+            <h3>Abrir y Jugar</h3>
+            <p>Entra en la carpeta extraída y ejecuta <strong style="color:var(--frost);">wow.exe</strong>. Inicia sesión con tu cuenta de CoRe Legacy, crea tu personaje y ¡disfruta de Rasganorte en alta definición!</p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem; padding:1.25rem 1.5rem; background:rgba(77,189,232,0.06); border:1px solid #4bbde844; border-radius:10px; text-align:center;">
+          <button type="button" id="installStartDownload"
+             style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.8rem 2rem; margin-bottom:1rem;
+                    font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:0.95rem; font-weight:800; letter-spacing:0.04em;
+                    color:#050d18; background:linear-gradient(135deg,#d4f0ff 0%,#8dd6f5 40%,#4bbde8 100%);
+                    border:1px solid #8dd6f5; border-radius:10px; text-decoration:none; cursor:pointer;
+                    box-shadow:0 0 20px rgba(77,189,232,0.3); transition:all 0.3s ease;"
+             onmouseover="this.style.boxShadow='0 0 28px rgba(77,189,232,0.5)'; this.style.transform='translateY(-2px)';"
+             onmouseout="this.style.boxShadow='0 0 20px rgba(77,189,232,0.3)'; this.style.transform='translateY(0)';">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Iniciar Descarga
+          </button>
+          <p style="font-family:'Cinzel',Georgia,serif; font-size:0.88rem; color:#b8d4e8; margin:0 0 1rem;">
+            ¿Aún no tienes cuenta? Regístrate gratis y empieza a jugar en menos de 1 minuto.
+          </p>
+          <a href="https://accounts.corelegacy.gg/crear-cuenta" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.7rem 1.75rem;
+                    font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:0.9rem; font-weight:700; letter-spacing:0.04em;
+                    color:#050d18; background:linear-gradient(135deg,#d4f0ff 0%,#8dd6f5 40%,#4bbde8 100%);
+                    border:1px solid #8dd6f5; border-radius:8px; text-decoration:none; cursor:pointer;
+                    box-shadow:0 0 16px rgba(77,189,232,0.25); transition:all 0.3s ease;"
+             onmouseover="this.style.boxShadow='0 0 24px rgba(77,189,232,0.45)'; this.style.transform='translateY(-2px)';"
+             onmouseout="this.style.boxShadow='0 0 16px rgba(77,189,232,0.25)'; this.style.transform='translateY(0)';">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            Registrarse Aquí
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    'use strict';
+    var modal = document.getElementById('installModal');
+    var closeBtn = document.getElementById('installModalClose');
+    var triggers = document.querySelectorAll('.hd-download-trigger');
+    if (!modal) return;
+    var downloadUrl = '';
+    function open(e) {
+      e.preventDefault();
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      downloadUrl = e.currentTarget.href;
+    }
+    function close() { modal.style.display = 'none'; document.body.style.overflow = ''; }
+    function startDownload() {
+      if (downloadUrl) {
+        var a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+    triggers.forEach(function (btn) { btn.addEventListener('click', open); });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.style.display === 'flex') close();
+    });
+    var startBtn = document.getElementById('installStartDownload');
+    if (startBtn) startBtn.addEventListener('click', function () { startDownload(); close(); });
+  })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

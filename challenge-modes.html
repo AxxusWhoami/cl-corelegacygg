@@ -37,11 +37,6 @@
   <link rel="stylesheet" href="/assets/guia-page.css" />
   <style>
     .challenge-page-wrap { max-width: 1080px; }
-    .challenge-hero { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:2rem; align-items:center; margin-bottom:2rem; }
-    .challenge-hero-copy { font-family:'Cinzel',Georgia,serif; color:#b8d4e8; font-size:.92rem; line-height:1.85; }
-    .challenge-hero-copy p { margin:.75rem 0; }
-    .challenge-hero-art { display:flex; justify-content:center; }
-    .challenge-hero-art img { width:100%; max-width:280px; filter:drop-shadow(0 0 24px rgba(212,168,67,.28)); animation:challengeFloat 5s ease-in-out infinite; }
     .challenge-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:1.25rem; }
     .challenge-card { position:relative; overflow:hidden; min-height:240px; padding:1rem; display:flex; flex-direction:column; justify-content:flex-end; border:1px solid rgba(77,189,232,.2); border-radius:12px; background:linear-gradient(180deg,rgba(8,22,36,.45),rgba(3,9,18,.96)); transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease; }
     .challenge-card:hover { transform:translateY(-4px); border-color:rgba(240,200,80,.65); box-shadow:0 10px 28px rgba(0,0,0,.4),0 0 20px rgba(212,168,67,.12); }
@@ -53,8 +48,8 @@
     .challenge-card p { margin:.35rem 0 0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.76rem; line-height:1.5; }
     @keyframes challengeFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
     @media (max-width:800px) { .challenge-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:600px) { .challenge-hero { grid-template-columns:1fr; } .challenge-rules > div { grid-template-columns:1fr; } .challenge-hero-art { order:-1; } .challenge-hero-art img { max-width:210px; } .challenge-grid { grid-template-columns:1fr; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
-    @media (prefers-reduced-motion:reduce) { .challenge-hero-art img,.challenge-card { animation:none; transition:none; } }
+    @media (max-width:600px) { .challenge-rules { grid-template-columns:1fr; gap:1.25rem; } .challenge-rules img { max-width:160px; } .challenge-grid { grid-template-columns:1fr; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
+    @media (prefers-reduced-motion:reduce) { .challenge-card { animation:none; transition:none; } }
   </style>
   <script type="application/ld+json">
   {
@@ -93,23 +88,18 @@
         </div>
       </div>
       <div class="guia-page-body">
-        <section class="challenge-hero" aria-label="Emblema de los Modos de Desafío" style="justify-content:center;">
-          <div class="challenge-hero-art"><img src="/assets/desafios/desafios_core_legacy_512.png" alt="Desafíos CoRe Legacy" width="512" height="512" /></div>
-        </section>
-        <section class="challenge-rules" aria-labelledby="challenge-rules-title" style="margin:1rem 0 2.25rem; padding:1.5rem; border:1px solid rgba(212,168,67,.3); border-radius:14px; background:linear-gradient(135deg,rgba(212,168,67,.08),rgba(4,12,22,.55) 55%,rgba(77,189,232,.06)); box-shadow:0 0 24px rgba(212,168,67,.08);">
-          <div style="display:grid; grid-template-columns:minmax(0,1fr) 180px; gap:1.5rem; align-items:center;">
-            <div class="challenge-hero-copy">
-              <h2 id="challenge-rules-title" class="guia-step-title" style="font-size:1.2rem; margin-top:0; color:#f0c850;">¿Cómo funcionan los Modos de Desafío?</h2>
-              <p>Al crear un nuevo personaje en CoRe Legacy, encontrarás el <strong style="color:#f0c850;">Altar de los Retos</strong> en todas las zonas iniciales de cada raza, incluida la zona de inicio de los Caballeros de la Muerte a nivel 55.</p>
-              <ul class="guia-list" style="margin-bottom:0;">
-                <li><strong style="color:#d4f0ff;">Activación inicial:</strong> Debes activar tus desafíos en el Altar antes de superar el nivel 1, o el nivel 55 en el caso de los Caballeros de la Muerte.</li>
-                <li><strong style="color:#d4f0ff;">Combinables entre sí:</strong> Puedes activar un único reto o combinar varios desafíos compatibles de forma simultánea para multiplicar la dificultad y escalar posiciones en nuestro Ranking de Temporada.</li>
-                <li><strong style="color:#d4f0ff;">Recompensas exclusivas sin romper el equilibrio:</strong> Superar los hitos de nivel 30, 40, 50, 60 y 80 te otorgará títulos únicos, monturas legendarias, mascotas, tabardos y logros directamente en tu personaje, manteniendo intacto el equilibrio competitivo al alcanzar el nivel 80, momento en el que el desafío se da por completado.</li>
-                <li><strong style="color:#d4f0ff;">Sin ayuda externa:</strong> Para garantizar la pureza de cada hazaña, los personajes con un Modo de Desafío activo no pueden agruparse con Playerbots mientras dure el reto.</li>
-              </ul>
-            </div>
-            <div class="challenge-hero-art"><img src="/assets/desafios/desafios_core_legacy_512.png" alt="Altar y emblema de los Desafíos CoRe Legacy" width="512" height="512" loading="lazy" /></div>
+        <section class="challenge-rules" aria-labelledby="challenge-rules-title" style="margin:1.5rem 0 2.25rem; padding:1.75rem; border:1px solid rgba(212,168,67,.3); border-radius:14px; background:linear-gradient(135deg,rgba(212,168,67,.08),rgba(4,12,22,.55) 55%,rgba(77,189,232,.06)); box-shadow:0 0 24px rgba(212,168,67,.08); display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:1.75rem; align-items:center;">
+          <div>
+            <h2 id="challenge-rules-title" class="guia-step-title" style="font-size:1.2rem; margin-top:0; color:#f0c850;">¿Cómo funcionan los Modos de Desafío?</h2>
+            <p>Al crear un nuevo personaje en CoRe Legacy, encontrarás el <strong style="color:#f0c850;">Altar de los Retos</strong> en todas las zonas iniciales de cada raza, incluida la zona de inicio de los Caballeros de la Muerte a nivel 55.</p>
+            <ul class="guia-list" style="margin-bottom:0;">
+              <li><strong style="color:#d4f0ff;">Activación inicial:</strong> Debes activar tus desafíos en el Altar antes de superar el nivel 1, o el nivel 55 en el caso de los Caballeros de la Muerte.</li>
+              <li><strong style="color:#d4f0ff;">Combinables entre sí:</strong> Puedes activar un único reto o combinar varios desafíos compatibles de forma simultánea para multiplicar la dificultad y escalar posiciones en nuestro Ranking de Temporada.</li>
+              <li><strong style="color:#d4f0ff;">Recompensas exclusivas sin romper el equilibrio:</strong> Superar los hitos de nivel 30, 40, 50, 60 y 80 te otorgará títulos únicos, monturas legendarias, mascotas, tabardos y logros directamente en tu personaje, manteniendo intacto el equilibrio competitivo al alcanzar el nivel 80, momento en el que el desafío se da por completado.</li>
+              <li><strong style="color:#d4f0ff;">Sin ayuda externa:</strong> Para garantizar la pureza de cada hazaña, los personajes con un Modo de Desafío activo no pueden agruparse con Playerbots mientras dure el reto.</li>
+            </ul>
           </div>
+          <div style="display:flex; align-items:center; justify-content:center;"><img src="/assets/desafios/desafios_core_legacy_512.png" alt="Altar y emblema de los Desafíos CoRe Legacy" width="200" height="200" loading="lazy" style="width:200px; height:200px; object-fit:contain;" /></div>
         </section>
         <section class="guia-section" aria-labelledby="challenge-list-title">
           <h2 id="challenge-list-title" class="guia-step-title" style="font-size:1.2rem;">Elige tu desafío</h2>

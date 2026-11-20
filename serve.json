@@ -31,6 +31,8 @@
     { "source": "/highlights-gameplays", "destination": "/comunidad.html" },
     { "source": "/highlights-gameplays/", "destination": "/comunidad.html" },
     { "source": "/descargar-wow-wotlk-hd", "destination": "/descargar-wow-wotlk-hd.html" },
-    { "source": "/descargar-wow-wotlk-hd/", "destination": "/descargar-wow-wotlk-hd.html" }
+    { "source": "/descargar-wow-wotlk-hd/", "destination": "/descargar-wow-wotlk-hd.html" },
+    { "source": "/challenge-modes", "destination": "/challenge-modes.html" },
+    { "source": "/challenge-modes/", "destination": "/challenge-modes.html" }
   ]
 }

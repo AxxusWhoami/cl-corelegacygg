@@ -75,6 +75,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^descargar-wow-wotlk-hd/?$ /descargar-wow-wotlk-hd.html [L]
 
+# Clean URL: /challenge-modes -> /challenge-modes.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^challenge-modes/?$ /challenge-modes.html [L]
+
 # Legal deep links -> legal-page.php (serves correct meta tags)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

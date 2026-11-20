@@ -37,19 +37,25 @@
   <link rel="stylesheet" href="/assets/guia-page.css" />
   <style>
     .challenge-page-wrap { max-width: 1080px; }
-    .challenge-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:1.25rem; }
-    .challenge-card { position:relative; overflow:hidden; min-height:240px; padding:1rem; display:flex; flex-direction:column; justify-content:flex-end; border:1px solid rgba(77,189,232,.2); border-radius:12px; background:linear-gradient(180deg,rgba(8,22,36,.45),rgba(3,9,18,.96)); transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease; }
-    .challenge-card:hover { transform:translateY(-4px); border-color:rgba(240,200,80,.65); box-shadow:0 10px 28px rgba(0,0,0,.4),0 0 20px rgba(212,168,67,.12); }
-    .challenge-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:1rem 1rem 3.5rem; opacity:.72; transition:transform .4s ease,opacity .3s ease; }
-    .challenge-card:hover img { transform:scale(1.06); opacity:.95; }
-    .challenge-card::after { content:''; position:absolute; inset:35% 0 0; background:linear-gradient(transparent,rgba(3,9,18,.98)); pointer-events:none; }
-    .challenge-card-content { position:relative; z-index:1; }
-    .challenge-card h3 { margin:0; color:#f0c850; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; line-height:1.3; }
-    .challenge-card p { margin:.35rem 0 0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.76rem; line-height:1.5; }
-    @keyframes challengeFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
-    @media (max-width:800px) { .challenge-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:600px) { .challenge-rules { grid-template-columns:1fr; gap:1.25rem; } .challenge-rules img { max-width:160px; } .challenge-grid { grid-template-columns:1fr; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
-    @media (prefers-reduced-motion:reduce) { .challenge-card { animation:none; transition:none; } }
+    .challenge-fiches { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; margin-top:1.25rem; }
+    .fiche-card { display:grid; grid-template-columns:120px minmax(0,1fr); gap:1.25rem; padding:1.5rem; border:1px solid rgba(77,189,232,.18); border-radius:14px; background:linear-gradient(160deg,rgba(8,22,36,.55),rgba(3,9,18,.96)); transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease; }
+    .fiche-card:hover { transform:translateY(-3px); border-color:rgba(240,200,80,.5); box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 18px rgba(212,168,67,.1); }
+    .fiche-card-img { display:flex; align-items:flex-start; justify-content:center; }
+    .fiche-card-img img { width:120px; height:120px; object-fit:contain; filter:drop-shadow(0 0 14px rgba(212,168,67,.18)); border-radius:10px; }
+    .fiche-card-body { display:flex; flex-direction:column; gap:.6rem; min-width:0; }
+    .fiche-card-body h3 { margin:0; color:#f0c850; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.1rem; line-height:1.2; }
+    .fiche-card-body p { margin:0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.82rem; line-height:1.6; }
+    .fiche-incompatible { font-size:.75rem; color:#d98c8c; font-family:'Cinzel',Georgia,serif; }
+    .fiche-incompatible strong { color:#e8a0a0; }
+    .fiche-rewards { margin:0; padding:.75rem 0 0; border-top:1px solid rgba(77,189,232,.12); }
+    .fiche-rewards-title { font-size:.78rem; color:#f0c850; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; margin:0 0 .4rem; }
+    .fiche-rewards ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.2rem; }
+    .fiche-rewards li { font-size:.76rem; color:#c8d8e8; font-family:'Cinzel',Georgia,serif; line-height:1.5; padding-left:1.1rem; position:relative; }
+    .fiche-rewards li::before { content:'◆'; position:absolute; left:0; color:#d4a843; font-size:.6rem; top:.15rem; }
+    .fiche-rewards li strong { color:#e8d098; }
+    @media (max-width:800px) { .challenge-fiches { grid-template-columns:1fr; } }
+    @media (max-width:600px) { .challenge-rules { grid-template-columns:1fr; gap:1.25rem; } .challenge-rules img { max-width:160px; } .fiche-card { grid-template-columns:90px minmax(0,1fr); gap:1rem; padding:1.25rem; } .fiche-card-img img { width:90px; height:90px; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
+    @media (prefers-reduced-motion:reduce) { .fiche-card { transition:none; } }
   </style>
   <script type="application/ld+json">
   {
@@ -103,16 +109,156 @@
         </section>
         <section class="guia-section" aria-labelledby="challenge-list-title">
           <h2 id="challenge-list-title" class="guia-step-title" style="font-size:1.2rem;">Elige tu desafío</h2>
-          <p>Estos son los nueve retos disponibles para quienes quieren vivir Azeroth con reglas diferentes. En el próximo detalle de cada ficha encontrarás sus reglas, recompensas y recomendaciones.</p>
-          <div class="challenge-grid">
-            <article class="challenge-card"><img src="/assets/desafios/desafio_hardcore_512.png" alt="Modo Hardcore" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Hardcore</h3><p>Una vida. Cada decisión cuenta.</p></div></article>
-            <article class="challenge-card"><img src="/assets/desafios/desafio_ironman_512.png" alt="Modo Iron Man o Hombre de Hierro" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Iron Man</h3><p>El reto del auténtico purismo.</p></div></article>
-            <article class="challenge-card"><img src="/assets/desafios/desafio_item_quality_512.png" alt="Modo Item Quality" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Item Quality</h3><p>Progresa con una calidad de objetos limitada.</p></div></article>
-            <article class="challenge-card"><img src="/assets/desafios/desafio_quest_xp_only_512.png" alt="Modo Quest XP Only" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Quest XP Only</h3><p>La experiencia llega únicamente desde misiones.</p></div></article>
-            <article class="challenge-card"><img src="/assets/desafios/desafio_self_crafted_512.png" alt="Modo Self Crafted" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Self Crafted</h3><p>Tu progreso depende de lo que tú fabricas.</p></div></article>
-            <article class="challenge-card"><img src="/assets/desafios/desafio_semihardcore_512.png" alt="Modo Semihardcore" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Semihardcore</h3><p>Una experiencia de supervivencia con margen para recuperarte.</p></div></article>
-            <article class="challenge-card"><img src="/assets/desafios/desafio_slow_xp_gain_512.png" alt="Modo Slow XP Gain" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Slow XP Gain</h3><p>Disfruta el viaje con una progresión más lenta.</p></div></article>
-            <article class="challenge-card"><img src="/assets/desafios/desafio_very_slow_xp_gain_512.png" alt="Modo Very Slow XP Gain" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Very Slow XP Gain</h3><p>El ritmo más pausado para saborear cada zona.</p></div></article>
+          <p>Estos son los nueve retos disponibles para quienes quieren vivir Azeroth con reglas diferentes. Cada ficha detalla las reglas, incompatibilidades y recompensas por hito de nivel.</p>
+          <div class="challenge-fiches">
+            <article class="fiche-card" id="hardcore">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_hardcore_512.png" alt="Modo Hardcore" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Hardcore</h3>
+                <p>El desafío clásico de una sola vida. Si tu personaje muere por cualquier causa (criatura, PvP o liberar fantasma), se convierte en un fantasma permanente. No podrá ser resucitado por hechizos, piedras de alma ni ningún otro método. Al volver a iniciar sesión, el personaje es eliminado y devuelto a la pantalla de selección de personaje. Las muertes en PvP cuentan, excepto en duelos amistosos.</p>
+                <p class="fiche-incompatible"><strong>Incompatible con:</strong> Semi-Hardcore, One Life.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 40:</strong> Tabardo de la Luz</li>
+                    <li><strong>Nivel 60:</strong> Título "el Inmortal" + Riendas de corcel de la muerte</li>
+                    <li><strong>Nivel 80:</strong> Título "el Imperecedero" + Tigre espectral presto + Logro "El Inmortal"</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="semihardcore">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_semihardcore_512.png" alt="Modo Semi-Hardcore" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Semi-Hardcore</h3>
+                <p>Al morir, tu personaje pierde todo el equipamiento que lleva puesto y todo el oro que transporta. Los objetos en el inventario (no equipados) se conservan. No hay muerte permanente: el personaje puede resucitar y seguir jugando, pero cada muerte tiene un costo material elevado.</p>
+                <p class="fiche-incompatible"><strong>Incompatible con:</strong> Hardcore, One Life.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 40:</strong> Bolsa de tejido de Escarcha (22 casillas)</li>
+                    <li><strong>Nivel 60:</strong> Riendas del oso polar blanco</li>
+                    <li><strong>Nivel 80:</strong> Título "Defensor Argenta" + Riendas de mamut de guerra negro</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="self-crafted">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_self_crafted_512.png" alt="Modo Self Crafted" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Self Crafted</h3>
+                <p>Solo puedes equipar objetos que tu personaje haya fabricado. Los objetos deben llevar la firma de creador de tu personaje. Hasta el nivel 10 se permite una excepción: puedes equipar objetos blancos de calidad Normal comprados a vendedores o obtenidos de enemigos. A partir del nivel 10, la regla de auto-fabricación es estricta.</p>
+                <p class="fiche-incompatible"><strong>Incompatible con:</strong> Iron Man.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 30:</strong> Bolsa de tejido abisal (16 casillas)</li>
+                    <li><strong>Nivel 60:</strong> Robot cohete de cuerda (mascota)</li>
+                    <li><strong>Nivel 80:</strong> Título "el Buscador" + Riendas del draco albino</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="item-quality">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_item_quality_512.png" alt="Modo Item Quality" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Item Quality Level</h3>
+                <p>Solo puedes equipar objetos de calidad Normal (blanca) o Pobre (gris). Esto excluye completamente los objetos verdes, azules, morados y naranjas. Un desafío de equipamiento que te obliga a progresar con el equipo más básico del juego.</p>
+                <p class="fiche-incompatible"><strong>Sin conflictos:</strong> Puede combinarse con cualquier otro modo.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 50:</strong> Orbe de engaño</li>
+                    <li><strong>Nivel 80:</strong> Título "el Demente" + Gallo mágico</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="slow-xp">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_slow_xp_gain_512.png" alt="Modo Slow XP Gain" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Slow XP Gain</h3>
+                <p>La experiencia se reduce a 0.5x de la tasa base del juego. Cada combate y cada misión rinden la mitad de experiencia, haciendo que el progreso hacia nivel 80 sea mucho más lento y deliberado.</p>
+                <p class="fiche-incompatible"><strong>Incompatible con:</strong> Very Slow XP Gain.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 40:</strong> Collar de murloc azul (mascota)</li>
+                    <li><strong>Nivel 80:</strong> Título "el Explorador" + Tabardo de explorador</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="very-slow-xp">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_very_slow_xp_gain_512.png" alt="Modo Very Slow XP Gain" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Very Slow XP Gain</h3>
+                <p>La experiencia se reduce a 0.25x de la tasa base del juego, una cuarta parte de lo normal. El desafío más exigente en cuanto a tiempo de progresión. Hereda automáticamente todas las recompensas de Slow XP Gain, además de tener las suyas propias.</p>
+                <p class="fiche-incompatible"><strong>Incompatible con:</strong> Slow XP Gain.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas (además de heredar todas las de Slow XP Gain)</p>
+                  <ul>
+                    <li><strong>Nivel 80:</strong> Título "el Maestro cultural" + Riendas del protodraco perdido en el tiempo</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="quest-xp-only">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_quest_xp_only_512.png" alt="Modo Quest XP Only" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Quest XP Only</h3>
+                <p>No recibes experiencia por matar criaturas. La única forma de ganar experiencia es completando misiones. Las mascotas siguen recibiendo experiencia de combate normalmente. Este desafío transforma por completo la forma de jugar, priorizando la exploración y las misiones sobre el grind de enemigos.</p>
+                <p class="fiche-incompatible"><strong>Sin conflictos:</strong> Puede combinarse con cualquier otro modo.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 40:</strong> Bolsa de tejido de Escarcha (22 casillas)</li>
+                    <li><strong>Nivel 80:</strong> Título "el Diplomático" + Hipogrifo de guerra Cenarion</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="iron-man">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_ironman_512.png" alt="Modo Iron Man o Hombre de Hierro" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>Iron Man</h3>
+                <p>El desafío más extremo, basado en el Iron Man Ruleset: sin puntos de talento, solo equipamiento blanco o gris, sin encantamientos, sin profesiones comerciales (excepto las de clase), sin consumibles de combate, sin grupos, sin comercio, sin correo, sin casa de subastas y muerte permanente al morir.</p>
+                <p class="fiche-incompatible"><strong>Incompatible con:</strong> Self Crafted.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 40:</strong> Tabardo de llama</li>
+                    <li><strong>Nivel 60:</strong> Título "Heraldo de los Titanes" + Riendas del lord cuervo</li>
+                    <li><strong>Nivel 80:</strong> Título "Sino de la Muerte" + Riendas de Invencible + Logro "Heraldo de los Titanes"</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="fiche-card" id="one-life">
+              <div class="fiche-card-img"><img src="/assets/desafios/desafio_one_life_512.png" alt="Modo One Life" loading="lazy" width="120" height="120" /></div>
+              <div class="fiche-card-body">
+                <h3>One Life</h3>
+                <p>Muerte permanente con registro detallado de cada defunción. Igual que Hardcore, si tu personaje muere se convierte en fantasma permanente. La diferencia es que One Life registra en la base de datos el nivel, la causa de muerte, el mapa y las coordenadas exactas de cada fallecimiento, permitiendo consultar el histórico completo y generar rankings. Las muertes en PvP cuentan, excepto en duelos amistosos.</p>
+                <p class="fiche-incompatible"><strong>Incompatible con:</strong> Hardcore, Semi-Hardcore.</p>
+                <div class="fiche-rewards">
+                  <p class="fiche-rewards-title">Recompensas</p>
+                  <ul>
+                    <li><strong>Nivel 40:</strong> Tabardo de escarcha</li>
+                    <li><strong>Nivel 60:</strong> Título "Asesino Obsidiana" + Cenizas de Al'ar</li>
+                    <li><strong>Nivel 80:</strong> Título "Defensor Celestial" + Cabeza de Mimiron</li>
+                    <li><strong>Nivel 80 (bonus global):</strong> 50x Titanio</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
           </div>
         </section>
         <p class="guia-footer">Tu leyenda. Tus reglas. Tu desafío.</p>

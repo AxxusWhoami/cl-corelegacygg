@@ -56,20 +56,20 @@
     .fiche-rewards li::before { content:'◆'; position:absolute; left:0; color:#d4a843; font-size:.6rem; top:.15rem; }
     .fiche-rewards li strong { color:#e8d098; }
     @media (max-width:800px) { .challenge-fiches { grid-template-columns:1fr; } }
-    @media (max-width:600px) { .challenge-rules { grid-template-columns:1fr; gap:1.25rem; } .challenge-rules img { max-width:160px; } .fiche-card { grid-template-columns:90px minmax(0,1fr); gap:1rem; padding:1.25rem; } .fiche-card-img, .fiche-card-img img { width:90px; height:90px; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
+    @media (max-width:600px) { .challenge-rules { grid-template-columns:1fr; gap:1.25rem; } .challenge-rules > div:first-child { order:1; } .challenge-rules > .fire-logo-wrap { order:2; } .challenge-rules img { max-width:160px; } .fiche-card { grid-template-columns:90px minmax(0,1fr); gap:1rem; padding:1.25rem; } .fiche-card-img, .fiche-card-img img { width:90px; height:90px; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
     .fire-logo-wrap { position:relative; width:200px; height:200px; display:flex; align-items:center; justify-content:center; }
     .fire-logo-wrap img { position:relative; z-index:2; filter:drop-shadow(0 0 16px rgba(255,120,30,.35)) drop-shadow(0 0 6px rgba(255,80,0,.2)); animation:fireLogoPulse 3s ease-in-out infinite; }
     .fire-logo-glow { position:absolute; inset:-20px; z-index:1; border-radius:50%; background:radial-gradient(circle at 50% 70%, rgba(255,100,20,.22) 0%, rgba(255,60,0,.1) 35%, transparent 65%); animation:fireGlowPulse 3s ease-in-out infinite alternate; pointer-events:none; }
     .ember { position:absolute; z-index:3; bottom:15%; width:4px; height:4px; border-radius:50%; pointer-events:none; opacity:0; }
     @keyframes fireLogoPulse { 0%,100% { filter:drop-shadow(0 0 16px rgba(255,120,30,.35)) drop-shadow(0 0 6px rgba(255,80,0,.2)); } 50% { filter:drop-shadow(0 0 24px rgba(255,140,40,.5)) drop-shadow(0 0 10px rgba(255,80,0,.3)); } }
     @keyframes fireGlowPulse { 0% { transform:scale(1); opacity:.6; } 100% { transform:scale(1.12); opacity:1; } }
-    @keyframes emberRiseSmall {
+    @keyframes emberRise {
       0% { transform:translate(0,0) scale(1); opacity:0; }
       10% { opacity:1; }
       80% { opacity:.6; }
       100% { transform:translate(var(--dx), -160px) scale(.3); opacity:0; }
     }
-    @keyframes emberRiseSmallSmall {
+    @keyframes emberRiseSmall {
       0% { transform:translate(0,0) scale(1); opacity:0; }
       10% { opacity:1; }
       80% { opacity:.6; }

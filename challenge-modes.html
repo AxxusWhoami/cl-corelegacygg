@@ -53,7 +53,7 @@
     .challenge-card p { margin:.35rem 0 0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.76rem; line-height:1.5; }
     @keyframes challengeFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
     @media (max-width:800px) { .challenge-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:600px) { .challenge-hero { grid-template-columns:1fr; } .challenge-hero-art { order:-1; } .challenge-hero-art img { max-width:210px; } .challenge-grid { grid-template-columns:1fr; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
+    @media (max-width:600px) { .challenge-hero { grid-template-columns:1fr; } .challenge-rules > div { grid-template-columns:1fr; } .challenge-hero-art { order:-1; } .challenge-hero-art img { max-width:210px; } .challenge-grid { grid-template-columns:1fr; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
     @media (prefers-reduced-motion:reduce) { .challenge-hero-art img,.challenge-card { animation:none; transition:none; } }
   </style>
   <script type="application/ld+json">
@@ -97,6 +97,21 @@
             <p>Tanto si buscas la adrenalina de la muerte permanente en modo Hardcore como si prefieres el purismo extremo del reto Hombre de Hierro (Iron Man) o una subida de nivel pausada al estilo clásico, podrás personalizar las reglas de tu personaje antes de dar tus primeros pasos por Azeroth.</p>
           </div>
           <div class="challenge-hero-art"><img src="/assets/desafios/desafios_core_legacy_512.png" alt="Desafíos CoRe Legacy" width="512" height="512" /></div>
+        </section>
+        <section class="challenge-rules" aria-labelledby="challenge-rules-title" style="margin:1rem 0 2.25rem; padding:1.5rem; border:1px solid rgba(212,168,67,.3); border-radius:14px; background:linear-gradient(135deg,rgba(212,168,67,.08),rgba(4,12,22,.55) 55%,rgba(77,189,232,.06)); box-shadow:0 0 24px rgba(212,168,67,.08);">
+          <div style="display:grid; grid-template-columns:minmax(0,1fr) 180px; gap:1.5rem; align-items:center;">
+            <div class="challenge-hero-copy">
+              <h2 id="challenge-rules-title" class="guia-step-title" style="font-size:1.2rem; margin-top:0; color:#f0c850;">¿Cómo funcionan los Modos de Desafío?</h2>
+              <p>Al crear un nuevo personaje en CoRe Legacy, encontrarás el <strong style="color:#f0c850;">Altar de los Retos</strong> en todas las zonas iniciales de cada raza, incluida la zona de inicio de los Caballeros de la Muerte a nivel 55.</p>
+              <ul class="guia-list" style="margin-bottom:0;">
+                <li><strong style="color:#d4f0ff;">Activación inicial:</strong> Debes activar tus desafíos en el Altar antes de superar el nivel 1, o el nivel 55 en el caso de los Caballeros de la Muerte.</li>
+                <li><strong style="color:#d4f0ff;">Combinables entre sí:</strong> Puedes activar un único reto o combinar varios desafíos compatibles de forma simultánea para multiplicar la dificultad y escalar posiciones en nuestro Ranking de Temporada.</li>
+                <li><strong style="color:#d4f0ff;">Recompensas exclusivas sin romper el equilibrio:</strong> Superar los hitos de nivel 30, 40, 50, 60 y 80 te otorgará títulos únicos, monturas legendarias, mascotas, tabardos y logros directamente en tu personaje, manteniendo intacto el equilibrio competitivo al alcanzar el nivel 80, momento en el que el desafío se da por completado.</li>
+                <li><strong style="color:#d4f0ff;">Sin ayuda externa:</strong> Para garantizar la pureza de cada hazaña, los personajes con un Modo de Desafío activo no pueden agruparse con Playerbots mientras dure el reto.</li>
+              </ul>
+            </div>
+            <div class="challenge-hero-art"><img src="/assets/desafios/desafios_core_legacy_512.png" alt="Altar y emblema de los Desafíos CoRe Legacy" width="512" height="512" loading="lazy" /></div>
+          </div>
         </section>
         <section class="guia-section" aria-labelledby="challenge-list-title">
           <h2 id="challenge-list-title" class="guia-step-title" style="font-size:1.2rem;">Elige tu desafío</h2>

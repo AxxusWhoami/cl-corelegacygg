@@ -55,7 +55,20 @@
     .fiche-rewards li strong { color:#e8d098; }
     @media (max-width:800px) { .challenge-fiches { grid-template-columns:1fr; } }
     @media (max-width:600px) { .challenge-rules { grid-template-columns:1fr; gap:1.25rem; } .challenge-rules img { max-width:160px; } .fiche-card { grid-template-columns:90px minmax(0,1fr); gap:1rem; padding:1.25rem; } .fiche-card-img img { width:90px; height:90px; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
-    @media (prefers-reduced-motion:reduce) { .fiche-card { transition:none; } }
+    .fire-logo-wrap { position:relative; width:200px; height:200px; display:flex; align-items:center; justify-content:center; }
+    .fire-logo-wrap img { position:relative; z-index:2; filter:drop-shadow(0 0 16px rgba(255,120,30,.35)) drop-shadow(0 0 6px rgba(255,80,0,.2)); animation:fireLogoPulse 3s ease-in-out infinite; }
+    .fire-logo-glow { position:absolute; inset:-20px; z-index:1; border-radius:50%; background:radial-gradient(circle at 50% 70%, rgba(255,100,20,.22) 0%, rgba(255,60,0,.1) 35%, transparent 65%); animation:fireGlowPulse 3s ease-in-out infinite alternate; pointer-events:none; }
+    .ember { position:absolute; z-index:3; bottom:15%; width:4px; height:4px; border-radius:50%; pointer-events:none; opacity:0; }
+    @keyframes fireLogoPulse { 0%,100% { filter:drop-shadow(0 0 16px rgba(255,120,30,.35)) drop-shadow(0 0 6px rgba(255,80,0,.2)); } 50% { filter:drop-shadow(0 0 24px rgba(255,140,40,.5)) drop-shadow(0 0 10px rgba(255,80,0,.3)); } }
+    @keyframes fireGlowPulse { 0% { transform:scale(1); opacity:.6; } 100% { transform:scale(1.12); opacity:1; } }
+    @keyframes emberRise {
+      0% { transform:translate(0,0) scale(1); opacity:0; }
+      10% { opacity:1; }
+      80% { opacity:.6; }
+      100% { transform:translate(var(--dx), -160px) scale(.3); opacity:0; }
+    }
+    @media (max-width:600px) { .fire-logo-wrap { width:160px; height:160px; } .fire-logo-wrap img { width:160px; height:160px; } }
+    @media (prefers-reduced-motion:reduce) { .fiche-card { transition:none; } .fire-logo-wrap img, .fire-logo-glow, .ember { animation:none !important; } }
   </style>
   <script type="application/ld+json">
   {
@@ -105,7 +118,18 @@
               <li><strong style="color:#d4f0ff;">Sin ayuda externa:</strong> Para garantizar la pureza de cada hazaña, los personajes con un Modo de Desafío activo no pueden agruparse con Playerbots mientras dure el reto.</li>
             </ul>
           </div>
-          <div style="display:flex; align-items:center; justify-content:center;"><img src="/assets/desafios/desafios_core_legacy_512.png" alt="Altar y emblema de los Desafíos CoRe Legacy" width="200" height="200" loading="lazy" style="width:200px; height:200px; object-fit:contain;" /></div>
+          <div class="fire-logo-wrap">
+            <div class="fire-logo-glow"></div>
+            <img src="/assets/desafios/desafios_core_legacy_512.png" alt="Altar y emblema de los Desafíos CoRe Legacy" width="200" height="200" loading="lazy" style="width:200px; height:200px; object-fit:contain;" />
+            <span class="ember" style="left:30%; --dx:-12px; background:#ff7a20; animation:emberRise 2.8s ease-out infinite; animation-delay:0s;"></span>
+            <span class="ember" style="left:45%; --dx:8px; background:#ffae40; animation:emberRise 3.2s ease-out infinite; animation-delay:.5s;"></span>
+            <span class="ember" style="left:55%; --dx:-6px; background:#ff6010; animation:emberRise 2.5s ease-out infinite; animation-delay:1s;"></span>
+            <span class="ember" style="left:65%; --dx:14px; background:#ff9a30; animation:emberRise 3s ease-out infinite; animation-delay:1.5s;"></span>
+            <span class="ember" style="left:38%; --dx:10px; background:#ffcc60; animation:emberRise 3.5s ease-out infinite; animation-delay:.8s;"></span>
+            <span class="ember" style="left:58%; --dx:-10px; background:#ff8030; animation:emberRise 2.7s ease-out infinite; animation-delay:2s;"></span>
+            <span class="ember" style="left:48%; --dx:4px; background:#ffaa50; animation:emberRise 3.3s ease-out infinite; animation-delay:2.4s;"></span>
+            <span class="ember" style="left:42%; --dx:-14px; background:#ff6a1a; animation:emberRise 2.9s ease-out infinite; animation-delay:1.2s;"></span>
+          </div>
         </section>
         <section class="guia-section" aria-labelledby="challenge-list-title">
           <h2 id="challenge-list-title" class="guia-step-title" style="font-size:1.2rem;">Elige tu desafío</h2>

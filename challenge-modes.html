@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modos de Desafío en CoRe Legacy | WoW WotLK 3.3.5a Hardcore</title>
+  <meta name="description" content="Pon a prueba tu habilidad en CoRe Legacy con 9 Modos de Desafío para WoW 3.3.5a: Hardcore, Hombre de Hierro, Auto-Craft y más. ¡Gana títulos y monturas!" />
+  <meta name="keywords" content="modos de desafío wow wotlk 3.3.5a, wow hardcore, iron man wow, hombre de hierro wow, desafíos core legacy, servidor privado wow español, auto craft wow, retos wow 3.3.5a" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="publisher" content="CoRe Legacy" />
+  <meta name="language" content="es-ES" />
+  <meta property="og:title" content="Modos de Desafío en CoRe Legacy | WoW WotLK 3.3.5a Hardcore" />
+  <meta property="og:description" content="Descubre los 9 Modos de Desafío opcionales de CoRe Legacy para llevar tu aventura de WoW WotLK 3.3.5a al límite." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://corelegacy.gg/challenge-modes" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+  <meta property="og:image:alt" content="Desafíos CoRe Legacy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Modos de Desafío en CoRe Legacy" />
+  <meta name="twitter:description" content="9 Modos de Desafío opcionales para WoW WotLK 3.3.5a: Hardcore, Iron Man y más." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+  <link rel="canonical" href="https://corelegacy.gg/challenge-modes" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/challenge-modes" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/challenge-modes" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/challenge-modes" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <link rel="stylesheet" href="/assets/guia-page.css" />
+  <style>
+    .challenge-page-wrap { max-width: 1080px; }
+    .challenge-hero { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:2rem; align-items:center; margin-bottom:2rem; }
+    .challenge-hero-copy { font-family:'Cinzel',Georgia,serif; color:#b8d4e8; font-size:.92rem; line-height:1.85; }
+    .challenge-hero-copy p { margin:.75rem 0; }
+    .challenge-hero-art { display:flex; justify-content:center; }
+    .challenge-hero-art img { width:100%; max-width:280px; filter:drop-shadow(0 0 24px rgba(212,168,67,.28)); animation:challengeFloat 5s ease-in-out infinite; }
+    .challenge-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:1.25rem; }
+    .challenge-card { position:relative; overflow:hidden; min-height:240px; padding:1rem; display:flex; flex-direction:column; justify-content:flex-end; border:1px solid rgba(77,189,232,.2); border-radius:12px; background:linear-gradient(180deg,rgba(8,22,36,.45),rgba(3,9,18,.96)); transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease; }
+    .challenge-card:hover { transform:translateY(-4px); border-color:rgba(240,200,80,.65); box-shadow:0 10px 28px rgba(0,0,0,.4),0 0 20px rgba(212,168,67,.12); }
+    .challenge-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:1rem 1rem 3.5rem; opacity:.72; transition:transform .4s ease,opacity .3s ease; }
+    .challenge-card:hover img { transform:scale(1.06); opacity:.95; }
+    .challenge-card::after { content:''; position:absolute; inset:35% 0 0; background:linear-gradient(transparent,rgba(3,9,18,.98)); pointer-events:none; }
+    .challenge-card-content { position:relative; z-index:1; }
+    .challenge-card h3 { margin:0; color:#f0c850; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; line-height:1.3; }
+    .challenge-card p { margin:.35rem 0 0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.76rem; line-height:1.5; }
+    @keyframes challengeFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+    @media (max-width:800px) { .challenge-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:600px) { .challenge-hero { grid-template-columns:1fr; } .challenge-hero-art { order:-1; } .challenge-hero-art img { max-width:210px; } .challenge-grid { grid-template-columns:1fr; } .guia-page-body { padding:1.5rem 1.1rem 2rem; } }
+    @media (prefers-reduced-motion:reduce) { .challenge-hero-art img,.challenge-card { animation:none; transition:none; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"Modos de Desafío en CoRe Legacy",
+    "description":"Nueve Modos de Desafío opcionales para World of Warcraft: Wrath of the Lich King 3.3.5a en CoRe Legacy.",
+    "url":"https://corelegacy.gg/challenge-modes",
+    "inLanguage":"es-ES",
+    "isPartOf":{"@type":"WebSite","name":"CoRe Legacy","url":"https://corelegacy.gg/"}
+  }
+  </script>
+</head>
+<body>
+  <div id="snowContainer"></div>
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header" style="background:linear-gradient(180deg,rgba(2,14,30,.92) 0%,rgba(2,14,30,.6) 80%,transparent 100%);backdrop-filter:blur(6px);border-bottom:1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/">Inicio</a><a class="nav-link" href="/noticias">Noticias</a><a class="nav-link active" href="/comunidad">Comunidad</a><a class="nav-link" href="/info-changelog">Server y Changelog</a><a class="nav-link" href="/soporte">Soporte</a><a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
+        </nav>
+        <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;"><a class="nav-link block" href="/">Inicio</a><a class="nav-link block" href="/noticias">Noticias</a><a class="nav-link block active" href="/comunidad">Comunidad</a><a class="nav-link block" href="/info-changelog">Server y Changelog</a><a class="nav-link block" href="/soporte">Soporte</a><a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link block" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a></div>
+    </div>
+  </header>
+  <main>
+    <div class="guia-page-wrap challenge-page-wrap">
+      <div class="guia-page-header">
+        <h1 class="guia-page-title">Modos de Desafío en CoRe Legacy</h1>
+        <div class="frost-divider mx-auto" style="max-width:360px;"></div>
+        <a href="/comunidad" class="guia-page-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>Volver a Comunidad</a>
+      </div>
+      <div class="guia-page-body">
+        <section class="challenge-hero" aria-labelledby="challenge-intro-title">
+          <div class="challenge-hero-copy">
+            <h2 id="challenge-intro-title" class="guia-step-title" style="font-size:1.2rem;margin-top:0;">Pon a prueba tu leyenda en WotLK 3.3.5a</h2>
+            <p>¿Buscas llevar tu experiencia en World of Warcraft: Wrath of the Lich King 3.3.5a al siguiente nivel? En CoRe Legacy, el camino hacia Rasganorte no tiene por qué ser el de siempre.</p>
+            <p>Hemos integrado un completo sistema de <strong>9 Modos de Desafío opcionales</strong> diseñados para poner a prueba tu habilidad, tu conocimiento del juego y tu capacidad de supervivencia desde el nivel 1 hasta el nivel 80.</p>
+            <p>Tanto si buscas la adrenalina de la muerte permanente en modo Hardcore como si prefieres el purismo extremo del reto Hombre de Hierro (Iron Man) o una subida de nivel pausada al estilo clásico, podrás personalizar las reglas de tu personaje antes de dar tus primeros pasos por Azeroth.</p>
+          </div>
+          <div class="challenge-hero-art"><img src="/assets/desafios/desafios_core_legacy_512.png" alt="Desafíos CoRe Legacy" width="512" height="512" /></div>
+        </section>
+        <section class="guia-section" aria-labelledby="challenge-list-title">
+          <h2 id="challenge-list-title" class="guia-step-title" style="font-size:1.2rem;">Elige tu desafío</h2>
+          <p>Estos son los nueve retos disponibles para quienes quieren vivir Azeroth con reglas diferentes. En el próximo detalle de cada ficha encontrarás sus reglas, recompensas y recomendaciones.</p>
+          <div class="challenge-grid">
+            <article class="challenge-card"><img src="/assets/desafios/desafio_hardcore_512.png" alt="Modo Hardcore" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Hardcore</h3><p>Una vida. Cada decisión cuenta.</p></div></article>
+            <article class="challenge-card"><img src="/assets/desafios/desafio_ironman_512.png" alt="Modo Iron Man o Hombre de Hierro" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Iron Man</h3><p>El reto del auténtico purismo.</p></div></article>
+            <article class="challenge-card"><img src="/assets/desafios/desafio_item_quality_512.png" alt="Modo Item Quality" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Item Quality</h3><p>Progresa con una calidad de objetos limitada.</p></div></article>
+            <article class="challenge-card"><img src="/assets/desafios/desafio_quest_xp_only_512.png" alt="Modo Quest XP Only" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Quest XP Only</h3><p>La experiencia llega únicamente desde misiones.</p></div></article>
+            <article class="challenge-card"><img src="/assets/desafios/desafio_self_crafted_512.png" alt="Modo Self Crafted" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Self Crafted</h3><p>Tu progreso depende de lo que tú fabricas.</p></div></article>
+            <article class="challenge-card"><img src="/assets/desafios/desafio_semihardcore_512.png" alt="Modo Semihardcore" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Semihardcore</h3><p>Una experiencia de supervivencia con margen para recuperarte.</p></div></article>
+            <article class="challenge-card"><img src="/assets/desafios/desafio_slow_xp_gain_512.png" alt="Modo Slow XP Gain" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Slow XP Gain</h3><p>Disfruta el viaje con una progresión más lenta.</p></div></article>
+            <article class="challenge-card"><img src="/assets/desafios/desafio_very_slow_xp_gain_512.png" alt="Modo Very Slow XP Gain" loading="lazy" width="512" height="512" /><div class="challenge-card-content"><h3>Very Slow XP Gain</h3><p>El ritmo más pausado para saborear cada zona.</p></div></article>
+          </div>
+        </section>
+        <p class="guia-footer">Tu leyenda. Tus reglas. Tu desafío.</p>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="site-footer-bg"><div class="site-footer-content"><p class="site-footer-disclaimer">CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a. Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.</p><div class="site-footer-links"><button class="site-footer-link" data-legal="tos">Términos de Servicio</button><span class="site-footer-sep">·</span><button class="site-footer-link" data-legal="privacy">Política de Privacidad</button><span class="site-footer-sep">·</span><a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a></div><p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p></div></div></footer>
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+</body>
+</html>

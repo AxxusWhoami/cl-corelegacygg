@@ -151,29 +151,41 @@ if ($result) {
 }
 $payload['global'] = $global;
 
-// ---- 3. Top 20 Mensual ----
-$monthly = [];
-$monthlyMonth = date('F Y'); // e.g. "November 2026"
-$sql = "SELECT `id` FROM `challenge_mode_seasons` WHERE `name` = '" . mysqli_real_escape_string($conn, $monthlyMonth) . "' AND `is_active` = 1 ORDER BY `start_time` DESC LIMIT 1";
+// ---- 3. Temporada activa (solo una activa a la vez, sin solapar fechas) ----
+$season = ['season_name' => null, 'season_id' => 0, 'start_date' => null, 'end_date' => null, 'entries' => []];
+$sql = "SELECT `id`, `name`, `start_time`, `end_time` "
+     . "FROM `challenge_mode_seasons` "
+     . "WHERE `is_active` = 1 "
+     . "ORDER BY `start_time` DESC LIMIT 1";
 $result = mysqli_query($conn, $sql);
-$monthlySeasonId = 0;
+$activeSeasonId = 0;
+$activeSeasonName = null;
+$activeSeasonStart = null;
+$activeSeasonEnd = null;
 if ($result) {
     $row = mysqli_fetch_assoc($result);
     if ($row) {
-        $monthlySeasonId = (int) $row['id'];
+        $activeSeasonId = (int) $row['id'];
+        $activeSeasonName = $row['name'];
+        $activeSeasonStart = $row['start_time'] ? date('Y-m-d', (int) $row['start_time']) : null;
+        $activeSeasonEnd = $row['end_time'] ? date('Y-m-d', (int) $row['end_time']) : null;
     }
     mysqli_free_result($result);
 }
-if ($monthlySeasonId > 0) {
+$season['season_name'] = $activeSeasonName;
+$season['season_id'] = $activeSeasonId;
+$season['start_date'] = $activeSeasonStart;
+$season['end_date'] = $activeSeasonEnd;
+if ($activeSeasonId > 0) {
     $sql = "SELECT `character_name`, `total_score`, `challenges_active`, `highest_level`, `is_alive`, `last_updated` "
          . "FROM `challenge_mode_rankings` "
-         . "WHERE `season_id` = {$monthlySeasonId} "
+         . "WHERE `season_id` = {$activeSeasonId} "
          . "ORDER BY `total_score` DESC "
          . "LIMIT 20";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $monthly[] = [
+            $season['entries'][] = [
                 'name'              => $row['character_name'],
                 'score'             => (int) round((float) $row['total_score']),
                 'challenges_active' => (int) $row['challenges_active'],
@@ -185,44 +197,7 @@ if ($monthlySeasonId > 0) {
         mysqli_free_result($result);
     }
 }
-$payload['monthly'] = ['season_name' => $monthlyMonth, 'entries' => $monthly];
-
-// ---- 4. Top 20 Trimestral ----
-$quarterly = [];
-$quarter = (int) ceil((int) date('n') / 3);
-$quarterlyName = 'Q' . $quarter . ' ' . date('Y');
-$sql = "SELECT `id` FROM `challenge_mode_seasons` WHERE `name` = '" . mysqli_real_escape_string($conn, $quarterlyName) . "' AND `is_active` = 1 ORDER BY `start_time` DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
-$quarterlySeasonId = 0;
-if ($result) {
-    $row = mysqli_fetch_assoc($result);
-    if ($row) {
-        $quarterlySeasonId = (int) $row['id'];
-    }
-    mysqli_free_result($result);
-}
-if ($quarterlySeasonId > 0) {
-    $sql = "SELECT `character_name`, `total_score`, `challenges_active`, `highest_level`, `is_alive`, `last_updated` "
-         . "FROM `challenge_mode_rankings` "
-         . "WHERE `season_id` = {$quarterlySeasonId} "
-         . "ORDER BY `total_score` DESC "
-         . "LIMIT 20";
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $quarterly[] = [
-                'name'              => $row['character_name'],
-                'score'             => (int) round((float) $row['total_score']),
-                'challenges_active' => (int) $row['challenges_active'],
-                'highest_level'     => (int) $row['highest_level'],
-                'is_alive'          => (int) $row['is_alive'],
-                'last_updated'      => $row['last_updated'] ? date('Y-m-d H:i:s', (int) $row['last_updated']) : null,
-            ];
-        }
-        mysqli_free_result($result);
-    }
-}
-$payload['quarterly'] = ['season_name' => $quarterlyName, 'entries' => $quarterly];
+$payload['season'] = $season;
 
 // ---- 5. Top 20 Combinado (vista challenge_mode_scores) ----
 $combined = [];
@@ -321,7 +296,8 @@ if ($result) {
 $payload['hall'] = $hall;
 
 // Añadir raza y retrato a todas las clasificaciones antes de generar el JSON.
-$rankingLists = [&$global, &$monthly, &$quarterly, &$combined, &$deaths, &$hall];
+$seasonEntries = &$season['entries'];
+$rankingLists = [&$global, &$seasonEntries, &$combined, &$deaths, &$hall];
 foreach ($modes as &$modeEntries) {
     $rankingLists[] = &$modeEntries;
 }
@@ -364,8 +340,7 @@ foreach ($rankingLists as &$entries) {
 unset($entries);
 
 $payload['global'] = $global;
-$payload['monthly']['entries'] = $monthly;
-$payload['quarterly']['entries'] = $quarterly;
+$payload['season']['entries'] = $seasonEntries;
 $payload['combined'] = $combined;
 $payload['deaths'] = $deaths;
 $payload['hall'] = $hall;

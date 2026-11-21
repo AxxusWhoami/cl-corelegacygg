@@ -38,7 +38,7 @@ function respond(int $status, array $payload): void
 $cacheKey = $ARMORY_REDIS_PREFIX . 'challenges:v1';
 
 // Vistas validas que se pueden solicitar.
-$VALID_VIEWS = ['global', 'monthly', 'quarterly', 'combined', 'deaths', 'hall', 'weights', 'mode'];
+$VALID_VIEWS = ['global', 'season', 'combined', 'deaths', 'hall', 'weights', 'mode'];
 $view = $_GET['view'] ?? 'global';
 if (!in_array($view, $VALID_VIEWS, true)) {
     respond(400, ['ok' => false, 'message' => 'Vista no válida. Vistas disponibles: ' . implode(', ', $VALID_VIEWS)]);
@@ -82,22 +82,15 @@ switch ($view) {
         ]);
         break;
 
-    case 'monthly':
+    case 'season':
         respond(200, [
             'ok'          => true,
-            'view'        => 'monthly',
-            'season_name' => $cached['monthly']['season_name'] ?? null,
-            'entries'     => $cached['monthly']['entries'] ?? [],
-            'updated_at'  => $updated_at,
-        ]);
-        break;
-
-    case 'quarterly':
-        respond(200, [
-            'ok'          => true,
-            'view'        => 'quarterly',
-            'season_name' => $cached['quarterly']['season_name'] ?? null,
-            'entries'     => $cached['quarterly']['entries'] ?? [],
+            'view'        => 'season',
+            'season_name' => $cached['season']['season_name'] ?? null,
+            'season_id'   => $cached['season']['season_id'] ?? 0,
+            'start_date'  => $cached['season']['start_date'] ?? null,
+            'end_date'    => $cached['season']['end_date'] ?? null,
+            'entries'     => $cached['season']['entries'] ?? [],
             'updated_at'  => $updated_at,
         ]);
         break;

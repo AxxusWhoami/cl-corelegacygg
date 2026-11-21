@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rankings de Modos de Desafío — CoRe Legacy | Top Hardcore WoW</title>
-  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, mensual, trimestral, muertes notables y sala de la fama. WoW WotLK 3.3.5a Hardcore." />
+  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, muertes notables y sala de la fama. WoW WotLK 3.3.5a Hardcore." />
   <meta name="keywords" content="ranking challenge modes wow, top hardcore wow, clasificación modos desafío, ranking wow 3.3.5a, sala de la fama hardcore, iron man ranking, one life ranking, core legacy tops" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="CoRe Legacy" />
@@ -17,7 +17,7 @@
   <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/challenge-tops" />
 
   <meta property="og:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
-  <meta property="og:description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, mensual, muertes notables y sala de la fama." />
+  <meta property="og:description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, muertes notables y sala de la fama." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://corelegacy.gg/challenge-tops" />
   <meta property="og:site_name" content="CoRe Legacy" />
@@ -26,7 +26,7 @@
   <meta property="og:image:alt" content="Rankings de Modos de Desafío — CoRe Legacy" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
-  <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, mensual, muertes notables y sala de la fama." />
+  <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, temporada, muertes notables y sala de la fama." />
   <meta name="twitter:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
 
   <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
@@ -337,7 +337,7 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Rankings de Modos de Desafío — CoRe Legacy",
-    "description": "Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, mensual, trimestral, muertes notables y sala de la fama.",
+    "description": "Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, muertes notables y sala de la fama.",
     "url": "https://corelegacy.gg/challenge-tops",
     "inLanguage": "es-ES",
     "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
@@ -389,8 +389,7 @@
         <nav class="ranking-tabs" role="tablist" aria-label="Vistas de ranking">
           <button class="ranking-tab active" data-view="global" role="tab" aria-selected="true">Global</button>
           <button class="ranking-tab" data-view="mode" role="tab">Por Modo</button>
-          <button class="ranking-tab" data-view="monthly" role="tab">Mensual</button>
-          <button class="ranking-tab" data-view="quarterly" role="tab">Trimestral</button>
+          <button class="ranking-tab" data-view="season" role="tab">Temporada</button>
           <button class="ranking-tab" data-view="deaths" role="tab">Muertes Notables</button>
           <button class="ranking-tab" data-view="hall" role="tab">Sala de la Fama</button>
         </nav>
@@ -561,7 +560,7 @@
         var params = new URLSearchParams(window.location.search);
         var view = params.get('view');
         var mode = params.get('mode');
-        if (view && ['global','mode','monthly','quarterly','deaths','hall'].indexOf(view) !== -1) {
+        if (view && ['global','mode','season','deaths','hall'].indexOf(view) !== -1) {
           currentView = view;
           if (mode) currentMode = parseInt(mode, 10) || 0;
         }
@@ -721,8 +720,7 @@
 
             switch (view) {
               case 'global':
-              case 'monthly':
-              case 'quarterly':
+              case 'season':
               case 'combined':
                 currentEntries = entries;
                 currentRenderFn = renderTable;
@@ -857,20 +855,46 @@
       }
       loadDeathTicker();
 
-      // ---- Season timer ----
+      // ---- Season timer (uses real season data from API) ----
+      var seasonEndDate = null;
+      var seasonStartDate = null;
+      var seasonName = null;
+
+      function loadSeasonInfo() {
+        fetch(API_URL + '?view=season', { headers: { 'Accept': 'application/json' } })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (!data || data.ok !== true) return;
+            seasonName = data.season_name || 'Temporada';
+            seasonStartDate = data.start_date || null;
+            seasonEndDate = data.end_date || null;
+            updateSeasonTimer();
+          })
+          .catch(function() {});
+      }
+
       function updateSeasonTimer() {
         var now = new Date();
-        var monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-        var monthDays = Math.ceil((monthEnd - now) / (1000 * 60 * 60 * 24));
-        var qNum = Math.ceil((now.getMonth() + 1) / 3);
-        var qEnd = new Date(now.getFullYear(), qNum * 3, 1);
-        var qDays = Math.ceil((qEnd - now) / (1000 * 60 * 60 * 24));
         var html = '';
-        html += '<div class="season-timer-card"><p class="season-timer-label">Temporada mensual</p><p class="season-timer-value">' + monthDays + ' días restantes</p></div>';
-        html += '<div class="season-timer-card"><p class="season-timer-label">Temporada trimestral (Q' + qNum + ')</p><p class="season-timer-value">' + qDays + ' días restantes</p></div>';
+        var label = seasonName ? escapeHtml(seasonName) : 'Temporada activa';
+        if (seasonEndDate) {
+          var end = new Date(seasonEndDate + 'T23:59:59');
+          var days = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
+          if (days < 0) days = 0;
+          html += '<div class="season-timer-card"><p class="season-timer-label">' + label + '</p><p class="season-timer-value">' + days + ' días restantes</p></div>';
+          if (seasonStartDate) {
+            var start = new Date(seasonStartDate + 'T00:00:00');
+            var total = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+            var elapsed = Math.ceil((now - start) / (1000 * 60 * 60 * 24));
+            if (elapsed < 0) elapsed = 0;
+            html += '<div class="season-timer-card"><p class="season-timer-label">Progreso</p><p class="season-timer-value">Día ' + elapsed + ' de ' + total + '</p></div>';
+          }
+        } else {
+          html += '<div class="season-timer-card"><p class="season-timer-label">' + label + '</p><p class="season-timer-value">Sin fecha de cierre</p></div>';
+        }
         seasonTimerEl.innerHTML = html;
       }
-      updateSeasonTimer();
+      loadSeasonInfo();
 
       // ---- Race distribution + survival ratio (on global load) ----
       function loadExtraPanels() {

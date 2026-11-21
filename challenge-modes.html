@@ -178,9 +178,10 @@
           <h2 id="challenge-rules-title" class="guia-step-title" style="font-size:1.2rem; margin-top:0; color:#8dd6f5;">¿Cómo funcionan los Modos de Desafío?</h2>
           <p>Al crear un nuevo personaje en CoRe Legacy, encontrarás el <strong style="color:#8dd6f5;">Altar de los Desafíos</strong> en los cementerios de las zonas iniciales de cada raza. El altar solo es visible mientras tu personaje se encuentre a nivel 1.</p>
           <ul class="guia-list" style="margin-bottom:0;">
-            <li><strong style="color:#d4f0ff;">Activación inicial:</strong> Debes activar tus desafíos en el Altar antes de superar el nivel 1.</li>
-            <li><strong style="color:#d4f0ff;">Combinables entre sí:</strong> Puedes activar un único reto o combinar varios desafíos compatibles de forma simultánea para multiplicar la dificultad y escalar posiciones en nuestro Ranking de Temporada.</li>
-            <li><strong style="color:#d4f0ff;">Recompensas exclusivas sin romper el equilibrio:</strong> Superar los hitos de nivel 30, 40, 50, 60 y 80 te otorgará títulos únicos, monturas legendarias, mascotas, tabardos y logros directamente en tu personaje, manteniendo intacto el equilibrio competitivo al alcanzar el nivel 80, momento en el que el desafío se da por completado.</li>
+            <li><strong style="color:#d4f0ff;">Activación inicial:</strong> Debes activar tus desafíos en el Altar antes de superar el nivel 1. Una vez superado el nivel máximo de activación, el Altar deja de ser visible.</li>
+            <li><strong style="color:#d4f0ff;">Combinables entre sí:</strong> Puedes activar un único reto o combinar varios desafíos compatibles de forma simultánea para multiplicar la dificultad y escalar posiciones en nuestro Ranking de Temporada. Existen 3 grupos de exclusión mutua y 2 modos libres que se combinan con cualquier otro.</li>
+            <li><strong style="color:#d4f0ff;">Recompensas exclusivas sin romper el equilibrio:</strong> Superar los hitos de nivel 30, 40, 50, 60 y 80 te otorgará títulos únicos, monturas legendarias, mascotas, tabardos y logros directamente en tu personaje, manteniendo intacto el equilibrio competitivo al alcanzar el nivel 80, momento en el que el desafío se desactiva automáticamente.</li>
+            <li><strong style="color:#d4f0ff;">Sin Caballeros de la Muerte:</strong> Los Caballeros de la Muerte (Death Knight) no pueden activar ningún modo de desafío ni ver el Altar.</li>
             <li><strong style="color:#d4f0ff;">Sin ayuda externa:</strong> Para garantizar la pureza de cada hazaña, los personajes con un Modo de Desafío activo no pueden agruparse con Playerbots mientras dure el reto.</li>
           </ul>
         </div>
@@ -363,15 +364,63 @@
         </section>
         <section class="guia-section compat-section" aria-labelledby="compat-title">
           <h2 id="compat-title" class="guia-step-title" style="font-size:1.15rem;">Compatibilidad entre modos</h2>
-          <p style="font-family:'Cinzel',Georgia,serif;font-size:.82rem;color:#b8d4e8;line-height:1.6;">La mayoría de los modos pueden combinarse libremente para multiplicar la dificultad. Estas son las únicas combinaciones no permitidas:</p>
-          <div style="margin-top:.5rem;">
+          <p style="font-family:'Cinzel',Georgia,serif;font-size:.82rem;color:#b8d4e8;line-height:1.6;">Existen <strong style="color:#ffd24a;">9 modos</strong> divididos en <strong style="color:#ffd24a;">3 grupos de exclusión mutua</strong> y <strong style="color:#2eea5a;">2 modos libres</strong> que se pueden combinar con cualquier otro. Dentro de cada grupo, solo puedes tener un modo activo a la vez.</p>
+
+          <h3 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-size:.88rem;color:#ff5050;margin:1.25rem 0 .5rem;letter-spacing:.04em;">Grupo 1 — Supervivencia / Permadeath</h3>
+          <p style="font-family:'Cinzel',Georgia,serif;font-size:.76rem;color:#b8d4e8;line-height:1.5;margin:0 0 .4rem;">Hardcore, Semi-Hardcore y One Life son <strong style="color:#ff7878;">incompatibles entre sí</strong>. Solo puedes activar uno.</p>
+          <div style="margin-top:.3rem;">
             <span class="compat-pair">Hardcore <span class="compat-x">✕</span> Semi-Hardcore</span>
             <span class="compat-pair">Hardcore <span class="compat-x">✕</span> One Life</span>
             <span class="compat-pair">Semi-Hardcore <span class="compat-x">✕</span> One Life</span>
+          </div>
+
+          <h3 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-size:.88rem;color:#ff5050;margin:1.25rem 0 .5rem;letter-spacing:.04em;">Grupo 2 — Estilo de juego</h3>
+          <p style="font-family:'Cinzel',Georgia,serif;font-size:.76rem;color:#b8d4e8;line-height:1.5;margin:0 0 .4rem;">Self Crafted e Iron Man son <strong style="color:#ff7878;">incompatibles entre sí</strong>.</p>
+          <div style="margin-top:.3rem;">
             <span class="compat-pair">Self Crafted <span class="compat-x">✕</span> Iron Man</span>
+          </div>
+
+          <h3 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-size:.88rem;color:#ff5050;margin:1.25rem 0 .5rem;letter-spacing:.04em;">Grupo 3 — Experiencia</h3>
+          <p style="font-family:'Cinzel',Georgia,serif;font-size:.76rem;color:#b8d4e8;line-height:1.5;margin:0 0 .4rem;">Slow XP Gain y Very Slow XP Gain son <strong style="color:#ff7878;">incompatibles entre sí</strong>.</p>
+          <div style="margin-top:.3rem;">
             <span class="compat-pair">Slow XP Gain <span class="compat-x">✕</span> Very Slow XP Gain</span>
           </div>
-          <p style="margin-top:.6rem;font-family:'Cinzel',Georgia,serif;font-size:.78rem;color:#2eea5a;">Item Quality Level y Quest XP Only no tienen restricciones y pueden combinarse con cualquier otro modo.</p>
+
+          <h3 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-size:.88rem;color:#2eea5a;margin:1.25rem 0 .5rem;letter-spacing:.04em;">Modos libres (sin conflictos)</h3>
+          <p style="font-family:'Cinzel',Georgia,serif;font-size:.78rem;color:#2eea5a;line-height:1.5;margin:0;">Item Quality Level y Quest XP Only no tienen restricciones y pueden combinarse con cualquier otro modo, incluyendo entre ellos.</p>
+
+          <h3 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-size:.88rem;color:#ffd24a;margin:1.25rem 0 .5rem;letter-spacing:.04em;">Combinaciones populares</h3>
+          <div class="recommend-grid" style="margin-top:.5rem;">
+            <div class="recommend-card" style="padding:.75rem 1rem;">
+              <span class="recommend-for">Pura supervivencia</span>
+              <h4 style="font-size:.76rem;">Hardcore + Quest XP + Item Quality</h4>
+            </div>
+            <div class="recommend-card" style="padding:.75rem 1rem;">
+              <span class="recommend-for">Artesano superviviente</span>
+              <h4 style="font-size:.76rem;">Hardcore + Self Crafted + Very Slow XP</h4>
+            </div>
+            <div class="recommend-card" style="padding:.75rem 1rem;">
+              <span class="recommend-for">XP mínima</span>
+              <h4 style="font-size:.76rem;">Very Slow XP + Quest XP + Item Quality</h4>
+            </div>
+            <div class="recommend-card" style="padding:.75rem 1rem;">
+              <span class="recommend-for">Semi-Hardcore moderado</span>
+              <h4 style="font-size:.76rem;">Semi-Hardcore + Slow XP + Item Quality</h4>
+            </div>
+            <div class="recommend-card" style="padding:.75rem 1rem;">
+              <span class="recommend-for">Iron Man puro</span>
+              <h4 style="font-size:.76rem;">Iron Man + Very Slow XP + Quest XP</h4>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-size:.88rem;color:#4dd8ff;margin:1.25rem 0 .5rem;letter-spacing:.04em;">Restricciones adicionales</h3>
+          <ul class="guia-list" style="margin:0;">
+            <li><strong style="color:#d4f0ff;">Caballeros de la Muerte:</strong> No pueden activar ningún modo de desafío ni ver el Altar.</li>
+            <li><strong style="color:#d4f0ff;">Nivel máximo de activación:</strong> Solo se puede activar un modo hasta el nivel 1 (configurable). Superado ese nivel, el Altar no aparece.</li>
+            <li><strong style="color:#d4f0ff;">Desactivación automática:</strong> Los modos se desactivan solos al alcanzar nivel 80 (configurable).</li>
+          </ul>
+
+          <p style="margin-top:1rem;font-family:'Cinzel',Georgia,serif;font-size:.76rem;color:#5a8090;text-align:center;">Usa la <a href="/challenge-calculator" style="color:#ffd24a;text-decoration:underline;">calculadora de combinaciones</a> para simular y compartir tu build.</p>
         </section>
         <section class="guia-section" aria-labelledby="scoring-title">
           <h2 id="scoring-title" class="guia-step-title" style="font-size:1.15rem;">¿Cómo se calcula la puntuación?</h2>

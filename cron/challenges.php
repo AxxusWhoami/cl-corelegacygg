@@ -33,7 +33,7 @@ $cacheKey  = $ARMORY_REDIS_PREFIX . 'challenges:v1';
 $RACE_NAMES = [
     1 => 'Humano', 2 => 'Orco', 3 => 'Enano', 4 => 'Elfo de la Noche',
     5 => 'No-muerto', 6 => 'Tauren', 7 => 'Gnomo', 8 => 'Trol',
-    9 => 'Elfo de Sangre', 10 => 'Draenei', 11 => 'Huargen', 22 => 'Worgen',
+    9 => 'Goblin', 10 => 'Elfo de Sangre', 11 => 'Draenei', 22 => 'Worgen',
 ];
 $CLASS_NAMES = [
     1 => 'Guerrero', 2 => 'Paladín', 3 => 'Cazador', 4 => 'Pícaro',

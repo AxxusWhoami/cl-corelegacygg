@@ -1297,7 +1297,7 @@
           .then(function(res) { return res.json(); })
           .then(function(data) {
             if (!data || data.ok !== true) return;
-            seasonName = data.season_name || 'Temporada';
+            seasonName = data.season_name || null;
             seasonStartDate = data.start_date || null;
             seasonEndDate = data.end_date || null;
             updateSeasonTimer();
@@ -1306,9 +1306,13 @@
       }
 
       function updateSeasonTimer() {
+        if (!seasonName || !seasonEndDate) {
+          seasonTimerEl.innerHTML = '';
+          return;
+        }
         var now = new Date();
         var html = '';
-        var label = seasonName ? escapeHtml(seasonName) : 'Temporada activa';
+        var label = escapeHtml(seasonName);
         if (seasonEndDate) {
           var end = new Date(seasonEndDate + 'T23:59:59');
           var days = Math.ceil((end - now) / (1000 * 60 * 60 * 24));

@@ -38,7 +38,7 @@ function respond(int $status, array $payload): void
 $cacheKey = $ARMORY_REDIS_PREFIX . 'challenges:v1';
 
 // Vistas validas que se pueden solicitar.
-$VALID_VIEWS = ['global', 'season', 'combined', 'deaths', 'hall', 'weights', 'mode', 'milestones', 'stats', 'survival', 'seasons'];
+$VALID_VIEWS = ['global', 'season', 'combined', 'deaths', 'hall', 'weights', 'mode', 'milestones', 'stats', 'survival', 'seasons', 'deathmap'];
 $view = $_GET['view'] ?? 'global';
 if (!in_array($view, $VALID_VIEWS, true)) {
     respond(400, ['ok' => false, 'message' => 'Vista no válida. Vistas disponibles: ' . implode(', ', $VALID_VIEWS)]);
@@ -223,6 +223,16 @@ switch ($view) {
             'entries'       => array_slice($valid, 0, 25),
             'longest_streak'=> $longest,
             'updated_at'    => $updated_at,
+        ]);
+        break;
+
+    case 'deathmap':
+        respond(200, [
+            'ok'         => true,
+            'view'       => 'deathmap',
+            'deaths'     => $cached['deaths'] ?? [],
+            'alive'      => $cached['alive_positions'] ?? [],
+            'updated_at' => $updated_at,
         ]);
         break;
 

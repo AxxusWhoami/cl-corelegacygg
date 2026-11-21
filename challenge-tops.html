@@ -384,6 +384,27 @@
     .survival-highlight-name { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; color:#ffd24a; text-shadow:0 0 10px rgba(255,210,80,.35); }
     .survival-highlight-days { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.4rem; color:#52ff73; font-weight:700; text-shadow:0 0 14px rgba(82,255,115,.4); margin:.3rem 0; }
     .survival-highlight-sub { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#a8c2d0; }
+
+    /* Death map view */
+    .deathmap-controls { display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 0; align-items:center; justify-content:center; }
+    .deathmap-tab { padding:.4rem 1rem; border:1px solid rgba(77,189,232,.2); border-radius:8px; background:rgba(8,22,36,.5); color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.72rem; cursor:pointer; transition:all .2s; }
+    .deathmap-tab:hover { border-color:rgba(77,189,232,.4); color:#4dd8ff; }
+    .deathmap-tab.active { border-color:rgba(77,189,232,.5); background:rgba(77,189,232,.12); color:#4dd8ff; box-shadow:0 0 12px rgba(77,189,232,.15); }
+    .deathmap-wrap { position:relative; margin:1rem 0 0; border:1px solid rgba(77,189,232,.15); border-radius:12px; overflow:hidden; background:rgba(2,8,16,.6); }
+    .deathmap-canvas-wrap { position:relative; width:100%; aspect-ratio:966/732; }
+    .deathmap-canvas-wrap canvas { position:absolute; top:0; left:0; width:100%; height:100%; }
+    .deathmap-legend { display:flex; flex-wrap:wrap; gap:.75rem; margin:.75rem 0 0; padding:0 .5rem; justify-content:center; align-items:center; }
+    .deathmap-legend-item { display:inline-flex; align-items:center; gap:.35rem; font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#a8c2d0; }
+    .deathmap-legend-dot { width:10px; height:10px; border-radius:50%; }
+    .deathmap-legend-dot.alive { background:#2eea5a; box-shadow:0 0 6px rgba(46,234,90,.5); }
+    .deathmap-legend-dot.dead { background:#ff5050; box-shadow:0 0 6px rgba(255,80,80,.5); }
+    .deathmap-stats { display:flex; flex-wrap:wrap; gap:.6rem; margin:.5rem 0 0; justify-content:center; }
+    .deathmap-stat { padding:.3rem .8rem; border:1px solid rgba(77,189,232,.12); border-radius:6px; background:rgba(8,22,36,.4); font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#b8d4e8; }
+    .deathmap-stat .v { color:#4dd8ff; font-weight:700; }
+    .deathmap-tooltip { position:fixed; z-index:200; pointer-events:none; background:rgba(2,8,16,.95); border:1px solid rgba(77,189,232,.3); border-radius:8px; padding:.5rem .75rem; font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#b8d4e8; max-width:260px; box-shadow:0 4px 16px rgba(0,0,0,.5); display:none; }
+    .deathmap-tooltip .tt-name { color:#ffd24a; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.74rem; }
+    .deathmap-tooltip .tt-class { font-weight:700; }
+    .deathmap-tooltip .tt-row { margin-top:.15rem; }
   </style>
   <script type="application/ld+json">
   {
@@ -447,6 +468,7 @@
           <button class="ranking-tab" data-view="milestones" role="tab">Hitos</button>
           <button class="ranking-tab" data-view="stats" role="tab">Estadísticas</button>
           <button class="ranking-tab" data-view="survival" role="tab">Supervivencia</button>
+          <button class="ranking-tab" data-view="deathmap" role="tab">Mapa de Calor</button>
         </nav>
 
         <div class="ranking-stats" id="rankingStats"></div>
@@ -617,7 +639,7 @@
         var params = new URLSearchParams(window.location.search);
         var view = params.get('view');
         var mode = params.get('mode');
-        if (view && ['season','mode','deaths','hall','milestones','stats','survival'].indexOf(view) !== -1) {
+        if (view && ['season','mode','deaths','hall','milestones','stats','survival','deathmap'].indexOf(view) !== -1) {
           currentView = view;
           if (mode) currentMode = parseInt(mode, 10) || 0;
         }
@@ -1176,6 +1198,9 @@
               case 'survival':
                 renderSurvivalView(entries, data.longest_streak);
                 break;
+              case 'deathmap':
+                renderDeathMap(data.deaths || [], data.alive || []);
+                break;
             }
           })
           .catch(function(err) {
@@ -1228,7 +1253,7 @@
           t.classList.toggle('active', active);
           t.setAttribute('aria-selected', active ? 'true' : 'false');
         });
-        if (rankingLegendEl) rankingLegendEl.style.display = view === 'deaths' ? 'none' : '';
+        if (rankingLegendEl) rankingLegendEl.style.display = (view === 'deaths' || view === 'deathmap') ? 'none' : '';
         if (view !== 'season' && view !== 'mode' && view !== 'combined') loadExtraPanels([], view);
 
         if (view === 'mode') {
@@ -1239,11 +1264,12 @@
           modeSelector.classList.add('visible');
           searchInput.parentElement.style.display = '';
           loadView('mode', currentMode);
-        } else if (view === 'milestones' || view === 'stats' || view === 'survival') {
+        } else if (view === 'milestones' || view === 'stats' || view === 'survival' || view === 'deathmap') {
           modeSelector.classList.remove('visible');
           searchInput.parentElement.style.display = 'none';
           if (view === 'milestones') { renderMilestoneFilters(); loadView('milestones'); }
           else if (view === 'stats') { renderStatsControls(); loadView('stats'); }
+          else if (view === 'deathmap') { loadView('deathmap'); }
           else { loadView('survival'); }
         } else {
           modeSelector.classList.remove('visible');
@@ -1417,6 +1443,199 @@
                 setTimeout(function() { copyRankBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar'; }, 2000);
               });
             }
+      }
+
+      // ---- Death map view ----
+      var MAP_CONTINENTS = [
+        { id: 0, name: 'Reinos del Este', img: '/assets/maps/azeroth.jpg', w: 966, h: 732, maps: [0] },
+        { id: 1, name: 'Kalimdor', img: '/assets/maps/azeroth.jpg', w: 966, h: 732, maps: [1] },
+        { id: 2, name: 'Terrallende', img: '/assets/maps/outland.jpg', w: 966, h: 695, maps: [530] },
+        { id: 3, name: 'Rasganorte', img: '/assets/maps/northrend.jpg', w: 966, h: 732, maps: [571] }
+      ];
+      var deathMapState = { continent: 0, deaths: [], alive: [], canvas: null, ctx: null, imgEl: null, imgLoaded: false };
+      var deathMapTooltip = null;
+
+      function wowToPixel(x, y, mapId) {
+        x = Math.round(x); y = Math.round(y);
+        var where530 = 0;
+        if (mapId === 530) {
+          if (y < -1000 && y > -10000 && x > 5000) { x = x - 10349; y = y + 6357; where530 = 1; }
+          else if (y < -7000 && x < 0) { x = x + 3961; y = y + 13931; where530 = 2; }
+          else { x = x - 3070; y = y - 1265; where530 = 3; }
+        } else if (mapId === 609) { x = x - 2355; y = y + 5662; }
+        var xpos, ypos;
+        if (where530 === 3) { xpos = Math.round(x * 0.051446); ypos = Math.round(y * 0.051446); }
+        else if (mapId === 571) { xpos = Math.round(x * 0.050085); ypos = Math.round(y * 0.050085); }
+        else { xpos = Math.round(x * 0.025140); ypos = Math.round(y * 0.025140); }
+        var px = 0, py = 0;
+        if (mapId === 530) {
+          if (where530 === 1) { px = 858 - ypos; py = 84 - xpos; }
+          else if (where530 === 2) { px = 103 - ypos; py = 261 - xpos; }
+          else { px = 684 - ypos; py = 229 - xpos; }
+        } else if (mapId === 571) { px = 505 - ypos; py = 642 - xpos; }
+        else if (mapId === 609) { px = 896 - ypos; py = 232 - xpos; }
+        else if (mapId === 1) { px = 194 - ypos; py = 398 - xpos; }
+        else if (mapId === 0) { px = 752 - ypos; py = 291 - xpos; }
+        else { px = 194 - ypos; py = 398 - xpos; }
+        return { x: px, y: py };
+      }
+
+      function renderDeathMap(deaths, alive) {
+        deathMapState.deaths = deaths.filter(function(d) { return d.position_x !== null && d.position_y !== null && d.map !== null; });
+        deathMapState.alive = alive.filter(function(a) { return a.position_x !== null && a.position_y !== null && a.map !== null; });
+        var html = '';
+        html += '<div class="deathmap-controls">';
+        MAP_CONTINENTS.forEach(function(c) {
+          html += '<button class="deathmap-tab' + (c.id === deathMapState.continent ? ' active' : '') + '" data-continent="' + c.id + '">' + escapeHtml(c.name) + '</button>';
+        });
+        html += '</div>';
+        var cont = MAP_CONTINENTS[deathMapState.continent];
+        var mapIds = cont.maps;
+        var dCount = deathMapState.deaths.filter(function(d) { return mapIds.indexOf(d.map) !== -1; }).length;
+        var aCount = deathMapState.alive.filter(function(a) { return mapIds.indexOf(a.map) !== -1; }).length;
+        html += '<div class="deathmap-stats">';
+        html += '<div class="deathmap-stat">Vivos: <span class="v" style="color:#2eea5a;">' + aCount + '</span></div>';
+        html += '<div class="deathmap-stat">Muertos: <span class="v" style="color:#ff5050;">' + dCount + '</span></div>';
+        html += '</div>';
+        html += '<div class="deathmap-wrap"><div class="deathmap-canvas-wrap" id="deathmapCanvasWrap">';
+        html += '<canvas id="deathmapCanvas"></canvas>';
+        html += '</div></div>';
+        html += '<div class="deathmap-legend">';
+        html += '<span class="deathmap-legend-item"><span class="deathmap-legend-dot alive"></span> Personaje vivo</span>';
+        html += '<span class="deathmap-legend-item"><span class="deathmap-legend-dot dead"></span> Punto de muerte</span>';
+        html += '</div>';
+        content.innerHTML = html;
+        content.querySelectorAll('.deathmap-tab').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            deathMapState.continent = parseInt(this.getAttribute('data-continent'), 10);
+            renderDeathMap(deathMapState.deaths, deathMapState.alive);
+          });
+        });
+        drawDeathMap();
+      }
+
+      function drawDeathMap() {
+        var wrap = document.getElementById('deathmapCanvasWrap');
+        if (!wrap) return;
+        var canvas = document.getElementById('deathmapCanvas');
+        if (!canvas) return;
+        var cont = MAP_CONTINENTS[deathMapState.continent];
+        var dpr = window.devicePixelRatio || 1;
+        var rect = wrap.getBoundingClientRect();
+        if (rect.width === 0) { setTimeout(drawDeathMap, 100); return; }
+        var dispW = rect.width;
+        var dispH = dispW * (cont.h / cont.w);
+        canvas.width = dispW * dpr;
+        canvas.height = dispH * dpr;
+        canvas.style.height = dispH + 'px';
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+        deathMapState.canvas = canvas;
+        deathMapState.ctx = ctx;
+        var img = new Image();
+        img.onload = function() {
+          deathMapState.imgEl = img;
+          deathMapState.imgLoaded = true;
+          ctx.drawImage(img, 0, 0, dispW, dispH);
+          drawDeathPoints(dispW, dispH);
+        };
+        img.onerror = function() { deathMapState.imgLoaded = false; };
+        img.src = cont.img;
+        canvas.onmousemove = function(e) { handleDeathMapHover(e, dispW, dispH, cont); };
+        canvas.onmouseleave = function() { hideDeathMapTooltip(); };
+      }
+
+      function drawDeathPoints(dispW, dispH) {
+        var ctx = deathMapState.ctx;
+        if (!ctx) return;
+        var cont = MAP_CONTINENTS[deathMapState.continent];
+        var mapIds = cont.maps;
+        var scaleX = dispW / cont.w;
+        var scaleY = dispH / cont.h;
+        var alivePts = [];
+        var deathPts = [];
+        deathMapState.alive.forEach(function(a) {
+          if (mapIds.indexOf(a.map) === -1) return;
+          var p = wowToPixel(a.position_x, a.position_y, a.map);
+          if (p.x < 0 || p.x > cont.w || p.y < 0 || p.y > cont.h) return;
+          alivePts.push({ px: p, entry: a });
+        });
+        deathMapState.deaths.forEach(function(d) {
+          if (mapIds.indexOf(d.map) === -1) return;
+          var p = wowToPixel(d.position_x, d.position_y, d.map);
+          if (p.x < 0 || p.x > cont.w || p.y < 0 || p.y > cont.h) return;
+          deathPts.push({ px: p, entry: d });
+        });
+        deathPts.forEach(function(pt) {
+          ctx.beginPath();
+          ctx.arc(pt.px.x * scaleX, pt.px.y * scaleY, 5, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,80,80,.35)';
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(pt.px.x * scaleX, pt.px.y * scaleY, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = '#ff5050';
+          ctx.fill();
+        });
+        alivePts.forEach(function(pt) {
+          ctx.beginPath();
+          ctx.arc(pt.px.x * scaleX, pt.px.y * scaleY, 5, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(46,234,90,.35)';
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(pt.px.x * scaleX, pt.px.y * scaleY, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = '#2eea5a';
+          ctx.fill();
+        });
+        deathMapState._alivePts = alivePts;
+        deathMapState._deathPts = deathPts;
+        deathMapState._scaleX = scaleX;
+        deathMapState._scaleY = scaleY;
+      }
+
+      function handleDeathMapHover(e, dispW, dispH, cont) {
+        if (!deathMapTooltip) {
+          deathMapTooltip = document.createElement('div');
+          deathMapTooltip.className = 'deathmap-tooltip';
+        }
+        if (!document.body.contains(deathMapTooltip)) document.body.appendChild(deathMapTooltip);
+        var canvas = deathMapState.canvas;
+        if (!canvas) return;
+        var rect = canvas.getBoundingClientRect();
+        var mx = (e.clientX - rect.left) / rect.width * cont.w;
+        var my = (e.clientY - rect.top) / rect.height * cont.h;
+        var scaleX = rect.width / cont.w;
+        var scaleY = rect.height / cont.h;
+        var found = null;
+        var allPts = (deathMapState._alivePts || []).concat(deathMapState._deathPts || []);
+        for (var i = 0; i < allPts.length; i++) {
+          var pt = allPts[i];
+          var dx = pt.px.x - mx;
+          var dy = pt.px.y - my;
+          if (Math.sqrt(dx * dx + dy * dy) < 6) { found = pt; break; }
+        }
+        if (found) {
+          var e2 = found.entry;
+          var isAlive = e2.is_alive === 1 || e2.is_alive === undefined;
+          var html = '<div class="tt-name">' + escapeHtml(e2.name || '') + '</div>';
+          if (e2.class_name) html += '<div class="tt-row tt-class" style="color:' + escapeHtml(e2.class_color || '#b8d4e8') + ';">' + escapeHtml(e2.race_name || '') + ' ' + escapeHtml(e2.class_name) + '</div>';
+          if (e2.level) html += '<div class="tt-row">Nivel: ' + e2.level + '</div>';
+          if (e2.score) html += '<div class="tt-row">Puntuacion: ' + (e2.score || 0).toLocaleString('es-ES') + '</div>';
+          if (e2.cause) html += '<div class="tt-row">Causa: ' + escapeHtml(e2.cause) + '</div>';
+          if (e2.mode_name) html += '<div class="tt-row">Modo: ' + escapeHtml(e2.mode_name) + '</div>';
+          if (e2.death_date) html += '<div class="tt-row">Muerte: ' + escapeHtml(fmtDate(e2.death_date)) + '</div>';
+          if (isAlive && e2.last_online) html += '<div class="tt-row">Ult. conexion: ' + escapeHtml(fmtDate(e2.last_online)) + '</div>';
+          html += '<div class="tt-row" style="color:' + (isAlive ? '#2eea5a' : '#ff5050') + ';font-weight:700;">' + (isAlive ? 'Vivo' : 'Muerto') + '</div>';
+          deathMapTooltip.innerHTML = html;
+          deathMapTooltip.style.display = 'block';
+          deathMapTooltip.style.left = (e.clientX + 14) + 'px';
+          deathMapTooltip.style.top = (e.clientY - 10) + 'px';
+        } else {
+          hideDeathMapTooltip();
+        }
+      }
+
+      function hideDeathMapTooltip() {
+        if (deathMapTooltip) deathMapTooltip.style.display = 'none';
       }
 
       // Initial load

@@ -327,12 +327,13 @@ $payload['modes'] = $modes;
 
 // ---- 7. Muertes notables (solo permadeath) ----
 $deaths = [];
-$sql = "SELECT d.`name` AS character_name, d.`level`, d.`cause`, w.`mode_name`, d.`death_time` "
+$sql = "SELECT d.`name` AS character_name, d.`level`, d.`cause`, w.`mode_name`, d.`death_time`, "
+     . "d.`position_x`, d.`position_y`, d.`map` AS death_map "
      . "FROM `challenge_mode_deaths` d "
      . "JOIN `challenge_mode_weights` w ON d.`challenge_mode` = w.`challenge_mode` "
      . "WHERE w.`is_permadeath` = 1 "
      . "ORDER BY d.`level` DESC, d.`death_time` ASC "
-     . "LIMIT 10";
+     . "LIMIT 200";
 $result = mysqli_query($conn, $sql);
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -342,6 +343,9 @@ if ($result) {
             'cause'      => $row['cause'],
             'mode_name'  => $row['mode_name'],
             'death_date' => $row['death_time'] ? date('Y-m-d H:i:s', (int) $row['death_time']) : null,
+            'position_x' => isset($row['position_x']) ? (float) $row['position_x'] : null,
+            'position_y' => isset($row['position_y']) ? (float) $row['position_y'] : null,
+            'map'        => isset($row['death_map']) ? (int) $row['death_map'] : null,
         ];
     }
     mysqli_free_result($result);
@@ -398,7 +402,7 @@ if ($characterNames) {
     foreach (array_keys($characterNames) as $characterName) {
         $nameList[] = "'" . mysqli_real_escape_string($conn, $characterName) . "'";
     }
-    $raceResult = mysqli_query($conn, "SELECT `name`, `race`, `class`, `logout_time` FROM `characters` WHERE `name` IN (" . implode(',', $nameList) . ")");
+    $raceResult = mysqli_query($conn, "SELECT `name`, `race`, `class`, `logout_time`, `position_x`, `position_y`, `map` FROM `characters` WHERE `name` IN (" . implode(',', $nameList) . ")");
     if ($raceResult) {
         while ($raceRow = mysqli_fetch_assoc($raceResult)) {
             $raceId = (int) $raceRow['race'];
@@ -411,12 +415,15 @@ if ($characterNames) {
                 'class_name'  => $classId !== null ? ($CLASS_NAMES[$classId] ?? 'Desconocida') : null,
                 'class_color' => $classId !== null ? ($CLASS_COLORS[$classId] ?? '#cccccc') : '#cccccc',
                 'last_online' => $raceRow['logout_time'] ? date('Y-m-d H:i:s', (int) $raceRow['logout_time']) : null,
+                'position_x'  => $raceRow['position_x'] !== null ? (float) $raceRow['position_x'] : null,
+                'position_y'  => $raceRow['position_y'] !== null ? (float) $raceRow['position_y'] : null,
+                'map'         => $raceRow['map'] !== null ? (int) $raceRow['map'] : null,
             ];
         }
         mysqli_free_result($raceResult);
     }
 }
-$defaultInfo = ['race' => null, 'race_name' => null, 'race_icon' => null, 'class' => null, 'class_name' => null, 'class_color' => '#cccccc', 'last_online' => null];
+$defaultInfo = ['race' => null, 'race_name' => null, 'race_icon' => null, 'class' => null, 'class_name' => null, 'class_color' => '#cccccc', 'last_online' => null, 'position_x' => null, 'position_y' => null, 'map' => null];
 foreach ($rankingLists as &$entries) {
     foreach ($entries as &$entry) {
         $info = $charInfo[$entry['name']] ?? $defaultInfo;
@@ -435,6 +442,43 @@ $payload['milestones'] = $milestones;
 foreach ($modes as $modeId => $modeEntries) {
     $payload['modes'][$modeId] = $modeEntries;
 }
+
+// ---- 9. Personajes vivos con modos de desafio activos (posiciones para el mapa de calor) ----
+$alivePositions = [];
+$sql = "SELECT c.`name`, c.`race`, c.`class`, c.`level`, c.`position_x`, c.`position_y`, c.`map`, "
+     . "c.`logout_time`, r.`total_score`, r.`is_alive`, r.`challenges_active` "
+     . "FROM `challenge_mode_rankings` r "
+     . "JOIN `characters` c ON r.`character_name` = c.`name` "
+     . "WHERE r.`is_alive` = 1 AND r.`challenges_active` > 0 "
+     . "AND r.`season_id` = (SELECT `id` FROM `challenge_mode_seasons` WHERE `is_active` = 1 ORDER BY `start_time` DESC LIMIT 1) "
+     . "AND c.`map` IN (0, 1, 530, 571) "
+     . "ORDER BY r.`total_score` DESC LIMIT 500";
+$result = mysqli_query($conn, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $raceId = (int) $row['race'];
+        $classId = $row['class'] !== null ? (int) $row['class'] : null;
+        $alivePositions[] = [
+            'name'              => $row['name'],
+            'level'             => (int) $row['level'],
+            'score'             => (int) round((float) $row['total_score']),
+            'challenges_active' => (int) $row['challenges_active'],
+            'is_alive'          => 1,
+            'position_x'        => $row['position_x'] !== null ? (float) $row['position_x'] : null,
+            'position_y'        => $row['position_y'] !== null ? (float) $row['position_y'] : null,
+            'map'               => $row['map'] !== null ? (int) $row['map'] : null,
+            'race'              => $raceId,
+            'race_name'         => $RACE_NAMES[$raceId] ?? 'Desconocida',
+            'race_icon'         => $RACE_ICONS[$raceId] ?? null,
+            'class'             => $classId,
+            'class_name'        => $classId !== null ? ($CLASS_NAMES[$classId] ?? 'Desconocida') : null,
+            'class_color'       => $classId !== null ? ($CLASS_COLORS[$classId] ?? '#cccccc') : '#cccccc',
+            'last_online'       => $row['logout_time'] ? date('Y-m-d H:i:s', (int) $row['logout_time']) : null,
+        ];
+    }
+    mysqli_free_result($result);
+}
+$payload['alive_positions'] = $alivePositions;
 
 mysqli_close($conn);
 

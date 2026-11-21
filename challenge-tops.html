@@ -319,11 +319,11 @@
     .class-bar-count { flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; width:24px; text-align:right; }
     .survival-bar { display:flex; align-items:center; gap:.5rem; margin:.5rem 0 0; }
     .survival-bar-track { flex:1; height:22px; border-radius:11px; overflow:hidden; background:rgba(255,255,255,.04); display:flex; }
-    .survival-bar-alive { height:100%; background:linear-gradient(90deg,rgba(40,220,70,.4),rgba(20,180,40,.3)); transition:width .6s ease; }
-    .survival-bar-dead { height:100%; background:linear-gradient(90deg,rgba(180,20,20,.3),rgba(120,10,10,.2)); transition:width .6s ease; }
-    .survival-label { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#b8d4e8; white-space:nowrap; }
-    .survival-label .alive-n { color:#2eea5a; font-weight:700; }
-    .survival-label .dead-n { color:#ff5050; font-weight:700; }
+    .survival-bar-alive { height:100%; background:linear-gradient(90deg,#39f05a,#16b83d); box-shadow:0 0 12px rgba(57,240,90,.35); transition:width .6s ease; }
+    .survival-bar-dead { height:100%; background:linear-gradient(90deg,#ff4d4d,#c91f2b); box-shadow:0 0 12px rgba(255,77,77,.3); transition:width .6s ease; }
+    .survival-label { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#d6eaf5; white-space:nowrap; }
+    .survival-label .alive-n { color:#52ff73; font-weight:700; text-shadow:0 0 7px rgba(82,255,115,.35); }
+    .survival-label .dead-n { color:#ff6868; font-weight:700; text-shadow:0 0 7px rgba(255,104,104,.3); }
     .share-row { display:flex; gap:.4rem; margin-top:.5rem; flex-wrap:wrap; }
     .share-btn { display:inline-flex; align-items:center; gap:.3rem; padding:.3rem .7rem; border-radius:6px; border:1px solid rgba(77,189,232,.18); background:rgba(10,24,40,.5); color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.62rem; cursor:pointer; transition:all .25s ease; text-decoration:none; }
     .share-btn:hover { border-color:rgba(77,189,232,.4); color:#4dd8ff; box-shadow:0 0 8px rgba(77,189,232,.1); }
@@ -378,11 +378,11 @@
     .stats-chart-title { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.72rem; color:#4dd8ff; margin:0 0 .5rem; letter-spacing:.05em; }
 
     /* Survival view */
-    .survival-highlight { margin:1rem 0 0; padding:1.2rem 1.5rem; border:1px solid rgba(255,210,80,.2); border-radius:12px; background:linear-gradient(135deg,rgba(255,210,80,.06),rgba(8,22,36,.5)); text-align:center; }
-    .survival-highlight-label { font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; text-transform:uppercase; letter-spacing:.05em; margin:0 0 .3rem; }
-    .survival-highlight-name { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; color:#ffd24a; text-shadow:0 0 10px rgba(255,210,80,.2); }
-    .survival-highlight-days { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.4rem; color:#2eea5a; font-weight:700; text-shadow:0 0 12px rgba(40,220,70,.2); margin:.3rem 0; }
-    .survival-highlight-sub { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#8da5b5; }
+    .survival-highlight { margin:1rem 0 0; padding:1.2rem 1.5rem; border:1px solid rgba(255,210,80,.35); border-radius:12px; background:linear-gradient(135deg,rgba(255,210,80,.1),rgba(8,22,36,.5)); text-align:center; }
+    .survival-highlight-label { font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#7a9eb0; text-transform:uppercase; letter-spacing:.05em; margin:0 0 .3rem; }
+    .survival-highlight-name { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; color:#ffd24a; text-shadow:0 0 10px rgba(255,210,80,.35); }
+    .survival-highlight-days { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.4rem; color:#52ff73; font-weight:700; text-shadow:0 0 14px rgba(82,255,115,.4); margin:.3rem 0; }
+    .survival-highlight-sub { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#a8c2d0; }
     .timeline-link { font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#4dd8ff; text-decoration:none; transition:color .2s ease; }
     .timeline-link:hover { color:#ffd24a; text-decoration:underline; }
   </style>
@@ -1038,7 +1038,7 @@
             type: 'bar',
             data: {
               labels: modeLabels,
-              datasets: [{ label: 'Tasa de supervivencia (%)', data: survivalRates, backgroundColor: 'rgba(77,189,232,.4)', borderColor: '#4dd8ff', borderWidth: 1 }]
+              datasets: [{ label: 'Tasa de supervivencia (%)', data: survivalRates, backgroundColor: 'rgba(82,255,115,.5)', borderColor: '#39f05a', borderWidth: 1.5 }]
             },
             options: {
               responsive: true, maintainAspectRatio: false,

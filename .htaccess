@@ -88,11 +88,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^challenge-tops/?$ /challenge-tops.html [L]
 
-# Clean URL: /challenge-timeline -> /challenge-timeline.html
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^challenge-timeline/?$ /challenge-timeline.html [L]
-
 # Clean URL: /challenge-calculator -> /challenge-calculator.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

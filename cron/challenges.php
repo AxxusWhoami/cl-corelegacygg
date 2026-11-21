@@ -277,39 +277,6 @@ if ($result) {
 }
 $payload['daily_stats'] = $dailyStats;
 
-// ---- 4c. Eventos de progreso (challenge_mode_progress_history) — ultimos 5000 ----
-$timelineEvents = [];
-$sql = "SELECT h.`id`, h.`guid`, h.`challenge_mode`, h.`event_type`, h.`level`, "
-     . "h.`event_time`, h.`details`, c.`name` AS character_name, c.`race`, c.`class` "
-     . "FROM `challenge_mode_progress_history` h "
-     . "LEFT JOIN `characters` c ON h.`guid` = c.`guid` "
-     . "ORDER BY h.`event_time` DESC LIMIT 5000";
-$result = mysqli_query($conn, $sql);
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $raceId = $row['race'] !== null ? (int) $row['race'] : null;
-        $classId = $row['class'] !== null ? (int) $row['class'] : null;
-        $timelineEvents[] = [
-            'id'             => (int) $row['id'],
-            'guid'           => (int) $row['guid'],
-            'name'           => $row['character_name'],
-            'challenge_mode' => (int) $row['challenge_mode'],
-            'event_type'     => $row['event_type'],
-            'level'          => (int) $row['level'],
-            'event_time'     => $row['event_time'] ? date('Y-m-d H:i:s', (int) $row['event_time']) : null,
-            'details'        => $row['details'],
-            'race'           => $raceId,
-            'race_name'      => $raceId !== null ? ($RACE_NAMES[$raceId] ?? 'Desconocida') : null,
-            'race_icon'      => $raceId !== null ? ($RACE_ICONS[$raceId] ?? null) : null,
-            'class'          => $classId,
-            'class_name'     => $classId !== null ? ($CLASS_NAMES[$classId] ?? 'Desconocida') : null,
-            'class_color'    => $classId !== null ? ($CLASS_COLORS[$classId] ?? '#cccccc') : '#cccccc',
-        ];
-    }
-    mysqli_free_result($result);
-}
-$payload['timeline_events'] = $timelineEvents;
-
 // ---- 5. Top 20 Combinado (vista challenge_mode_scores) ----
 $combined = [];
 $sql = "SELECT `character_name`, `total_score`, `challenges_active`, `highest_level`, `is_alive` "

@@ -38,7 +38,7 @@ function respond(int $status, array $payload): void
 $cacheKey = $ARMORY_REDIS_PREFIX . 'challenges:v1';
 
 // Vistas validas que se pueden solicitar.
-$VALID_VIEWS = ['global', 'season', 'combined', 'deaths', 'hall', 'weights', 'mode', 'milestones', 'stats', 'survival', 'timeline', 'seasons'];
+$VALID_VIEWS = ['global', 'season', 'combined', 'deaths', 'hall', 'weights', 'mode', 'milestones', 'stats', 'survival', 'seasons'];
 $view = $_GET['view'] ?? 'global';
 if (!in_array($view, $VALID_VIEWS, true)) {
     respond(400, ['ok' => false, 'message' => 'Vista no válida. Vistas disponibles: ' . implode(', ', $VALID_VIEWS)]);
@@ -49,7 +49,6 @@ $offsetParam = isset($_GET['offset']) ? max(0, (int) $_GET['offset']) : 0;
 $limitParam = isset($_GET['limit']) ? min(100, max(1, (int) $_GET['limit'])) : 20;
 $seasonIdParam = isset($_GET['season_id']) ? (int) $_GET['season_id'] : 0;
 $typeParam = $_GET['type'] ?? '';
-$characterParam = $_GET['character'] ?? '';
 
 // ---- Leer SIEMPRE de Redis ----
 if (!$ARMORY_REDIS_ENABLE || !class_exists('Redis', false)) {
@@ -230,30 +229,6 @@ switch ($view) {
             'entries'       => array_slice($valid, 0, 25),
             'longest_streak'=> $longest,
             'updated_at'    => $updated_at,
-        ]);
-        break;
-
-    case 'timeline':
-        $all = $cached['timeline_events'] ?? [];
-        $char = trim($characterParam);
-        if ($char !== '') {
-            $all = array_filter($all, function($e) use ($char) { return strcasecmp($e['name'] ?? '', $char) === 0; });
-        }
-        $all = array_values($all);
-        usort($all, function($a, $b) { return strcmp($b['event_time'] ?? '', $a['event_time'] ?? ''); });
-        $charInfo = null;
-        if ($char !== '') {
-            foreach ($cached['season']['entries'] ?? [] as $se) {
-                if (strcasecmp($se['name'] ?? '', $char) === 0) { $charInfo = $se; break; }
-            }
-        }
-        respond(200, [
-            'ok'          => true,
-            'view'        => 'timeline',
-            'character'   => $char,
-            'char_info'   => $charInfo,
-            'entries'     => $all,
-            'updated_at'  => $updated_at,
         ]);
         break;
 

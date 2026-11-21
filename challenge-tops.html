@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rankings de Modos de Desafío — CoRe Legacy | Top Hardcore WoW</title>
-  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline. WoW WotLK 3.3.5a Hardcore." />
+  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables y sala de la fama. WoW WotLK 3.3.5a Hardcore." />
   <meta name="keywords" content="ranking challenge modes wow, top hardcore wow, clasificación modos desafío, ranking wow 3.3.5a, sala de la fama hardcore, iron man ranking, one life ranking, core legacy tops" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="CoRe Legacy" />
@@ -17,7 +17,7 @@
   <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/challenge-tops" />
 
   <meta property="og:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
-  <meta property="og:description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline." />
+  <meta property="og:description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables y sala de la fama." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://corelegacy.gg/challenge-tops" />
   <meta property="og:site_name" content="CoRe Legacy" />
@@ -26,7 +26,7 @@
   <meta property="og:image:alt" content="Rankings de Modos de Desafío — CoRe Legacy" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
-  <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline." />
+  <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables y sala de la fama." />
   <meta name="twitter:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
 
   <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
@@ -384,15 +384,13 @@
     .survival-highlight-name { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; color:#ffd24a; text-shadow:0 0 10px rgba(255,210,80,.35); }
     .survival-highlight-days { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.4rem; color:#52ff73; font-weight:700; text-shadow:0 0 14px rgba(82,255,115,.4); margin:.3rem 0; }
     .survival-highlight-sub { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#a8c2d0; }
-    .timeline-link { font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#4dd8ff; text-decoration:none; transition:color .2s ease; }
-    .timeline-link:hover { color:#ffd24a; text-decoration:underline; }
   </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Rankings de Modos de Desafío — CoRe Legacy",
-    "description": "Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline.",
+    "description": "Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables y sala de la fama.",
     "url": "https://corelegacy.gg/challenge-tops",
     "inLanguage": "es-ES",
     "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
@@ -926,7 +924,7 @@
         html += '</div>';
         html += '<div style="display:flex;flex-direction:column;gap:.5rem;">';
         html += '<a class="back-to-modes" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(m.name) + '" target="_blank" rel="noopener noreferrer">Ver en Armeria</a>';
-        html += '<a class="back-to-modes" href="/challenge-timeline?character=' + encodeURIComponent(m.name) + '">Ver Timeline</a>';
+
         html += '<a class="back-to-modes" href="' + window.location.pathname + '?view=season">Ver en Ranking</a>';
         html += '</div>';
         panel.innerHTML = html;
@@ -1086,7 +1084,6 @@
           if (longest.streak_started_at) html += 'Desde ' + escapeHtml(fmtDate(longest.streak_started_at));
           if (longest.score) html += ' · ' + (longest.score || 0).toLocaleString('es-ES') + ' puntos';
           html += '</p>';
-          html += '<p style="margin:.5rem 0 0;"><a class="timeline-link" href="/challenge-timeline?character=' + encodeURIComponent(longest.name) + '">Ver timeline completo -></a></p>';
           html += '</div>';
         }
         html += '<div class="ranking-table-wrap"><table class="ranking-table"><thead><tr>';

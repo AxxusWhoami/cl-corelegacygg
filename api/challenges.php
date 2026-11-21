@@ -207,7 +207,9 @@ switch ($view) {
             $alive = (int) ($e['is_alive'] ?? 0) === 1;
             $streakStart = $e['streak_started_at'] ?? null;
             $lastDeath = $e['last_death_time'] ?? null;
-            if ($streak > 0 && $alive && $streakStart) {
+            $now = time();
+            $elapsed = $streakStart ? $now - strtotime($streakStart) : 0;
+            if ($streak > 0 && $alive && $streakStart && $elapsed >= 86400) {
                 if ($lastDeath && strtotime($lastDeath) > strtotime($streakStart)) {
                     $streak = 0;
                 }

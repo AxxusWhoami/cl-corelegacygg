@@ -313,7 +313,8 @@
     .class-chart { margin:1rem 0 0; padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.15); border-radius:10px; background:rgba(8,22,36,.4); }
     .class-chart-title { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.72rem; color:#4dd8ff; margin:0 0 .6rem; letter-spacing:.05em; text-shadow:0 0 6px rgba(77,189,232,.1); }
     .class-bar-row { display:flex; align-items:center; gap:.5rem; margin:.25rem 0; }
-    .class-bar-label { display:flex; align-items:center; gap:.3rem; width:110px; flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#b8d4e8; }
+    .class-bar-label { display:flex; align-items:center; gap:.3rem; width:130px; flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#b8d4e8; }
+    .class-bar-icon { width:18px; height:18px; border-radius:3px; flex-shrink:0; }
     .class-bar-track { flex:1; height:10px; border-radius:5px; background:rgba(255,255,255,.04); overflow:hidden; }
     .class-bar-fill { height:100%; border-radius:5px; background:linear-gradient(90deg,rgba(255,210,80,.55),rgba(77,189,232,.3)); transition:width .6s ease; }
     .class-bar-count { flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; width:24px; text-align:right; }
@@ -1340,10 +1341,22 @@
             var entries = data.entries;
             var alive = 0, dead = 0;
             var classCounts = {};
+            var CLASS_ICONS = {
+              'Guerrero': '/assets/icons/small/classicon_warrior.jpg',
+              'Paladín': '/assets/icons/small/classicon_paladin.jpg',
+              'Cazador': '/assets/icons/small/classicon_hunter.jpg',
+              'Pícaro': '/assets/icons/small/classicon_rogue.jpg',
+              'Sacerdote': '/assets/icons/small/classicon_priest.jpg',
+              'Caballero de la Muerte': '/assets/icons/small/spell_deathknight_classicon.jpg',
+              'Chamán': '/assets/icons/small/classicon_shaman.jpg',
+              'Mago': '/assets/icons/small/classicon_mage.jpg',
+              'Brujo': '/assets/icons/small/classicon_warlock.jpg',
+              'Druida': '/assets/icons/small/classicon_druid.jpg'
+            };
             entries.forEach(function(e) {
               if (e.is_alive === 1) alive++; else dead++;
               if (e.class_name) {
-                if (!classCounts[e.class_name]) classCounts[e.class_name] = { count: 0, color: e.class_color || '#4dd8ff' };
+                if (!classCounts[e.class_name]) classCounts[e.class_name] = { count: 0, color: e.class_color || '#4dd8ff', icon: CLASS_ICONS[e.class_name] || null };
                 classCounts[e.class_name].count++;
               }
             });
@@ -1367,7 +1380,8 @@
               classKeys.forEach(function(className) {
                 var c = classCounts[className];
                 var pct = Math.round((c.count / maxCount) * 100);
-                html += '<div class="class-bar-row"><span class="class-bar-label" style="color:' + escapeHtml(c.color) + ';">' + escapeHtml(className) + '</span><div class="class-bar-track"><div class="class-bar-fill" style="width:' + pct + '%;background:linear-gradient(90deg,' + escapeHtml(c.color) + ',rgba(77,189,232,.25));"></div></div><span class="class-bar-count">' + c.count + '</span></div>';
+                var iconHtml = c.icon ? '<img class="class-bar-icon" src="' + escapeHtml(c.icon) + '" alt="" loading="lazy" />' : '';
+                html += '<div class="class-bar-row"><span class="class-bar-label" style="color:' + escapeHtml(c.color) + ';">' + iconHtml + escapeHtml(className) + '</span><div class="class-bar-track"><div class="class-bar-fill" style="width:' + pct + '%;background:linear-gradient(90deg,' + escapeHtml(c.color) + ',rgba(77,189,232,.25));"></div></div><span class="class-bar-count">' + c.count + '</span></div>';
               });
               html += '</div>';
             }

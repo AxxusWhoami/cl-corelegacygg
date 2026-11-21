@@ -38,13 +38,18 @@ function respond(int $status, array $payload): void
 $cacheKey = $ARMORY_REDIS_PREFIX . 'challenges:v1';
 
 // Vistas validas que se pueden solicitar.
-$VALID_VIEWS = ['global', 'season', 'combined', 'deaths', 'hall', 'weights', 'mode'];
+$VALID_VIEWS = ['global', 'season', 'combined', 'deaths', 'hall', 'weights', 'mode', 'milestones', 'stats', 'survival', 'timeline', 'seasons'];
 $view = $_GET['view'] ?? 'global';
 if (!in_array($view, $VALID_VIEWS, true)) {
     respond(400, ['ok' => false, 'message' => 'Vista no válida. Vistas disponibles: ' . implode(', ', $VALID_VIEWS)]);
 }
 
 $modeParam = isset($_GET['mode']) ? (int) $_GET['mode'] : 0;
+$offsetParam = isset($_GET['offset']) ? max(0, (int) $_GET['offset']) : 0;
+$limitParam = isset($_GET['limit']) ? min(100, max(1, (int) $_GET['limit'])) : 20;
+$seasonIdParam = isset($_GET['season_id']) ? (int) $_GET['season_id'] : 0;
+$typeParam = $_GET['type'] ?? '';
+$characterParam = $_GET['character'] ?? '';
 
 // ---- Leer SIEMPRE de Redis ----
 if (!$ARMORY_REDIS_ENABLE || !class_exists('Redis', false)) {
@@ -150,6 +155,113 @@ switch ($view) {
             'mode'       => $modeParam,
             'mode_info'  => $modeInfo,
             'entries'    => $modes[$modeParam],
+            'updated_at' => $updated_at,
+        ]);
+        break;
+
+    case 'milestones':
+        $all = $cached['milestones'] ?? [];
+        if ($seasonIdParam > 0) {
+            $all = array_filter($all, function($m) use ($seasonIdParam) { return (int) $m['season_id'] === $seasonIdParam; });
+        }
+        if ($modeParam > 0 || isset($_GET['mode'])) {
+            $all = array_filter($all, function($m) use ($modeParam) { return (int) $m['challenge_mode'] === $modeParam; });
+        }
+        if ($typeParam !== '') {
+            $all = array_filter($all, function($m) use ($typeParam) { return $m['milestone_type'] === $typeParam; });
+        }
+        $all = array_values($all);
+        $total = count($all);
+        $page = array_slice($all, $offsetParam, $limitParam);
+        respond(200, [
+            'ok'         => true,
+            'view'       => 'milestones',
+            'total'      => $total,
+            'offset'     => $offsetParam,
+            'limit'      => $limitParam,
+            'entries'    => $page,
+            'updated_at' => $updated_at,
+        ]);
+        break;
+
+    case 'stats':
+        $all = $cached['daily_stats'] ?? [];
+        if ($seasonIdParam > 0) {
+            $all = array_filter($all, function($s) use ($seasonIdParam) { return (int) $s['season_id'] === $seasonIdParam; });
+        }
+        if ($modeParam > 0 || isset($_GET['mode'])) {
+            $all = array_filter($all, function($s) use ($modeParam) { return (int) $s['challenge_mode'] === $modeParam; });
+        }
+        respond(200, [
+            'ok'         => true,
+            'view'       => 'stats',
+            'entries'    => array_values($all),
+            'updated_at' => $updated_at,
+        ]);
+        break;
+
+    case 'survival':
+        $entries = $cached['season']['entries'] ?? [];
+        $valid = [];
+        foreach ($entries as $e) {
+            $streak = (int) ($e['streak_days'] ?? 0);
+            $alive = (int) ($e['is_alive'] ?? 0) === 1;
+            $streakStart = $e['streak_started_at'] ?? null;
+            $lastDeath = $e['last_death_time'] ?? null;
+            if ($streak > 0 && $alive && $streakStart) {
+                if ($lastDeath && strtotime($lastDeath) > strtotime($streakStart)) {
+                    $streak = 0;
+                }
+            } else {
+                $streak = 0;
+            }
+            $e['streak_days'] = $streak;
+            $valid[] = $e;
+        }
+        usort($valid, function($a, $b) {
+            if ((int) $b['streak_days'] !== (int) $a['streak_days']) return (int) $b['streak_days'] - (int) $a['streak_days'];
+            if ((int) $b['score'] !== (int) $a['score']) return (int) $b['score'] - (int) $a['score'];
+            return strcmp($a['name'] ?? '', $b['name'] ?? '');
+        });
+        $longest = !empty($valid) ? $valid[0] : null;
+        respond(200, [
+            'ok'            => true,
+            'view'          => 'survival',
+            'entries'       => array_slice($valid, 0, 25),
+            'longest_streak'=> $longest,
+            'updated_at'    => $updated_at,
+        ]);
+        break;
+
+    case 'timeline':
+        $all = $cached['timeline_events'] ?? [];
+        $char = trim($characterParam);
+        if ($char !== '') {
+            $all = array_filter($all, function($e) use ($char) { return strcasecmp($e['name'] ?? '', $char) === 0; });
+        }
+        $all = array_values($all);
+        usort($all, function($a, $b) { return strcmp($b['event_time'] ?? '', $a['event_time'] ?? ''); });
+        $charInfo = null;
+        if ($char !== '') {
+            foreach ($cached['season']['entries'] ?? [] as $se) {
+                if (strcasecmp($se['name'] ?? '', $char) === 0) { $charInfo = $se; break; }
+            }
+        }
+        respond(200, [
+            'ok'          => true,
+            'view'        => 'timeline',
+            'character'   => $char,
+            'char_info'   => $charInfo,
+            'entries'     => $all,
+            'updated_at'  => $updated_at,
+        ]);
+        break;
+
+    case 'seasons':
+        respond(200, [
+            'ok'         => true,
+            'view'       => 'seasons',
+            'entries'    => $cached['seasons'] ?? [],
             'updated_at' => $updated_at,
         ]);
         break;

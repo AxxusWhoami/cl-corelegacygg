@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rankings de Modos de Desafío — CoRe Legacy | Top Hardcore WoW</title>
-  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, muertes notables y sala de la fama. WoW WotLK 3.3.5a Hardcore." />
+  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline. WoW WotLK 3.3.5a Hardcore." />
   <meta name="keywords" content="ranking challenge modes wow, top hardcore wow, clasificación modos desafío, ranking wow 3.3.5a, sala de la fama hardcore, iron man ranking, one life ranking, core legacy tops" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="CoRe Legacy" />
@@ -17,7 +17,7 @@
   <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/challenge-tops" />
 
   <meta property="og:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
-  <meta property="og:description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, muertes notables y sala de la fama." />
+  <meta property="og:description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://corelegacy.gg/challenge-tops" />
   <meta property="og:site_name" content="CoRe Legacy" />
@@ -26,7 +26,7 @@
   <meta property="og:image:alt" content="Rankings de Modos de Desafío — CoRe Legacy" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
-  <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, temporada, muertes notables y sala de la fama." />
+  <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline." />
   <meta name="twitter:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
 
   <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
@@ -61,7 +61,10 @@
       border-radius: 12px;
       background: linear-gradient(180deg, rgba(10,28,48,.7), rgba(4,12,22,.6));
       box-shadow: 0 4px 16px rgba(0,0,0,.3), inset 0 1px 0 rgba(77,189,232,.08);
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
     }
+    .ranking-tabs::-webkit-scrollbar { height: 4px; }
+    .ranking-tabs::-webkit-scrollbar-thumb { background: rgba(77,189,232,.25); border-radius: 2px; }
     .ranking-tab {
       font-family: 'Cinzel', Georgia, serif;
       font-size: .78rem; letter-spacing: .05em;
@@ -265,6 +268,9 @@
       .ranking-table tbody td.right { text-align: right; }
       .ranking-table tbody td.center { text-align: right; }
       .ranking-tab { font-size: .7rem; padding: .45rem .7rem; }
+      .ranking-tabs { flex-wrap: nowrap; }
+      .milestone-grid { grid-template-columns: 1fr !important; }
+      .stats-summary { grid-template-columns: 1fr 1fr !important; }
     }
     @media (prefers-reduced-motion: reduce) {
       .ranking-spinner { animation: none; }
@@ -331,13 +337,61 @@
     .season-timer-card { flex:1; min-width:120px; padding:.6rem .9rem; border:1px solid rgba(77,189,232,.15); border-radius:8px; background:rgba(8,22,36,.4); }
     .season-timer-label { font-family:'Cinzel',Georgia,serif; font-size:.58rem; color:#5a8090; text-transform:uppercase; letter-spacing:.04em; margin:0 0 .15rem; }
     .season-timer-value { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.82rem; color:#4dd8ff; font-weight:700; text-shadow:0 0 6px rgba(77,189,232,.1); }
+
+    /* Milestones */
+    .milestone-filters { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0 0; align-items:center; }
+    .milestone-filter-select { padding:.4rem .7rem; border-radius:6px; border:1px solid rgba(77,189,232,.2); background:rgba(10,24,40,.6); color:#c8e0f0; font-family:'Cinzel',Georgia,serif; font-size:.68rem; outline:none; cursor:pointer; }
+    .milestone-filter-select:focus { border-color:rgba(77,189,232,.5); }
+    .milestone-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; margin:1rem 0 0; }
+    .milestone-card { padding:.8rem; border-radius:10px; border:1px solid rgba(77,189,232,.15); background:linear-gradient(180deg,rgba(10,24,40,.6),rgba(4,12,22,.8)); cursor:pointer; transition:all .25s ease; animation:cardFadeIn .4s ease; }
+    .milestone-card:hover { border-color:rgba(77,189,232,.35); box-shadow:0 0 14px rgba(77,189,232,.1); transform:translateY(-2px); }
+    .milestone-card.activation { border-left:3px solid #2eea5a; }
+    .milestone-card.level_80 { border-left:3px solid #ffd24a; }
+    .milestone-card.death { border-left:3px solid #ff5050; }
+    .milestone-icon { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; margin:0 0 .4rem; }
+    .milestone-icon.activation { background:rgba(20,180,40,.2); border:1px solid rgba(40,220,70,.4); }
+    .milestone-icon.level_80 { background:rgba(255,210,80,.2); border:1px solid rgba(255,210,80,.4); }
+    .milestone-icon.death { background:rgba(180,20,20,.2); border:1px solid rgba(200,30,30,.4); }
+    .milestone-icon svg { width:16px; height:16px; }
+    .milestone-char { font-family:'Cinzel',Georgia,serif; font-size:.78rem; color:#4dd8ff; }
+    .milestone-mode { font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#ffd24a; margin:.2rem 0; }
+    .milestone-details { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#8da5b5; margin:.3rem 0; line-height:1.5; }
+    .milestone-date { font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; }
+    .milestone-load-more { display:block; margin:1.25rem auto 0; padding:.55rem 1.5rem; border-radius:8px; border:1px solid rgba(77,189,232,.25); background:rgba(77,189,232,.06); color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.72rem; cursor:pointer; transition:all .25s ease; }
+    .milestone-load-more:hover { border-color:#4bbde8; color:#4dd8ff; box-shadow:0 0 12px rgba(77,189,232,.15); }
+    .milestone-skeleton { padding:.8rem; border-radius:10px; border:1px solid rgba(77,189,232,.08); background:rgba(10,24,40,.3); height:120px; animation:skeletonPulse 1.5s ease-in-out infinite; }
+    @keyframes skeletonPulse { 0%,100% { opacity:.4; } 50% { opacity:.7; } }
+    @keyframes cardFadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+    /* Side panel */
+    .side-panel-overlay { position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:100; opacity:0; transition:opacity .3s ease; }
+    .side-panel-overlay.open { opacity:1; }
+    .side-panel { position:fixed; top:0; right:0; width:360px; max-width:90vw; height:100vh; z-index:101; background:linear-gradient(180deg,rgba(8,22,36,.98),rgba(3,9,18,.99)); border-left:1px solid rgba(77,189,232,.25); box-shadow:-8px 0 32px rgba(0,0,0,.5); transform:translateX(100%); transition:transform .3s ease; overflow-y:auto; padding:1.5rem; }
+    .side-panel.open { transform:translateX(0); }
+    .side-panel-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px; border-radius:50%; border:1px solid rgba(77,189,232,.2); background:transparent; color:#b8d4e8; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .side-panel-close:hover { border-color:rgba(77,189,232,.4); color:#4dd8ff; }
+
+    /* Stats view */
+    .stats-controls { display:flex; flex-wrap:wrap; gap:.75rem; margin:1rem 0 0; align-items:center; }
+    .stats-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem; margin:1rem 0 0; }
+    .stats-chart-wrap { margin:1.25rem 0 0; padding:1rem; border:1px solid rgba(77,189,232,.15); border-radius:10px; background:rgba(8,22,36,.4); position:relative; height:280px; }
+    .stats-chart-title { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.72rem; color:#4dd8ff; margin:0 0 .5rem; letter-spacing:.05em; }
+
+    /* Survival view */
+    .survival-highlight { margin:1rem 0 0; padding:1.2rem 1.5rem; border:1px solid rgba(255,210,80,.2); border-radius:12px; background:linear-gradient(135deg,rgba(255,210,80,.06),rgba(8,22,36,.5)); text-align:center; }
+    .survival-highlight-label { font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; text-transform:uppercase; letter-spacing:.05em; margin:0 0 .3rem; }
+    .survival-highlight-name { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem; color:#ffd24a; text-shadow:0 0 10px rgba(255,210,80,.2); }
+    .survival-highlight-days { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.4rem; color:#2eea5a; font-weight:700; text-shadow:0 0 12px rgba(40,220,70,.2); margin:.3rem 0; }
+    .survival-highlight-sub { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#8da5b5; }
+    .timeline-link { font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#4dd8ff; text-decoration:none; transition:color .2s ease; }
+    .timeline-link:hover { color:#ffd24a; text-decoration:underline; }
   </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Rankings de Modos de Desafío — CoRe Legacy",
-    "description": "Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, muertes notables y sala de la fama.",
+    "description": "Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables, sala de la fama y timeline.",
     "url": "https://corelegacy.gg/challenge-tops",
     "inLanguage": "es-ES",
     "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
@@ -392,6 +446,9 @@
           <button class="ranking-tab" data-view="season" role="tab">Temporada</button>
           <button class="ranking-tab" data-view="deaths" role="tab">Muertes Notables</button>
           <button class="ranking-tab" data-view="hall" role="tab">Sala de la Fama</button>
+          <button class="ranking-tab" data-view="milestones" role="tab">Hitos</button>
+          <button class="ranking-tab" data-view="stats" role="tab">Estadísticas</button>
+          <button class="ranking-tab" data-view="survival" role="tab">Supervivencia</button>
         </nav>
 
         <div class="ranking-stats" id="rankingStats"></div>
@@ -442,6 +499,7 @@
   </main>
   <footer class="site-footer"><div class="site-footer-bg"><div class="site-footer-content"><p class="site-footer-disclaimer">CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a. Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.</p><div class="site-footer-links"><button class="site-footer-link" data-legal="tos">Términos de Servicio</button><span class="site-footer-sep">·</span><button class="site-footer-link" data-legal="privacy">Política de Privacidad</button><span class="site-footer-sep">·</span><a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a></div><p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p></div></div></footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="/assets/core.js"></script>
   <script src="/assets/legal.js"></script>
   <script>
@@ -560,7 +618,7 @@
         var params = new URLSearchParams(window.location.search);
         var view = params.get('view');
         var mode = params.get('mode');
-        if (view && ['global','mode','season','deaths','hall'].indexOf(view) !== -1) {
+        if (view && ['global','mode','season','deaths','hall','milestones','stats','survival'].indexOf(view) !== -1) {
           currentView = view;
           if (mode) currentMode = parseInt(mode, 10) || 0;
         }
@@ -697,10 +755,366 @@
         highlightFollowed();
       }
 
+      // ---- State for new views ----
+      var milestoneFilters = { season_id: 0, mode: 0, type: '' };
+      var milestoneOffset = 0;
+      var milestoneTotal = 0;
+      var statsFilters = { season_id: 0, mode: 0 };
+      var seasonsData = null;
+      var statsChart = null;
+      var statsCompareChart = null;
+
+      function loadSeasons(callback) {
+        if (seasonsData) { if (callback) callback(); return; }
+        fetch(API_URL + '?view=seasons', { headers: { 'Accept': 'application/json' } })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data && data.ok === true) {
+              seasonsData = data.entries || [];
+              if (callback) callback();
+            }
+          })
+          .catch(function() { if (callback) callback(); });
+      }
+
+      function modeNameById(id) {
+        if (!weightsData) return 'Modo ' + id;
+        for (var i = 0; i < weightsData.length; i++) {
+          if (weightsData[i].challenge_mode === id) return weightsData[i].mode_name;
+        }
+        return 'Modo ' + id;
+      }
+
+      function modeIconById(id) {
+        if (!weightsData) return null;
+        for (var i = 0; i < weightsData.length; i++) {
+          if (weightsData[i].challenge_mode === id) return weightsData[i].icon;
+        }
+        return null;
+      }
+
+      // ---- Milestone icon SVGs ----
+      var MILESTONE_ICONS = {
+        activation: '<svg viewBox="0 0 24 24" fill="none" stroke="#2eea5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+        level_80: '<svg viewBox="0 0 24 24" fill="none" stroke="#ffd24a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h2"/><path d="M18 9h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-2"/><path d="M6 15H4a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h2"/><path d="M18 15h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/><path d="M9 12h6"/></svg>',
+        death: '<svg viewBox="0 0 24 24" fill="none" stroke="#ff5050" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 9h.01M15 9h.01"/><path d="M9 15v3a3 3 0 0 0 6 0v-3"/></svg>'
+      };
+
+      function renderMilestoneFilters() {
+        loadSeasons(function() {
+          loadWeights(function() {
+            var html = '<div class="milestone-filters">';
+            html += '<select class="milestone-filter-select" id="msSeason"><option value="0">Todas las temporadas</option>';
+            (seasonsData || []).forEach(function(s) {
+              html += '<option value="' + s.id + '"' + (milestoneFilters.season_id === s.id ? ' selected' : '') + '>' + escapeHtml(s.name) + (s.is_active ? ' (activa)' : '') + '</option>';
+            });
+            html += '</select>';
+            html += '<select class="milestone-filter-select" id="msMode"><option value="0">Todos los modos</option>';
+            (weightsData || []).forEach(function(w) {
+              html += '<option value="' + w.challenge_mode + '"' + (milestoneFilters.mode === w.challenge_mode ? ' selected' : '') + '>' + escapeHtml(w.mode_name) + '</option>';
+            });
+            html += '</select>';
+            html += '<select class="milestone-filter-select" id="msType"><option value="">Todos los tipos</option>';
+            html += '<option value="activation"' + (milestoneFilters.type === 'activation' ? ' selected' : '') + '>Activacion</option>';
+            html += '<option value="level_80"' + (milestoneFilters.type === 'level_80' ? ' selected' : '') + '>Nivel 80</option>';
+            html += '<option value="death"' + (milestoneFilters.type === 'death' ? ' selected' : '') + '>Muerte</option>';
+            html += '</select>';
+            html += '</div>';
+            content.innerHTML = html + '<div class="milestone-grid" id="milestoneGrid"><div class="milestone-skeleton"></div><div class="milestone-skeleton"></div><div class="milestone-skeleton"></div></div>';
+            ['msSeason','msMode','msType'].forEach(function(id) {
+              var el = document.getElementById(id);
+              if (el) el.addEventListener('change', function() {
+                milestoneFilters.season_id = parseInt(document.getElementById('msSeason').value, 10) || 0;
+                milestoneFilters.mode = parseInt(document.getElementById('msMode').value, 10) || 0;
+                milestoneFilters.type = document.getElementById('msType').value || '';
+                milestoneOffset = 0;
+                loadView('milestones');
+              });
+            });
+          });
+        });
+      }
+
+      function renderMilestones(entries, total) {
+        var grid = document.getElementById('milestoneGrid');
+        if (!grid) {
+          content.innerHTML = '<div class="milestone-grid" id="milestoneGrid"></div>';
+          grid = document.getElementById('milestoneGrid');
+        }
+        if (!entries || entries.length === 0) {
+          if (milestoneOffset === 0) {
+            content.innerHTML = '<div class="ranking-empty">No hay hitos registrados para los filtros seleccionados.</div>';
+          }
+          return;
+        }
+        var html = '';
+        entries.forEach(function(m) {
+          var type = m.milestone_type || 'activation';
+          var icon = MILESTONE_ICONS[type] || MILESTONE_ICONS.activation;
+          var raceHtml = '';
+          if (m.race_name && m.race_icon) {
+            raceHtml = '<span class="char-race"><img src="' + escapeHtml(m.race_icon) + '" alt="' + escapeHtml(m.race_name) + '" loading="lazy" /></span>';
+          }
+          html += '<div class="milestone-card ' + type + '" data-milestone-id="' + m.id + '">';
+          html += '<div class="milestone-icon ' + type + '">' + icon + '</div>';
+          html += '<div class="milestone-char">' + raceHtml + ' <a class="char-link" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(m.name) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(m.name) + '</a></div>';
+          if (m.mode_name) html += '<div class="milestone-mode">' + escapeHtml(m.mode_name) + (m.milestone_level ? ' · nv.' + m.milestone_level : '') + '</div>';
+          if (m.season_name) html += '<div style="font-size:.6rem;color:#5a8090;">' + escapeHtml(m.season_name) + '</div>';
+          if (m.details) html += '<div class="milestone-details">' + escapeHtml(m.details) + '</div>';
+          html += '<div class="milestone-date">' + escapeHtml(m.achieved_at) + '</div>';
+          html += '</div>';
+        });
+        if (milestoneOffset === 0) {
+          grid.innerHTML = html;
+        } else {
+          grid.insertAdjacentHTML('beforeend', html);
+        }
+        // Remove old load more button
+        var oldBtn = document.getElementById('milestoneLoadMore');
+        if (oldBtn) oldBtn.remove();
+        if (milestoneOffset + entries.length < total) {
+          var btn = document.createElement('button');
+          btn.className = 'milestone-load-more';
+          btn.id = 'milestoneLoadMore';
+          btn.textContent = 'Cargar mas (' + (total - milestoneOffset - entries.length) + ' restantes)';
+          btn.addEventListener('click', function() {
+            milestoneOffset += entries.length;
+            var url = API_URL + '?view=milestones&offset=' + milestoneOffset + '&limit=20';
+            if (milestoneFilters.season_id) url += '&season_id=' + milestoneFilters.season_id;
+            if (milestoneFilters.mode) url += '&mode=' + milestoneFilters.mode;
+            if (milestoneFilters.type) url += '&type=' + encodeURIComponent(milestoneFilters.type);
+            btn.disabled = true; btn.textContent = 'Cargando...';
+            fetch(url, { headers: { 'Accept': 'application/json' } })
+              .then(function(r) { return r.json(); })
+              .then(function(d) {
+                if (d && d.ok === true) { renderMilestones(d.entries || [], d.total || 0); }
+              })
+              .catch(function() { btn.disabled = false; btn.textContent = 'Reintentar'; });
+          });
+          content.appendChild(btn);
+        }
+        // Click card to open side panel
+        grid.querySelectorAll('.milestone-card').forEach(function(card) {
+          card.addEventListener('click', function() {
+            var id = parseInt(this.getAttribute('data-milestone-id'), 10);
+            entries.forEach(function(m) {
+              if (m.id === id) openMilestonePanel(m);
+            });
+          });
+        });
+      }
+
+      function openMilestonePanel(m) {
+        var overlay = document.createElement('div');
+        overlay.className = 'side-panel-overlay';
+        var panel = document.createElement('div');
+        panel.className = 'side-panel';
+        var html = '<button class="side-panel-close" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';
+        html += '<div style="margin-bottom:1rem;">';
+        var raceHtml = '';
+        if (m.race_name && m.race_icon) raceHtml = '<span class="char-race"><img src="' + escapeHtml(m.race_icon) + '" alt="' + escapeHtml(m.race_name) + '" loading="lazy" /></span>';
+        html += '<h3 style="font-family:\'Cinzel Decorative\',\'Cinzel\',Georgia,serif;color:#4dd8ff;font-size:1rem;margin:0 0 .5rem;">' + raceHtml + ' ' + escapeHtml(m.name) + '</h3>';
+        if (m.class_name) html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.72rem;color:' + (m.class_color || '#ccc') + ';margin:.2rem 0;">' + escapeHtml(m.class_name) + '</p>';
+        if (m.race_name) html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.68rem;color:#8da5b5;margin:.2rem 0;">Raza: ' + escapeHtml(m.race_name) + '</p>';
+        html += '</div>';
+        html += '<div style="padding:.8rem;border:1px solid rgba(77,189,232,.15);border-radius:8px;background:rgba(8,22,36,.4);margin-bottom:.8rem;">';
+        html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.7rem;color:#ffd24a;margin:0 0 .3rem;">' + escapeHtml(m.mode_name || '') + '</p>';
+        html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.68rem;color:#b8d4e8;margin:0 0 .3rem;">Tipo: ' + escapeHtml(m.milestone_type) + (m.milestone_level ? ' · Nivel ' + m.milestone_level : '') + '</p>';
+        if (m.season_name) html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.66rem;color:#5a8090;margin:0 0 .3rem;">' + escapeHtml(m.season_name) + '</p>';
+        if (m.details) html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.7rem;color:#8da5b5;margin:.4rem 0 0;line-height:1.5;">' + escapeHtml(m.details) + '</p>';
+        html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.66rem;color:#5a8090;margin:.4rem 0 0;">' + escapeHtml(m.achieved_at) + '</p>';
+        html += '</div>';
+        html += '<div style="display:flex;flex-direction:column;gap:.5rem;">';
+        html += '<a class="back-to-modes" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(m.name) + '" target="_blank" rel="noopener noreferrer">Ver en Armeria</a>';
+        html += '<a class="back-to-modes" href="/challenge-timeline?character=' + encodeURIComponent(m.name) + '">Ver Timeline</a>';
+        html += '<a class="back-to-modes" href="' + window.location.pathname + '?view=season">Ver en Ranking</a>';
+        html += '</div>';
+        panel.innerHTML = html;
+        overlay.appendChild(panel);
+        document.body.appendChild(overlay);
+        requestAnimationFrame(function() { overlay.classList.add('open'); panel.classList.add('open'); });
+        function closePanel() {
+          overlay.classList.remove('open'); panel.classList.remove('open');
+          setTimeout(function() { document.body.removeChild(overlay); }, 300);
+        }
+        panel.querySelector('.side-panel-close').addEventListener('click', closePanel);
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) closePanel(); });
+        document.addEventListener('keydown', function escClose(e) { if (e.key === 'Escape') { closePanel(); document.removeEventListener('keydown', escClose); } });
+      }
+
+      function renderStatsControls() {
+        loadSeasons(function() {
+          loadWeights(function() {
+            var html = '<div class="stats-controls">';
+            html += '<select class="milestone-filter-select" id="stSeason">';
+            (seasonsData || []).forEach(function(s) {
+              html += '<option value="' + s.id + '"' + (statsFilters.season_id === s.id ? ' selected' : '') + '>' + escapeHtml(s.name) + (s.is_active ? ' (activa)' : '') + '</option>';
+            });
+            html += '</select>';
+            html += '<select class="milestone-filter-select" id="stMode"><option value="0">Todos los modos</option>';
+            (weightsData || []).forEach(function(w) {
+              html += '<option value="' + w.challenge_mode + '"' + (statsFilters.mode === w.challenge_mode ? ' selected' : '') + '>' + escapeHtml(w.mode_name) + '</option>';
+            });
+            html += '</select>';
+            html += '</div>';
+            content.innerHTML = html + '<div id="statsBody"><div class="ranking-loading"><div class="ranking-spinner"></div><span>Cargando estadisticas...</span></div></div>';
+            ['stSeason','stMode'].forEach(function(id) {
+              var el = document.getElementById(id);
+              if (el) el.addEventListener('change', function() {
+                statsFilters.season_id = parseInt(document.getElementById('stSeason').value, 10) || 0;
+                statsFilters.mode = parseInt(document.getElementById('stMode').value, 10) || 0;
+                loadView('stats');
+              });
+            });
+          });
+        });
+      }
+
+      function renderStatsView(entries, data) {
+        var body = document.getElementById('statsBody');
+        if (!body) { content.innerHTML = '<div id="statsBody"></div>'; body = document.getElementById('statsBody'); }
+        if (!entries || entries.length === 0) {
+          body.innerHTML = '<div class="ranking-empty">No hay estadisticas disponibles para los filtros seleccionados.</div>';
+          return;
+        }
+        // Find latest snapshot for summary cards
+        var latest = entries[entries.length - 1];
+        var html = '<div class="stats-summary">';
+        html += statCard('Personajes totales', latest.total_characters || 0);
+        html += statCard('Activos', latest.active_characters || 0, '#2eea5a');
+        html += statCard('Muertos', latest.dead_characters || 0, '#ff5050');
+        html += statCard('Nivel max.', latest.max_level || 0);
+        html += statCard('Nivel medio', (latest.average_level || 0).toFixed(1));
+        html += statCard('Puntuacion max.', (latest.max_score || 0).toLocaleString('es-ES'), '#ffd24a');
+        html += statCard('Puntuacion media', Math.round(latest.average_score || 0).toLocaleString('es-ES'));
+        html += '</div>';
+        html += '<div class="stats-chart-wrap"><p class="stats-chart-title">Evolucion diaria</p><canvas id="evolutionChart" style="max-height:240px;"></canvas></div>';
+        html += '<div class="stats-chart-wrap"><p class="stats-chart-title">Comparativa por modo</p><canvas id="compareChart" style="max-height:240px;"></canvas></div>';
+        body.innerHTML = html;
+
+        // Build evolution chart
+        var dates = entries.map(function(e) { return e.snapshot_date; });
+        var totals = entries.map(function(e) { return e.total_characters; });
+        var actives = entries.map(function(e) { return e.active_characters; });
+        if (statsChart) statsChart.destroy();
+        var ctx1 = document.getElementById('evolutionChart');
+        if (ctx1 && typeof Chart !== 'undefined') {
+          statsChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+              labels: dates,
+              datasets: [
+                { label: 'Total', data: totals, borderColor: '#4dd8ff', backgroundColor: 'rgba(77,189,232,.1)', fill: true, tension: .3, pointRadius: 2 },
+                { label: 'Activos', data: actives, borderColor: '#2eea5a', backgroundColor: 'rgba(40,220,70,.08)', fill: true, tension: .3, pointRadius: 2 }
+              ]
+            },
+            options: {
+              responsive: true, maintainAspectRatio: false,
+              plugins: { legend: { labels: { color: '#b8d4e8', font: { family: 'Cinzel', size: 10 } } } },
+              scales: {
+                x: { ticks: { color: '#5a8090', font: { size: 9 }, maxRotation: 45, autoSkip: true, maxTicksLimit: 12 }, grid: { color: 'rgba(77,189,232,.06)' } },
+                y: { ticks: { color: '#5a8090', font: { size: 9 } }, grid: { color: 'rgba(77,189,232,.06)' }, beginAtZero: true }
+              }
+            }
+          });
+        }
+
+        // Build comparison chart by mode (latest snapshot per mode)
+        var byMode = {};
+        entries.forEach(function(e) {
+          var mid = e.challenge_mode;
+          if (!byMode[mid] || e.snapshot_date > byMode[mid].snapshot_date) byMode[mid] = e;
+        });
+        var modeIds = Object.keys(byMode);
+        var modeLabels = modeIds.map(function(id) { return modeNameById(parseInt(id, 10)); });
+        var survivalRates = modeIds.map(function(id) {
+          var e = byMode[id];
+          return e.total_characters > 0 ? Math.round((e.active_characters / e.total_characters) * 100) : 0;
+        });
+        if (statsCompareChart) statsCompareChart.destroy();
+        var ctx2 = document.getElementById('compareChart');
+        if (ctx2 && typeof Chart !== 'undefined') {
+          statsCompareChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+              labels: modeLabels,
+              datasets: [{ label: 'Tasa de supervivencia (%)', data: survivalRates, backgroundColor: 'rgba(77,189,232,.4)', borderColor: '#4dd8ff', borderWidth: 1 }]
+            },
+            options: {
+              responsive: true, maintainAspectRatio: false,
+              plugins: { legend: { labels: { color: '#b8d4e8', font: { family: 'Cinzel', size: 10 } } } },
+              scales: {
+                x: { ticks: { color: '#5a8090', font: { size: 9 } }, grid: { color: 'rgba(77,189,232,.06)' } },
+                y: { ticks: { color: '#5a8090', font: { size: 9 } }, grid: { color: 'rgba(77,189,232,.06)' }, beginAtZero: true, max: 100 }
+              }
+            }
+          });
+        }
+      }
+
+      function statCard(label, value, color) {
+        return '<div class="stat-pill"><span class="stat-label">' + escapeHtml(label) + '</span><span class="stat-value"' + (color ? ' style="color:' + color + ';"' : '') + '>' + value + '</span></div>';
+      }
+
+      function renderSurvivalView(entries, longest) {
+        if (!entries || entries.length === 0) {
+          content.innerHTML = '<div class="ranking-empty">No hay datos de supervivencia disponibles para la temporada actual.</div>';
+          return;
+        }
+        var html = '';
+        if (longest && longest.streak_days > 0) {
+          html += '<div class="survival-highlight">';
+          html += '<p class="survival-highlight-label">Racha mas larga de la temporada</p>';
+          var raceHtml = '';
+          if (longest.race_name && longest.race_icon) raceHtml = '<span class="char-race" style="display:inline-flex;vertical-align:middle;margin-right:.3rem;"><img src="' + escapeHtml(longest.race_icon) + '" alt="' + escapeHtml(longest.race_name) + '" loading="lazy" /></span>';
+          html += '<p class="survival-highlight-name">' + raceHtml + escapeHtml(longest.name) + '</p>';
+          html += '<p class="survival-highlight-days">' + longest.streak_days + ' dias sin morir</p>';
+          html += '<p class="survival-highlight-sub">';
+          if (longest.streak_started_at) html += 'Desde ' + escapeHtml(longest.streak_started_at);
+          if (longest.score) html += ' · ' + (longest.score || 0).toLocaleString('es-ES') + ' puntos';
+          html += '</p>';
+          html += '<p style="margin:.5rem 0 0;"><a class="timeline-link" href="/challenge-timeline?character=' + encodeURIComponent(longest.name) + '">Ver timeline completo -></a></p>';
+          html += '</div>';
+        }
+        html += '<div class="ranking-table-wrap"><table class="ranking-table"><thead><tr>';
+        html += '<th>#</th><th>Personaje</th><th class="center">Dias sin morir</th>';
+        html += '<th class="center">Inicio racha</th><th class="center">Ultima muerte</th>';
+        html += '<th class="right">Puntuacion</th><th class="center">Nivel</th><th class="center">Estado</th>';
+        html += '</tr></thead><tbody>';
+        entries.forEach(function(e, i) {
+          var pos = i + 1;
+          var rc = rankClass(pos);
+          html += '<tr>';
+          html += '<td data-label="Posicion"><span class="rank-pos ' + rc + '">' + pos + '</span></td>';
+          html += '<td data-label="Personaje">' + charLink(e) + '</td>';
+          html += '<td class="center" data-label="Dias sin morir">' + (e.streak_days || 0) + '</td>';
+          html += '<td class="center" data-label="Inicio racha">' + escapeHtml(e.streak_started_at || '-') + '</td>';
+          html += '<td class="center" data-label="Ultima muerte">' + escapeHtml(e.last_death_time || '-') + '</td>';
+          html += '<td class="right" data-label="Puntuacion">' + (e.score || 0).toLocaleString('es-ES') + '</td>';
+          html += '<td class="center" data-label="Nivel">' + (e.highest_level || 0) + '</td>';
+          html += '<td class="center" data-label="Estado">' + aliveBadge(e.is_alive, true) + '</td>';
+          html += '</tr>';
+        });
+        html += '</tbody></table></div>';
+        content.innerHTML = html;
+        attachFollowButtons();
+        highlightFollowed();
+      }
+
       function loadView(view, mode) {
         showLoading();
         var url = API_URL + '?view=' + encodeURIComponent(view);
         if (view === 'mode') url += '&mode=' + encodeURIComponent(mode);
+        if (view === 'milestones') {
+          if (milestoneFilters.season_id) url += '&season_id=' + milestoneFilters.season_id;
+          if (milestoneFilters.mode) url += '&mode=' + milestoneFilters.mode;
+          if (milestoneFilters.type) url += '&type=' + encodeURIComponent(milestoneFilters.type);
+          url += '&offset=0&limit=20';
+        }
+        if (view === 'stats') {
+          if (statsFilters.season_id) url += '&season_id=' + statsFilters.season_id;
+          if (statsFilters.mode) url += '&mode=' + statsFilters.mode;
+        }
 
         fetch(url, { headers: { 'Accept': 'application/json' } })
           .then(function(res) {
@@ -745,6 +1159,16 @@
                 currentRenderFn = renderHall;
                 currentRenderOpts = null;
                 renderHall(filterEntries(entries));
+                break;
+              case 'milestones':
+                milestoneTotal = data.total || 0;
+                renderMilestones(entries, data.total || 0);
+                break;
+              case 'stats':
+                renderStatsView(entries, data);
+                break;
+              case 'survival':
+                renderSurvivalView(entries, data.longest_streak);
                 break;
             }
           })
@@ -805,9 +1229,17 @@
             return;
           }
           modeSelector.classList.add('visible');
+          searchInput.parentElement.style.display = '';
           loadView('mode', currentMode);
+        } else if (view === 'milestones' || view === 'stats' || view === 'survival') {
+          modeSelector.classList.remove('visible');
+          searchInput.parentElement.style.display = 'none';
+          if (view === 'milestones') { renderMilestoneFilters(); loadView('milestones'); }
+          else if (view === 'stats') { renderStatsControls(); loadView('stats'); }
+          else { loadView('survival'); }
         } else {
           modeSelector.classList.remove('visible');
+          searchInput.parentElement.style.display = '';
           loadView(view);
         }
         updateUrl();

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeline de Personaje — CoRe Legacy | Historial de Desafíos</title>
+  <meta name="description" content="Consulta el historial completo de un personaje en los Modos de Desafío de CoRe Legacy: activaciones, subidas de nivel, muertes y desactivaciones en orden cronológico." />
+  <meta name="keywords" content="timeline personaje wow, historial challenge mode, desafios wow 3.3.5a, core legacy timeline, hardcore wow historial" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="language" content="es-ES" />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/challenge-timeline" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/challenge-timeline" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/challenge-timeline" />
+
+  <meta property="og:title" content="Timeline de Personaje — CoRe Legacy" />
+  <meta property="og:description" content="Historial completo de un personaje en los Modos de Desafío: activaciones, niveles, muertes y desactivaciones." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://corelegacy.gg/challenge-timeline" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Timeline de Personaje — CoRe Legacy" />
+  <meta name="twitter:description" content="Historial completo de un personaje en los Modos de Desafío de CoRe Legacy." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+
+  <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CoRe Legacy" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <link rel="stylesheet" href="/assets/guia-page.css" />
+  <style>
+    .challenge-page-wrap { max-width: 900px; }
+
+    .timeline-search-wrap { margin: 1.5rem 0 0; display: flex; gap: .5rem; }
+    .timeline-search-input {
+      flex: 1; padding: .6rem 1rem; border-radius: 8px;
+      border: 1px solid rgba(77,189,232,.22); background: rgba(10,24,40,.6);
+      color: #c8e0f0; font-family: 'Cinzel', Georgia, serif; font-size: .82rem;
+      outline: none; transition: border-color .25s ease;
+    }
+    .timeline-search-input:focus { border-color: rgba(77,189,232,.5); box-shadow: 0 0 10px rgba(77,189,232,.1); }
+    .timeline-search-input::placeholder { color: #5a7a8a; }
+    .timeline-search-btn {
+      padding: .6rem 1.5rem; border-radius: 8px;
+      border: 1px solid rgba(77,189,232,.3); background: rgba(77,189,232,.08);
+      color: #4dd8ff; font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: .72rem; cursor: pointer; transition: all .25s ease; white-space: nowrap;
+    }
+    .timeline-search-btn:hover { border-color: #4bbde8; box-shadow: 0 0 12px rgba(77,189,232,.15); background: rgba(77,189,232,.12); }
+
+    .char-summary {
+      margin: 1.25rem 0 0; padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(77,189,232,.15); border-radius: 12px;
+      background: linear-gradient(180deg, rgba(10,24,40,.6), rgba(4,12,22,.8));
+      display: none;
+    }
+    .char-summary.visible { display: block; animation: cardFadeIn .4s ease; }
+    .char-summary-header { display: flex; align-items: center; gap: .75rem; margin-bottom: .8rem; }
+    .char-summary-header img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(141,214,245,.35); }
+    .char-summary-name { font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-size: 1.1rem; color: #4dd8ff; text-shadow: 0 0 8px rgba(77,189,232,.15); }
+    .char-summary-class { font-family: 'Cinzel', Georgia, serif; font-size: .76rem; }
+    .char-summary-stats { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .char-stat { display: flex; flex-direction: column; gap: .1rem; padding: .4rem .8rem; border-radius: 8px; border: 1px solid rgba(77,189,232,.12); background: rgba(8,22,36,.4); flex: 1; min-width: 90px; }
+    .char-stat .char-stat-label { font-family: 'Cinzel', Georgia, serif; font-size: .58rem; color: #5a8090; text-transform: uppercase; letter-spacing: .04em; }
+    .char-stat .char-stat-value { font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-size: .82rem; color: #4dd8ff; font-weight: 700; }
+    .char-stat .char-stat-value.gold { color: #ffd24a; }
+    .char-stat .char-stat-value.green { color: #2eea5a; }
+    .char-stat .char-stat-value.red { color: #ff5050; }
+
+    .timeline-filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; }
+    .timeline-filter-chip {
+      padding: .3rem .7rem; border-radius: 6px; border: 1px solid rgba(77,189,232,.18);
+      background: rgba(10,24,40,.5); color: #b8d4e8; font-family: 'Cinzel', Georgia, serif;
+      font-size: .64rem; cursor: pointer; transition: all .2s ease;
+    }
+    .timeline-filter-chip:hover { border-color: rgba(77,189,232,.35); color: #4dd8ff; }
+    .timeline-filter-chip.active { border-color: rgba(255,210,80,.5); color: #ffd24a; background: rgba(255,210,80,.08); }
+
+    .timeline-container { margin: 1.5rem 0 0; position: relative; padding-left: 2rem; }
+    .timeline-container::before { content: ''; position: absolute; left: .5rem; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, rgba(77,189,232,.25), rgba(77,189,232,.05)); }
+    .timeline-node { position: relative; margin-bottom: 1rem; animation: nodeFadeIn .4s ease; }
+    .timeline-node::before {
+      content: ''; position: absolute; left: -1.65rem; top: .3rem;
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid; background: rgba(8,22,36,.9);
+    }
+    .timeline-node.activation::before { border-color: #2eea5a; box-shadow: 0 0 8px rgba(40,220,70,.2); }
+    .timeline-node.level_up::before { border-color: #4dd8ff; box-shadow: 0 0 8px rgba(77,189,232,.2); }
+    .timeline-node.death::before { border-color: #ff5050; box-shadow: 0 0 8px rgba(200,30,30,.2); }
+    .timeline-node.disabled::before { border-color: #6a8090; }
+    .timeline-card {
+      padding: .7rem 1rem; border-radius: 8px; border: 1px solid rgba(77,189,232,.12);
+      background: linear-gradient(180deg, rgba(10,24,40,.5), rgba(4,12,22,.7));
+    }
+    .timeline-card.death { border-left: 3px solid #ff5050; }
+    .timeline-card.activation { border-left: 3px solid #2eea5a; }
+    .timeline-card.level_up { border-left: 3px solid #4dd8ff; }
+    .timeline-card.disabled { border-left: 3px solid #6a8090; }
+    .timeline-event-type { font-family: 'Cinzel', Georgia, serif; font-size: .66rem; text-transform: uppercase; letter-spacing: .04em; }
+    .timeline-event-type.activation { color: #2eea5a; }
+    .timeline-event-type.level_up { color: #4dd8ff; }
+    .timeline-event-type.death { color: #ff5050; }
+    .timeline-event-type.disabled { color: #6a8090; }
+    .timeline-event-mode { font-family: 'Cinzel', Georgia, serif; font-size: .72rem; color: #ffd24a; margin: .15rem 0; }
+    .timeline-event-details { font-family: 'Cinzel', Georgia, serif; font-size: .68rem; color: #8da5b5; line-height: 1.5; }
+    .timeline-event-date { font-family: 'Cinzel', Georgia, serif; font-size: .62rem; color: #5a8090; margin-top: .2rem; }
+
+    .ranking-loading { display: flex; align-items: center; justify-content: center; gap: .75rem; padding: 3rem 1rem; font-family: 'Cinzel', Georgia, serif; font-size: .85rem; color: #7a9aac; }
+    .ranking-spinner { width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(77,189,232,.18); border-top-color: #4dd8ff; animation: spin 0.8s linear infinite; box-shadow: 0 0 8px rgba(77,189,232,.15); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .ranking-empty { padding: 2rem 1rem; text-align: center; font-family: 'Cinzel', Georgia, serif; font-size: .82rem; color: #5a7a8a; }
+    .ranking-error { display: flex; flex-direction: column; align-items: center; gap: .75rem; padding: 2.5rem 1rem; text-align: center; }
+    .ranking-error p { font-family: 'Cinzel', Georgia, serif; font-size: .82rem; color: #d98c8c; margin: 0; }
+    .ranking-error button { font-family: 'Cinzel Decorative','Cinzel',Georgia,serif; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; padding: .5rem 1.25rem; border-radius: 8px; border: 1px solid rgba(77,189,232,.3); color: #b8d4e8; background: rgba(77,189,232,.06); cursor: pointer; transition: all .25s ease; }
+    .ranking-error button:hover { border-color: #4bbde8; color: #4dd8ff; box-shadow: 0 0 16px rgba(77,189,232,.2); }
+
+    .back-to-modes { display: inline-flex; align-items: center; gap: .4rem; font-family: 'Cinzel', Georgia, serif; font-size: .78rem; color: #6a96b0; text-decoration: none; padding: .55rem 1.2rem; border-radius: 8px; border: 1px solid rgba(77,189,232,.2); transition: all .25s ease; }
+    .back-to-modes:hover { color: #4dd8ff; border-color: rgba(77,189,232,.45); box-shadow: 0 0 12px rgba(77,189,232,.12); }
+    .back-to-modes svg { width: 14px; height: 14px; }
+    .char-link { display: inline-flex; align-items: center; gap: .45rem; color: #4dd8ff; text-decoration: none; transition: all .2s ease; }
+    .char-link:hover { color: #ffd24a; text-decoration: underline; }
+    .alive-badge { display: inline-block; padding: .15rem .5rem; border-radius: 4px; font-size: .68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+    .alive-badge.alive { background: linear-gradient(135deg, rgba(20,180,40,.3), rgba(10,120,25,.16)); color: #2eea5a; border: 1px solid rgba(40,220,70,.5); text-shadow: 0 0 8px rgba(40,220,70,.3); }
+    .alive-badge.dead { background: linear-gradient(135deg, rgba(180,20,20,.3), rgba(120,10,10,.16)); color: #ff2020; border: 1px solid rgba(200,30,30,.5); text-shadow: 0 0 8px rgba(220,30,30,.3); }
+
+    @keyframes cardFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes nodeFadeIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+    @media (prefers-reduced-motion: reduce) { .ranking-spinner { animation: none; } .timeline-node { animation: none; } .char-summary.visible { animation: none; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Timeline de Personaje — CoRe Legacy",
+    "description": "Historial completo de un personaje en los Modos de Desafío de CoRe Legacy.",
+    "url": "https://corelegacy.gg/challenge-timeline",
+    "inLanguage": "es-ES",
+    "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://corelegacy.gg/" },
+      { "@type": "ListItem", "position": 2, "name": "Modos de Desafío", "item": "https://corelegacy.gg/challenge-modes" },
+      { "@type": "ListItem", "position": 3, "name": "Rankings", "item": "https://corelegacy.gg/challenge-tops" },
+      { "@type": "ListItem", "position": 4, "name": "Timeline", "item": "https://corelegacy.gg/challenge-timeline" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="snowContainer"></div>
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header" style="background:linear-gradient(180deg,rgba(2,14,30,.92) 0%,rgba(2,14,30,.6) 80%,transparent 100%);backdrop-filter:blur(6px);border-bottom:1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/">Inicio</a><a class="nav-link" href="/noticias">Noticias</a><a class="nav-link" href="/comunidad">Comunidad</a><a class="nav-link" href="/info-changelog">Server y Changelog</a><a class="nav-link" href="/soporte">Soporte</a><a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
+        </nav>
+        <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;"><a class="nav-link block" href="/">Inicio</a><a class="nav-link block" href="/noticias">Noticias</a><a class="nav-link block" href="/comunidad">Comunidad</a><a class="nav-link block" href="/info-changelog">Server y Changelog</a><a class="nav-link block" href="/soporte">Soporte</a><a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link block" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a></div>
+    </div>
+  </header>
+  <main>
+    <div class="guia-page-wrap challenge-page-wrap">
+      <div class="guia-page-header">
+        <h1 class="guia-page-title">Timeline de Personaje</h1>
+        <div class="frost-divider mx-auto" style="max-width:360px;"></div>
+        <p style="max-width:650px;margin:1rem auto 0;color:#8dd6f5;font-family:'Cinzel',Georgia,serif;font-size:.88rem;line-height:1.7;text-align:center;">Busca cualquier personaje para ver su historial completo en los Modos de Desafío: activaciones, subidas de nivel, muertes y desactivaciones en orden cronológico.</p>
+      </div>
+
+      <div class="guia-page-body">
+        <div class="timeline-search-wrap">
+          <input type="text" class="timeline-search-input" id="charSearch" placeholder="Nombre del personaje…" aria-label="Buscar personaje" />
+          <button class="timeline-search-btn" id="charSearchBtn" type="button">Buscar</button>
+        </div>
+
+        <div class="char-summary" id="charSummary"></div>
+        <div class="timeline-filters" id="timelineFilters" style="display:none;"></div>
+        <div id="timelineContent"></div>
+
+        <div style="margin-top:2rem; text-align:center; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="/challenge-tops" class="back-to-modes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Volver a Rankings
+          </a>
+          <a href="/challenge-modes" class="back-to-modes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Modos de Desafío
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="site-footer-bg"><div class="site-footer-content"><p class="site-footer-disclaimer">CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a. Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.</p><div class="site-footer-links"><button class="site-footer-link" data-legal="tos">Términos de Servicio</button><span class="site-footer-sep">·</span><button class="site-footer-link" data-legal="privacy">Política de Privacidad</button><span class="site-footer-sep">·</span><a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a></div><p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p></div></div></footer>
+
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      var API_URL = '/api/challenges.php';
+      var searchInput = document.getElementById('charSearch');
+      var searchBtn = document.getElementById('charSearchBtn');
+      var summaryEl = document.getElementById('charSummary');
+      var filtersEl = document.getElementById('timelineFilters');
+      var contentEl = document.getElementById('timelineContent');
+      var allEvents = null;
+      var activeFilters = { type: '', mode: 0 };
+      var weightsData = null;
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        var div = document.createElement('div');
+        div.textContent = String(str);
+        return div.innerHTML;
+      }
+
+      function modeNameById(id) {
+        if (!weightsData) return 'Modo ' + id;
+        for (var i = 0; i < weightsData.length; i++) {
+          if (weightsData[i].challenge_mode === id) return weightsData[i].mode_name;
+        }
+        return 'Modo ' + id;
+      }
+
+      function loadWeights(callback) {
+        if (weightsData) { if (callback) callback(); return; }
+        fetch(API_URL + '?view=weights', { headers: { 'Accept': 'application/json' } })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data && data.ok === true) weightsData = data.entries || [];
+            if (callback) callback();
+          })
+          .catch(function() { if (callback) callback(); });
+      }
+
+      function showLoading() {
+        contentEl.innerHTML = '<div class="ranking-loading"><div class="ranking-spinner"></div><span>Cargando timeline...</span></div>';
+      }
+
+      function showError(msg) {
+        contentEl.innerHTML = '<div class="ranking-error"><p>' + escapeHtml(msg || 'Error al cargar los datos.') + '</p><button onclick="location.reload()">Reintentar</button></div>';
+      }
+
+      function showEmpty(msg) {
+        contentEl.innerHTML = '<div class="ranking-empty">' + escapeHtml(msg || 'No hay datos disponibles.') + '</div>';
+      }
+
+      function readUrlParam() {
+        var params = new URLSearchParams(window.location.search);
+        var char = params.get('character') || '';
+        if (char) {
+          searchInput.value = char;
+          searchCharacter(char);
+        }
+      }
+
+      function updateUrl(charName) {
+        var url = window.location.pathname;
+        if (charName) url += '?character=' + encodeURIComponent(charName);
+        window.history.replaceState(null, '', url);
+      }
+
+      function searchCharacter(name) {
+        name = (name || '').trim();
+        if (!name) return;
+        updateUrl(name);
+        showLoading();
+        summaryEl.classList.remove('visible');
+        filtersEl.style.display = 'none';
+        activeFilters = { type: '', mode: 0 };
+
+        loadWeights(function() {
+          fetch(API_URL + '?view=timeline&character=' + encodeURIComponent(name), { headers: { 'Accept': 'application/json' } })
+            .then(function(res) {
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              return res.json();
+            })
+            .then(function(data) {
+              if (!data || data.ok !== true) {
+                showError(data && data.message ? data.message : 'Respuesta invalida del servidor.');
+                return;
+              }
+              renderSummary(data.char_info, name);
+              allEvents = data.entries || [];
+              if (allEvents.length === 0) {
+                showEmpty('Este personaje aun no tiene eventos registrados en los Modos de Desafio.');
+                return;
+              }
+              renderFilters();
+              renderTimeline();
+            })
+            .catch(function() {
+              showError('No se pudieron cargar los datos. Revisa tu conexion e intenta de nuevo.');
+            });
+        });
+      }
+
+      function renderSummary(charInfo, name) {
+        if (!charInfo) {
+          summaryEl.classList.remove('visible');
+          return;
+        }
+        var html = '<div class="char-summary-header">';
+        if (charInfo.race_icon) html += '<img src="' + escapeHtml(charInfo.race_icon) + '" alt="' + escapeHtml(charInfo.race_name || '') + '" loading="lazy" />';
+        html += '<div><div class="char-summary-name">' + escapeHtml(name) + '</div>';
+        if (charInfo.class_name) html += '<div class="char-summary-class" style="color:' + (charInfo.class_color || '#ccc') + ';">' + escapeHtml(charInfo.class_name) + '</div>';
+        if (charInfo.race_name) html += '<div style="font-size:.66rem;color:#8da5b5;">' + escapeHtml(charInfo.race_name) + '</div>';
+        html += '</div></div>';
+        html += '<div class="char-summary-stats">';
+        if (charInfo.score) html += '<div class="char-stat"><span class="char-stat-label">Puntuacion</span><span class="char-stat-value gold">' + (charInfo.score || 0).toLocaleString('es-ES') + '</span></div>';
+        if (charInfo.highest_level) html += '<div class="char-stat"><span class="char-stat-label">Nivel max.</span><span class="char-stat-value">' + charInfo.highest_level + '</span></div>';
+        if (charInfo.challenges_active) html += '<div class="char-stat"><span class="char-stat-label">Desafios</span><span class="char-stat-value">' + charInfo.challenges_active + '</span></div>';
+        if (charInfo.streak_days) html += '<div class="char-stat"><span class="char-stat-label">Racha</span><span class="char-stat-value green">' + charInfo.streak_days + 'd</span></div>';
+        if (charInfo.is_alive !== undefined) html += '<div class="char-stat"><span class="char-stat-label">Estado</span><span class="char-stat-value ' + (charInfo.is_alive === 1 ? 'green' : 'red') + '">' + (charInfo.is_alive === 1 ? 'Vivo' : 'Muerto') + '</span></div>';
+        html += '</div>';
+        html += '<div style="margin-top:.6rem;"><a class="char-link" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(name) + '" target="_blank" rel="noopener noreferrer">Ver en Armeria -></a></div>';
+        summaryEl.innerHTML = html;
+        summaryEl.classList.add('visible');
+      }
+
+      function renderFilters() {
+        var types = ['activation', 'level_up', 'death', 'disabled'];
+        var typeLabels = { activation: 'Activacion', level_up: 'Subida de nivel', death: 'Muerte', disabled: 'Desactivacion' };
+        var html = '';
+        html += '<button class="timeline-filter-chip' + (activeFilters.type === '' ? ' active' : '') + '" data-filter-type="">Todos</button>';
+        types.forEach(function(t) {
+          html += '<button class="timeline-filter-chip' + (activeFilters.type === t ? ' active' : '') + '" data-filter-type="' + t + '">' + typeLabels[t] + '</button>';
+        });
+        html += '<span style="width:1px;background:rgba(77,189,232,.15);margin:0 .3rem;"></span>';
+        html += '<button class="timeline-filter-chip' + (activeFilters.mode === 0 ? ' active' : '') + '" data-filter-mode="0">Todos los modos</button>';
+        (weightsData || []).forEach(function(w) {
+          html += '<button class="timeline-filter-chip' + (activeFilters.mode === w.challenge_mode ? ' active' : '') + '" data-filter-mode="' + w.challenge_mode + '">' + escapeHtml(w.mode_name) + '</button>';
+        });
+        filtersEl.innerHTML = html;
+        filtersEl.style.display = 'flex';
+        filtersEl.querySelectorAll('.timeline-filter-chip').forEach(function(chip) {
+          chip.addEventListener('click', function() {
+            var ft = this.getAttribute('data-filter-type');
+            var fm = this.getAttribute('data-filter-mode');
+            if (ft !== null) {
+              activeFilters.type = ft;
+              filtersEl.querySelectorAll('[data-filter-type]').forEach(function(c) { c.classList.remove('active'); });
+              this.classList.add('active');
+            }
+            if (fm !== null) {
+              activeFilters.mode = parseInt(fm, 10) || 0;
+              filtersEl.querySelectorAll('[data-filter-mode]').forEach(function(c) { c.classList.remove('active'); });
+              this.classList.add('active');
+            }
+            renderTimeline();
+          });
+        });
+      }
+
+      function renderTimeline() {
+        if (!allEvents || allEvents.length === 0) return;
+        var filtered = allEvents.filter(function(e) {
+          if (activeFilters.type && e.event_type !== activeFilters.type) return false;
+          if (activeFilters.mode && e.challenge_mode !== activeFilters.mode) return false;
+          return true;
+        });
+        if (filtered.length === 0) {
+          showEmpty('No hay eventos que coincidan con los filtros seleccionados.');
+          return;
+        }
+        var html = '<div class="timeline-container">';
+        filtered.forEach(function(e) {
+          var type = e.event_type || 'level_up';
+          var modeName = modeNameById(e.challenge_mode);
+          html += '<div class="timeline-node ' + type + '">';
+          html += '<div class="timeline-card ' + type + '">';
+          html += '<div class="timeline-event-type ' + type + '">' + escapeHtml(type.replace(/_/g, ' ')) + (e.level ? ' · Nivel ' + e.level : '') + '</div>';
+          html += '<div class="timeline-event-mode">' + escapeHtml(modeName) + '</div>';
+          if (e.details) html += '<div class="timeline-event-details">' + escapeHtml(e.details) + '</div>';
+          html += '<div class="timeline-event-date">' + escapeHtml(e.event_time || '') + '</div>';
+          html += '</div></div>';
+        });
+        html += '</div>';
+        contentEl.innerHTML = html;
+      }
+
+      searchBtn.addEventListener('click', function() { searchCharacter(searchInput.value); });
+      searchInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') searchCharacter(searchInput.value); });
+
+      readUrlParam();
+    })();
+  </script>
+</body>
+</html>

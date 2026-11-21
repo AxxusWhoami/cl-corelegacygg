@@ -177,11 +177,12 @@ $season['season_id'] = $activeSeasonId;
 $season['start_date'] = $activeSeasonStart;
 $season['end_date'] = $activeSeasonEnd;
 if ($activeSeasonId > 0) {
-    $sql = "SELECT `character_name`, `total_score`, `challenges_active`, `highest_level`, `is_alive`, `last_updated` "
+    $sql = "SELECT `character_name`, `total_score`, `challenges_active`, `highest_level`, `is_alive`, `last_updated`, "
+         . "`streak_days`, `streak_started_at`, `last_death_time` "
          . "FROM `challenge_mode_rankings` "
          . "WHERE `season_id` = {$activeSeasonId} "
          . "ORDER BY `total_score` DESC "
-         . "LIMIT 20";
+         . "LIMIT 25";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -192,12 +193,122 @@ if ($activeSeasonId > 0) {
                 'highest_level'     => (int) $row['highest_level'],
                 'is_alive'          => (int) $row['is_alive'],
                 'last_updated'      => $row['last_updated'] ? date('Y-m-d H:i:s', (int) $row['last_updated']) : null,
+                'streak_days'       => (int) ($row['streak_days'] ?? 0),
+                'streak_started_at' => $row['streak_started_at'] ? date('Y-m-d H:i:s', (int) $row['streak_started_at']) : null,
+                'last_death_time'   => $row['last_death_time'] ? date('Y-m-d H:i:s', (int) $row['last_death_time']) : null,
             ];
         }
         mysqli_free_result($result);
     }
 }
 $payload['season'] = $season;
+
+// ---- 3b. Lista de todas las temporadas ----
+$seasonsList = [];
+$sql = "SELECT `id`, `name`, `start_time`, `end_time`, `is_active` "
+     . "FROM `challenge_mode_seasons` ORDER BY `start_time` ASC";
+$result = mysqli_query($conn, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $seasonsList[] = [
+            'id'         => (int) $row['id'],
+            'name'       => $row['name'],
+            'start_date' => $row['start_time'] ? date('Y-m-d', (int) $row['start_time']) : null,
+            'end_date'   => $row['end_time'] ? date('Y-m-d', (int) $row['end_time']) : null,
+            'is_active'  => (int) $row['is_active'],
+        ];
+    }
+    mysqli_free_result($result);
+}
+$payload['seasons'] = $seasonsList;
+
+// ---- 4. Hitos (challenge_mode_milestones) — ultimos 2000 ----
+$milestones = [];
+$sql = "SELECT m.`id`, m.`season_id`, m.`character_name`, m.`challenge_mode`, "
+     . "m.`milestone_type`, m.`milestone_level`, m.`details`, m.`achieved_at`, "
+     . "s.`name` AS season_name, w.`mode_name` "
+     . "FROM `challenge_mode_milestones` m "
+     . "LEFT JOIN `challenge_mode_seasons` s ON m.`season_id` = s.`id` "
+     . "LEFT JOIN `challenge_mode_weights` w ON m.`challenge_mode` = w.`challenge_mode` "
+     . "ORDER BY m.`achieved_at` DESC LIMIT 2000";
+$result = mysqli_query($conn, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $milestones[] = [
+            'id'              => (int) $row['id'],
+            'season_id'       => (int) $row['season_id'],
+            'season_name'     => $row['season_name'],
+            'name'            => $row['character_name'],
+            'challenge_mode'  => (int) $row['challenge_mode'],
+            'mode_name'       => $row['mode_name'],
+            'milestone_type'  => $row['milestone_type'],
+            'milestone_level' => (int) $row['milestone_level'],
+            'details'         => $row['details'],
+            'achieved_at'     => $row['achieved_at'] ? date('Y-m-d H:i:s', (int) $row['achieved_at']) : null,
+        ];
+    }
+    mysqli_free_result($result);
+}
+$payload['milestones'] = $milestones;
+
+// ---- 4b. Estadisticas diarias (challenge_mode_daily_stats) — todas las temporadas ----
+$dailyStats = [];
+$sql = "SELECT `snapshot_date`, `season_id`, `challenge_mode`, `total_characters`, "
+     . "`active_characters`, `dead_characters`, `average_level`, `max_level`, "
+     . "`average_score`, `max_score`, `captured_at` "
+     . "FROM `challenge_mode_daily_stats` ORDER BY `snapshot_date` ASC";
+$result = mysqli_query($conn, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $dailyStats[] = [
+            'snapshot_date'    => $row['snapshot_date'],
+            'season_id'        => (int) $row['season_id'],
+            'challenge_mode'   => (int) $row['challenge_mode'],
+            'total_characters' => (int) $row['total_characters'],
+            'active_characters'=> (int) $row['active_characters'],
+            'dead_characters'  => (int) $row['dead_characters'],
+            'average_level'    => (float) $row['average_level'],
+            'max_level'        => (int) $row['max_level'],
+            'average_score'    => (float) $row['average_score'],
+            'max_score'        => (int) round((float) $row['max_score']),
+        ];
+    }
+    mysqli_free_result($result);
+}
+$payload['daily_stats'] = $dailyStats;
+
+// ---- 4c. Eventos de progreso (challenge_mode_progress_history) — ultimos 5000 ----
+$timelineEvents = [];
+$sql = "SELECT h.`id`, h.`guid`, h.`challenge_mode`, h.`event_type`, h.`level`, "
+     . "h.`event_time`, h.`details`, c.`name` AS character_name, c.`race`, c.`class` "
+     . "FROM `challenge_mode_progress_history` h "
+     . "LEFT JOIN `characters` c ON h.`guid` = c.`guid` "
+     . "ORDER BY h.`event_time` DESC LIMIT 5000";
+$result = mysqli_query($conn, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $raceId = $row['race'] !== null ? (int) $row['race'] : null;
+        $classId = $row['class'] !== null ? (int) $row['class'] : null;
+        $timelineEvents[] = [
+            'id'             => (int) $row['id'],
+            'guid'           => (int) $row['guid'],
+            'name'           => $row['character_name'],
+            'challenge_mode' => (int) $row['challenge_mode'],
+            'event_type'     => $row['event_type'],
+            'level'          => (int) $row['level'],
+            'event_time'     => $row['event_time'] ? date('Y-m-d H:i:s', (int) $row['event_time']) : null,
+            'details'        => $row['details'],
+            'race'           => $raceId,
+            'race_name'      => $raceId !== null ? ($RACE_NAMES[$raceId] ?? 'Desconocida') : null,
+            'race_icon'      => $raceId !== null ? ($RACE_ICONS[$raceId] ?? null) : null,
+            'class'          => $classId,
+            'class_name'     => $classId !== null ? ($CLASS_NAMES[$classId] ?? 'Desconocida') : null,
+            'class_color'    => $classId !== null ? ($CLASS_COLORS[$classId] ?? '#cccccc') : '#cccccc',
+        ];
+    }
+    mysqli_free_result($result);
+}
+$payload['timeline_events'] = $timelineEvents;
 
 // ---- 5. Top 20 Combinado (vista challenge_mode_scores) ----
 $combined = [];
@@ -295,9 +406,9 @@ if ($result) {
 }
 $payload['hall'] = $hall;
 
-// Añadir raza y retrato a todas las clasificaciones antes de generar el JSON.
+// Añadir raza, clase y retrato a todas las clasificaciones e hitos antes de generar el JSON.
 $seasonEntries = &$season['entries'];
-$rankingLists = [&$global, &$seasonEntries, &$combined, &$deaths, &$hall];
+$rankingLists = [&$global, &$seasonEntries, &$combined, &$deaths, &$hall, &$milestones];
 foreach ($modes as &$modeEntries) {
     $rankingLists[] = &$modeEntries;
 }
@@ -311,29 +422,34 @@ foreach ($rankingLists as $entries) {
         }
     }
 }
-$raceByName = [];
+$charInfo = [];
 if ($characterNames) {
     $nameList = [];
     foreach (array_keys($characterNames) as $characterName) {
         $nameList[] = "'" . mysqli_real_escape_string($conn, $characterName) . "'";
     }
-    $raceResult = mysqli_query($conn, "SELECT `name`, `race` FROM `characters` WHERE `name` IN (" . implode(',', $nameList) . ")");
+    $raceResult = mysqli_query($conn, "SELECT `name`, `race`, `class` FROM `characters` WHERE `name` IN (" . implode(',', $nameList) . ")");
     if ($raceResult) {
         while ($raceRow = mysqli_fetch_assoc($raceResult)) {
             $raceId = (int) $raceRow['race'];
-            $raceByName[$raceRow['name']] = [
-                'race'      => $raceId,
-                'race_name' => $RACE_NAMES[$raceId] ?? 'Desconocida',
-                'race_icon' => $RACE_ICONS[$raceId] ?? null,
+            $classId = $raceRow['class'] !== null ? (int) $raceRow['class'] : null;
+            $charInfo[$raceRow['name']] = [
+                'race'        => $raceId,
+                'race_name'   => $RACE_NAMES[$raceId] ?? 'Desconocida',
+                'race_icon'   => $RACE_ICONS[$raceId] ?? null,
+                'class'       => $classId,
+                'class_name'  => $classId !== null ? ($CLASS_NAMES[$classId] ?? 'Desconocida') : null,
+                'class_color' => $classId !== null ? ($CLASS_COLORS[$classId] ?? '#cccccc') : '#cccccc',
             ];
         }
         mysqli_free_result($raceResult);
     }
 }
+$defaultInfo = ['race' => null, 'race_name' => null, 'race_icon' => null, 'class' => null, 'class_name' => null, 'class_color' => '#cccccc'];
 foreach ($rankingLists as &$entries) {
     foreach ($entries as &$entry) {
-        $raceData = $raceByName[$entry['name']] ?? ['race' => null, 'race_name' => null, 'race_icon' => null];
-        $entry = array_merge($entry, $raceData);
+        $info = $charInfo[$entry['name']] ?? $defaultInfo;
+        $entry = array_merge($entry, $info);
     }
     unset($entry);
 }
@@ -344,6 +460,7 @@ $payload['season']['entries'] = $seasonEntries;
 $payload['combined'] = $combined;
 $payload['deaths'] = $deaths;
 $payload['hall'] = $hall;
+$payload['milestones'] = $milestones;
 foreach ($modes as $modeId => $modeEntries) {
     $payload['modes'][$modeId] = $modeEntries;
 }

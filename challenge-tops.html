@@ -1056,6 +1056,19 @@
         return '<div class="stat-pill"><span class="stat-label">' + escapeHtml(label) + '</span><span class="stat-value"' + (color ? ' style="color:' + color + ';"' : '') + '>' + value + '</span></div>';
       }
 
+      function fmtDate(s) {
+        if (!s) return '-';
+        var d = new Date(s.replace(' ', 'T'));
+        if (isNaN(d.getTime())) return s;
+        var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+        var day = pad(d.getDate());
+        var mon = pad(d.getMonth() + 1);
+        var yr = ('' + d.getFullYear()).slice(-2);
+        var h = pad(d.getHours());
+        var m = pad(d.getMinutes());
+        return day + '/' + mon + '/' + yr + ' ' + h + ':' + m;
+      }
+
       function renderSurvivalView(entries, longest) {
         if (!entries || entries.length === 0) {
           content.innerHTML = '<div class="ranking-empty">No hay datos de supervivencia disponibles para la temporada actual.</div>';
@@ -1070,7 +1083,7 @@
           html += '<p class="survival-highlight-name">' + raceHtml + escapeHtml(longest.name) + '</p>';
           html += '<p class="survival-highlight-days">' + longest.streak_days + ' dias sin morir</p>';
           html += '<p class="survival-highlight-sub">';
-          if (longest.streak_started_at) html += 'Desde ' + escapeHtml(longest.streak_started_at);
+          if (longest.streak_started_at) html += 'Desde ' + escapeHtml(fmtDate(longest.streak_started_at));
           if (longest.score) html += ' · ' + (longest.score || 0).toLocaleString('es-ES') + ' puntos';
           html += '</p>';
           html += '<p style="margin:.5rem 0 0;"><a class="timeline-link" href="/challenge-timeline?character=' + encodeURIComponent(longest.name) + '">Ver timeline completo -></a></p>';
@@ -1088,8 +1101,8 @@
           html += '<td data-label="Posicion"><span class="rank-pos ' + rc + '">' + pos + '</span></td>';
           html += '<td data-label="Personaje">' + charLink(e) + '</td>';
           html += '<td class="center" data-label="Dias sin morir">' + (e.streak_days || 0) + '</td>';
-          html += '<td class="center" data-label="Inicio racha">' + escapeHtml(e.streak_started_at || '-') + '</td>';
-          html += '<td class="center" data-label="Ultima muerte">' + escapeHtml(e.last_death_time || '-') + '</td>';
+          html += '<td class="center" data-label="Inicio racha">' + escapeHtml(fmtDate(e.streak_started_at)) + '</td>';
+          html += '<td class="center" data-label="Ultima muerte">' + escapeHtml(fmtDate(e.last_death_time)) + '</td>';
           html += '<td class="right" data-label="Puntuacion">' + (e.score || 0).toLocaleString('es-ES') + '</td>';
           html += '<td class="center" data-label="Nivel">' + (e.highest_level || 0) + '</td>';
           html += '<td class="center" data-label="Estado">' + aliveBadge(e.is_alive, true) + '</td>';

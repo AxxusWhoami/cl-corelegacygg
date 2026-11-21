@@ -1447,10 +1447,9 @@
 
       // ---- Death map view ----
       var MAP_CONTINENTS = [
-        { id: 0, name: 'Reinos del Este', img: '/assets/maps/azeroth.jpg', w: 966, h: 732, maps: [0] },
-        { id: 1, name: 'Kalimdor', img: '/assets/maps/azeroth.jpg', w: 966, h: 732, maps: [1] },
-        { id: 2, name: 'Terrallende', img: '/assets/maps/outland.jpg', w: 966, h: 695, maps: [530] },
-        { id: 3, name: 'Rasganorte', img: '/assets/maps/northrend.jpg', w: 966, h: 732, maps: [571] }
+        { id: 0, name: 'Azeroth', img: '/assets/maps/azeroth.jpg', w: 966, h: 732, maps: [0, 1] },
+        { id: 1, name: 'Terrallende', img: '/assets/maps/outland.jpg', w: 966, h: 695, maps: [530] },
+        { id: 2, name: 'Rasganorte', img: '/assets/maps/northrend.jpg', w: 966, h: 732, maps: [571] }
       ];
       var deathMapState = { continent: 0, deaths: [], alive: [], canvas: null, ctx: null, imgEl: null, imgLoaded: false };
       var deathMapTooltip = null;

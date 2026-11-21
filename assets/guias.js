@@ -14,10 +14,6 @@
       title: 'Guía Definitiva de Playerbots: Cómo Jugar WoW WotLK en Solitario con IA',
       icon: '🤖'
     },
-    'guia-practica-avanzada-multibot': {
-      title: 'Guía Práctica y Avanzada de MultiBot',
-      icon: '🎮'
-    },
     'guia-addon-dungeonclear': {
       title: 'Guía de Uso del Addon: DungeonClear',
       icon: '🤖'

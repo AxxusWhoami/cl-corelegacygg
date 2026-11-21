@@ -23,7 +23,6 @@ const pages = [
   { url: '/guias/requisitos-de-hardware', file: 'guias/requisitos-de-hardware.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/guias/guia-playerbots-ia-wow-wotlk-solitario', file: 'guias/guia-playerbots-ia-wow-wotlk-solitario.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/guias/guia-de-cero-a-heroe-playerbots', file: 'guias/guia-de-cero-a-heroe-playerbots.html', priority: '0.7', changefreq: 'monthly' },
-  { url: '/guias/guia-practica-avanzada-multibot', file: 'guias/guia-practica-avanzada-multibot.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/guias/guia-buscar-playerbots-grupo-banda', file: 'guias/guia-buscar-playerbots-grupo-banda.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/guias/guia-addon-dungeonclear', file: 'guias/guia-addon-dungeonclear.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/guias/guia-aumentar-fps-dxvk-vulkan', file: 'guias/guia-aumentar-fps-dxvk-vulkan.html', priority: '0.7', changefreq: 'monthly' },

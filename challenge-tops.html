@@ -270,6 +270,30 @@
       .ranking-spinner { animation: none; }
       .ranking-tab, .mode-chip { transition: none; }
     }
+    .ranking-stats { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.25rem 0 0; }
+    .stat-pill { display:flex; flex-direction:column; gap:.15rem; padding:.55rem 1rem; border-radius:10px; border:1px solid rgba(77,189,232,.18); background:linear-gradient(180deg,rgba(10,28,48,.6),rgba(4,12,22,.8)); flex:1; min-width:110px; }
+    .stat-pill .stat-label { font-family:'Cinzel',Georgia,serif; font-size:.6rem; color:#5a8090; text-transform:uppercase; letter-spacing:.05em; }
+    .stat-pill .stat-value { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.88rem; color:#4dd8ff; font-weight:700; text-shadow:0 0 8px rgba(77,189,232,.15); }
+    .stat-pill .stat-value.gold { color:#ffd24a; text-shadow:0 0 8px rgba(255,210,80,.15); }
+    .ranking-toolbar { display:flex; align-items:center; gap:.75rem; margin:1rem 0 0; flex-wrap:wrap; }
+    .ranking-search { flex:1; min-width:160px; position:relative; }
+    .ranking-search input { width:100%; padding:.5rem .9rem .5rem 2rem; border-radius:8px; border:1px solid rgba(77,189,232,.22); background:rgba(10,24,40,.6); color:#c8e0f0; font-family:'Cinzel',Georgia,serif; font-size:.76rem; outline:none; transition:border-color .25s ease; }
+    .ranking-search input:focus { border-color:rgba(77,189,232,.5); box-shadow:0 0 10px rgba(77,189,232,.1); }
+    .ranking-search input::placeholder { color:#5a7a8a; }
+    .ranking-search svg { position:absolute; left:.6rem; top:50%; transform:translateY(-50%); width:14px; height:14px; color:#5a8090; }
+    .ranking-refresh { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:8px; border:1px solid rgba(77,189,232,.22); background:rgba(10,24,40,.6); color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.72rem; cursor:pointer; transition:all .25s ease; white-space:nowrap; }
+    .ranking-refresh:hover { border-color:rgba(77,189,232,.45); color:#4dd8ff; box-shadow:0 0 10px rgba(77,189,232,.12); }
+    .ranking-refresh svg { width:14px; height:14px; }
+    .ranking-refresh.spinning svg { animation:spin 0.8s linear infinite; }
+    .ranking-legend { display:flex; flex-wrap:wrap; gap:.8rem; margin:.75rem 0 0; padding:.6rem 1rem; border-radius:8px; border:1px solid rgba(77,189,232,.1); background:rgba(4,12,22,.4); font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#5a7a8a; }
+    .legend-item { display:inline-flex; align-items:center; gap:.3rem; }
+    .legend-dot { display:inline-block; width:11px; height:11px; border-radius:50%; flex-shrink:0; }
+    .legend-dot.gold { background:linear-gradient(135deg,rgba(255,215,60,.5),rgba(220,165,20,.2)); border:1px solid rgba(255,215,60,.5); }
+    .legend-dot.silver { background:linear-gradient(135deg,rgba(210,225,240,.3),rgba(160,175,190,.1)); border:1px solid rgba(210,225,240,.4); }
+    .legend-dot.bronze { background:linear-gradient(135deg,rgba(205,135,70,.35),rgba(160,100,45,.15)); border:1px solid rgba(205,135,70,.4); }
+    .legend-badge { display:inline-block; padding:.1rem .35rem; border-radius:3px; font-size:.58rem; font-weight:700; text-transform:uppercase; }
+    .legend-badge.alive { background:rgba(20,180,40,.3); color:#2eea5a; border:1px solid rgba(40,220,70,.5); }
+    .legend-badge.dead { background:rgba(180,20,20,.3); color:#ff2020; border:1px solid rgba(200,30,30,.5); }
   </style>
   <script type="application/ld+json">
   {
@@ -329,8 +353,21 @@
           <button class="ranking-tab" data-view="hall" role="tab">Sala de la Fama</button>
         </nav>
 
+        <div class="ranking-stats" id="rankingStats"></div>
+
         <!-- Mode selector (only for "Por Modo" tab) -->
         <div class="mode-selector-wrap" id="modeSelector"></div>
+
+        <div class="ranking-toolbar">
+          <div class="ranking-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" id="rankingSearch" placeholder="Buscar personaje…" aria-label="Buscar personaje" />
+          </div>
+          <button class="ranking-refresh" id="rankingRefresh" type="button" aria-label="Actualizar datos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+            Actualizar
+          </button>
+        </div>
 
         <!-- Content -->
         <div class="ranking-table-wrap" id="rankingContent">
@@ -340,6 +377,13 @@
           </div>
         </div>
         <p class="ranking-updated" id="rankingUpdated"></p>
+        <div class="ranking-legend">
+          <span class="legend-item"><span class="legend-dot gold"></span> 1º</span>
+          <span class="legend-item"><span class="legend-dot silver"></span> 2º</span>
+          <span class="legend-item"><span class="legend-dot bronze"></span> 3º</span>
+          <span class="legend-item"><span class="legend-badge alive">Vivo</span> Personaje vivo</span>
+          <span class="legend-item"><span class="legend-badge dead">💀 Muerto</span> Personaje fallecido</span>
+        </div>
 
         <div style="margin-top:2rem; text-align:center;">
           <a href="/challenge-modes" class="back-to-modes">
@@ -367,6 +411,13 @@
       var modeSelector = document.getElementById('modeSelector');
       var content = document.getElementById('rankingContent');
       var updatedEl = document.getElementById('rankingUpdated');
+      var statsEl = document.getElementById('rankingStats');
+      var searchInput = document.getElementById('rankingSearch');
+      var refreshBtn = document.getElementById('rankingRefresh');
+      var currentEntries = null;
+      var currentRenderFn = null;
+      var currentRenderOpts = null;
+      var searchTerm = '';
 
       function escapeHtml(str) {
         if (str === null || str === undefined) return '';
@@ -410,6 +461,58 @@
 
       function showEmpty(msg) {
         content.innerHTML = '<div class="ranking-empty">' + escapeHtml(msg || 'No hay datos disponibles.') + '</div>';
+      }
+
+      function filterEntries(entries) {
+        if (!searchTerm) return entries || [];
+        var term = searchTerm.toLowerCase();
+        return (entries || []).filter(function(e) {
+          return (e.name || '').toLowerCase().indexOf(term) !== -1;
+        });
+      }
+
+      function rerender() {
+        if (!currentRenderFn || !currentEntries) return;
+        var filtered = filterEntries(currentEntries);
+        if (filtered.length === 0 && searchTerm) {
+          showEmpty('No se encontraron personajes que coincidan con "' + escapeHtml(searchTerm) + '".');
+          return;
+        }
+        if (currentRenderOpts) { currentRenderFn(filtered, currentRenderOpts); }
+        else { currentRenderFn(filtered); }
+      }
+
+      function updateStats(entries, view) {
+        if (!entries || entries.length === 0) { statsEl.innerHTML = ''; return; }
+        var total = entries.length;
+        var maxLevel = 0, topScore = 0, topName = '';
+        entries.forEach(function(e) {
+          if (e.score && e.score > topScore) { topScore = e.score; topName = e.name || ''; }
+          if (e.highest_level && e.highest_level > maxLevel) maxLevel = e.highest_level;
+          if (e.level && e.level > maxLevel) maxLevel = e.level;
+        });
+        var html = '';
+        html += '<div class="stat-pill"><span class="stat-label">' + (view === 'deaths' ? 'Muertes' : 'Personajes') + '</span><span class="stat-value">' + total + '</span></div>';
+        if (maxLevel > 0) html += '<div class="stat-pill"><span class="stat-label">Nivel máx.</span><span class="stat-value">' + maxLevel + '</span></div>';
+        if (topScore > 0) html += '<div class="stat-pill"><span class="stat-label">Mejor puntuación</span><span class="stat-value gold">' + topScore.toLocaleString('es-ES') + '</span></div>';
+        if (topName) html += '<div class="stat-pill"><span class="stat-label">Líder actual</span><span class="stat-value gold">' + escapeHtml(topName) + '</span></div>';
+        statsEl.innerHTML = html;
+      }
+
+      function readUrlParams() {
+        var params = new URLSearchParams(window.location.search);
+        var view = params.get('view');
+        var mode = params.get('mode');
+        if (view && ['global','mode','monthly','quarterly','deaths','hall'].indexOf(view) !== -1) {
+          currentView = view;
+          if (mode) currentMode = parseInt(mode, 10) || 0;
+        }
+      }
+
+      function updateUrl() {
+        var url = window.location.pathname + '?view=' + encodeURIComponent(currentView);
+        if (currentView === 'mode') url += '&mode=' + encodeURIComponent(currentMode);
+        window.history.replaceState(null, '', url);
       }
 
       function renderTable(entries, opts) {
@@ -527,30 +630,37 @@
             if (data.updated_at) {
               updatedEl.textContent = 'Actualizado: ' + data.updated_at;
             }
+            var entries = data.entries || [];
+            updateStats(entries, view);
 
             switch (view) {
               case 'global':
               case 'monthly':
               case 'quarterly':
               case 'combined':
-                renderTable(data.entries || [], {
-                  showScore: true, showChallenges: true,
-                  showLevel: true, showState: true, hasPermadeath: true
-                });
+                currentEntries = entries;
+                currentRenderFn = renderTable;
+                currentRenderOpts = { showScore: true, showChallenges: true, showLevel: true, showState: true, hasPermadeath: true };
+                renderTable(filterEntries(entries), currentRenderOpts);
                 break;
               case 'mode':
                 var mi = data.mode_info || {};
-                renderTable(data.entries || [], {
-                  showScore: true, showChallenges: true,
-                  showLevel: true, showState: true,
-                  hasPermadeath: mi.is_permadeath === 1
-                });
+                currentEntries = entries;
+                currentRenderFn = renderTable;
+                currentRenderOpts = { showScore: true, showChallenges: true, showLevel: true, showState: true, hasPermadeath: mi.is_permadeath === 1 };
+                renderTable(filterEntries(entries), currentRenderOpts);
                 break;
               case 'deaths':
-                renderDeaths(data.entries || []);
+                currentEntries = entries;
+                currentRenderFn = renderDeaths;
+                currentRenderOpts = null;
+                renderDeaths(filterEntries(entries));
                 break;
               case 'hall':
-                renderHall(data.entries || []);
+                currentEntries = entries;
+                currentRenderFn = renderHall;
+                currentRenderOpts = null;
+                renderHall(filterEntries(entries));
                 break;
             }
           })
@@ -592,6 +702,7 @@
             modeSelector.querySelectorAll('.mode-chip').forEach(function(c) { c.classList.remove('active'); });
             this.classList.add('active');
             loadView('mode', currentMode);
+            updateUrl();
           });
         });
       }
@@ -615,6 +726,7 @@
           modeSelector.classList.remove('visible');
           loadView(view);
         }
+        updateUrl();
       }
 
       tabs.forEach(function(tab) {
@@ -623,8 +735,24 @@
         });
       });
 
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          searchTerm = this.value.trim();
+          rerender();
+        });
+      }
+      if (refreshBtn) {
+        refreshBtn.addEventListener('click', function() {
+          refreshBtn.classList.add('spinning');
+          loadView(currentView, currentMode);
+          setTimeout(function() { refreshBtn.classList.remove('spinning'); }, 1000);
+        });
+      }
+
+      // Read URL params for deep linking
+      readUrlParams();
       // Initial load
-      loadView('global');
+      selectTab(currentView);
       // Preload weights in background for the mode tab
       loadWeights();
     })();

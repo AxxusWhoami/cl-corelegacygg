@@ -77,6 +77,29 @@
     }
     @media (max-width:600px) { .fire-logo-wrap { width:160px; height:160px; } .fire-logo-wrap img { width:160px; height:160px; } }
     @media (prefers-reduced-motion:reduce) { .fiche-card { transition:none; } .fire-logo-wrap img, .fire-logo-glow, .fiche-card-img img, .fiche-glow, .ember { animation:none !important; } }
+    .fiche-card-meta { display:flex; align-items:center; justify-content:space-between; gap:.75rem; margin:-.2rem 0 .2rem; }
+    .fiche-difficulty { display:inline-block; padding:.18rem .55rem; border-radius:6px; font-family:'Cinzel',Georgia,serif; font-size:.65rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+    .fiche-difficulty.extreme { background:rgba(200,30,30,.18); color:#ff5050; border:1px solid rgba(200,30,30,.35); text-shadow:0 0 6px rgba(200,30,30,.2); }
+    .fiche-difficulty.high { background:rgba(255,140,30,.15); color:#ff9a40; border:1px solid rgba(255,140,30,.3); }
+    .fiche-difficulty.medium { background:rgba(255,200,60,.12); color:#e8c84a; border:1px solid rgba(255,200,60,.25); }
+    .fiche-difficulty.progression { background:rgba(77,189,232,.12); color:#5ab8e0; border:1px solid rgba(77,189,232,.25); }
+    .fiche-ranking-link { font-family:'Cinzel',Georgia,serif; font-size:.7rem; color:#4dd8ff; text-decoration:none; padding:.2rem .65rem; border-radius:6px; border:1px solid rgba(77,189,232,.2); background:rgba(77,189,232,.06); transition:all .25s ease; white-space:nowrap; }
+    .fiche-ranking-link:hover { color:#ffd24a; border-color:rgba(255,210,80,.5); background:rgba(255,210,80,.08); box-shadow:0 0 10px rgba(255,210,80,.12); }
+    .scoring-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-top:1rem; }
+    .scoring-card { padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.18); border-radius:10px; background:linear-gradient(160deg,rgba(8,22,36,.5),rgba(3,9,18,.9)); }
+    .scoring-card h4 { margin:0 0 .3rem; color:#f0c850; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.78rem; }
+    .scoring-card p { margin:0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.74rem; line-height:1.55; }
+    .scoring-card .scoring-value { display:block; font-size:1.2rem; color:#4dd8ff; font-weight:700; margin-top:.3rem; text-shadow:0 0 8px rgba(77,189,232,.2); }
+    .recommend-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1rem; }
+    .recommend-card { padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.15); border-radius:10px; background:rgba(8,22,36,.4); transition:all .25s ease; }
+    .recommend-card:hover { border-color:rgba(255,210,80,.35); transform:translateY(-2px); }
+    .recommend-card h4 { margin:0 0 .25rem; color:#ffd24a; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.8rem; }
+    .recommend-card p { margin:0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.74rem; line-height:1.55; }
+    .recommend-card .recommend-for { display:block; font-size:.66rem; color:#5a90a8; margin-bottom:.2rem; text-transform:uppercase; letter-spacing:.04em; }
+    .compat-section { margin:1.5rem 0; padding:1.25rem 1.5rem; border:1px solid rgba(77,189,232,.15); border-radius:12px; background:rgba(8,22,36,.35); }
+    .compat-pair { display:inline-flex; align-items:center; gap:.4rem; margin:.3rem .6rem .3rem 0; font-family:'Cinzel',Georgia,serif; font-size:.76rem; color:#b8d4e8; }
+    .compat-pair .compat-x { color:#ff5050; font-weight:700; }
+    @media (max-width:600px) { .fiche-card-meta { flex-direction:column; align-items:flex-start; gap:.35rem; } }
   </style>
   <script type="application/ld+json">
   {
@@ -147,6 +170,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_hardcore_512.png" alt="Modo Hardcore" loading="lazy" width="120" height="120" /><span class="ember" style="left:25%;--dx:-6px;background:#ff7a20;animation:emberRiseSmall 2.8s ease-out infinite;animation-delay:0s;"></span><span class="ember" style="left:50%;--dx:4px;background:#ffae40;animation:emberRiseSmall 3.2s ease-out infinite;animation-delay:.6s;"></span><span class="ember" style="left:70%;--dx:7px;background:#ff6010;animation:emberRiseSmall 2.5s ease-out infinite;animation-delay:1.2s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Hardcore</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty extreme">Extremo</span><a href="/challenge-tops?view=mode&mode=0" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>El desafío clásico de una sola vida. Si tu personaje muere por cualquier causa (criatura, PvP o liberar fantasma), se convierte en un fantasma permanente. No podrá ser resucitado por hechizos, piedras de alma ni ningún otro método. Al volver a iniciar sesión, el personaje es eliminado y devuelto a la pantalla de selección de personaje. Las muertes en PvP cuentan, excepto en duelos amistosos.</p>
                 <p class="fiche-incompatible"><strong>Incompatible con:</strong> Semi-Hardcore, One Life.</p>
                 <div class="fiche-rewards">
@@ -164,6 +188,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_semihardcore_512.png" alt="Modo Semi-Hardcore" loading="lazy" width="120" height="120" /><span class="ember" style="left:30%;--dx:5px;background:#ff9a30;animation:emberRiseSmall 3s ease-out infinite;animation-delay:.2s;"></span><span class="ember" style="left:60%;--dx:-5px;background:#ffcc60;animation:emberRiseSmall 2.7s ease-out infinite;animation-delay:.9s;"></span><span class="ember" style="left:45%;--dx:8px;background:#ff8030;animation:emberRiseSmall 3.3s ease-out infinite;animation-delay:1.5s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Semi-Hardcore</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty high">Alto</span><a href="/challenge-tops?view=mode&mode=1" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>Al morir, tu personaje pierde todo el equipamiento que lleva puesto y todo el oro que transporta. Los objetos en el inventario (no equipados) se conservan. No hay muerte permanente: el personaje puede resucitar y seguir jugando, pero cada muerte tiene un costo material elevado.</p>
                 <p class="fiche-incompatible"><strong>Incompatible con:</strong> Hardcore, One Life.</p>
                 <div class="fiche-rewards">
@@ -181,6 +206,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_self_crafted_512.png" alt="Modo Self Crafted" loading="lazy" width="120" height="120" /><span class="ember" style="left:35%;--dx:-7px;background:#ff6a1a;animation:emberRiseSmall 2.9s ease-out infinite;animation-delay:.1s;"></span><span class="ember" style="left:55%;--dx:6px;background:#ffaa50;animation:emberRiseSmall 3.1s ease-out infinite;animation-delay:.7s;"></span><span class="ember" style="left:65%;--dx:-3px;background:#ff7a20;animation:emberRiseSmall 2.6s ease-out infinite;animation-delay:1.3s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Self Crafted</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty high">Alto</span><a href="/challenge-tops?view=mode&mode=2" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>Solo puedes equipar objetos que tu personaje haya fabricado. Los objetos deben llevar la firma de creador de tu personaje. Hasta el nivel 10 se permite una excepción: puedes equipar objetos blancos de calidad Normal comprados a vendedores o obtenidos de enemigos. A partir del nivel 10, la regla de auto-fabricación es estricta.</p>
                 <p class="fiche-incompatible"><strong>Incompatible con:</strong> Iron Man.</p>
                 <div class="fiche-rewards">
@@ -198,6 +224,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_item_quality_512.png" alt="Modo Item Quality" loading="lazy" width="120" height="120" /><span class="ember" style="left:40%;--dx:4px;background:#ffae40;animation:emberRiseSmall 3s ease-out infinite;animation-delay:.3s;"></span><span class="ember" style="left:60%;--dx:-6px;background:#ff6010;animation:emberRiseSmall 2.8s ease-out infinite;animation-delay:1s;"></span><span class="ember" style="left:30%;--dx:7px;background:#ff9a30;animation:emberRiseSmall 3.4s ease-out infinite;animation-delay:1.6s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Item Quality Level</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty medium">Medio</span><a href="/challenge-tops?view=mode&mode=3" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>Solo puedes equipar objetos de calidad Normal (blanca) o Pobre (gris). Esto excluye completamente los objetos verdes, azules, morados y naranjas. Un desafío de equipamiento que te obliga a progresar con el equipo más básico del juego.</p>
                 <p class="fiche-incompatible"><strong>Sin conflictos:</strong> Puede combinarse con cualquier otro modo.</p>
                 <div class="fiche-rewards">
@@ -214,6 +241,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_slow_xp_gain_512.png" alt="Modo Slow XP Gain" loading="lazy" width="120" height="120" /><span class="ember" style="left:25%;--dx:-5px;background:#ff8030;animation:emberRiseSmall 2.7s ease-out infinite;animation-delay:.4s;"></span><span class="ember" style="left:50%;--dx:6px;background:#ffcc60;animation:emberRiseSmall 3.2s ease-out infinite;animation-delay:1.1s;"></span><span class="ember" style="left:70%;--dx:-4px;background:#ff6a1a;animation:emberRiseSmall 2.9s ease-out infinite;animation-delay:1.7s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Slow XP Gain</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty progression">Progresión</span><a href="/challenge-tops?view=mode&mode=4" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>La experiencia se reduce a 0.5x de la tasa base del juego. Cada combate y cada misión rinden la mitad de experiencia, haciendo que el progreso hacia nivel 80 sea mucho más lento y deliberado.</p>
                 <p class="fiche-incompatible"><strong>Incompatible con:</strong> Very Slow XP Gain.</p>
                 <div class="fiche-rewards">
@@ -230,6 +258,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_very_slow_xp_gain_512.png" alt="Modo Very Slow XP Gain" loading="lazy" width="120" height="120" /><span class="ember" style="left:35%;--dx:7px;background:#ff7a20;animation:emberRiseSmall 3s ease-out infinite;animation-delay:.2s;"></span><span class="ember" style="left:55%;--dx:-6px;background:#ffaa50;animation:emberRiseSmall 2.6s ease-out infinite;animation-delay:.8s;"></span><span class="ember" style="left:45%;--dx:3px;background:#ff6010;animation:emberRiseSmall 3.3s ease-out infinite;animation-delay:1.4s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Very Slow XP Gain</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty progression">Progresión</span><a href="/challenge-tops?view=mode&mode=5" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>La experiencia se reduce a 0.25x de la tasa base del juego, una cuarta parte de lo normal. El desafío más exigente en cuanto a tiempo de progresión. Hereda automáticamente todas las recompensas de Slow XP Gain, además de tener las suyas propias.</p>
                 <p class="fiche-incompatible"><strong>Incompatible con:</strong> Slow XP Gain.</p>
                 <div class="fiche-rewards">
@@ -245,6 +274,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_quest_xp_only_512.png" alt="Modo Quest XP Only" loading="lazy" width="120" height="120" /><span class="ember" style="left:40%;--dx:-6px;background:#ff9a30;animation:emberRiseSmall 2.8s ease-out infinite;animation-delay:0s;"></span><span class="ember" style="left:60%;--dx:5px;background:#ffcc60;animation:emberRiseSmall 3.1s ease-out infinite;animation-delay:.6s;"></span><span class="ember" style="left:30%;--dx:-8px;background:#ff6a1a;animation:emberRiseSmall 3.5s ease-out infinite;animation-delay:1.2s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Quest XP Only</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty medium">Medio</span><a href="/challenge-tops?view=mode&mode=6" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>No recibes experiencia por matar criaturas. La única forma de ganar experiencia es completando misiones. Las mascotas siguen recibiendo experiencia de combate normalmente. Este desafío transforma por completo la forma de jugar, priorizando la exploración y las misiones sobre el grind de enemigos.</p>
                 <p class="fiche-incompatible"><strong>Sin conflictos:</strong> Puede combinarse con cualquier otro modo.</p>
                 <div class="fiche-rewards">
@@ -261,6 +291,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_ironman_512.png" alt="Modo Iron Man o Hombre de Hierro" loading="lazy" width="120" height="120" /><span class="ember" style="left:30%;--dx:6px;background:#ff7a20;animation:emberRiseSmall 2.9s ease-out infinite;animation-delay:.1s;"></span><span class="ember" style="left:55%;--dx:-5px;background:#ffae40;animation:emberRiseSmall 3.3s ease-out infinite;animation-delay:.7s;"></span><span class="ember" style="left:65%;--dx:7px;background:#ff8030;animation:emberRiseSmall 2.7s ease-out infinite;animation-delay:1.3s;"></span></div>
               <div class="fiche-card-body">
                 <h3>Iron Man</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty extreme">Extremo</span><a href="/challenge-tops?view=mode&mode=7" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>El desafío más extremo, basado en el Iron Man Ruleset: sin puntos de talento, solo equipamiento blanco o gris, sin encantamientos, sin profesiones comerciales (excepto las de clase), sin consumibles de combate, sin grupos, sin comercio, sin correo, sin casa de subastas y muerte permanente al morir.</p>
                 <p class="fiche-incompatible"><strong>Incompatible con:</strong> Self Crafted.</p>
                 <div class="fiche-rewards">
@@ -278,6 +309,7 @@
               <div class="fiche-card-img"><div class="fiche-glow"></div><img src="/assets/desafios/desafio_one_life_512.png" alt="Modo One Life" loading="lazy" width="120" height="120" /><span class="ember" style="left:35%;--dx:-7px;background:#ff6010;animation:emberRiseSmall 3s ease-out infinite;animation-delay:.3s;"></span><span class="ember" style="left:50%;--dx:4px;background:#ffaa50;animation:emberRiseSmall 2.6s ease-out infinite;animation-delay:1s;"></span><span class="ember" style="left:60%;--dx:-6px;background:#ff9a30;animation:emberRiseSmall 3.4s ease-out infinite;animation-delay:1.6s;"></span></div>
               <div class="fiche-card-body">
                 <h3>One Life</h3>
+                <div class="fiche-card-meta"><span class="fiche-difficulty extreme">Extremo</span><a href="/challenge-tops?view=mode&mode=9" class="fiche-ranking-link">Ver ranking →</a></div>
                 <p>Muerte permanente con registro detallado de cada defunción. Igual que Hardcore, si tu personaje muere se convierte en fantasma permanente. La diferencia es que One Life registra en la base de datos el nivel, la causa de muerte, el mapa y las coordenadas exactas de cada fallecimiento, permitiendo consultar el histórico completo y generar rankings. Las muertes en PvP cuentan, excepto en duelos amistosos.</p>
                 <p class="fiche-incompatible"><strong>Incompatible con:</strong> Hardcore, Semi-Hardcore.</p>
                 <div class="fiche-rewards">
@@ -291,6 +323,79 @@
                 </div>
               </div>
             </article>
+          </div>
+        </section>
+        <section class="guia-section compat-section" aria-labelledby="compat-title">
+          <h2 id="compat-title" class="guia-step-title" style="font-size:1.15rem;">Compatibilidad entre modos</h2>
+          <p style="font-family:'Cinzel',Georgia,serif;font-size:.82rem;color:#b8d4e8;line-height:1.6;">La mayoría de los modos pueden combinarse libremente para multiplicar la dificultad. Estas son las únicas combinaciones no permitidas:</p>
+          <div style="margin-top:.5rem;">
+            <span class="compat-pair">Hardcore <span class="compat-x">✕</span> Semi-Hardcore</span>
+            <span class="compat-pair">Hardcore <span class="compat-x">✕</span> One Life</span>
+            <span class="compat-pair">Semi-Hardcore <span class="compat-x">✕</span> One Life</span>
+            <span class="compat-pair">Self Crafted <span class="compat-x">✕</span> Iron Man</span>
+            <span class="compat-pair">Slow XP Gain <span class="compat-x">✕</span> Very Slow XP Gain</span>
+          </div>
+          <p style="margin-top:.6rem;font-family:'Cinzel',Georgia,serif;font-size:.78rem;color:#2eea5a;">Item Quality Level y Quest XP Only no tienen restricciones y pueden combinarse con cualquier otro modo.</p>
+        </section>
+        <section class="guia-section" aria-labelledby="scoring-title">
+          <h2 id="scoring-title" class="guia-step-title" style="font-size:1.15rem;">¿Cómo se calcula la puntuación?</h2>
+          <p style="font-family:'Cinzel',Georgia,serif;font-size:.82rem;color:#b8d4e8;line-height:1.6;">La puntuación de cada personaje combina varios factores para recompensar tanto la dificultad elegida como la dedicación:</p>
+          <div class="scoring-grid">
+            <div class="scoring-card">
+              <h4>Base: peso × nivel</h4>
+              <p>Cada modo tiene un peso según su dificultad. La puntuación base es el nivel del personaje multiplicado por el peso de cada modo activo.</p>
+              <span class="scoring-value">peso × nivel</span>
+            </div>
+            <div class="scoring-card">
+              <h4>Bonus de supervivencia</h4>
+              <p>Los personajes vivos en modos de muerte permanente reciben un bonus adicional del 20% sobre su puntuación.</p>
+              <span class="scoring-value">+20%</span>
+            </div>
+            <div class="scoring-card">
+              <h4>Bonus de finalización</h4>
+              <p>Al alcanzar el nivel 80, el personaje recibe un bonus por completar el desafío activo.</p>
+              <span class="scoring-value">+ completado</span>
+            </div>
+            <div class="scoring-card">
+              <h4>Bonus de sinergia</h4>
+              <p>Por cada desafío adicional activo más allá del primero, se aplica un bonus acumulable que premia las combinaciones.</p>
+              <span class="scoring-value">+ sinergia</span>
+            </div>
+          </div>
+        </section>
+        <section class="guia-section" aria-labelledby="recommend-title">
+          <h2 id="recommend-title" class="guia-step-title" style="font-size:1.15rem;">¿Qué desafío elegir?</h2>
+          <div class="recommend-grid">
+            <div class="recommend-card">
+              <span class="recommend-for">Para adrenalina pura</span>
+              <h4>Hardcore</h4>
+              <p>Una sola vida. Si mueres, tu personaje se elimina permanentemente. El reto más emblemático para veteranos de WoW.</p>
+            </div>
+            <div class="recommend-card">
+              <span class="recommend-for">Para el reto más extremo</span>
+              <h4>Iron Man</h4>
+              <p>Sin talentos, sin equipamiento mejor que blanco, sin profesiones, sin grupos. El desafío más restrictivo que existe.</p>
+            </div>
+            <div class="recommend-card">
+              <span class="recommend-for">Para artesanos</span>
+              <h4>Self Crafted</h4>
+              <p>Solo puedes equipar lo que fabricas tú mismo. Ideal para quienes disfrutan de profesiones y autosuficiencia.</p>
+            </div>
+            <div class="recommend-card">
+              <span class="recommend-for">Para progresión pausada</span>
+              <h4>Slow / Very Slow XP</h4>
+              <p>La experiencia se reduce a 0.5x o 0.25x. Perfecto para saborear cada nivel y explorar Azeroth sin prisa.</p>
+            </div>
+            <div class="recommend-card">
+              <span class="recommend-for">Para exploradores</span>
+              <h4>Quest XP Only</h4>
+              <p>Sin experiencia por matar enemigos. Solo las misiones te hacen más fuerte. Cambia por completo la forma de jugar.</p>
+            </div>
+            <div class="recommend-card">
+              <span class="recommend-for">Para algo diferente</span>
+              <h4>Item Quality Level</h4>
+              <p>Solo equipamiento blanco o gris. Un desafío ligero que se combina con cualquier otro modo sin restricciones.</p>
+            </div>
           </div>
         </section>
         <p class="guia-footer">Tu leyenda. Tus reglas. Tu desafío.</p>

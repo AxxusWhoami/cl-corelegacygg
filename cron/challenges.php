@@ -325,15 +325,15 @@ foreach ($weights as $w) {
 }
 $payload['modes'] = $modes;
 
-// ---- 7. Muertes notables (solo permadeath) ----
+// ---- 7. Muertes notables (solo permadeath, top 10 para el ranking) ----
 $deaths = [];
 $sql = "SELECT d.`name` AS character_name, d.`level`, d.`cause`, w.`mode_name`, d.`death_time`, "
-     . "d.`position_x`, d.`position_y`, d.`map` AS death_map "
+     . "d.`position_x`, d.`position_y`, d.`map_id` "
      . "FROM `challenge_mode_deaths` d "
      . "JOIN `challenge_mode_weights` w ON d.`challenge_mode` = w.`challenge_mode` "
      . "WHERE w.`is_permadeath` = 1 "
      . "ORDER BY d.`level` DESC, d.`death_time` ASC "
-     . "LIMIT 200";
+     . "LIMIT 10";
 $result = mysqli_query($conn, $sql);
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -343,14 +343,49 @@ if ($result) {
             'cause'      => $row['cause'],
             'mode_name'  => $row['mode_name'],
             'death_date' => $row['death_time'] ? date('Y-m-d H:i:s', (int) $row['death_time']) : null,
-            'position_x' => isset($row['position_x']) ? (float) $row['position_x'] : null,
-            'position_y' => isset($row['position_y']) ? (float) $row['position_y'] : null,
-            'map'        => isset($row['death_map']) ? (int) $row['death_map'] : null,
+            'position_x' => $row['position_x'] !== null ? (float) $row['position_x'] : null,
+            'position_y' => $row['position_y'] !== null ? (float) $row['position_y'] : null,
+            'map'        => $row['map_id'] !== null ? (int) $row['map_id'] : null,
         ];
     }
     mysqli_free_result($result);
 }
 $payload['deaths'] = $deaths;
+
+// ---- 7b. Todas las muertes con coordenadas para el mapa de calor (todas las temporadas) ----
+$deathMapDeaths = [];
+$sql = "SELECT d.`name` AS character_name, d.`race`, d.`class`, d.`level`, d.`cause`, w.`mode_name`, "
+     . "d.`death_time`, d.`position_x`, d.`position_y`, d.`map_id` "
+     . "FROM `challenge_mode_deaths` d "
+     . "JOIN `challenge_mode_weights` w ON d.`challenge_mode` = w.`challenge_mode` "
+     . "WHERE d.`map_id` IN (0, 1, 530, 571) "
+     . "ORDER BY d.`death_time` DESC";
+$result = mysqli_query($conn, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $raceId = (int) $row['race'];
+        $classId = $row['class'] !== null ? (int) $row['class'] : null;
+        $deathMapDeaths[] = [
+            'name'       => $row['character_name'],
+            'level'      => (int) $row['level'],
+            'cause'      => $row['cause'],
+            'mode_name'  => $row['mode_name'],
+            'death_date' => $row['death_time'] ? date('Y-m-d H:i:s', (int) $row['death_time']) : null,
+            'position_x' => $row['position_x'] !== null ? (float) $row['position_x'] : null,
+            'position_y' => $row['position_y'] !== null ? (float) $row['position_y'] : null,
+            'map'        => $row['map_id'] !== null ? (int) $row['map_id'] : null,
+            'is_alive'   => 0,
+            'race'        => $raceId,
+            'race_name'   => $RACE_NAMES[$raceId] ?? 'Desconocida',
+            'race_icon'   => $RACE_ICONS[$raceId] ?? null,
+            'class'       => $classId,
+            'class_name'  => $classId !== null ? ($CLASS_NAMES[$classId] ?? 'Desconocida') : null,
+            'class_color' => $classId !== null ? ($CLASS_COLORS[$classId] ?? '#cccccc') : '#cccccc',
+        ];
+    }
+    mysqli_free_result($result);
+}
+$payload['deathmap_deaths'] = $deathMapDeaths;
 
 // ---- 8. Sala de la Fama (season winners) ----
 $hall = [];

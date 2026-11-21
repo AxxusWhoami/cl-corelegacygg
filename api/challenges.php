@@ -230,7 +230,7 @@ switch ($view) {
         respond(200, [
             'ok'         => true,
             'view'       => 'deathmap',
-            'deaths'     => $cached['deaths'] ?? [],
+            'deaths'     => $cached['deathmap_deaths'] ?? [],
             'alive'      => $cached['alive_positions'] ?? [],
             'updated_at' => $updated_at,
         ]);

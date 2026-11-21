@@ -174,8 +174,11 @@
     .alive-badge.na { background: rgba(130,145,160,.12); color: #90a0b0; border: 1px solid rgba(130,145,160,.2); }
 
     /* Deaths table */
-    .char-link { color: #4dd8ff; text-decoration: none; transition: all .2s ease; }
+    .char-link { display: inline-flex; align-items: center; gap: .45rem; color: #4dd8ff; text-decoration: none; transition: all .2s ease; }
     .char-link:hover { color: #ffd24a; text-shadow: 0 0 8px rgba(255,210,80,.2); text-decoration: underline; }
+    .char-race { display: inline-flex; align-items: center; gap: .25rem; color: #8ea9bb; font-size: .68rem; text-decoration: none; white-space: nowrap; }
+    .char-race img { width: 25px; height: 25px; border-radius: 50%; border: 1px solid rgba(141,214,245,.35); box-shadow: 0 0 5px rgba(77,189,232,.18); object-fit: cover; }
+    .char-link:hover .char-race { color: #ffd24a; }
 
     .death-cause { color: #ff7878; font-weight: 600; }
     .death-mode { color: #ffd24a; font-size: .72rem; font-weight: 600; text-shadow: 0 0 6px rgba(255,210,80,.15); }
@@ -372,8 +375,15 @@
         return div.innerHTML;
       }
 
-      function charLink(name) {
-        return '<a class="char-link" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(name) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(name) + '</a>';
+      function charLink(entry) {
+        var name = entry.name || '';
+        var race = '';
+        if (entry.race_name) {
+          race = '<span class="char-race" title="' + escapeHtml(entry.race_name) + '">';
+          if (entry.race_icon) race += '<img src="' + escapeHtml(entry.race_icon) + '" alt="' + escapeHtml(entry.race_name) + '" loading="lazy" />';
+          race += escapeHtml(entry.race_name) + '</span>';
+        }
+        return '<a class="char-link" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(name) + '" target="_blank" rel="noopener noreferrer">' + race + escapeHtml(name) + '</a>';
       }
 
       function rankClass(pos) {
@@ -423,7 +433,7 @@
           var rc = rankClass(pos);
           html += '<tr>';
           html += '<td data-label="Posición"><span class="rank-pos ' + rc + '">' + pos + '</span></td>';
-          html += '<td data-label="Personaje">' + charLink(entry.name) + '</td>';
+          html += '<td data-label="Personaje">' + charLink(entry) + '</td>';
           if (opts.showScore) html += '<td class="right" data-label="Puntuación">' + (entry.score || 0).toLocaleString('es-ES') + '</td>';
           if (opts.showChallenges) html += '<td class="center" data-label="Desafíos">' + (entry.challenges_active || 0) + '</td>';
           if (opts.showLevel) html += '<td class="center" data-label="Nivel">' + (entry.highest_level || 0) + '</td>';
@@ -450,7 +460,7 @@
 
         entries.forEach(function(entry) {
           html += '<tr>';
-          html += '<td data-label="Personaje">' + charLink(entry.name) + '</td>';
+          html += '<td data-label="Personaje">' + charLink(entry) + '</td>';
           html += '<td class="center" data-label="Nivel">' + (entry.level || 0) + '</td>';
           html += '<td data-label="Modo"><span class="death-mode">' + escapeHtml(entry.mode_name) + '</span></td>';
           html += '<td data-label="Causa"><span class="death-cause">' + escapeHtml(entry.cause) + '</span></td>';
@@ -487,7 +497,7 @@
             var rc = rankClass(entry.rank_position);
             html += '<tr>';
             html += '<td data-label="Posición"><span class="rank-pos ' + rc + '">' + entry.rank_position + '</span></td>';
-            html += '<td data-label="Personaje">' + charLink(entry.name) + '</td>';
+            html += '<td data-label="Personaje">' + charLink(entry) + '</td>';
             html += '<td class="right" data-label="Puntuación">' + (entry.score || 0).toLocaleString('es-ES') + '</td>';
             html += '<td class="center" data-label="Desafíos">' + (entry.challenges_active || 0) + '</td>';
             html += '<td class="center" data-label="Nivel">' + (entry.highest_level || 0) + '</td>';

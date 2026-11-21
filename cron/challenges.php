@@ -45,6 +45,20 @@ $CLASS_COLORS = [
     5 => '#FFFFFF', 6 => '#C41F3B', 7 => '#0070DE', 8 => '#69CCF0',
     9 => '#9482C9', 11 => '#FF7D0A',
 ];
+$RACE_ICONS = [
+    1 => '/assets/icons/medium/achievement_character_human_male.jpg',
+    2 => '/assets/icons/medium/achievement_character_orc_male.jpg',
+    3 => '/assets/icons/medium/achievement_character_dwarf_male.jpg',
+    4 => '/assets/icons/medium/achievement_character_nightelf_male.jpg',
+    5 => '/assets/icons/medium/achievement_character_undead_male.jpg',
+    6 => '/assets/icons/medium/achievement_character_tauren_male.jpg',
+    7 => '/assets/icons/medium/achievement_character_gnome_male.jpg',
+    8 => '/assets/icons/medium/achievement_character_troll_male.jpg',
+    9 => '/assets/icons/medium/achievement_character_undead_male.jpg',
+    10 => '/assets/icons/medium/achievement_character_bloodelf_male.jpg',
+    11 => '/assets/icons/medium/achievement_character_human_male.jpg',
+    22 => '/assets/icons/medium/achievement_character_human_male.jpg',
+];
 $MODE_ICONS = [
     0 => '/assets/desafios/desafio_hardcore_512.png',
     1 => '/assets/desafios/desafio_semihardcore_512.png',
@@ -87,6 +101,7 @@ $payload = [
     'updated_at' => date('Y-m-d H:i:s'),
     'meta'       => [
         'race_names'  => $RACE_NAMES,
+        'race_icons'  => $RACE_ICONS,
         'class_names' => $CLASS_NAMES,
         'class_colors'=> $CLASS_COLORS,
         'mode_icons'  => $MODE_ICONS,
@@ -304,6 +319,59 @@ if ($result) {
     mysqli_free_result($result);
 }
 $payload['hall'] = $hall;
+
+// Añadir raza y retrato a todas las clasificaciones antes de generar el JSON.
+$rankingLists = [&$global, &$monthly['entries'], &$quarterly['entries'], &$combined, &$deaths, &$hall];
+foreach ($modes as &$modeEntries) {
+    $rankingLists[] = &$modeEntries;
+}
+unset($modeEntries);
+
+$characterNames = [];
+foreach ($rankingLists as $entries) {
+    foreach ($entries as $entry) {
+        if (!empty($entry['name'])) {
+            $characterNames[$entry['name']] = true;
+        }
+    }
+}
+$raceByName = [];
+if ($characterNames) {
+    $nameList = [];
+    foreach (array_keys($characterNames) as $characterName) {
+        $nameList[] = "'" . mysqli_real_escape_string($conn, $characterName) . "'";
+    }
+    $raceResult = mysqli_query($conn, "SELECT `name`, `race` FROM `characters` WHERE `name` IN (" . implode(',', $nameList) . ")");
+    if ($raceResult) {
+        while ($raceRow = mysqli_fetch_assoc($raceResult)) {
+            $raceId = (int) $raceRow['race'];
+            $raceByName[$raceRow['name']] = [
+                'race'      => $raceId,
+                'race_name' => $RACE_NAMES[$raceId] ?? 'Desconocida',
+                'race_icon' => $RACE_ICONS[$raceId] ?? null,
+            ];
+        }
+        mysqli_free_result($raceResult);
+    }
+}
+foreach ($rankingLists as &$entries) {
+    foreach ($entries as &$entry) {
+        $raceData = $raceByName[$entry['name']] ?? ['race' => null, 'race_name' => null, 'race_icon' => null];
+        $entry = array_merge($entry, $raceData);
+    }
+    unset($entry);
+}
+unset($entries);
+
+$payload['global'] = $global;
+$payload['monthly']['entries'] = $monthly['entries'];
+$payload['quarterly']['entries'] = $quarterly['entries'];
+$payload['combined'] = $combined;
+$payload['deaths'] = $deaths;
+$payload['hall'] = $hall;
+foreach ($modes as $modeId => $modeEntries) {
+    $payload['modes'][$modeId] = $modeEntries;
+}
 
 mysqli_close($conn);
 

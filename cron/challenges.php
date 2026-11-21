@@ -128,11 +128,11 @@ if ($result) {
 }
 $payload['weights'] = $weights;
 
-// ---- 2. Top 20 Global (All-Time, season_id = 1) ----
+// ---- 2. Top 20 Global de la temporada activa ----
 $global = [];
 $sql = "SELECT `character_name`, `total_score`, `challenges_active`, `highest_level`, `is_alive`, `last_updated` "
      . "FROM `challenge_mode_rankings` "
-     . "WHERE `season_id` = 1 "
+     . "WHERE `season_id` = (SELECT `id` FROM `challenge_mode_seasons` WHERE `is_active` = 1 ORDER BY `start_time` DESC LIMIT 1) "
      . "ORDER BY `total_score` DESC "
      . "LIMIT 20";
 $result = mysqli_query($conn, $sql);

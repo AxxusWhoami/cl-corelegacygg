@@ -310,14 +310,13 @@
     .death-ticker-item .lvl { color:#ffd24a; font-weight:700; }
     @keyframes tickerScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
     @media (prefers-reduced-motion:reduce) { .death-ticker-content { animation:none; } }
-    .race-chart { margin:1rem 0 0; padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.15); border-radius:10px; background:rgba(8,22,36,.4); }
-    .race-chart-title { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.72rem; color:#4dd8ff; margin:0 0 .6rem; letter-spacing:.05em; text-shadow:0 0 6px rgba(77,189,232,.1); }
-    .race-bar-row { display:flex; align-items:center; gap:.5rem; margin:.25rem 0; }
-    .race-bar-label { display:flex; align-items:center; gap:.3rem; width:90px; flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#b8d4e8; }
-    .race-bar-label img { width:18px; height:18px; border-radius:50%; border:1px solid rgba(141,214,245,.25); object-fit:cover; flex-shrink:0; }
-    .race-bar-track { flex:1; height:10px; border-radius:5px; background:rgba(255,255,255,.04); overflow:hidden; }
-    .race-bar-fill { height:100%; border-radius:5px; background:linear-gradient(90deg,rgba(77,189,232,.5),rgba(77,189,232,.25)); transition:width .6s ease; }
-    .race-bar-count { flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; width:24px; text-align:right; }
+    .class-chart { margin:1rem 0 0; padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.15); border-radius:10px; background:rgba(8,22,36,.4); }
+    .class-chart-title { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.72rem; color:#4dd8ff; margin:0 0 .6rem; letter-spacing:.05em; text-shadow:0 0 6px rgba(77,189,232,.1); }
+    .class-bar-row { display:flex; align-items:center; gap:.5rem; margin:.25rem 0; }
+    .class-bar-label { display:flex; align-items:center; gap:.3rem; width:110px; flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#b8d4e8; }
+    .class-bar-track { flex:1; height:10px; border-radius:5px; background:rgba(255,255,255,.04); overflow:hidden; }
+    .class-bar-fill { height:100%; border-radius:5px; background:linear-gradient(90deg,rgba(255,210,80,.55),rgba(77,189,232,.3)); transition:width .6s ease; }
+    .class-bar-count { flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; width:24px; text-align:right; }
     .survival-bar { display:flex; align-items:center; gap:.5rem; margin:.5rem 0 0; }
     .survival-bar-track { flex:1; height:22px; border-radius:11px; overflow:hidden; background:rgba(255,255,255,.04); display:flex; }
     .survival-bar-alive { height:100%; background:linear-gradient(90deg,rgba(40,220,70,.4),rgba(20,180,40,.3)); transition:width .6s ease; }
@@ -1329,7 +1328,7 @@
       }
       loadSeasonInfo();
 
-      // ---- Race distribution + survival ratio (on global load) ----
+      // ---- Class distribution + survival ratio (on global load) ----
       function loadExtraPanels() {
         fetch(API_URL + '?view=global', { headers: { 'Accept': 'application/json' } })
           .then(function(res) { return res.json(); })
@@ -1337,12 +1336,12 @@
             if (!data || data.ok !== true || !data.entries || data.entries.length === 0) return;
             var entries = data.entries;
             var alive = 0, dead = 0;
-            var raceCounts = {};
+            var classCounts = {};
             entries.forEach(function(e) {
               if (e.is_alive === 1) alive++; else dead++;
-              if (e.race_name) {
-                if (!raceCounts[e.race_name]) raceCounts[e.race_name] = { count: 0, icon: e.race_icon || '' };
-                raceCounts[e.race_name].count++;
+              if (e.class_name) {
+                if (!classCounts[e.class_name]) classCounts[e.class_name] = { count: 0, color: e.class_color || '#4dd8ff' };
+                classCounts[e.class_name].count++;
               }
             });
             var html = '';
@@ -1356,17 +1355,16 @@
               html += '<span class="survival-label"><span class="alive-n">' + alive + '</span> vivos · <span class="dead-n">' + dead + '</span> caídos</span>';
               html += '</div></div>';
             }
-            var raceKeys = Object.keys(raceCounts);
-            if (raceKeys.length > 0) {
-              raceKeys.sort(function(a, b) { return raceCounts[b].count - raceCounts[a].count; });
-              var maxCount = raceCounts[raceKeys[0]].count;
-              html += '<div class="race-chart">';
-              html += '<p class="race-chart-title">Distribución de razas</p>';
-              raceKeys.forEach(function(race) {
-                var r = raceCounts[race];
-                var pct = Math.round((r.count / maxCount) * 100);
-                var imgHtml = r.icon ? '<img src="' + escapeHtml(r.icon) + '" alt="' + escapeHtml(race) + '" loading="lazy" />' : '';
-                html += '<div class="race-bar-row"><span class="race-bar-label">' + imgHtml + escapeHtml(race) + '</span><div class="race-bar-track"><div class="race-bar-fill" style="width:' + pct + '%;"></div></div><span class="race-bar-count">' + r.count + '</span></div>';
+            var classKeys = Object.keys(classCounts);
+            if (classKeys.length > 0) {
+              classKeys.sort(function(a, b) { return classCounts[b].count - classCounts[a].count; });
+              var maxCount = classCounts[classKeys[0]].count;
+              html += '<div class="class-chart">';
+              html += '<p class="class-chart-title">Distribución de clases</p>';
+              classKeys.forEach(function(className) {
+                var c = classCounts[className];
+                var pct = Math.round((c.count / maxCount) * 100);
+                html += '<div class="class-bar-row"><span class="class-bar-label" style="color:' + escapeHtml(c.color) + ';">' + escapeHtml(className) + '</span><div class="class-bar-track"><div class="class-bar-fill" style="width:' + pct + '%;background:linear-gradient(90deg,' + escapeHtml(c.color) + ',rgba(77,189,232,.25));"></div></div><span class="class-bar-count">' + c.count + '</span></div>';
               });
               html += '</div>';
             }

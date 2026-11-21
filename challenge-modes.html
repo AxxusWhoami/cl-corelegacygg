@@ -75,6 +75,7 @@
       80% { opacity:.6; }
       100% { transform:translate(var(--dx), -90px) scale(.3); opacity:0; }
     }
+    @media (max-width:1024px) { .fire-logo-wrap { display:none !important; } }
     @media (max-width:600px) { .fire-logo-wrap { width:160px; height:160px; } .fire-logo-wrap img { width:160px; height:160px; } }
     @media (prefers-reduced-motion:reduce) { .fiche-card { transition:none; } .fire-logo-wrap img, .fire-logo-glow, .fiche-card-img img, .fiche-glow, .ember { animation:none !important; } }
     .fiche-card-meta { display:flex; align-items:center; justify-content:space-between; gap:.75rem; margin:-.2rem 0 .2rem; }

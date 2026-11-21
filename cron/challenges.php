@@ -395,7 +395,7 @@ if ($characterNames) {
     foreach (array_keys($characterNames) as $characterName) {
         $nameList[] = "'" . mysqli_real_escape_string($conn, $characterName) . "'";
     }
-    $raceResult = mysqli_query($conn, "SELECT `name`, `race`, `class` FROM `characters` WHERE `name` IN (" . implode(',', $nameList) . ")");
+    $raceResult = mysqli_query($conn, "SELECT `name`, `race`, `class`, `logout_time` FROM `characters` WHERE `name` IN (" . implode(',', $nameList) . ")");
     if ($raceResult) {
         while ($raceRow = mysqli_fetch_assoc($raceResult)) {
             $raceId = (int) $raceRow['race'];
@@ -407,12 +407,13 @@ if ($characterNames) {
                 'class'       => $classId,
                 'class_name'  => $classId !== null ? ($CLASS_NAMES[$classId] ?? 'Desconocida') : null,
                 'class_color' => $classId !== null ? ($CLASS_COLORS[$classId] ?? '#cccccc') : '#cccccc',
+                'last_online' => $raceRow['logout_time'] ? date('Y-m-d H:i:s', (int) $raceRow['logout_time']) : null,
             ];
         }
         mysqli_free_result($raceResult);
     }
 }
-$defaultInfo = ['race' => null, 'race_name' => null, 'race_icon' => null, 'class' => null, 'class_name' => null, 'class_color' => '#cccccc'];
+$defaultInfo = ['race' => null, 'race_name' => null, 'race_icon' => null, 'class' => null, 'class_name' => null, 'class_color' => '#cccccc', 'last_online' => null];
 foreach ($rankingLists as &$entries) {
     foreach ($entries as &$entry) {
         $info = $charInfo[$entry['name']] ?? $defaultInfo;

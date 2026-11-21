@@ -1081,14 +1081,14 @@
           html += '<p class="survival-highlight-name">' + raceHtml + escapeHtml(longest.name) + '</p>';
           html += '<p class="survival-highlight-days">' + longest.streak_days + ' dias sin morir</p>';
           html += '<p class="survival-highlight-sub">';
-          if (longest.streak_started_at) html += 'Desde ' + escapeHtml(fmtDate(longest.streak_started_at));
+          if (longest.last_death_time) html += 'Ultima muerte: ' + escapeHtml(fmtDate(longest.last_death_time));
           if (longest.score) html += ' · ' + (longest.score || 0).toLocaleString('es-ES') + ' puntos';
           html += '</p>';
           html += '</div>';
         }
         html += '<div class="ranking-table-wrap"><table class="ranking-table"><thead><tr>';
         html += '<th>#</th><th>Personaje</th><th class="center">Dias sin morir</th>';
-        html += '<th class="center">Inicio racha</th><th class="center">Ultima muerte</th>';
+        html += '<th class="center">Ultima muerte</th>';
         html += '<th class="right">Puntuacion</th><th class="center">Nivel</th><th class="center">Estado</th>';
         html += '</tr></thead><tbody>';
         entries.forEach(function(e, i) {
@@ -1098,7 +1098,6 @@
           html += '<td data-label="Posicion"><span class="rank-pos ' + rc + '">' + pos + '</span></td>';
           html += '<td data-label="Personaje">' + charLink(e) + '</td>';
           html += '<td class="center" data-label="Dias sin morir">' + (e.streak_days || 0) + '</td>';
-          html += '<td class="center" data-label="Inicio racha">' + escapeHtml(fmtDate(e.streak_started_at)) + '</td>';
           html += '<td class="center" data-label="Ultima muerte">' + escapeHtml(fmtDate(e.last_death_time)) + '</td>';
           html += '<td class="right" data-label="Puntuacion">' + (e.score || 0).toLocaleString('es-ES') + '</td>';
           html += '<td class="center" data-label="Nivel">' + (e.highest_level || 0) + '</td>';

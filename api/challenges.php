@@ -202,20 +202,13 @@ switch ($view) {
     case 'survival':
         $entries = $cached['season']['entries'] ?? [];
         $valid = [];
+        $now = time();
         foreach ($entries as $e) {
             $streak = (int) ($e['streak_days'] ?? 0);
             $alive = (int) ($e['is_alive'] ?? 0) === 1;
-            $streakStart = $e['streak_started_at'] ?? null;
-            $lastDeath = $e['last_death_time'] ?? null;
-            if ($streak >= 1 && $alive && $streakStart) {
-                if ($lastDeath && strtotime($lastDeath) > strtotime($streakStart)) {
-                    $streak = 0;
-                }
-            } else {
-                $streak = 0;
-            }
-            if ($streak < 1) continue;
-            $e['streak_days'] = $streak;
+            $lastOnline = $e['last_online'] ?? null;
+            if ($streak < 1 || !$alive) continue;
+            if (!$lastOnline || ($now - strtotime($lastOnline)) >= 86400) continue;
             $valid[] = $e;
         }
         usort($valid, function($a, $b) {

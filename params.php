@@ -11,6 +11,8 @@ $DB_WEB     = 'corelegacygg';
 $DB_PORT    = 3306;
 $DB_CHARSET = 'utf8mb4';
 
+$RPP_CHAR   = 'acore_characters_rpp';
+
 // Tablas del changelog en la base de datos web
 $TABLE_CHANGELOG_COMMITS = 'changelog_commits';
 $TABLE_CHANGELOG_LANG     = 'changelog_lang';

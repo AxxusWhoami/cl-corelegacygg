@@ -176,9 +176,9 @@
     /* Deaths table */
     .char-link { display: inline-flex; align-items: center; gap: .45rem; color: #4dd8ff; text-decoration: none; transition: all .2s ease; }
     .char-link:hover { color: #ffd24a; text-shadow: 0 0 8px rgba(255,210,80,.2); text-decoration: underline; }
-    .char-race { display: inline-flex; align-items: center; gap: .25rem; color: #8ea9bb; font-size: .68rem; text-decoration: none; white-space: nowrap; }
-    .char-race img { width: 25px; height: 25px; border-radius: 50%; border: 1px solid rgba(141,214,245,.35); box-shadow: 0 0 5px rgba(77,189,232,.18); object-fit: cover; }
-    .char-link:hover .char-race { color: #ffd24a; }
+    .char-race { display: inline-flex; align-items: center; text-decoration: none; }
+    .char-race img { width: 25px; height: 25px; border-radius: 50%; border: 1px solid rgba(141,214,245,.35); box-shadow: 0 0 5px rgba(77,189,232,.18); object-fit: cover; transition: all .2s ease; }
+    .char-link:hover .char-race img { border-color: rgba(255,210,80,.65); box-shadow: 0 0 8px rgba(255,210,80,.25); }
 
     .death-cause { color: #ff7878; font-weight: 600; }
     .death-mode { color: #ffd24a; font-size: .72rem; font-weight: 600; text-shadow: 0 0 6px rgba(255,210,80,.15); }
@@ -378,10 +378,8 @@
       function charLink(entry) {
         var name = entry.name || '';
         var race = '';
-        if (entry.race_name) {
-          race = '<span class="char-race" title="' + escapeHtml(entry.race_name) + '">';
-          if (entry.race_icon) race += '<img src="' + escapeHtml(entry.race_icon) + '" alt="' + escapeHtml(entry.race_name) + '" loading="lazy" />';
-          race += escapeHtml(entry.race_name) + '</span>';
+        if (entry.race_name && entry.race_icon) {
+          race = '<span class="char-race" title="' + escapeHtml(entry.race_name) + '"><img src="' + escapeHtml(entry.race_icon) + '" alt="' + escapeHtml(entry.race_name) + '" loading="lazy" /></span>';
         }
         return '<a class="char-link" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(name) + '" target="_blank" rel="noopener noreferrer">' + race + escapeHtml(name) + '</a>';
       }

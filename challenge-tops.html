@@ -520,6 +520,7 @@
       var deathTickerContent = document.getElementById('deathTickerContent');
       var seasonTimerEl = document.getElementById('seasonTimer');
       var extraPanelsEl = document.getElementById('extraPanels');
+      var rankingLegendEl = document.querySelector('.ranking-legend');
       var currentEntries = null;
       var currentRenderFn = null;
       var currentRenderOpts = null;
@@ -1149,6 +1150,7 @@
                 currentRenderFn = renderTable;
                 currentRenderOpts = { showScore: true, showChallenges: true, showLevel: true, showState: true, hasPermadeath: true };
                 renderTable(filterEntries(entries), currentRenderOpts);
+                loadExtraPanels(entries, view);
                 break;
               case 'mode':
                 var mi = data.mode_info || {};
@@ -1156,8 +1158,10 @@
                 currentRenderFn = renderTable;
                 currentRenderOpts = { showScore: true, showChallenges: true, showLevel: true, showState: true, hasPermadeath: mi.is_permadeath === 1 };
                 renderTable(filterEntries(entries), currentRenderOpts);
+                loadExtraPanels(entries, view);
                 break;
               case 'deaths':
+                loadExtraPanels([], view);
                 currentEntries = entries;
                 currentRenderFn = renderDeaths;
                 currentRenderOpts = null;
@@ -1231,6 +1235,8 @@
           t.classList.toggle('active', active);
           t.setAttribute('aria-selected', active ? 'true' : 'false');
         });
+        if (rankingLegendEl) rankingLegendEl.style.display = view === 'deaths' ? 'none' : '';
+        if (view !== 'season' && view !== 'mode' && view !== 'combined') loadExtraPanels([], view);
 
         if (view === 'mode') {
           if (!weightsData) {
@@ -1342,12 +1348,11 @@
       loadSeasonInfo();
 
       // ---- Class distribution + survival ratio (on global load) ----
-      function loadExtraPanels() {
-        fetch(API_URL + '?view=season', { headers: { 'Accept': 'application/json' } })
-          .then(function(res) { return res.json(); })
-          .then(function(data) {
-            if (!data || data.ok !== true || !data.entries || data.entries.length === 0) return;
-            var entries = data.entries;
+      function loadExtraPanels(entries, view) {
+        if (view === 'deaths' || !entries || entries.length === 0) {
+          extraPanelsEl.innerHTML = '';
+          return;
+        }
             var alive = 0, dead = 0;
             var classCounts = {};
             var CLASS_ICONS = {
@@ -1419,10 +1424,7 @@
                 setTimeout(function() { copyRankBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar'; }, 2000);
               });
             }
-          })
-          .catch(function() {});
       }
-      loadExtraPanels();
 
       // Initial load
       selectTab(currentView);

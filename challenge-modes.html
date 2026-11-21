@@ -96,7 +96,7 @@
     .fiche-ranking-link { font-family:'Cinzel',Georgia,serif; font-size:.7rem; color:#4dd8ff; text-decoration:none; padding:.2rem .65rem; border-radius:6px; border:1px solid rgba(77,189,232,.2); background:rgba(77,189,232,.06); transition:all .25s ease; white-space:nowrap; }
     .fiche-ranking-link:hover { color:#ffd24a; border-color:rgba(255,210,80,.5); background:rgba(255,210,80,.08); box-shadow:0 0 10px rgba(255,210,80,.12); }
     .scoring-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-top:1rem; }
-    .scoring-card { padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.18); border-radius:10px; background:linear-gradient(160deg,rgba(8,22,36,.5),rgba(3,9,18,.9)); }
+    .scoring-card { display:flex; flex-direction:column; justify-content:space-between; padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.18); border-radius:10px; background:linear-gradient(160deg,rgba(8,22,36,.5),rgba(3,9,18,.9)); min-height:140px; }
     .scoring-card h4 { margin:0 0 .3rem; color:#f0c850; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.78rem; }
     .scoring-card p { margin:0; color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.74rem; line-height:1.55; }
     .scoring-card .scoring-value { display:block; font-size:1.2rem; color:#4dd8ff; font-weight:700; margin-top:.3rem; text-shadow:0 0 8px rgba(77,189,232,.2); }
@@ -438,13 +438,13 @@
             </div>
             <div class="scoring-card">
               <h4>Bonus de finalización</h4>
-              <p>Al alcanzar el nivel 80, el personaje recibe un bonus por completar el desafío activo.</p>
+              <p>Al alcanzar el nivel 80, el personaje recibe un bonus por completar cada desafío activo.</p>
               <span class="scoring-value">+ completado</span>
             </div>
             <div class="scoring-card">
               <h4>Bonus de sinergia</h4>
-              <p>Por cada desafío adicional activo más allá del primero, se aplica un bonus acumulable que premia las combinaciones.</p>
-              <span class="scoring-value">+ sinergia</span>
+              <p>Por cada desafío adicional activo más allá del primero, se aplica un bonus acumulable del +10% que premia las combinaciones.</p>
+              <span class="scoring-value">+10% c/u</span>
             </div>
           </div>
         </section>

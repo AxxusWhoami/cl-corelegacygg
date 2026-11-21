@@ -1538,7 +1538,7 @@
       }
 
       function clusterRadius(count) {
-        return Math.max(10, Math.min(10 + count * 3, 40));
+        return 12;
       }
 
       function drawDeathPoints(dispW, dispH) {
@@ -1601,10 +1601,10 @@
           ctx.fillStyle = '#ff5050';
           ctx.fill();
           ctx.strokeStyle = '#000';
-          ctx.lineWidth = 2;
+          ctx.lineWidth = 1;
           ctx.stroke();
           ctx.fillStyle = '#000';
-          ctx.font = 'bold ' + Math.max(10, Math.min(9 + count, 18)) + 'px Cinzel, Georgia, serif';
+          ctx.font = 'bold 12px Cinzel, Georgia, serif';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(String(count), cx, cy);

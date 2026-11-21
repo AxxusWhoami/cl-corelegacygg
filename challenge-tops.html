@@ -705,7 +705,7 @@
           html += '<td class="center" data-label="Nivel">' + (entry.level || 0) + '</td>';
           html += '<td data-label="Modo"><span class="death-mode">' + escapeHtml(entry.mode_name) + '</span></td>';
           html += '<td data-label="Causa"><span class="death-cause">' + escapeHtml(entry.cause) + '</span></td>';
-          html += '<td class="right" data-label="Fecha">' + escapeHtml(entry.death_date) + '</td>';
+          html += '<td class="right" data-label="Fecha">' + escapeHtml(fmtDate(entry.death_date)) + '</td>';
           html += '</tr>';
         });
 
@@ -860,7 +860,7 @@
           if (m.mode_name) html += '<div class="milestone-mode">' + escapeHtml(m.mode_name) + (m.milestone_level ? ' · nv.' + m.milestone_level : '') + '</div>';
           if (m.season_name) html += '<div style="font-size:.6rem;color:#5a8090;">' + escapeHtml(m.season_name) + '</div>';
           if (m.details) html += '<div class="milestone-details">' + escapeHtml(m.details) + '</div>';
-          html += '<div class="milestone-date">' + escapeHtml(m.achieved_at) + '</div>';
+          html += '<div class="milestone-date">' + escapeHtml(fmtDate(m.achieved_at)) + '</div>';
           html += '</div>';
         });
         if (milestoneOffset === 0) {
@@ -921,7 +921,7 @@
         html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.68rem;color:#b8d4e8;margin:0 0 .3rem;">Tipo: ' + escapeHtml(m.milestone_type) + (m.milestone_level ? ' · Nivel ' + m.milestone_level : '') + '</p>';
         if (m.season_name) html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.66rem;color:#5a8090;margin:0 0 .3rem;">' + escapeHtml(m.season_name) + '</p>';
         if (m.details) html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.7rem;color:#8da5b5;margin:.4rem 0 0;line-height:1.5;">' + escapeHtml(m.details) + '</p>';
-        html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.66rem;color:#5a8090;margin:.4rem 0 0;">' + escapeHtml(m.achieved_at) + '</p>';
+        html += '<p style="font-family:\'Cinzel\',Georgia,serif;font-size:.66rem;color:#5a8090;margin:.4rem 0 0;">' + escapeHtml(fmtDate(m.achieved_at)) + '</p>';
         html += '</div>';
         html += '<div style="display:flex;flex-direction:column;gap:.5rem;">';
         html += '<a class="back-to-modes" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(m.name) + '" target="_blank" rel="noopener noreferrer">Ver en Armeria</a>';
@@ -992,7 +992,7 @@
         body.innerHTML = html;
 
         // Build evolution chart
-        var dates = entries.map(function(e) { return e.snapshot_date; });
+        var dates = entries.map(function(e) { return fmtDate(e.snapshot_date); });
         var totals = entries.map(function(e) { return e.total_characters; });
         var actives = entries.map(function(e) { return e.active_characters; });
         if (statsChart) statsChart.destroy();
@@ -1137,7 +1137,7 @@
               return;
             }
             if (data.updated_at) {
-              updatedEl.textContent = 'Actualizado: ' + data.updated_at;
+              updatedEl.textContent = 'Actualizado: ' + fmtDate(data.updated_at);
             }
             var entries = data.entries || [];
             updateStats(entries, view);

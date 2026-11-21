@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rankings de Modos de Desafío — CoRe Legacy | Top Hardcore WoW</title>
+  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, mensual, trimestral, muertes notables y sala de la fama. WoW WotLK 3.3.5a Hardcore." />
+  <meta name="keywords" content="ranking challenge modes wow, top hardcore wow, clasificación modos desafío, ranking wow 3.3.5a, sala de la fama hardcore, iron man ranking, one life ranking, core legacy tops" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="publisher" content="CoRe Legacy" />
+  <meta name="language" content="es-ES" />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/challenge-tops" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/challenge-tops" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/challenge-tops" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/challenge-tops" />
+
+  <meta property="og:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
+  <meta property="og:description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, mensual, muertes notables y sala de la fama." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://corelegacy.gg/challenge-tops" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+  <meta property="og:image:alt" content="Rankings de Modos de Desafío — CoRe Legacy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
+  <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, mensual, muertes notables y sala de la fama." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+
+  <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CoRe Legacy" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <link rel="stylesheet" href="/assets/guia-page.css" />
+  <style>
+    .challenge-page-wrap { max-width: 1080px; }
+
+    .ranking-intro {
+      max-width: 850px; margin: 1.5rem auto 0;
+      color: #8dd6f5; font-family: 'Cinzel', Georgia, serif;
+      font-size: .92rem; line-height: 1.85;
+      text-shadow: 0 0 12px rgba(77,189,232,.16);
+    }
+    .ranking-intro p { margin: .5rem 0; }
+    .ranking-intro strong { color: #d4f0ff; }
+
+    /* Tabs bar */
+    .ranking-tabs {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin: 1.75rem 0 0; padding: .5rem;
+      border: 1px solid rgba(77,189,232,.18);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(8,18,30,.6), rgba(4,10,20,.5));
+    }
+    .ranking-tab {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: .78rem; letter-spacing: .05em;
+      padding: .55rem 1rem; border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent; color: #7a9aac;
+      cursor: pointer; transition: all .25s ease;
+      white-space: nowrap;
+    }
+    .ranking-tab:hover {
+      color: #b8d4e8; border-color: rgba(77,189,232,.2);
+      background: rgba(77,189,232,.05);
+    }
+    .ranking-tab.active {
+      color: #d4f0ff; border-color: rgba(77,189,232,.4);
+      background: linear-gradient(180deg, rgba(77,189,232,.15), rgba(13,110,168,.08));
+      box-shadow: 0 0 12px rgba(77,189,232,.1);
+      text-shadow: 0 0 8px rgba(77,189,232,.2);
+    }
+
+    /* Mode selector */
+    .mode-selector-wrap {
+      display: none; margin: 1rem 0 0;
+      flex-wrap: wrap; gap: .5rem; justify-content: center;
+    }
+    .mode-selector-wrap.visible { display: flex; }
+    .mode-chip {
+      display: flex; align-items: center; gap: .4rem;
+      padding: .4rem .75rem; border-radius: 8px;
+      border: 1px solid rgba(77,189,232,.15);
+      background: rgba(8,22,36,.5);
+      cursor: pointer; transition: all .25s ease;
+    }
+    .mode-chip:hover { border-color: rgba(77,189,232,.35); background: rgba(77,189,232,.05); }
+    .mode-chip.active {
+      border-color: rgba(240,200,80,.5);
+      background: linear-gradient(180deg, rgba(240,200,80,.08), rgba(4,12,22,.6));
+      box-shadow: 0 0 10px rgba(240,200,80,.08);
+    }
+    .mode-chip img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
+    .mode-chip span {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: .72rem; color: #b8d4e8; letter-spacing: .03em;
+    }
+    .mode-chip.active span { color: #f0c850; }
+
+    /* Ranking table */
+    .ranking-table-wrap {
+      margin: 1.5rem 0 0; overflow-x: auto;
+      border: 1px solid rgba(77,189,232,.15); border-radius: 12px;
+      background: linear-gradient(180deg, rgba(8,22,36,.55), rgba(3,9,18,.92));
+    }
+    .ranking-table { width: 100%; border-collapse: collapse; }
+    .ranking-table thead th {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+      color: #8dd6f5; text-transform: uppercase;
+      padding: .8rem 1rem; text-align: left;
+      border-bottom: 1px solid rgba(77,189,232,.18);
+      white-space: nowrap;
+    }
+    .ranking-table thead th.center { text-align: center; }
+    .ranking-table thead th.right { text-align: right; }
+    .ranking-table tbody tr {
+      border-bottom: 1px solid rgba(77,189,232,.06);
+      transition: background .2s ease;
+    }
+    .ranking-table tbody tr:hover { background: rgba(77,189,232,.04); }
+    .ranking-table tbody td {
+      padding: .65rem 1rem; font-family: 'Cinzel', Georgia, serif;
+      font-size: .8rem; color: #b8d4e8; white-space: nowrap;
+    }
+    .ranking-table tbody td.center { text-align: center; }
+    .ranking-table tbody td.right { text-align: right; }
+
+    .rank-pos {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      font-weight: 700; font-size: .75rem;
+      background: rgba(77,189,232,.08); color: #7a9aac;
+      border: 1px solid rgba(77,189,232,.1);
+    }
+    .rank-pos.gold {
+      background: linear-gradient(135deg, rgba(255,200,50,.25), rgba(200,150,20,.1));
+      border-color: rgba(255,200,50,.35); color: #f0c850;
+      box-shadow: 0 0 8px rgba(255,200,50,.1);
+    }
+    .rank-pos.silver {
+      background: linear-gradient(135deg, rgba(200,210,220,.2), rgba(150,160,170,.08));
+      border-color: rgba(200,210,220,.25); color: #c8d0d8;
+    }
+    .rank-pos.bronze {
+      background: linear-gradient(135deg, rgba(180,120,60,.2), rgba(140,90,40,.08));
+      border-color: rgba(180,120,60,.25); color: #c89060;
+    }
+
+    .alive-badge {
+      display: inline-block; padding: .15rem .5rem; border-radius: 4px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .alive-badge.alive { background: rgba(80,200,100,.12); color: #5cc870; border: 1px solid rgba(80,200,100,.2); }
+    .alive-badge.dead { background: rgba(200,60,60,.12); color: #d96a6a; border: 1px solid rgba(200,60,60,.2); }
+    .alive-badge.na { background: rgba(120,130,140,.1); color: #8a9aaa; border: 1px solid rgba(120,130,140,.15); }
+
+    /* Deaths table */
+    .death-cause { color: #d98c8c; }
+    .death-mode { color: #f0c850; font-size: .72rem; }
+
+    /* Hall of fame */
+    .hall-season-group { margin: 1.25rem 0 0; }
+    .hall-season-title {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: .9rem; color: #f0c850; letter-spacing: .05em;
+      margin: 0 0 .5rem; padding-bottom: .35rem;
+      border-bottom: 1px solid rgba(240,200,80,.15);
+    }
+
+    /* Loading and error states */
+    .ranking-loading {
+      display: flex; align-items: center; justify-content: center;
+      gap: .75rem; padding: 3rem 1rem;
+      font-family: 'Cinzel', Georgia, serif; font-size: .85rem; color: #7a9aac;
+    }
+    .ranking-spinner {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid rgba(77,189,232,.15); border-top-color: rgba(77,189,232,.6);
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .ranking-error {
+      display: flex; flex-direction: column; align-items: center; gap: .75rem;
+      padding: 2.5rem 1rem; text-align: center;
+    }
+    .ranking-error p { font-family: 'Cinzel', Georgia, serif; font-size: .82rem; color: #d98c8c; margin: 0; }
+    .ranking-error button {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: .5rem 1.25rem; border-radius: 8px;
+      border: 1px solid rgba(77,189,232,.3); color: #b8d4e8;
+      background: rgba(77,189,232,.06); cursor: pointer;
+      transition: all .25s ease;
+    }
+    .ranking-error button:hover {
+      border-color: #4bbde8; color: #d4f0ff;
+      box-shadow: 0 0 12px rgba(77,189,232,.15);
+    }
+
+    .ranking-empty {
+      padding: 2rem 1rem; text-align: center;
+      font-family: 'Cinzel', Georgia, serif; font-size: .82rem; color: #5a7a8a;
+    }
+
+    .ranking-updated {
+      font-family: 'Cinzel', Georgia, serif; font-size: .68rem;
+      color: #4a6580; letter-spacing: .05em; text-align: right;
+      margin: .75rem 0 0; opacity: .8;
+    }
+
+    .back-to-modes {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: 'Cinzel', Georgia, serif; font-size: .78rem;
+      color: #7a9aac; text-decoration: none;
+      padding: .5rem 1rem; border-radius: 8px;
+      border: 1px solid rgba(77,189,232,.12);
+      transition: all .25s ease;
+    }
+    .back-to-modes:hover { color: #b8d4e8; border-color: rgba(77,189,232,.3); }
+    .back-to-modes svg { width: 14px; height: 14px; }
+
+    @media (max-width: 700px) {
+      .ranking-table thead { display: none; }
+      .ranking-table tbody tr {
+        display: block; padding: .75rem; margin: .5rem 0;
+        border: 1px solid rgba(77,189,232,.1); border-radius: 10px;
+      }
+      .ranking-table tbody td {
+        display: flex; justify-content: space-between; padding: .3rem 0;
+        border-bottom: none; white-space: normal;
+      }
+      .ranking-table tbody td::before {
+        content: attr(data-label); color: #5a7a8a; font-size: .7rem;
+      }
+      .ranking-table tbody td.right { text-align: right; }
+      .ranking-table tbody td.center { text-align: right; }
+      .ranking-tab { font-size: .7rem; padding: .45rem .7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ranking-spinner { animation: none; }
+      .ranking-tab, .mode-chip { transition: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Rankings de Modos de Desafío — CoRe Legacy",
+    "description": "Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, mensual, trimestral, muertes notables y sala de la fama.",
+    "url": "https://corelegacy.gg/challenge-tops",
+    "inLanguage": "es-ES",
+    "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://corelegacy.gg/" },
+      { "@type": "ListItem", "position": 2, "name": "Modos de Desafío", "item": "https://corelegacy.gg/challenge-modes" },
+      { "@type": "ListItem", "position": 3, "name": "Rankings", "item": "https://corelegacy.gg/challenge-tops" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="snowContainer"></div>
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header" style="background:linear-gradient(180deg,rgba(2,14,30,.92) 0%,rgba(2,14,30,.6) 80%,transparent 100%);backdrop-filter:blur(6px);border-bottom:1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/">Inicio</a><a class="nav-link" href="/noticias">Noticias</a><a class="nav-link" href="/comunidad">Comunidad</a><a class="nav-link" href="/info-changelog">Server y Changelog</a><a class="nav-link" href="/soporte">Soporte</a><a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
+        </nav>
+        <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;"><a class="nav-link block" href="/">Inicio</a><a class="nav-link block" href="/noticias">Noticias</a><a class="nav-link block" href="/comunidad">Comunidad</a><a class="nav-link block" href="/info-changelog">Server y Changelog</a><a class="nav-link block" href="/soporte">Soporte</a><a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link block" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a></div>
+    </div>
+  </header>
+  <main>
+    <div class="guia-page-wrap challenge-page-wrap">
+      <div class="guia-page-header">
+        <h1 class="guia-page-title">Rankings de Modos de Desafío</h1>
+        <div class="frost-divider mx-auto" style="max-width:360px;"></div>
+        <div class="ranking-intro">
+          <p>Los <strong style="color:#d4f0ff;">Rankings de Modos de Desafío</strong> clasifican a los personajes según la dificultad del modo activado, el nivel alcanzado y el estado de supervivencia. La puntuación combina <strong style="color:#d4f0ff;">peso del modo × nivel</strong>, un <strong style="color:#d4f0ff;">bonus del 20%</strong> por mantenerse vivo en modos de muerte permanente, un <strong style="color:#d4f0ff;">bonus de finalización</strong> al alcanzar nivel 80 y un <strong style="color:#d4f0ff;">bonus de sinergia</strong> por cada desafío adicional activo.</p>
+          <p>Los datos se actualizan periódicamente desde el servidor del juego. Consulta los <a href="/challenge-modes" style="color:#8dd6f5;text-decoration:underline;">9 Modos de Desafío disponibles</a> para conocer las reglas y recompensas de cada uno.</p>
+        </div>
+      </div>
+
+      <div class="guia-page-body">
+        <!-- Tabs -->
+        <nav class="ranking-tabs" role="tablist" aria-label="Vistas de ranking">
+          <button class="ranking-tab active" data-view="global" role="tab" aria-selected="true">Global</button>
+          <button class="ranking-tab" data-view="mode" role="tab">Por Modo</button>
+          <button class="ranking-tab" data-view="monthly" role="tab">Mensual</button>
+          <button class="ranking-tab" data-view="quarterly" role="tab">Trimestral</button>
+          <button class="ranking-tab" data-view="deaths" role="tab">Muertes Notables</button>
+          <button class="ranking-tab" data-view="hall" role="tab">Sala de la Fama</button>
+        </nav>
+
+        <!-- Mode selector (only for "Por Modo" tab) -->
+        <div class="mode-selector-wrap" id="modeSelector"></div>
+
+        <!-- Content -->
+        <div class="ranking-table-wrap" id="rankingContent">
+          <div class="ranking-loading">
+            <div class="ranking-spinner"></div>
+            <span>Cargando rankings…</span>
+          </div>
+        </div>
+        <p class="ranking-updated" id="rankingUpdated"></p>
+
+        <div style="margin-top:2rem; text-align:center;">
+          <a href="/challenge-modes" class="back-to-modes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Volver a Modos de Desafío
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="site-footer-bg"><div class="site-footer-content"><p class="site-footer-disclaimer">CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a. Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.</p><div class="site-footer-links"><button class="site-footer-link" data-legal="tos">Términos de Servicio</button><span class="site-footer-sep">·</span><button class="site-footer-link" data-legal="privacy">Política de Privacidad</button><span class="site-footer-sep">·</span><a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a></div><p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p></div></div></footer>
+
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      var API_URL = '/api/challenges.php';
+      var currentView = 'global';
+      var currentMode = 0;
+      var weightsData = null;
+
+      var tabs = document.querySelectorAll('.ranking-tab');
+      var modeSelector = document.getElementById('modeSelector');
+      var content = document.getElementById('rankingContent');
+      var updatedEl = document.getElementById('rankingUpdated');
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        var div = document.createElement('div');
+        div.textContent = String(str);
+        return div.innerHTML;
+      }
+
+      function rankClass(pos) {
+        if (pos === 1) return 'gold';
+        if (pos === 2) return 'silver';
+        if (pos === 3) return 'bronze';
+        return '';
+      }
+
+      function aliveBadge(isAlive, hasPermadeath) {
+        if (hasPermadeath === false) return '<span class="alive-badge na">N/A</span>';
+        return isAlive === 1
+          ? '<span class="alive-badge alive">Vivo</span>'
+          : '<span class="alive-badge dead">Muerto</span>';
+      }
+
+      function showLoading() {
+        content.innerHTML = '<div class="ranking-loading"><div class="ranking-spinner"></div><span>Cargando rankings…</span></div>';
+        updatedEl.textContent = '';
+      }
+
+      function showError(msg) {
+        content.innerHTML = '<div class="ranking-error"><p>' + escapeHtml(msg || 'Error al cargar los datos.') + '</p><button onclick="location.reload()">Reintentar</button></div>';
+        updatedEl.textContent = '';
+      }
+
+      function showEmpty(msg) {
+        content.innerHTML = '<div class="ranking-empty">' + escapeHtml(msg || 'No hay datos disponibles.') + '</div>';
+      }
+
+      function renderTable(entries, opts) {
+        if (!entries || entries.length === 0) {
+          showEmpty('No hay personajes en este ranking todavía.');
+          return;
+        }
+        var html = '<table class="ranking-table"><thead><tr>';
+        html += '<th>#</th>';
+        html += '<th>Personaje</th>';
+        if (opts.showScore) html += '<th class="right">Puntuación</th>';
+        if (opts.showChallenges) html += '<th class="center">Desafíos</th>';
+        if (opts.showLevel) html += '<th class="center">Nivel</th>';
+        if (opts.showState) html += '<th class="center">Estado</th>';
+        html += '</tr></thead><tbody>';
+
+        entries.forEach(function(entry, i) {
+          var pos = i + 1;
+          var rc = rankClass(pos);
+          html += '<tr>';
+          html += '<td data-label="Posición"><span class="rank-pos ' + rc + '">' + pos + '</span></td>';
+          html += '<td data-label="Personaje">' + escapeHtml(entry.name) + '</td>';
+          if (opts.showScore) html += '<td class="right" data-label="Puntuación">' + (entry.score || 0).toLocaleString('es-ES') + '</td>';
+          if (opts.showChallenges) html += '<td class="center" data-label="Desafíos">' + (entry.challenges_active || 0) + '</td>';
+          if (opts.showLevel) html += '<td class="center" data-label="Nivel">' + (entry.highest_level || 0) + '</td>';
+          if (opts.showState) html += '<td class="center" data-label="Estado">' + aliveBadge(entry.is_alive, opts.hasPermadeath) + '</td>';
+          html += '</tr>';
+        });
+
+        html += '</tbody></table>';
+        content.innerHTML = html;
+      }
+
+      function renderDeaths(entries) {
+        if (!entries || entries.length === 0) {
+          showEmpty('No se han registrado muertes notables todavía.');
+          return;
+        }
+        var html = '<table class="ranking-table"><thead><tr>';
+        html += '<th>Personaje</th>';
+        html += '<th class="center">Nivel</th>';
+        html += '<th>Modo</th>';
+        html += '<th>Causa</th>';
+        html += '<th class="right">Fecha</th>';
+        html += '</tr></thead><tbody>';
+
+        entries.forEach(function(entry) {
+          html += '<tr>';
+          html += '<td data-label="Personaje">' + escapeHtml(entry.name) + '</td>';
+          html += '<td class="center" data-label="Nivel">' + (entry.level || 0) + '</td>';
+          html += '<td data-label="Modo"><span class="death-mode">' + escapeHtml(entry.mode_name) + '</span></td>';
+          html += '<td data-label="Causa"><span class="death-cause">' + escapeHtml(entry.cause) + '</span></td>';
+          html += '<td class="right" data-label="Fecha">' + escapeHtml(entry.death_date) + '</td>';
+          html += '</tr>';
+        });
+
+        html += '</tbody></table>';
+        content.innerHTML = html;
+      }
+
+      function renderHall(entries) {
+        if (!entries || entries.length === 0) {
+          showEmpty('La sala de la fama aún no tiene ganadores registrados.');
+          return;
+        }
+        var bySeason = {};
+        entries.forEach(function(e) {
+          var s = e.season_name || 'Temporada';
+          if (!bySeason[s]) bySeason[s] = [];
+          bySeason[s].push(e);
+        });
+
+        var html = '';
+        Object.keys(bySeason).forEach(function(seasonName) {
+          html += '<div class="hall-season-group">';
+          html += '<h3 class="hall-season-title">' + escapeHtml(seasonName) + '</h3>';
+          html += '<table class="ranking-table"><thead><tr>';
+          html += '<th>#</th><th>Personaje</th>';
+          html += '<th class="right">Puntuación</th><th class="center">Desafíos</th>';
+          html += '<th class="center">Nivel</th><th class="center">Estado</th>';
+          html += '</tr></thead><tbody>';
+          bySeason[seasonName].forEach(function(entry) {
+            var rc = rankClass(entry.rank_position);
+            html += '<tr>';
+            html += '<td data-label="Posición"><span class="rank-pos ' + rc + '">' + entry.rank_position + '</span></td>';
+            html += '<td data-label="Personaje">' + escapeHtml(entry.name) + '</td>';
+            html += '<td class="right" data-label="Puntuación">' + (entry.score || 0).toLocaleString('es-ES') + '</td>';
+            html += '<td class="center" data-label="Desafíos">' + (entry.challenges_active || 0) + '</td>';
+            html += '<td class="center" data-label="Nivel">' + (entry.highest_level || 0) + '</td>';
+            html += '<td class="center" data-label="Estado">' + aliveBadge(entry.is_alive, true) + '</td>';
+            html += '</tr>';
+          });
+          html += '</tbody></table>';
+          html += '</div>';
+        });
+
+        content.innerHTML = html;
+      }
+
+      function loadView(view, mode) {
+        showLoading();
+        var url = API_URL + '?view=' + encodeURIComponent(view);
+        if (view === 'mode') url += '&mode=' + encodeURIComponent(mode);
+
+        fetch(url, { headers: { 'Accept': 'application/json' } })
+          .then(function(res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function(data) {
+            if (!data || data.ok !== true) {
+              showError(data && data.message ? data.message : 'Respuesta inválida del servidor.');
+              return;
+            }
+            if (data.updated_at) {
+              updatedEl.textContent = 'Actualizado: ' + data.updated_at;
+            }
+
+            switch (view) {
+              case 'global':
+              case 'monthly':
+              case 'quarterly':
+              case 'combined':
+                renderTable(data.entries || [], {
+                  showScore: true, showChallenges: true,
+                  showLevel: true, showState: true, hasPermadeath: true
+                });
+                break;
+              case 'mode':
+                var mi = data.mode_info || {};
+                renderTable(data.entries || [], {
+                  showScore: true, showChallenges: true,
+                  showLevel: true, showState: true,
+                  hasPermadeath: mi.is_permadeath === 1
+                });
+                break;
+              case 'deaths':
+                renderDeaths(data.entries || []);
+                break;
+              case 'hall':
+                renderHall(data.entries || []);
+                break;
+            }
+          })
+          .catch(function(err) {
+            showError('No se pudieron cargar los datos. Revisa tu conexión e inténtalo de nuevo.');
+          });
+      }
+
+      function loadWeights(callback) {
+        fetch(API_URL + '?view=weights', { headers: { 'Accept': 'application/json' } })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data && data.ok === true) {
+              weightsData = data.entries || [];
+              buildModeSelector();
+              if (callback) callback();
+            }
+          })
+          .catch(function() {
+            if (callback) callback();
+          });
+      }
+
+      function buildModeSelector() {
+        if (!weightsData || weightsData.length === 0) return;
+        var html = '';
+        weightsData.forEach(function(w) {
+          var active = (w.challenge_mode === currentMode) ? ' active' : '';
+          html += '<button class="mode-chip' + active + '" data-mode="' + w.challenge_mode + '">';
+          if (w.icon) html += '<img src="' + escapeHtml(w.icon) + '" alt="" loading="lazy" />';
+          html += '<span>' + escapeHtml(w.mode_name) + '</span>';
+          html += '</button>';
+        });
+        modeSelector.innerHTML = html;
+
+        modeSelector.querySelectorAll('.mode-chip').forEach(function(chip) {
+          chip.addEventListener('click', function() {
+            currentMode = parseInt(this.getAttribute('data-mode'), 10);
+            modeSelector.querySelectorAll('.mode-chip').forEach(function(c) { c.classList.remove('active'); });
+            this.classList.add('active');
+            loadView('mode', currentMode);
+          });
+        });
+      }
+
+      function selectTab(view) {
+        currentView = view;
+        tabs.forEach(function(t) {
+          var active = t.getAttribute('data-view') === view;
+          t.classList.toggle('active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        if (view === 'mode') {
+          if (!weightsData) {
+            loadWeights(function() { loadView('mode', currentMode); });
+            return;
+          }
+          modeSelector.classList.add('visible');
+          loadView('mode', currentMode);
+        } else {
+          modeSelector.classList.remove('visible');
+          loadView(view);
+        }
+      }
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          selectTab(this.getAttribute('data-view'));
+        });
+      });
+
+      // Initial load
+      loadView('global');
+      // Preload weights in background for the mode tab
+      loadWeights();
+    })();
+  </script>
+</body>
+</html>

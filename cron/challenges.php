@@ -166,7 +166,7 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);
     if ($row) {
         $activeSeasonId = (int) $row['id'];
-        $activeSeasonName = $row['name'];
+        $activeSeasonName = 'Temporada ' . $activeSeasonId;
         $activeSeasonStart = $row['start_time'] ? date('Y-m-d', (int) $row['start_time']) : null;
         $activeSeasonEnd = $row['end_time'] ? date('Y-m-d', (int) $row['end_time']) : null;
     }
@@ -212,7 +212,7 @@ if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         $seasonsList[] = [
             'id'         => (int) $row['id'],
-            'name'       => $row['name'],
+            'name'       => 'Temporada ' . (int) $row['id'],
             'start_date' => $row['start_time'] ? date('Y-m-d', (int) $row['start_time']) : null,
             'end_date'   => $row['end_time'] ? date('Y-m-d', (int) $row['end_time']) : null,
             'is_active'  => (int) $row['is_active'],

@@ -354,7 +354,8 @@ $sql = "SELECT s.`name` AS season_name, w.`rank_position`, w.`character_name`, w
      . "w.`challenges_active`, w.`highest_level`, w.`is_alive`, w.`recorded_at` "
      . "FROM `challenge_mode_season_winners` w "
      . "JOIN `challenge_mode_seasons` s ON w.`season_id` = s.`id` "
-     . "ORDER BY w.`season_id`, w.`rank_position` ASC";
+     . "ORDER BY w.`season_id` DESC, w.`rank_position` ASC "
+     . "LIMIT 100";
 $result = mysqli_query($conn, $sql);
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {

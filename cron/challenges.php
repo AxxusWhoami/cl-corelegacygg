@@ -321,7 +321,7 @@ if ($result) {
 $payload['hall'] = $hall;
 
 // Añadir raza y retrato a todas las clasificaciones antes de generar el JSON.
-$rankingLists = [&$global, &$monthly['entries'], &$quarterly['entries'], &$combined, &$deaths, &$hall];
+$rankingLists = [&$global, &$monthly, &$quarterly, &$combined, &$deaths, &$hall];
 foreach ($modes as &$modeEntries) {
     $rankingLists[] = &$modeEntries;
 }
@@ -364,8 +364,8 @@ foreach ($rankingLists as &$entries) {
 unset($entries);
 
 $payload['global'] = $global;
-$payload['monthly']['entries'] = $monthly['entries'];
-$payload['quarterly']['entries'] = $quarterly['entries'];
+$payload['monthly']['entries'] = $monthly;
+$payload['quarterly']['entries'] = $quarterly;
 $payload['combined'] = $combined;
 $payload['deaths'] = $deaths;
 $payload['hall'] = $hall;

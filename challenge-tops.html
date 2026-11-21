@@ -294,6 +294,43 @@
     .legend-badge { display:inline-block; padding:.1rem .35rem; border-radius:3px; font-size:.58rem; font-weight:700; text-transform:uppercase; }
     .legend-badge.alive { background:rgba(20,180,40,.3); color:#2eea5a; border:1px solid rgba(40,220,70,.5); }
     .legend-badge.dead { background:rgba(180,20,20,.3); color:#ff2020; border:1px solid rgba(200,30,30,.5); }
+    .death-ticker { overflow:hidden; margin:1rem 0 0; padding:.5rem 0; border:1px solid rgba(200,30,30,.2); border-radius:8px; background:linear-gradient(90deg,rgba(20,4,4,.6),rgba(8,2,2,.9),rgba(20,4,4,.6)); display:flex; align-items:center; gap:.75rem; }
+    .death-ticker-label { flex-shrink:0; padding:0 .8rem; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.62rem; color:#ff5050; text-transform:uppercase; letter-spacing:.06em; text-shadow:0 0 6px rgba(200,30,30,.2); white-space:nowrap; }
+    .death-ticker-track { overflow:hidden; flex:1; }
+    .death-ticker-content { display:inline-flex; gap:1.5rem; white-space:nowrap; animation:tickerScroll 40s linear infinite; }
+    .death-ticker:hover .death-ticker-content { animation-play-state:paused; }
+    .death-ticker-item { font-family:'Cinzel',Georgia,serif; font-size:.7rem; color:#b8d4e8; display:inline-flex; align-items:center; gap:.3rem; }
+    .death-ticker-item .skull { color:#ff5050; }
+    .death-ticker-item .lvl { color:#ffd24a; font-weight:700; }
+    @keyframes tickerScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+    @media (prefers-reduced-motion:reduce) { .death-ticker-content { animation:none; } }
+    .race-chart { margin:1rem 0 0; padding:1rem 1.25rem; border:1px solid rgba(77,189,232,.15); border-radius:10px; background:rgba(8,22,36,.4); }
+    .race-chart-title { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.72rem; color:#4dd8ff; margin:0 0 .6rem; letter-spacing:.05em; text-shadow:0 0 6px rgba(77,189,232,.1); }
+    .race-bar-row { display:flex; align-items:center; gap:.5rem; margin:.25rem 0; }
+    .race-bar-label { display:flex; align-items:center; gap:.3rem; width:90px; flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#b8d4e8; }
+    .race-bar-label img { width:18px; height:18px; border-radius:50%; border:1px solid rgba(141,214,245,.25); object-fit:cover; flex-shrink:0; }
+    .race-bar-track { flex:1; height:10px; border-radius:5px; background:rgba(255,255,255,.04); overflow:hidden; }
+    .race-bar-fill { height:100%; border-radius:5px; background:linear-gradient(90deg,rgba(77,189,232,.5),rgba(77,189,232,.25)); transition:width .6s ease; }
+    .race-bar-count { flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; width:24px; text-align:right; }
+    .survival-bar { display:flex; align-items:center; gap:.5rem; margin:.5rem 0 0; }
+    .survival-bar-track { flex:1; height:22px; border-radius:11px; overflow:hidden; background:rgba(255,255,255,.04); display:flex; }
+    .survival-bar-alive { height:100%; background:linear-gradient(90deg,rgba(40,220,70,.4),rgba(20,180,40,.3)); transition:width .6s ease; }
+    .survival-bar-dead { height:100%; background:linear-gradient(90deg,rgba(180,20,20,.3),rgba(120,10,10,.2)); transition:width .6s ease; }
+    .survival-label { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#b8d4e8; white-space:nowrap; }
+    .survival-label .alive-n { color:#2eea5a; font-weight:700; }
+    .survival-label .dead-n { color:#ff5050; font-weight:700; }
+    .share-row { display:flex; gap:.4rem; margin-top:.5rem; flex-wrap:wrap; }
+    .share-btn { display:inline-flex; align-items:center; gap:.3rem; padding:.3rem .7rem; border-radius:6px; border:1px solid rgba(77,189,232,.18); background:rgba(10,24,40,.5); color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.62rem; cursor:pointer; transition:all .25s ease; text-decoration:none; }
+    .share-btn:hover { border-color:rgba(77,189,232,.4); color:#4dd8ff; box-shadow:0 0 8px rgba(77,189,232,.1); }
+    .share-btn svg { width:12px; height:12px; }
+    .follow-btn { display:inline-flex; align-items:center; gap:.3rem; padding:.2rem .5rem; border-radius:5px; border:1px solid rgba(77,189,232,.15); background:transparent; color:#5a8090; font-family:'Cinzel',Georgia,serif; font-size:.58rem; cursor:pointer; transition:all .2s ease; }
+    .follow-btn:hover { border-color:rgba(77,189,232,.35); color:#b8d4e8; }
+    .follow-btn.following { border-color:rgba(255,210,80,.4); color:#ffd24a; background:rgba(255,210,80,.06); }
+    .char-row-highlight { background:rgba(255,210,80,.06) !important; }
+    .season-timer { display:flex; flex-wrap:wrap; gap:.75rem; margin:0 0 .5rem; }
+    .season-timer-card { flex:1; min-width:120px; padding:.6rem .9rem; border:1px solid rgba(77,189,232,.15); border-radius:8px; background:rgba(8,22,36,.4); }
+    .season-timer-label { font-family:'Cinzel',Georgia,serif; font-size:.58rem; color:#5a8090; text-transform:uppercase; letter-spacing:.04em; margin:0 0 .15rem; }
+    .season-timer-value { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.82rem; color:#4dd8ff; font-weight:700; text-shadow:0 0 6px rgba(77,189,232,.1); }
   </style>
   <script type="application/ld+json">
   {
@@ -343,6 +380,11 @@
       </div>
 
       <div class="guia-page-body">
+        <div class="death-ticker" id="deathTicker" style="display:none;">
+          <span class="death-ticker-label">💀 Últimas muertes</span>
+          <div class="death-ticker-track"><div class="death-ticker-content" id="deathTickerContent"></div></div>
+        </div>
+        <div class="season-timer" id="seasonTimer"></div>
         <!-- Tabs -->
         <nav class="ranking-tabs" role="tablist" aria-label="Vistas de ranking">
           <button class="ranking-tab active" data-view="global" role="tab" aria-selected="true">Global</button>
@@ -384,11 +426,16 @@
           <span class="legend-item"><span class="legend-badge alive">Vivo</span> Personaje vivo</span>
           <span class="legend-item"><span class="legend-badge dead">💀 Muerto</span> Personaje fallecido</span>
         </div>
+        <div id="extraPanels"></div>
 
-        <div style="margin-top:2rem; text-align:center;">
+        <div style="margin-top:2rem; text-align:center; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
           <a href="/challenge-modes" class="back-to-modes">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             Volver a Modos de Desafío
+          </a>
+          <a href="/challenge-calculator" class="back-to-modes" style="color:#ffd24a;border-color:rgba(255,210,80,.25);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+            Calculadora de Desafíos
           </a>
         </div>
       </div>
@@ -414,10 +461,18 @@
       var statsEl = document.getElementById('rankingStats');
       var searchInput = document.getElementById('rankingSearch');
       var refreshBtn = document.getElementById('rankingRefresh');
+      var deathTicker = document.getElementById('deathTicker');
+      var deathTickerContent = document.getElementById('deathTickerContent');
+      var seasonTimerEl = document.getElementById('seasonTimer');
+      var extraPanelsEl = document.getElementById('extraPanels');
       var currentEntries = null;
       var currentRenderFn = null;
       var currentRenderOpts = null;
       var searchTerm = '';
+      var followedChars = {};
+      try { var saved = localStorage.getItem('cl_followed_chars'); if (saved) followedChars = JSON.parse(saved) || {}; } catch(e) {}
+
+      function saveFollowed() { try { localStorage.setItem('cl_followed_chars', JSON.stringify(followedChars)); } catch(e) {} }
 
       function escapeHtml(str) {
         if (str === null || str === undefined) return '';
@@ -432,7 +487,10 @@
         if (entry.race_name && entry.race_icon) {
           race = '<span class="char-race" title="' + escapeHtml(entry.race_name) + '"><img src="' + escapeHtml(entry.race_icon) + '" alt="' + escapeHtml(entry.race_name) + '" loading="lazy" /></span>';
         }
-        return '<a class="char-link" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(name) + '" target="_blank" rel="noopener noreferrer">' + race + escapeHtml(name) + '</a>';
+        var followCls = followedChars[name] ? ' following' : '';
+        var followText = followedChars[name] ? '★ Siguiendo' : '☆ Seguir';
+        var followBtn = '<button class="follow-btn' + followCls + '" data-follow="' + escapeHtml(name) + '">' + followText + '</button>';
+        return '<span style="display:inline-flex;align-items:center;gap:.4rem;"><a class="char-link" href="https://armeria.corelegacy.gg/characters.php?name=' + encodeURIComponent(name) + '" target="_blank" rel="noopener noreferrer">' + race + escapeHtml(name) + '</a>' + followBtn + '</span>';
       }
 
       function rankClass(pos) {
@@ -544,6 +602,32 @@
 
         html += '</tbody></table>';
         content.innerHTML = html;
+        attachFollowButtons();
+        highlightFollowed();
+      }
+
+      function attachFollowButtons() {
+        content.querySelectorAll('.follow-btn').forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var name = this.getAttribute('data-follow');
+            if (followedChars[name]) { delete followedChars[name]; }
+            else { followedChars[name] = true; }
+            saveFollowed();
+            rerender();
+          });
+        });
+      }
+
+      function highlightFollowed() {
+        content.querySelectorAll('tr').forEach(function(tr) {
+          var nameEl = tr.querySelector('.follow-btn');
+          if (nameEl) {
+            var name = nameEl.getAttribute('data-follow');
+            if (followedChars[name]) tr.classList.add('char-row-highlight');
+          }
+        });
       }
 
       function renderDeaths(entries) {
@@ -610,6 +694,8 @@
         });
 
         content.innerHTML = html;
+        attachFollowButtons();
+        highlightFollowed();
       }
 
       function loadView(view, mode) {
@@ -751,6 +837,112 @@
 
       // Read URL params for deep linking
       readUrlParams();
+
+      // ---- Death ticker ----
+      function loadDeathTicker() {
+        fetch(API_URL + '?view=deaths', { headers: { 'Accept': 'application/json' } })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (!data || data.ok !== true || !data.entries || data.entries.length === 0) return;
+            var items = data.entries.slice(0, 10);
+            var html = '';
+            items.forEach(function(d) {
+              html += '<span class="death-ticker-item"><span class="skull">💀</span> ' + escapeHtml(d.name) + ' <span class="lvl">nv.' + (d.level || 0) + '</span> ' + escapeHtml(d.mode_name) + '</span>';
+            });
+            if (items.length < 4) { deathTicker.style.display = 'none'; return; }
+            deathTickerContent.innerHTML = html + html;
+            deathTicker.style.display = 'flex';
+          })
+          .catch(function() {});
+      }
+      loadDeathTicker();
+
+      // ---- Season timer ----
+      function updateSeasonTimer() {
+        var now = new Date();
+        var monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        var monthDays = Math.ceil((monthEnd - now) / (1000 * 60 * 60 * 24));
+        var qNum = Math.ceil((now.getMonth() + 1) / 3);
+        var qEnd = new Date(now.getFullYear(), qNum * 3, 1);
+        var qDays = Math.ceil((qEnd - now) / (1000 * 60 * 60 * 24));
+        var html = '';
+        html += '<div class="season-timer-card"><p class="season-timer-label">Temporada mensual</p><p class="season-timer-value">' + monthDays + ' días restantes</p></div>';
+        html += '<div class="season-timer-card"><p class="season-timer-label">Temporada trimestral (Q' + qNum + ')</p><p class="season-timer-value">' + qDays + ' días restantes</p></div>';
+        seasonTimerEl.innerHTML = html;
+      }
+      updateSeasonTimer();
+
+      // ---- Race distribution + survival ratio (on global load) ----
+      function loadExtraPanels() {
+        fetch(API_URL + '?view=global', { headers: { 'Accept': 'application/json' } })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (!data || data.ok !== true || !data.entries || data.entries.length === 0) return;
+            var entries = data.entries;
+            var alive = 0, dead = 0;
+            var raceCounts = {};
+            entries.forEach(function(e) {
+              if (e.is_alive === 1) alive++; else dead++;
+              if (e.race_name) {
+                if (!raceCounts[e.race_name]) raceCounts[e.race_name] = { count: 0, icon: e.race_icon || '' };
+                raceCounts[e.race_name].count++;
+              }
+            });
+            var html = '';
+            if (alive + dead > 0) {
+              var alivePct = Math.round((alive / (alive + dead)) * 100);
+              var deadPct = 100 - alivePct;
+              html += '<div style="margin-top:1rem;padding:.8rem 1.1rem;border:1px solid rgba(77,189,232,.15);border-radius:10px;background:rgba(8,22,36,.4);">';
+              html += '<p class="race-chart-title">Supervivencia de personajes</p>';
+              html += '<div class="survival-bar">';
+              html += '<div class="survival-bar-track"><div class="survival-bar-alive" style="width:' + alivePct + '%;"></div><div class="survival-bar-dead" style="width:' + deadPct + '%;"></div></div>';
+              html += '<span class="survival-label"><span class="alive-n">' + alive + '</span> vivos · <span class="dead-n">' + dead + '</span> caídos</span>';
+              html += '</div></div>';
+            }
+            var raceKeys = Object.keys(raceCounts);
+            if (raceKeys.length > 0) {
+              raceKeys.sort(function(a, b) { return raceCounts[b].count - raceCounts[a].count; });
+              var maxCount = raceCounts[raceKeys[0]].count;
+              html += '<div class="race-chart">';
+              html += '<p class="race-chart-title">Distribución de razas</p>';
+              raceKeys.forEach(function(race) {
+                var r = raceCounts[race];
+                var pct = Math.round((r.count / maxCount) * 100);
+                var imgHtml = r.icon ? '<img src="' + escapeHtml(r.icon) + '" alt="' + escapeHtml(race) + '" loading="lazy" />' : '';
+                html += '<div class="race-bar-row"><span class="race-bar-label">' + imgHtml + escapeHtml(race) + '</span><div class="race-bar-track"><div class="race-bar-fill" style="width:' + pct + '%;"></div></div><span class="race-bar-count">' + r.count + '</span></div>';
+              });
+              html += '</div>';
+            }
+            if (entries.length > 0 && entries[0].name) {
+              var top = entries[0];
+              var shareText = 'El líder actual de los Rankings de CoRe Legacy es ' + top.name + ' con ' + (top.score || 0).toLocaleString('es-ES') + ' puntos y nivel ' + (top.highest_level || 0) + '. ¿Podrás superarlo?';
+              var shareUrl = 'https://corelegacy.gg/challenge-tops';
+              html += '<div style="margin-top:.75rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;">';
+              html += '<span style="font-family:\'Cinzel\',Georgia,serif;font-size:.66rem;color:#5a8090;">Compartir ranking:</span>';
+              html += '<div class="share-row" style="margin-top:0;">';
+              html += '<a class="share-btn" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg> Twitter/X</a>';
+              html += '<a class="share-btn" href="https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText + ' ' + shareUrl) + '" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.9L4 20l4.2-1.1a7.93 7.93 0 0 0 3.84.98h.01a7.94 7.94 0 0 0 5.55-13.56z"/></svg> WhatsApp</a>';
+              html += '<button class="share-btn" id="copyRankBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar</button>';
+              html += '</div></div>';
+            }
+            extraPanelsEl.innerHTML = html;
+            var copyRankBtn = document.getElementById('copyRankBtn');
+            if (copyRankBtn) {
+              copyRankBtn.addEventListener('click', function() {
+                var input = document.createElement('input');
+                input.value = 'https://corelegacy.gg/challenge-tops';
+                document.body.appendChild(input);
+                input.select();
+                try { document.execCommand('copy'); copyRankBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Copiado!'; } catch(e) {}
+                document.body.removeChild(input);
+                setTimeout(function() { copyRankBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar'; }, 2000);
+              });
+            }
+          })
+          .catch(function() {});
+      }
+      loadExtraPanels();
+
       // Initial load
       selectTab(currentView);
       // Preload weights in background for the mode tab

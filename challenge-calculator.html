@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Desafíos | CoRe Legacy WoW WotLK 3.3.5a</title>
+  <meta name="description" content="Calcula la dificultad y recompensas de tus combinaciones de Modos de Desafío en CoRe Legacy. Hardcore, Iron Man, Self Crafted y más. Descubre qué modos puedes combinar." />
+  <meta name="keywords" content="calculadora desafíos wow, combinación modos desafío, hardcore iron man wow, dificultad desafío core legacy, wow wotlk 3.3.5a desafíos" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="CoRe Legacy" />
+  <meta name="language" content="es-ES" />
+  <meta name="theme-color" content="#050d18" />
+  <link rel="canonical" href="https://corelegacy.gg/challenge-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://corelegacy.gg/challenge-calculator" />
+  <link rel="alternate" hreflang="es-419" href="https://corelegacy.gg/challenge-calculator" />
+  <link rel="alternate" hreflang="x-default" href="https://corelegacy.gg/challenge-calculator" />
+  <meta property="og:title" content="Calculadora de Desafíos | CoRe Legacy" />
+  <meta property="og:description" content="Calcula la dificultad y recompensas de tus combinaciones de Modos de Desafío en CoRe Legacy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://corelegacy.gg/challenge-calculator" />
+  <meta property="og:site_name" content="CoRe Legacy" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+  <meta property="og:image:alt" content="Calculadora de Desafíos CoRe Legacy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de Desafíos | CoRe Legacy" />
+  <meta name="twitter:description" content="Calcula la dificultad y recompensas de tus combinaciones de Modos de Desafío." />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CoRe Legacy" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href="/assets/tailwind.css" as="style" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/core.css" />
+  <link rel="stylesheet" href="/assets/guia-page.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de Desafíos CoRe Legacy",
+    "description": "Herramienta interactiva para calcular la dificultad y recompensas de combinaciones de Modos de Desafío.",
+    "url": "https://corelegacy.gg/challenge-calculator",
+    "inLanguage": "es-ES",
+    "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://corelegacy.gg/" },
+      { "@type": "ListItem", "position": 2, "name": "Modos de Desafío", "item": "https://corelegacy.gg/challenge-modes" },
+      { "@type": "ListItem", "position": 3, "name": "Calculadora", "item": "https://corelegacy.gg/challenge-calculator" }
+    ]
+  }
+  </script>
+  <style>
+    .challenge-page-wrap { max-width: 980px; }
+    .calc-intro { max-width:850px; margin:1.5rem auto 0; color:#8dd6f5; font-family:'Cinzel',Georgia,serif; font-size:.92rem; line-height:1.85; text-shadow:0 0 12px rgba(77,189,232,.16); }
+    .calc-intro p { margin:.5rem 0; }
+    .calc-intro strong { color:#d4f0ff; }
+
+    .calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:1.5rem; }
+    @media (max-width:780px) { .calc-grid { grid-template-columns:1fr; } }
+
+    .calc-section { padding:1.5rem; border:1px solid rgba(77,189,232,.18); border-radius:14px; background:linear-gradient(160deg,rgba(8,22,36,.55),rgba(3,9,18,.96)); }
+
+    .calc-section-title { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.95rem; color:#4dd8ff; margin:0 0 1rem; letter-spacing:.05em; text-shadow:0 0 8px rgba(77,189,232,.15); }
+
+    .mode-toggle-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.75rem; }
+    .mode-toggle {
+      display:flex; align-items:center; gap:.6rem; padding:.7rem .8rem;
+      border:1px solid rgba(77,189,232,.18); border-radius:10px;
+      background:rgba(8,22,36,.5); cursor:pointer; transition:all .25s ease;
+      user-select:none;
+    }
+    .mode-toggle:hover { border-color:rgba(77,189,232,.4); background:rgba(77,189,232,.06); }
+    .mode-toggle.active {
+      border-color:rgba(255,210,80,.55);
+      background:linear-gradient(180deg,rgba(255,210,80,.12),rgba(4,12,22,.5));
+      box-shadow:0 0 12px rgba(255,210,80,.12),inset 0 1px 0 rgba(255,220,100,.1);
+    }
+    .mode-toggle img { width:36px; height:36px; border-radius:8px; object-fit:contain; flex-shrink:0; filter:drop-shadow(0 0 4px rgba(255,120,30,.2)); transition:filter .25s ease; }
+    .mode-toggle.active img { filter:drop-shadow(0 0 8px rgba(255,200,80,.35)); }
+    .mode-toggle-info { display:flex; flex-direction:column; gap:.1rem; min-width:0; }
+    .mode-toggle-name { font-family:'Cinzel',Georgia,serif; font-size:.78rem; color:#b8d4e8; line-height:1.2; }
+    .mode-toggle.active .mode-toggle-name { color:#ffd24a; text-shadow:0 0 6px rgba(255,210,80,.15); }
+    .mode-toggle-weight { font-size:.62rem; color:#5a8090; }
+    .mode-toggle.active .mode-toggle-weight { color:#c8a040; }
+
+    .calc-status-bar {
+      margin-top:1rem; padding:.8rem 1.1rem; border-radius:10px;
+      font-family:'Cinzel',Georgia,serif; font-size:.82rem; line-height:1.5;
+      transition:all .3s ease;
+    }
+    .calc-status-bar.valid { border:1px solid rgba(40,220,70,.4); background:rgba(20,180,40,.08); color:#2eea5a; }
+    .calc-status-bar.invalid { border:1px solid rgba(200,30,30,.4); background:rgba(180,20,20,.08); color:#ff5050; }
+    .calc-status-bar.empty { border:1px solid rgba(77,189,232,.2); background:rgba(8,22,36,.4); color:#5a7a8a; }
+
+    .calc-result-card {
+      padding:1.25rem; border:1px solid rgba(255,210,80,.25); border-radius:12px;
+      background:linear-gradient(180deg,rgba(20,14,4,.6),rgba(8,6,2,.9));
+      box-shadow:0 0 20px rgba(255,210,80,.06);
+      margin-bottom:1rem;
+    }
+    .calc-result-label { font-family:'Cinzel',Georgia,serif; font-size:.66rem; color:#8a7a50; text-transform:uppercase; letter-spacing:.05em; margin:0 0 .2rem; }
+    .calc-result-value { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1.6rem; color:#ffd24a; text-shadow:0 0 10px rgba(255,210,80,.15); margin:0; }
+    .calc-result-sub { font-family:'Cinzel',Georgia,serif; font-size:.72rem; color:#8a7a50; margin:.2rem 0 0; }
+
+    .calc-difficulty-bar { height:8px; border-radius:4px; background:rgba(255,255,255,.06); margin-top:.5rem; overflow:hidden; }
+    .calc-difficulty-fill { height:100%; border-radius:4px; transition:width .5s ease,background .5s ease; }
+
+    .calc-stats-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-bottom:1rem; }
+    .calc-stat { flex:1; min-width:90px; padding:.6rem .8rem; border:1px solid rgba(77,189,232,.15); border-radius:8px; background:rgba(8,22,36,.4); }
+    .calc-stat .calc-stat-label { font-family:'Cinzel',Georgia,serif; font-size:.58rem; color:#5a8090; text-transform:uppercase; letter-spacing:.04em; }
+    .calc-stat .calc-stat-value { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.88rem; color:#4dd8ff; font-weight:700; text-shadow:0 0 6px rgba(77,189,232,.12); }
+
+    .calc-rewards { margin-top:.5rem; }
+    .calc-rewards ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.25rem; }
+    .calc-rewards li { font-family:'Cinzel',Georgia,serif; font-size:.76rem; color:#c8d8e8; line-height:1.5; padding-left:1.1rem; position:relative; }
+    .calc-rewards li::before { content:'◆'; position:absolute; left:0; color:#d4a843; font-size:.6rem; top:.15rem; }
+    .calc-rewards li strong { color:#e8d098; }
+
+    .calc-compat-list { margin-top:.5rem; }
+    .calc-compat-pair { display:flex; align-items:center; gap:.4rem; margin:.25rem 0; font-family:'Cinzel',Georgia,serif; font-size:.76rem; color:#ff7878; }
+    .calc-compat-pair .x { color:#ff5050; font-weight:700; font-size:.9rem; }
+
+    .calc-share { margin-top:1rem; display:flex; gap:.5rem; flex-wrap:wrap; }
+    .calc-share-btn {
+      display:inline-flex; align-items:center; gap:.4rem; padding:.45rem .9rem;
+      border-radius:8px; border:1px solid rgba(77,189,232,.2);
+      background:rgba(10,24,40,.6); color:#b8d4e8;
+      font-family:'Cinzel',Georgia,serif; font-size:.72rem;
+      cursor:pointer; transition:all .25s ease; text-decoration:none;
+    }
+    .calc-share-btn:hover { border-color:rgba(77,189,232,.45); color:#4dd8ff; box-shadow:0 0 10px rgba(77,189,232,.12); }
+    .calc-share-btn svg { width:14px; height:14px; }
+
+    .calc-empty-hint {
+      text-align:center; padding:2rem 1rem;
+      font-family:'Cinzel',Georgia,serif; font-size:.82rem; color:#5a7a8a;
+    }
+
+    @media (max-width:600px) {
+      .challenge-page-wrap { width:100%; box-sizing:border-box; }
+      .guia-page-body { padding:1.25rem 1rem 1.75rem; }
+      .mode-toggle-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .mode-toggle, .calc-share-btn { transition:none; }
+      .calc-difficulty-fill { transition:none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="snowContainer"></div>
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header" style="background:linear-gradient(180deg,rgba(2,14,30,.92) 0%,rgba(2,14,30,.6) 80%,transparent 100%);backdrop-filter:blur(6px);border-bottom:1px solid transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <nav class="hidden md:flex items-center gap-1" id="navMenu">
+          <a class="nav-link" href="/">Inicio</a><a class="nav-link" href="/noticias">Noticias</a><a class="nav-link" href="/comunidad">Comunidad</a><a class="nav-link" href="/info-changelog">Server y Changelog</a><a class="nav-link" href="/soporte">Soporte</a><a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
+        </nav>
+        <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+      <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;"><a class="nav-link block" href="/">Inicio</a><a class="nav-link block" href="/noticias">Noticias</a><a class="nav-link block" href="/comunidad">Comunidad</a><a class="nav-link block" href="/info-changelog">Server y Changelog</a><a class="nav-link block" href="/soporte">Soporte</a><a class="nav-link block" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a><a class="nav-link block" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a></div>
+    </div>
+  </header>
+  <main>
+    <div class="guia-page-wrap challenge-page-wrap">
+      <div class="guia-page-header">
+        <h1 class="guia-page-title">Calculadora de Desafíos</h1>
+        <div class="frost-divider mx-auto" style="max-width:360px;"></div>
+        <div class="calc-intro">
+          <p>Selecciona los <strong>Modos de Desafío</strong> que quieres combinar y la calculadora te mostrara si la combinacion es valida, la dificultad total estimada, el multiplicador de puntuacion y todas las recompensas que obtendras al superar cada hito de nivel.</p>
+          <p>Consulta los <a href="/challenge-modes" style="color:#8dd6f5;text-decoration:underline;">9 Modos de Desafio disponibles</a> o los <a href="/challenge-tops" style="color:#8dd6f5;text-decoration:underline;">rankings en tiempo real</a>.</p>
+        </div>
+      </div>
+      <div class="guia-page-body">
+        <div class="calc-grid">
+          <div class="calc-section">
+            <h2 class="calc-section-title">Selecciona tus modos</h2>
+            <div class="mode-toggle-grid" id="modeGrid"></div>
+            <div class="calc-status-bar empty" id="statusBar">Selecciona al menos un modo para comenzar.</div>
+          </div>
+
+          <div class="calc-section" id="resultSection">
+            <h2 class="calc-section-title">Resultado</h2>
+            <div id="resultContent">
+              <div class="calc-empty-hint">Activa uno o mas modos para ver el resultado.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem; text-align:center; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="/challenge-modes" class="back-to-modes" style="display:inline-flex; align-items:center; gap:.4rem; font-family:'Cinzel',Georgia,serif; font-size:.78rem; color:#6a96b0; text-decoration:none; padding:.55rem 1.2rem; border-radius:8px; border:1px solid rgba(77,189,232,.2); transition:all .25s ease;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Volver a Modos de Desafio
+          </a>
+          <a href="/challenge-tops" class="back-to-modes" style="display:inline-flex; align-items:center; gap:.4rem; font-family:'Cinzel',Georgia,serif; font-size:.78rem; color:#6a96b0; text-decoration:none; padding:.55rem 1.2rem; border-radius:8px; border:1px solid rgba(77,189,232,.2); transition:all .25s ease;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+            Ver Rankings
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="site-footer-bg"><div class="site-footer-content"><p class="site-footer-disclaimer">CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a. Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.</p><div class="site-footer-links"><button class="site-footer-link" data-legal="tos">Términos de Servicio</button><span class="site-footer-sep">·</span><button class="site-footer-link" data-legal="privacy">Política de Privacidad</button><span class="site-footer-sep">·</span><a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a></div><p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p></div></div></footer>
+  <script src="/assets/core.js"></script>
+  <script src="/assets/legal.js"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      var MODES = [
+        { id: 0, name: 'Hardcore', icon: '/assets/desafios/desafio_hardcore_512.png', weight: 3.0, permadeath: true, difficulty: 'extreme',
+          incompatible: [1, 9],
+          rewards: [
+            { level: 40, text: 'Tabardo de la Luz' },
+            { level: 60, text: 'Título "el Inmortal" + Montura Riendas de corcel de la muerte' },
+            { level: 80, text: 'Título "el Imperecedero" + Montura Tigre espectral presto + Logro "El Inmortal"' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        },
+        { id: 1, name: 'Semi-Hardcore', icon: '/assets/desafios/desafio_semihardcore_512.png', weight: 2.0, permadeath: false, difficulty: 'high',
+          incompatible: [0, 9],
+          rewards: [
+            { level: 40, text: 'Bolsa de tejido de Escarcha (22 casillas)' },
+            { level: 60, text: 'Montura Riendas del oso polar blanco' },
+            { level: 80, text: 'Título "Defensor Argenta" + Montura Riendas de mamut de guerra negro' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        },
+        { id: 2, name: 'Self Crafted', icon: '/assets/desafios/desafio_self_crafted_512.png', weight: 1.8, permadeath: false, difficulty: 'high',
+          incompatible: [7],
+          rewards: [
+            { level: 30, text: 'Bolsa de tejido abisal (16 casillas)' },
+            { level: 60, text: 'Robot cohete de cuerda (mascota)' },
+            { level: 80, text: 'Título "el Buscador" + Montura Riendas del draco albino' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        },
+        { id: 3, name: 'Item Quality Level', icon: '/assets/desafios/desafio_item_quality_512.png', weight: 1.5, permadeath: false, difficulty: 'medium',
+          incompatible: [],
+          rewards: [
+            { level: 50, text: 'Orbe de engaño' },
+            { level: 80, text: 'Título "el Demente" + Montura Gallo mágico' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        },
+        { id: 4, name: 'Slow XP Gain', icon: '/assets/desafios/desafio_slow_xp_gain_512.png', weight: 1.3, permadeath: false, difficulty: 'progression',
+          incompatible: [5],
+          rewards: [
+            { level: 40, text: 'Collar de murloc azul (mascota)' },
+            { level: 80, text: 'Título "el Explorador" + Tabardo de explorador' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        },
+        { id: 5, name: 'Very Slow XP Gain', icon: '/assets/desafios/desafio_very_slow_xp_gain_512.png', weight: 1.6, permadeath: false, difficulty: 'progression',
+          incompatible: [4],
+          rewards: [
+            { level: 80, text: 'Título "el Maestro cultural" + Montura Riendas del protodraco perdido en el tiempo' },
+            { level: 80, text: 'Bonus global: 50x Titanio' },
+            { level: 0, text: 'Hereda todas las recompensas de Slow XP Gain' }
+          ]
+        },
+        { id: 6, name: 'Quest XP Only', icon: '/assets/desafios/desafio_quest_xp_only_512.png', weight: 1.4, permadeath: false, difficulty: 'medium',
+          incompatible: [],
+          rewards: [
+            { level: 40, text: 'Bolsa de tejido de Escarcha (22 casillas)' },
+            { level: 80, text: 'Título "el Diplomático" + Montura Hipogrifo de guerra Cenarion' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        },
+        { id: 7, name: 'Iron Man', icon: '/assets/desafios/desafio_ironman_512.png', weight: 3.5, permadeath: true, difficulty: 'extreme',
+          incompatible: [2],
+          rewards: [
+            { level: 40, text: 'Tabardo de llama' },
+            { level: 60, text: 'Título "Heraldo de los Titanes" + Montura Riendas del lord cuervo' },
+            { level: 80, text: 'Título "Sino de la Muerte" + Montura Riendas de Invencible + Logro "Heraldo de los Titanes"' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        },
+        { id: 9, name: 'One Life', icon: '/assets/desafios/desafio_one_life_512.png', weight: 3.2, permadeath: true, difficulty: 'extreme',
+          incompatible: [0, 1],
+          rewards: [
+            { level: 40, text: 'Tabardo de escarcha' },
+            { level: 60, text: 'Título "Asesino Obsidiana" + Montura Cenizas de Al\'ar' },
+            { level: 80, text: 'Título "Defensor Celestial" + Montura Cabeza de Mimiron' },
+            { level: 80, text: 'Bonus global: 50x Titanio' }
+          ]
+        }
+      ];
+
+      var DIFFICULTY_LABELS = {
+        extreme: { label: 'Extremo', color: '#ff5050', pct: 100 },
+        high: { label: 'Alto', color: '#ff9a40', pct: 75 },
+        medium: { label: 'Medio', color: '#e8c84a', pct: 50 },
+        progression: { label: 'Progresión', color: '#5ab8e0', pct: 30 }
+      };
+
+      var selectedModes = {};
+      var modeGrid = document.getElementById('modeGrid');
+      var statusBar = document.getElementById('statusBar');
+      var resultContent = document.getElementById('resultContent');
+
+      function buildModeToggles() {
+        var html = '';
+        MODES.forEach(function(m) {
+          html += '<div class="mode-toggle" data-mode="' + m.id + '" role="checkbox" aria-checked="false" tabindex="0">';
+          html += '<img src="' + m.icon + '" alt="' + m.name + '" loading="lazy" />';
+          html += '<div class="mode-toggle-info">';
+          html += '<span class="mode-toggle-name">' + m.name + '</span>';
+          html += '<span class="mode-toggle-weight">Peso: ' + m.weight.toFixed(1) + (m.permadeath ? ' · Muerte permanente' : '') + '</span>';
+          html += '</div></div>';
+        });
+        modeGrid.innerHTML = html;
+
+        modeGrid.querySelectorAll('.mode-toggle').forEach(function(el) {
+          el.addEventListener('click', function() { toggleMode(parseInt(this.getAttribute('data-mode'), 10)); });
+          el.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMode(parseInt(this.getAttribute('data-mode'), 10)); }
+          });
+        });
+      }
+
+      function toggleMode(id) {
+        if (selectedModes[id]) { delete selectedModes[id]; }
+        else { selectedModes[id] = true; }
+        modeGrid.querySelectorAll('.mode-toggle').forEach(function(el) {
+          var mid = parseInt(el.getAttribute('data-mode'), 10);
+          var active = !!selectedModes[mid];
+          el.classList.toggle('active', active);
+          el.setAttribute('aria-checked', active ? 'true' : 'false');
+        });
+        updateResult();
+      }
+
+      function getSelected() {
+        return MODES.filter(function(m) { return !!selectedModes[m.id]; });
+      }
+
+      function checkCompatibility(modes) {
+        var conflicts = [];
+        for (var i = 0; i < modes.length; i++) {
+          for (var j = i + 1; j < modes.length; j++) {
+            if (modes[i].incompatible.indexOf(modes[j].id) !== -1) {
+              conflicts.push({ a: modes[i].name, b: modes[j].name });
+            }
+          }
+        }
+        return conflicts;
+      }
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        var div = document.createElement('div');
+        div.textContent = String(str);
+        return div.innerHTML;
+      }
+
+      function updateResult() {
+        var modes = getSelected();
+
+        if (modes.length === 0) {
+          statusBar.className = 'calc-status-bar empty';
+          statusBar.textContent = 'Selecciona al menos un modo para comenzar.';
+          resultContent.innerHTML = '<div class="calc-empty-hint">Activa uno o mas modos para ver el resultado.</div>';
+          return;
+        }
+
+        var conflicts = checkCompatibility(modes);
+
+        if (conflicts.length > 0) {
+          statusBar.className = 'calc-status-bar invalid';
+          statusBar.innerHTML = '<strong>Combinacion no valida.</strong> Los siguientes modos son incompatibles entre si:';
+          var cHtml = '<div class="calc-compat-list">';
+          conflicts.forEach(function(c) {
+            cHtml += '<div class="calc-compat-pair"><span class="x">✕</span> ' + escapeHtml(c.a) + ' + ' + escapeHtml(c.b) + '</div>';
+          });
+          cHtml += '</div>';
+          statusBar.innerHTML += cHtml;
+
+          resultContent.innerHTML = '<div class="calc-empty-hint" style="color:#ff7878;">Resuelve los conflictos para ver el resultado.</div>';
+          return;
+        }
+
+        statusBar.className = 'calc-status-bar valid';
+        statusBar.innerHTML = '<strong>Combinacion valida.</strong> ' + modes.length + ' modo' + (modes.length > 1 ? 's' : '') + ' activo' + (modes.length > 1 ? 's' : '') + '.';
+
+        var totalWeight = 0;
+        var hasPermadeath = false;
+        var maxDiff = { pct: 0, label: '', color: '#5a8090' };
+        var allRewards = [];
+
+        modes.forEach(function(m) {
+          totalWeight += m.weight;
+          if (m.permadeath) hasPermadeath = true;
+          var d = DIFFICULTY_LABELS[m.difficulty];
+          if (d && d.pct > maxDiff.pct) { maxDiff = d; }
+          m.rewards.forEach(function(r) { allRewards.push({ mode: m.name, level: r.level, text: r.text }); });
+        });
+
+        var synergyBonus = modes.length > 1 ? (modes.length - 1) * 0.1 : 0;
+        var totalMultiplier = totalWeight * (1 + synergyBonus);
+        var survivalBonus = hasPermadeath ? 0.20 : 0;
+
+        allRewards.sort(function(a, b) {
+          if (a.level === 0) return 1;
+          if (b.level === 0) return -1;
+          return a.level - b.level;
+        });
+
+        var diffBar = Math.min(100, Math.round(maxDiff.pct + (modes.length - 1) * 10));
+
+        var html = '';
+        html += '<div class="calc-result-card">';
+        html += '<p class="calc-result-label">Dificultad estimada</p>';
+        html += '<p class="calc-result-value" style="color:' + maxDiff.color + ';">' + maxDiff.label + '</p>';
+        html += '<div class="calc-difficulty-bar"><div class="calc-difficulty-fill" style="width:' + diffBar + '%;background:linear-gradient(90deg,' + maxDiff.color + '55,' + maxDiff.color + ');"></div></div>';
+        html += '<p class="calc-result-sub">' + (modes.length > 1 ? 'Combinacion de ' + modes.length + ' modos' : 'Un solo modo') + (hasPermadeath ? ' · Muerte permanente activa' : '') + '</p>';
+        html += '</div>';
+
+        html += '<div class="calc-stats-row">';
+        html += '<div class="calc-stat"><span class="calc-stat-label">Multiplicador</span><br><span class="calc-stat-value">x' + totalMultiplier.toFixed(2) + '</span></div>';
+        html += '<div class="calc-stat"><span class="calc-stat-label">Bonus sinergia</span><br><span class="calc-stat-value">+' + (synergyBonus * 100).toFixed(0) + '%</span></div>';
+        html += '<div class="calc-stat"><span class="calc-stat-label">Bonus supervivencia</span><br><span class="calc-stat-value">+' + (survivalBonus * 100).toFixed(0) + '%</span></div>';
+        html += '</div>';
+
+        html += '<div class="calc-rewards">';
+        html += '<p class="calc-section-title" style="font-size:.82rem;margin-bottom:.5rem;">Recompensas por hito</p>';
+        html += '<ul>';
+        allRewards.forEach(function(r) {
+          var lvlText = r.level === 0 ? 'Heredado' : 'Nivel ' + r.level;
+          html += '<li><strong>' + lvlText + '</strong> (' + escapeHtml(r.mode) + '): ' + escapeHtml(r.text) + '</li>';
+        });
+        html += '</ul>';
+        html += '</div>';
+
+        var shareUrl = 'https://corelegacy.gg/challenge-calculator?modes=' + Object.keys(selectedModes).join(',');
+        var shareText = 'Mi combinacion de desafio en CoRe Legacy: ' + modes.map(function(m) { return m.name; }).join(' + ') + ' (Dificultad: ' + maxDiff.label + ')';
+
+        html += '<div class="calc-share">';
+        html += '<button class="calc-share-btn" id="copyShareBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar enlace</button>';
+        html += '<a class="calc-share-btn" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg> Twitter/X</a>';
+        html += '<a class="calc-share-btn" href="https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText + ' ' + shareUrl) + '" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.9L4 20l4.2-1.1a7.93 7.93 0 0 0 3.84.98h.01a7.94 7.94 0 0 0 5.55-13.56zM12.05 18.5h-.01a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.67-2.43-.16-.25a6.59 6.59 0 0 1 10.23-8.17 6.55 6.55 0 0 1 1.93 4.67 6.6 6.6 0 0 1-6.57 6.59z"/></svg> WhatsApp</a>';
+        html += '</div>';
+
+        resultContent.innerHTML = html;
+
+        var copyBtn = document.getElementById('copyShareBtn');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', function() {
+            var input = document.createElement('input');
+            input.value = shareUrl;
+            document.body.appendChild(input);
+            input.select();
+            try { document.execCommand('copy'); copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Copiado!'; } catch(e) {}
+            document.body.removeChild(input);
+            setTimeout(function() {
+              copyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar enlace';
+            }, 2000);
+          });
+        }
+      }
+
+      function readUrlParams() {
+        var params = new URLSearchParams(window.location.search);
+        var modesParam = params.get('modes');
+        if (modesParam) {
+          modesParam.split(',').forEach(function(id) {
+            var mid = parseInt(id, 10);
+            if (!isNaN(mid)) { selectedModes[mid] = true; }
+          });
+          modeGrid.querySelectorAll('.mode-toggle').forEach(function(el) {
+            var mid = parseInt(el.getAttribute('data-mode'), 10);
+            var active = !!selectedModes[mid];
+            el.classList.toggle('active', active);
+            el.setAttribute('aria-checked', active ? 'true' : 'false');
+          });
+          updateResult();
+        }
+      }
+
+      buildModeToggles();
+      readUrlParams();
+    })();
+  </script>
+</body>
+</html>

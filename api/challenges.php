@@ -207,15 +207,14 @@ switch ($view) {
             $alive = (int) ($e['is_alive'] ?? 0) === 1;
             $streakStart = $e['streak_started_at'] ?? null;
             $lastDeath = $e['last_death_time'] ?? null;
-            $now = time();
-            $elapsed = $streakStart ? $now - strtotime($streakStart) : 0;
-            if ($streak > 0 && $alive && $streakStart && $elapsed >= 86400) {
+            if ($streak >= 1 && $alive && $streakStart) {
                 if ($lastDeath && strtotime($lastDeath) > strtotime($streakStart)) {
                     $streak = 0;
                 }
             } else {
                 $streak = 0;
             }
+            if ($streak < 1) continue;
             $e['streak_days'] = $streak;
             $valid[] = $e;
         }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rankings de Modos de Desafío — CoRe Legacy | Top Hardcore WoW</title>
-  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables y sala de la fama. WoW WotLK 3.3.5a Hardcore." />
+  <meta name="description" content="Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadísticas, supervivencia, mapa de la muerte, muertes notables y sala de la fama. WoW WotLK 3.3.5a Hardcore." />
   <meta name="keywords" content="ranking challenge modes wow, top hardcore wow, clasificación modos desafío, ranking wow 3.3.5a, sala de la fama hardcore, iron man ranking, one life ranking, core legacy tops" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="CoRe Legacy" />
@@ -24,6 +24,8 @@
   <meta property="og:locale" content="es_ES" />
   <meta property="og:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
   <meta property="og:image:alt" content="Rankings de Modos de Desafío — CoRe Legacy" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Rankings de Modos de Desafío — CoRe Legacy" />
   <meta name="twitter:description" content="Clasificaciones de los Modos de Desafío de CoRe Legacy: global, por modo, temporada, hitos, estadisticas, supervivencia, muertes notables y sala de la fama." />
@@ -41,6 +43,28 @@
   <link rel="stylesheet" href="/assets/tailwind.css" />
   <link rel="stylesheet" href="/assets/core.css" />
   <link rel="stylesheet" href="/assets/guia-page.css" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Rankings de Modos de Desafío — CoRe Legacy",
+    "description":"Clasificaciones en tiempo real de los Modos de Desafío de CoRe Legacy: ranking global, por modo, temporada, hitos, estadísticas, supervivencia, mapa de la muerte, muertes notables y sala de la fama.",
+    "url":"https://corelegacy.gg/challenge-tops",
+    "inLanguage":"es-ES",
+    "isPartOf":{"@type":"WebSite","name":"CoRe Legacy","url":"https://corelegacy.gg/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://corelegacy.gg/"},
+      {"@type":"ListItem","position":2,"name":"Modos de Desafío","item":"https://corelegacy.gg/challenge-modes"},
+      {"@type":"ListItem","position":3,"name":"Rankings","item":"https://corelegacy.gg/challenge-tops"}
+    ]
+  }
+  </script>
   <style>
     .challenge-page-wrap { max-width: 1080px; }
 
@@ -449,7 +473,7 @@
         <div class="frost-divider mx-auto" style="max-width:360px;"></div>
         <div class="ranking-intro">
           <p>Los <strong style="color:#ffd24a;text-shadow:0 0 8px rgba(255,210,80,.15);">Rankings de Modos de Desafío</strong> clasifican a los personajes según la dificultad del modo activado, el nivel alcanzado y el estado de supervivencia. La puntuación combina <strong style="color:#4dd8ff;">peso del modo × nivel</strong>, un <strong style="color:#2eea5a;">bonus del 20%</strong> por mantenerse vivo en modos de muerte permanente, un <strong style="color:#ffd24a;">bonus de finalización</strong> al alcanzar nivel 80 y un <strong style="color:#4dd8ff;">bonus de sinergia</strong> por cada desafío adicional activo.</p>
-          <p>Los datos se actualizan periódicamente desde el servidor del juego. Consulta los <a href="/challenge-modes" style="color:#8dd6f5;text-decoration:underline;">9 Modos de Desafío disponibles</a> para conocer las reglas y recompensas de cada uno.</p>
+          <p>Los datos se actualizan periódicamente desde el servidor del juego. Consulta los <a href="/challenge-modes" style="color:#8dd6f5;text-decoration:underline;">9 Modos de Desafío disponibles</a> para conocer las reglas y recompensas de cada uno, o usa la <a href="/challenge-calculator" style="color:#ffd24a;text-decoration:underline;">calculadora de combinaciones</a> para planificar tu reto.</p>
         </div>
       </div>
 
@@ -503,6 +527,19 @@
           <span class="legend-item"><span class="legend-badge dead">💀 Muerto</span> Personaje fallecido</span>
         </div>
         <div id="extraPanels"></div>
+
+        <noscript>
+          <div style="padding:1.5rem; border:1px solid rgba(77,189,232,.18); border-radius:12px; background:rgba(8,22,36,.5); margin:1.5rem 0; font-family:'Cinzel',Georgia,serif; color:#b8d4e8; font-size:.85rem; line-height:1.7;">
+            <h2 style="margin:0 0 .6rem; color:#4dd8ff; font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:1rem;">Rankings de Modos de Desafío</h2>
+            <p style="margin:0 0 .5rem;">Los rankings de CoRe Legacy se cargan dinámicamente con JavaScript. Sin JavaScript activado, puedes consultar la información estática de los modos:</p>
+            <ul style="margin:0; padding-left:1.4rem; line-height:1.8;">
+              <li><a href="/challenge-modes" style="color:#8dd6f5;text-decoration:underline;">Guía de los 9 Modos de Desafío</a> — reglas, incompatibilidades y recompensas</li>
+              <li><a href="/challenge-calculator" style="color:#ffd24a;text-decoration:underline;">Calculadora de combinaciones</a> — simula y comparte tu reto</li>
+              <li><a href="/" style="color:#b8d4e8;text-decoration:underline;">Inicio</a> — noticias y estado del servidor</li>
+            </ul>
+            <p style="margin:.8rem 0 0; font-size:.78rem; color:#5a7a8a;">Los rankings incluyen: temporada, por modo, muertes notables, sala de la fama, hitos, estadísticas, supervivencia y mapa de la muerte de personajes Hardcore, One Life e Iron Man en WoW WotLK 3.3.5a.</p>
+          </div>
+        </noscript>
 
         <div style="margin-top:2rem; text-align:center; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
           <a href="/challenge-modes" class="back-to-modes">

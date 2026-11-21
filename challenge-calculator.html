@@ -22,6 +22,8 @@
   <meta property="og:locale" content="es_ES" />
   <meta property="og:image" content="https://corelegacy.gg/assets/desafios/desafios_core_legacy_512.png" />
   <meta property="og:image:alt" content="Calculadora de Desafíos CoRe Legacy" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Calculadora de Desafíos | CoRe Legacy" />
   <meta name="twitter:description" content="Calcula la dificultad y recompensas de tus combinaciones de Modos de Desafío." />
@@ -41,10 +43,42 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Calculadora de Desafíos CoRe Legacy",
-    "description": "Herramienta interactiva para calcular la dificultad y recompensas de combinaciones de Modos de Desafío.",
+    "description": "Herramienta interactiva para calcular la dificultad y recompensas de combinaciones de Modos de Desafío en WoW WotLK 3.3.5a.",
     "url": "https://corelegacy.gg/challenge-calculator",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
     "inLanguage": "es-ES",
     "isPartOf": { "@type": "WebSite", "name": "CoRe Legacy", "url": "https://corelegacy.gg/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuántos Modos de Desafío puedo combinar a la vez?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Puedes combinar todos los modos que quieras, salvo las combinaciones no permitidas: Hardcore con Semi-Hardcore, Hardcore con One Life, Semi-Hardcore con One Life, Self Crafted con Iron Man, y Slow XP Gain con Very Slow XP Gain. El resto de combinaciones son válidas y multiplican la dificultad." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué recompensas dan los Modos de Desafío?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cada modo otorga recompensas exclusivas al alcanzar hitos de nivel 30, 40, 50, 60 y 80, incluyendo títulos únicos, monturas legendarias, mascotas, tabardos y logros. Al combinar varios modos, acumulas las recompensas de cada uno." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo se calcula la puntuación de un personaje con desafíos?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La puntuación combina el peso del modo multiplicado por el nivel del personaje, un bonus del 20% por mantenerse vivo en modos de muerte permanente, un bonus de finalización al alcanzar nivel 80 y un bonus de sinergia por cada desafío adicional activo." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo compartir mi combinación de desafíos?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. La calculadora genera un enlace único con tu combinación seleccionada que puedes copiar y compartir. Al abrir el enlace, la calculadora carga automáticamente los modos elegidos." }
+      }
+    ]
   }
   </script>
   <script type="application/ld+json">

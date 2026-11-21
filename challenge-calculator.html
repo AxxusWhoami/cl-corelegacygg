@@ -150,6 +150,8 @@
       .guia-page-body { padding:1.25rem 1rem 1.75rem; }
       .mode-toggle-grid { grid-template-columns:1fr; }
     }
+    .mode-toggle.disabled { opacity:.4; cursor:not-allowed; filter:grayscale(.7); pointer-events:none; }
+    .mode-toggle.disabled .mode-toggle-name { text-decoration:line-through; color:#5a6a7a; }
     @media (prefers-reduced-motion:reduce) {
       .mode-toggle, .calc-share-btn { transition:none; }
       .calc-difficulty-fill { transition:none; }
@@ -327,6 +329,29 @@
         });
       }
 
+      function getConflictingIds() {
+        var ids = [];
+        Object.keys(selectedModes).forEach(function(id) {
+          var mode = MODES.find(function(m) { return m.id === parseInt(id, 10); });
+          if (mode) ids = ids.concat(mode.incompatible);
+        });
+        return ids;
+      }
+
+      function refreshDisabled() {
+        var conflicting = getConflictingIds();
+        modeGrid.querySelectorAll('.mode-toggle').forEach(function(el) {
+          var mid = parseInt(el.getAttribute('data-mode'), 10);
+          if (selectedModes[mid]) {
+            el.classList.remove('disabled');
+          } else if (conflicting.indexOf(mid) !== -1) {
+            el.classList.add('disabled');
+          } else {
+            el.classList.remove('disabled');
+          }
+        });
+      }
+
       function toggleMode(id) {
         if (selectedModes[id]) { delete selectedModes[id]; }
         else { selectedModes[id] = true; }
@@ -336,23 +361,12 @@
           el.classList.toggle('active', active);
           el.setAttribute('aria-checked', active ? 'true' : 'false');
         });
+        refreshDisabled();
         updateResult();
       }
 
       function getSelected() {
         return MODES.filter(function(m) { return !!selectedModes[m.id]; });
-      }
-
-      function checkCompatibility(modes) {
-        var conflicts = [];
-        for (var i = 0; i < modes.length; i++) {
-          for (var j = i + 1; j < modes.length; j++) {
-            if (modes[i].incompatible.indexOf(modes[j].id) !== -1) {
-              conflicts.push({ a: modes[i].name, b: modes[j].name });
-            }
-          }
-        }
-        return conflicts;
       }
 
       function escapeHtml(str) {
@@ -369,22 +383,6 @@
           statusBar.className = 'calc-status-bar empty';
           statusBar.textContent = 'Selecciona al menos un modo para comenzar.';
           resultContent.innerHTML = '<div class="calc-empty-hint">Activa uno o mas modos para ver el resultado.</div>';
-          return;
-        }
-
-        var conflicts = checkCompatibility(modes);
-
-        if (conflicts.length > 0) {
-          statusBar.className = 'calc-status-bar invalid';
-          statusBar.innerHTML = '<strong>Combinacion no valida.</strong> Los siguientes modos son incompatibles entre si:';
-          var cHtml = '<div class="calc-compat-list">';
-          conflicts.forEach(function(c) {
-            cHtml += '<div class="calc-compat-pair"><span class="x">✕</span> ' + escapeHtml(c.a) + ' + ' + escapeHtml(c.b) + '</div>';
-          });
-          cHtml += '</div>';
-          statusBar.innerHTML += cHtml;
-
-          resultContent.innerHTML = '<div class="calc-empty-hint" style="color:#ff7878;">Resuelve los conflictos para ver el resultado.</div>';
           return;
         }
 
@@ -481,6 +479,7 @@
             el.classList.toggle('active', active);
             el.setAttribute('aria-checked', active ? 'true' : 'false');
           });
+          refreshDisabled();
           updateResult();
         }
       }

@@ -1537,6 +1537,10 @@
         canvas.onmouseleave = function() { hideDeathMapTooltip(); };
       }
 
+      function clusterRadius(count) {
+        return Math.max(10, Math.min(10 + count * 3, 40));
+      }
+
       function drawDeathPoints(dispW, dispH) {
         var ctx = deathMapState.ctx;
         if (!ctx) return;
@@ -1544,41 +1548,68 @@
         var mapIds = cont.maps;
         var scaleX = dispW / cont.w;
         var scaleY = dispH / cont.h;
-        var clusters = {};
+        var MERGE_DIST = 18;
+        var clusters = [];
         deathMapState.deaths.forEach(function(d) {
           if (mapIds.indexOf(d.map) === -1) return;
           var p = wowToPixel(d.position_x, d.position_y, d.map);
           if (p.x < 0 || p.x > cont.w || p.y < 0 || p.y > cont.h) return;
-          var key = p.x + ',' + p.y;
-          if (!clusters[key]) clusters[key] = { px: p, entries: [] };
-          clusters[key].entries.push(d);
+          var merged = false;
+          for (var i = 0; i < clusters.length; i++) {
+            var c = clusters[i];
+            var dx = c.x - p.x, dy = c.y - p.y;
+            if (Math.sqrt(dx * dx + dy * dy) < MERGE_DIST) {
+              c.entries.push(d);
+              c.x = (c.x * (c.entries.length - 1) + p.x) / c.entries.length;
+              c.y = (c.y * (c.entries.length - 1) + p.y) / c.entries.length;
+              merged = true;
+              break;
+            }
+          }
+          if (!merged) clusters.push({ x: p.x, y: p.y, entries: [d] });
         });
-        var clusterArr = Object.keys(clusters).map(function(k) { return clusters[k]; });
-        clusterArr.forEach(function(c) {
+        var changed = true;
+        while (changed) {
+          changed = false;
+          for (var i = 0; i < clusters.length; i++) {
+            for (var j = i + 1; j < clusters.length; j++) {
+              var ra = clusterRadius(clusters[i].entries.length);
+              var rb = clusterRadius(clusters[j].entries.length);
+              var dx = clusters[i].x - clusters[j].x;
+              var dy = clusters[i].y - clusters[j].y;
+              if (Math.sqrt(dx * dx + dy * dy) < ra + rb) {
+                var ni = clusters[i].entries.length;
+                var nj = clusters[j].entries.length;
+                clusters[i].x = (clusters[i].x * ni + clusters[j].x * nj) / (ni + nj);
+                clusters[i].y = (clusters[i].y * ni + clusters[j].y * nj) / (ni + nj);
+                clusters[i].entries = clusters[i].entries.concat(clusters[j].entries);
+                clusters.splice(j, 1);
+                changed = true;
+                break;
+              }
+            }
+            if (changed) break;
+          }
+        }
+        clusters.forEach(function(c) {
           var count = c.entries.length;
-          var radius = Math.max(10, Math.min(10 + count * 3, 40));
-          var cx = c.px.x * scaleX;
-          var cy = c.px.y * scaleY;
+          var radius = clusterRadius(count);
+          var cx = c.x * scaleX;
+          var cy = c.y * scaleY;
           ctx.beginPath();
           ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255,80,80,.25)';
+          ctx.fillStyle = '#ff5050';
           ctx.fill();
-          ctx.beginPath();
-          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-          ctx.strokeStyle = '#ff5050';
-          ctx.lineWidth = 1.5;
+          ctx.strokeStyle = '#000';
+          ctx.lineWidth = 2;
           ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(cx, cy, radius * 0.55, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255,80,80,.55)';
-          ctx.fill();
-          ctx.fillStyle = '#fff';
+          ctx.fillStyle = '#000';
           ctx.font = 'bold ' + Math.max(10, Math.min(9 + count, 18)) + 'px Cinzel, Georgia, serif';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(String(count), cx, cy);
         });
-        deathMapState._clusters = clusterArr;
+        deathMapState._clusters = clusters;
         deathMapState._scaleX = scaleX;
         deathMapState._scaleY = scaleY;
       }
@@ -1599,11 +1630,10 @@
         for (var i = 0; i < clusters.length; i++) {
           var c = clusters[i];
           var count = c.entries.length;
-          var radius = Math.max(10, Math.min(10 + count * 3, 40));
-          var hitRadius = radius / (rect.width / cont.w);
-          var dx = c.px.x - mx;
-          var dy = c.px.y - my;
-          if (Math.sqrt(dx * dx + dy * dy) < hitRadius + 3) { found = c; break; }
+          var radius = clusterRadius(count);
+          var dx = c.x - mx;
+          var dy = c.y - my;
+          if (Math.sqrt(dx * dx + dy * dy) < radius + 3) { found = c; break; }
         }
         if (found) {
           var entries = found.entries;

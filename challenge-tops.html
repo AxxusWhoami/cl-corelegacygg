@@ -1153,10 +1153,9 @@
                 loadExtraPanels(entries, view);
                 break;
               case 'mode':
-                var mi = data.mode_info || {};
                 currentEntries = entries;
                 currentRenderFn = renderTable;
-                currentRenderOpts = { showScore: true, showChallenges: true, showLevel: true, showState: true, hasPermadeath: mi.is_permadeath === 1 };
+                currentRenderOpts = { showScore: true, showChallenges: true, showLevel: true, showState: true, hasPermadeath: true };
                 renderTable(filterEntries(entries), currentRenderOpts);
                 loadExtraPanels(entries, view);
                 break;

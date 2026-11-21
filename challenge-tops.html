@@ -718,17 +718,11 @@
           showEmpty('La sala de la fama aún no tiene ganadores registrados.');
           return;
         }
-        var bySeason = {};
-        entries.forEach(function(e) {
-          var s = e.season_name || 'Temporada';
-          if (!bySeason[s]) bySeason[s] = [];
-          bySeason[s].push(e);
-        });
-
+        var bySeason = { 'Todas las Temporadas': entries };
         var html = '';
         Object.keys(bySeason).forEach(function(seasonName) {
           html += '<div class="hall-season-group">';
-          html += '<h3 class="hall-season-title">' + escapeHtml(seasonName) + '</h3>';
+          html += '<h3 class="hall-season-title" style="margin-right:1rem;">' + escapeHtml(seasonName) + '</h3>';
           html += '<table class="ranking-table"><thead><tr>';
           html += '<th>#</th><th>Personaje</th>';
           html += '<th class="right">Puntuación</th><th class="center">Desafíos</th>';

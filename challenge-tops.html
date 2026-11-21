@@ -57,28 +57,29 @@
     .ranking-tabs {
       display: flex; flex-wrap: wrap; gap: .5rem;
       margin: 1.75rem 0 0; padding: .5rem;
-      border: 1px solid rgba(77,189,232,.18);
+      border: 1px solid rgba(77,189,232,.25);
       border-radius: 12px;
-      background: linear-gradient(180deg, rgba(8,18,30,.6), rgba(4,10,20,.5));
+      background: linear-gradient(180deg, rgba(10,28,48,.7), rgba(4,12,22,.6));
+      box-shadow: 0 4px 16px rgba(0,0,0,.3), inset 0 1px 0 rgba(77,189,232,.08);
     }
     .ranking-tab {
       font-family: 'Cinzel', Georgia, serif;
       font-size: .78rem; letter-spacing: .05em;
       padding: .55rem 1rem; border-radius: 8px;
       border: 1px solid transparent;
-      background: transparent; color: #7a9aac;
+      background: transparent; color: #6a96b0;
       cursor: pointer; transition: all .25s ease;
       white-space: nowrap;
     }
     .ranking-tab:hover {
-      color: #b8d4e8; border-color: rgba(77,189,232,.2);
-      background: rgba(77,189,232,.05);
+      color: #4bbde8; border-color: rgba(77,189,232,.3);
+      background: rgba(77,189,232,.08);
     }
     .ranking-tab.active {
-      color: #d4f0ff; border-color: rgba(77,189,232,.4);
-      background: linear-gradient(180deg, rgba(77,189,232,.15), rgba(13,110,168,.08));
-      box-shadow: 0 0 12px rgba(77,189,232,.1);
-      text-shadow: 0 0 8px rgba(77,189,232,.2);
+      color: #4dd8ff; border-color: rgba(77,189,232,.55);
+      background: linear-gradient(180deg, rgba(77,189,232,.22), rgba(20,130,200,.12));
+      box-shadow: 0 0 16px rgba(77,189,232,.18), inset 0 1px 0 rgba(120,220,255,.15);
+      text-shadow: 0 0 10px rgba(77,189,232,.3);
     }
 
     /* Mode selector */
@@ -89,72 +90,78 @@
     .mode-selector-wrap.visible { display: flex; }
     .mode-chip {
       display: flex; align-items: center; gap: .4rem;
-      padding: .4rem .75rem; border-radius: 8px;
-      border: 1px solid rgba(77,189,232,.15);
-      background: rgba(8,22,36,.5);
+      padding: .4rem .8rem; border-radius: 8px;
+      border: 1px solid rgba(77,189,232,.2);
+      background: rgba(10,24,40,.6);
       cursor: pointer; transition: all .25s ease;
     }
-    .mode-chip:hover { border-color: rgba(77,189,232,.35); background: rgba(77,189,232,.05); }
+    .mode-chip:hover { border-color: rgba(77,189,232,.45); background: rgba(77,189,232,.08); }
     .mode-chip.active {
-      border-color: rgba(240,200,80,.5);
-      background: linear-gradient(180deg, rgba(240,200,80,.08), rgba(4,12,22,.6));
-      box-shadow: 0 0 10px rgba(240,200,80,.08);
+      border-color: rgba(255,210,80,.6);
+      background: linear-gradient(180deg, rgba(255,210,80,.15), rgba(4,12,22,.5));
+      box-shadow: 0 0 14px rgba(255,210,80,.15), inset 0 1px 0 rgba(255,220,100,.1);
     }
-    .mode-chip img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
+    .mode-chip img { width: 30px; height: 30px; border-radius: 6px; object-fit: contain; filter: drop-shadow(0 0 4px rgba(255,120,30,.2)); }
+    .mode-chip.active img { filter: drop-shadow(0 0 8px rgba(255,200,80,.3)); }
     .mode-chip span {
       font-family: 'Cinzel', Georgia, serif;
       font-size: .72rem; color: #b8d4e8; letter-spacing: .03em;
     }
-    .mode-chip.active span { color: #f0c850; }
+    .mode-chip.active span { color: #ffd24a; text-shadow: 0 0 8px rgba(255,210,80,.2); }
 
     /* Ranking table */
     .ranking-table-wrap {
       margin: 1.5rem 0 0; overflow-x: auto;
-      border: 1px solid rgba(77,189,232,.15); border-radius: 12px;
-      background: linear-gradient(180deg, rgba(8,22,36,.55), rgba(3,9,18,.92));
+      border: 1px solid rgba(77,189,232,.22); border-radius: 12px;
+      background: linear-gradient(180deg, rgba(10,24,40,.6), rgba(3,9,18,.94));
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
     }
     .ranking-table { width: 100%; border-collapse: collapse; }
     .ranking-table thead th {
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
       font-size: .72rem; font-weight: 700; letter-spacing: .06em;
-      color: #8dd6f5; text-transform: uppercase;
+      color: #4dd8ff; text-transform: uppercase;
       padding: .8rem 1rem; text-align: left;
-      border-bottom: 1px solid rgba(77,189,232,.18);
+      border-bottom: 2px solid rgba(77,189,232,.25);
       white-space: nowrap;
+      text-shadow: 0 0 8px rgba(77,189,232,.15);
     }
     .ranking-table thead th.center { text-align: center; }
     .ranking-table thead th.right { text-align: right; }
     .ranking-table tbody tr {
-      border-bottom: 1px solid rgba(77,189,232,.06);
+      border-bottom: 1px solid rgba(77,189,232,.08);
       transition: background .2s ease;
     }
-    .ranking-table tbody tr:hover { background: rgba(77,189,232,.04); }
+    .ranking-table tbody tr:hover { background: rgba(77,189,232,.07); }
     .ranking-table tbody td {
-      padding: .65rem 1rem; font-family: 'Cinzel', Georgia, serif;
-      font-size: .8rem; color: #b8d4e8; white-space: nowrap;
+      padding: .7rem 1rem; font-family: 'Cinzel', Georgia, serif;
+      font-size: .82rem; color: #c8e0f0; white-space: nowrap;
     }
     .ranking-table tbody td.center { text-align: center; }
     .ranking-table tbody td.right { text-align: right; }
 
     .rank-pos {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 28px; height: 28px; border-radius: 50%;
-      font-weight: 700; font-size: .75rem;
-      background: rgba(77,189,232,.08); color: #7a9aac;
-      border: 1px solid rgba(77,189,232,.1);
+      width: 30px; height: 30px; border-radius: 50%;
+      font-weight: 700; font-size: .78rem;
+      background: rgba(77,189,232,.06); color: #5a8090;
+      border: 1px solid rgba(77,189,232,.12);
     }
     .rank-pos.gold {
-      background: linear-gradient(135deg, rgba(255,200,50,.25), rgba(200,150,20,.1));
-      border-color: rgba(255,200,50,.35); color: #f0c850;
-      box-shadow: 0 0 8px rgba(255,200,50,.1);
+      background: linear-gradient(135deg, rgba(255,215,60,.35), rgba(220,165,20,.15));
+      border-color: rgba(255,215,60,.55); color: #ffd24a;
+      box-shadow: 0 0 12px rgba(255,215,60,.2), inset 0 1px 0 rgba(255,240,150,.2);
+      text-shadow: 0 0 6px rgba(255,215,60,.3);
     }
     .rank-pos.silver {
-      background: linear-gradient(135deg, rgba(200,210,220,.2), rgba(150,160,170,.08));
-      border-color: rgba(200,210,220,.25); color: #c8d0d8;
+      background: linear-gradient(135deg, rgba(210,225,240,.28), rgba(160,175,190,.1));
+      border-color: rgba(210,225,240,.4); color: #d8e4f0;
+      box-shadow: 0 0 8px rgba(200,220,240,.12);
     }
     .rank-pos.bronze {
-      background: linear-gradient(135deg, rgba(180,120,60,.2), rgba(140,90,40,.08));
-      border-color: rgba(180,120,60,.25); color: #c89060;
+      background: linear-gradient(135deg, rgba(205,135,70,.3), rgba(160,100,45,.12));
+      border-color: rgba(205,135,70,.4); color: #e0a070;
+      box-shadow: 0 0 8px rgba(200,130,60,.12);
     }
 
     .alive-badge {
@@ -162,21 +169,22 @@
       font-size: .68rem; font-weight: 700; letter-spacing: .05em;
       text-transform: uppercase;
     }
-    .alive-badge.alive { background: rgba(80,200,100,.12); color: #5cc870; border: 1px solid rgba(80,200,100,.2); }
-    .alive-badge.dead { background: rgba(200,60,60,.12); color: #d96a6a; border: 1px solid rgba(200,60,60,.2); }
-    .alive-badge.na { background: rgba(120,130,140,.1); color: #8a9aaa; border: 1px solid rgba(120,130,140,.15); }
+    .alive-badge.alive { background: rgba(60,220,100,.18); color: #4cf088; border: 1px solid rgba(60,220,100,.35); box-shadow: 0 0 8px rgba(60,220,100,.1); }
+    .alive-badge.dead { background: rgba(230,70,70,.18); color: #ff7070; border: 1px solid rgba(230,70,70,.35); box-shadow: 0 0 8px rgba(230,70,70,.1); }
+    .alive-badge.na { background: rgba(130,145,160,.12); color: #90a0b0; border: 1px solid rgba(130,145,160,.2); }
 
     /* Deaths table */
-    .death-cause { color: #d98c8c; }
-    .death-mode { color: #f0c850; font-size: .72rem; }
+    .death-cause { color: #ff7878; font-weight: 600; }
+    .death-mode { color: #ffd24a; font-size: .72rem; font-weight: 600; text-shadow: 0 0 6px rgba(255,210,80,.15); }
 
     /* Hall of fame */
     .hall-season-group { margin: 1.25rem 0 0; }
     .hall-season-title {
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
-      font-size: .9rem; color: #f0c850; letter-spacing: .05em;
-      margin: 0 0 .5rem; padding-bottom: .35rem;
-      border-bottom: 1px solid rgba(240,200,80,.15);
+      font-size: .95rem; color: #ffd24a; letter-spacing: .06em;
+      margin: 0 0 .6rem; padding-bottom: .4rem;
+      border-bottom: 1px solid rgba(255,210,80,.25);
+      text-shadow: 0 0 10px rgba(255,210,80,.2);
     }
 
     /* Loading and error states */
@@ -186,9 +194,10 @@
       font-family: 'Cinzel', Georgia, serif; font-size: .85rem; color: #7a9aac;
     }
     .ranking-spinner {
-      width: 24px; height: 24px; border-radius: 50%;
-      border: 2px solid rgba(77,189,232,.15); border-top-color: rgba(77,189,232,.6);
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 2px solid rgba(77,189,232,.18); border-top-color: #4dd8ff;
       animation: spin 0.8s linear infinite;
+      box-shadow: 0 0 8px rgba(77,189,232,.15);
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -206,8 +215,9 @@
       transition: all .25s ease;
     }
     .ranking-error button:hover {
-      border-color: #4bbde8; color: #d4f0ff;
-      box-shadow: 0 0 12px rgba(77,189,232,.15);
+      border-color: #4bbde8; color: #4dd8ff;
+      box-shadow: 0 0 16px rgba(77,189,232,.2);
+      background: rgba(77,189,232,.12);
     }
 
     .ranking-empty {
@@ -217,26 +227,27 @@
 
     .ranking-updated {
       font-family: 'Cinzel', Georgia, serif; font-size: .68rem;
-      color: #4a6580; letter-spacing: .05em; text-align: right;
-      margin: .75rem 0 0; opacity: .8;
+      color: #5080a0; letter-spacing: .05em; text-align: right;
+      margin: .75rem 0 0;
     }
 
     .back-to-modes {
       display: inline-flex; align-items: center; gap: .4rem;
       font-family: 'Cinzel', Georgia, serif; font-size: .78rem;
-      color: #7a9aac; text-decoration: none;
-      padding: .5rem 1rem; border-radius: 8px;
-      border: 1px solid rgba(77,189,232,.12);
+      color: #6a96b0; text-decoration: none;
+      padding: .55rem 1.2rem; border-radius: 8px;
+      border: 1px solid rgba(77,189,232,.2);
       transition: all .25s ease;
     }
-    .back-to-modes:hover { color: #b8d4e8; border-color: rgba(77,189,232,.3); }
+    .back-to-modes:hover { color: #4dd8ff; border-color: rgba(77,189,232,.45); box-shadow: 0 0 12px rgba(77,189,232,.12); }
     .back-to-modes svg { width: 14px; height: 14px; }
 
     @media (max-width: 700px) {
       .ranking-table thead { display: none; }
       .ranking-table tbody tr {
-        display: block; padding: .75rem; margin: .5rem 0;
-        border: 1px solid rgba(77,189,232,.1); border-radius: 10px;
+        display: block; padding: .8rem; margin: .5rem 0;
+        border: 1px solid rgba(77,189,232,.18); border-radius: 10px;
+        background: rgba(10,24,40,.4);
       }
       .ranking-table tbody td {
         display: flex; justify-content: space-between; padding: .3rem 0;
@@ -296,7 +307,7 @@
         <h1 class="guia-page-title">Rankings de Modos de Desafío</h1>
         <div class="frost-divider mx-auto" style="max-width:360px;"></div>
         <div class="ranking-intro">
-          <p>Los <strong style="color:#d4f0ff;">Rankings de Modos de Desafío</strong> clasifican a los personajes según la dificultad del modo activado, el nivel alcanzado y el estado de supervivencia. La puntuación combina <strong style="color:#d4f0ff;">peso del modo × nivel</strong>, un <strong style="color:#d4f0ff;">bonus del 20%</strong> por mantenerse vivo en modos de muerte permanente, un <strong style="color:#d4f0ff;">bonus de finalización</strong> al alcanzar nivel 80 y un <strong style="color:#d4f0ff;">bonus de sinergia</strong> por cada desafío adicional activo.</p>
+          <p>Los <strong style="color:#ffd24a;text-shadow:0 0 8px rgba(255,210,80,.15);">Rankings de Modos de Desafío</strong> clasifican a los personajes según la dificultad del modo activado, el nivel alcanzado y el estado de supervivencia. La puntuación combina <strong style="color:#4dd8ff;">peso del modo × nivel</strong>, un <strong style="color:#4cf088;">bonus del 20%</strong> por mantenerse vivo en modos de muerte permanente, un <strong style="color:#ffd24a;">bonus de finalización</strong> al alcanzar nivel 80 y un <strong style="color:#4dd8ff;">bonus de sinergia</strong> por cada desafío adicional activo.</p>
           <p>Los datos se actualizan periódicamente desde el servidor del juego. Consulta los <a href="/challenge-modes" style="color:#8dd6f5;text-decoration:underline;">9 Modos de Desafío disponibles</a> para conocer las reglas y recompensas de cada uno.</p>
         </div>
       </div>

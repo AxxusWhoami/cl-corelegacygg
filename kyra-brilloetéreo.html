@@ -284,9 +284,14 @@
 
     .kyra-stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem;
       margin: 1.5rem 0 0;
+    }
+    @media (min-width: 768px) {
+      .kyra-stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
     .kyra-stat-item {
       display: flex;
@@ -410,6 +415,9 @@
       .kyra-portrait { max-height: 300px; }
       .kyra-hero-particles { display:none; }
     }
+    @media (min-width: 768px) {
+      .kyra-games-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
   </style>
 </head>
 <body>
@@ -488,6 +496,7 @@
           <div style="text-align:center;">
             <div class="kyra-portrait-wrap">
               <img src="/assets/kyra_brilloetereo.jpg" alt="Kyra Brilloetéreo, La Ruina de Dalaran" class="kyra-portrait" loading="eager" decoding="async" />
+              <div style="position:relative; z-index:2; margin-top:0.75rem; font-family:'Cinzel',Georgia,serif; font-size:0.78rem; letter-spacing:0.06em; color:#9ab4c8; text-transform:uppercase;">📍 Bajos Fondos de Dalaran</div>
             </div>
           </div>
 
@@ -526,7 +535,7 @@
         <div class="frost-divider" style="width:100px; margin:0 auto;"></div>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
+      <div class="kyra-games-grid" style="display:grid; grid-template-columns:1fr; gap:1.5rem;">
         <!-- Dados -->
         <div class="kyra-game-card reveal">
           <div class="kyra-game-card-header">
@@ -617,7 +626,7 @@
         ¿Listo para tentar a la fortuna?
       </h2>
       <p style="font-family:'Cinzel',Georgia,serif; font-size:0.92rem; line-height:1.8; color:#b8d4e8; margin-bottom:2rem;">
-        Crea tu cuenta gratis, descarga el cliente y ponte a prueba en las mesas de Kyra Brilloetéreo. La suerte favorce a los valientes... y a los que traen monedas.
+        Crea tu cuenta gratis, descarga el cliente y ponte a prueba en las mesas de Kyra Brilloetéreo. La suerte favorece a los valientes... y a los que traen monedas.
       </p>
       <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;">
         <a href="https://accounts.corelegacy.gg/crear-cuenta" target="_blank" rel="noopener noreferrer"

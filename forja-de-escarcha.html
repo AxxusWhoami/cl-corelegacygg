@@ -318,6 +318,54 @@
       box-shadow: 0 0 6px rgba(77,189,232,0.4);
     }
 
+    .forge-highlight-box {
+      margin: 2rem 0 1.5rem;
+      padding: 1.5rem 1.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(212,175,55,0.35);
+      background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, rgba(77,189,232,0.04) 100%);
+      box-shadow: 0 0 20px rgba(212,175,55,0.08), inset 0 0 16px rgba(212,175,55,0.03);
+      position: relative;
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .forge-highlight-box:hover {
+      border-color: rgba(212,175,55,0.55);
+      box-shadow: 0 0 28px rgba(212,175,55,0.15), inset 0 0 20px rgba(212,175,55,0.05);
+    }
+    .forge-highlight-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .forge-highlight-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(77,189,232,0.1) 70%, transparent 100%);
+      border: 1px solid rgba(212,175,55,0.3);
+      animation: forgeIconPulse 3s ease-in-out infinite;
+    }
+    @keyframes forgeIconPulse {
+      0%,100% { box-shadow: 0 0 12px rgba(212,175,55,0.2); }
+      50% { box-shadow: 0 0 22px rgba(212,175,55,0.45); }
+    }
+    .forge-highlight-box h2 { margin: 0 !important; }
+    .forge-highlight-box h2::after { display: none; }
+
+    .forge-rules-box {
+      margin: 2rem 0 0;
+      padding: 1.5rem 1.75rem;
+      border-radius: 10px;
+      border-left: 3px solid rgba(200,144,48,0.5);
+      background: rgba(3,8,16,0.5);
+    }
+    .forge-rules-box h2 { margin-top: 0 !important; }
+
     .skip-link {
       position: fixed; top: -100px; left: 1rem; z-index: 10000;
       padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #1a9fd4, #0d6ea8);
@@ -427,10 +475,14 @@
 
     .forge-table tbody tr.forge-reveal,
     .forge-rules-list li.forge-reveal,
-    .forge-location-card.forge-reveal { opacity: 0; }
+    .forge-location-card.forge-reveal,
+    .forge-highlight-box.forge-reveal,
+    .forge-rules-box.forge-reveal { opacity: 0; }
     .forge-table tbody tr.forge-reveal.visible,
     .forge-rules-list li.forge-reveal.visible,
-    .forge-location-card.forge-reveal.visible {
+    .forge-location-card.forge-reveal.visible,
+    .forge-highlight-box.forge-reveal.visible,
+    .forge-rules-box.forge-reveal.visible {
       animation: forgeRevealUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
       animation-delay: var(--delay, 0s);
     }
@@ -462,10 +514,12 @@
 
     @media (prefers-reduced-motion:reduce) {
       .forge-logo, .forge-frost-particle, .forge-logo-wrap::before, .forge-logo-wrap::after,
-      .forge-sparkle, .forge-panel-body h2, .forge-panel-body h2::after, .forge-panel-body h2.gold { animation: none !important; }
+      .forge-sparkle, .forge-panel-body h2, .forge-panel-body h2::after, .forge-panel-body h2.gold,
+      .forge-highlight-icon { animation: none !important; }
       .forge-hero-particles { display: none; }
       .forge-logo-wrap::before, .forge-logo-wrap::after { opacity: 0.3; }
-      .forge-table tbody tr.forge-reveal, .forge-rules-list li.forge-reveal, .forge-location-card.forge-reveal { opacity: 1; }
+      .forge-table tbody tr.forge-reveal, .forge-rules-list li.forge-reveal, .forge-location-card.forge-reveal,
+      .forge-highlight-box.forge-reveal, .forge-rules-box.forge-reveal { opacity: 1; }
     }
 
     @media (max-width: 768px) {
@@ -474,6 +528,7 @@
       .forge-table { font-size: 0.82rem; }
       .forge-table th, .forge-table td { padding: 0.5rem 0.7rem; }
       .forge-hero-particles { display: none; }
+      .forge-highlight-box, .forge-rules-box { padding: 1.25rem 1rem; }
     }
   </style>
 </head>
@@ -594,12 +649,22 @@
             </table>
           </div>
 
-          <h2 class="gold">El premio mayor: Orbe Congelado</h2>
-          <p>El mayor atractivo de la Forja de Escarcha es la obtención de <span class="gold">Orbes Congelados</span>, esenciales para las mejores recetas de profesión de Rasganorte:</p>
-          <ul class="forge-rules-list">
-            <li><strong>Abalorios (Trinkets):</strong> <span class="gold">100% de probabilidad garantizada</span> de obtener 1x Orbe Congelado. ¡Farmear mazmorras por abalorios nunca fue tan rentable!</li>
-            <li><strong>Resto de equipo:</strong> 15% de probabilidad base, que aumenta según el Nivel de Objeto (iLvl) y la calidad de la pieza. Por ejemplo, un objeto épico de iLvl 264 alcanza cerca de un <span class="gold">33.75% de probabilidad</span>.</li>
-          </ul>
+          <div class="forge-highlight-box">
+            <div class="forge-highlight-header">
+              <div class="forge-highlight-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/>
+                </svg>
+              </div>
+              <h2 class="gold">El premio mayor: Orbe Congelado</h2>
+            </div>
+            <p>El mayor atractivo de la Forja de Escarcha es la obtención de <span class="gold">Orbes Congelados</span>, esenciales para las mejores recetas de profesión de Rasganorte:</p>
+            <ul class="forge-rules-list">
+              <li><strong>Abalorios (Trinkets):</strong> <span class="gold">100% de probabilidad garantizada</span> de obtener 1x Orbe Congelado. ¡Farmear mazmorras por abalorios nunca fue tan rentable!</li>
+              <li><strong>Resto de equipo:</strong> 15% de probabilidad base, que aumenta según el Nivel de Objeto (iLvl) y la calidad de la pieza. Por ejemplo, un objeto épico de iLvl 264 alcanza cerca de un <span class="gold">33.75% de probabilidad</span>.</li>
+            </ul>
+          </div>
 
           <h2>Escalado por Nivel de Objeto y Calidad</h2>
           <p>Cuanto mejor sea el equipo que fundas, mayor será tu recompensa. Tanto la cantidad de materiales como la probabilidad de conseguir un Orbe Congelado se multiplican según dos factores:</p>
@@ -639,19 +704,21 @@
           </div>
           <style>@media(min-width:768px){.forge-scaling-grid{grid-template-columns:1fr 1fr;}}</style>
 
-          <h2>Reglas y seguridad</h2>
-          <p>Para proteger tu inventario y mantener una economía sana en el servidor, la forja cuenta con las siguientes reglas:</p>
-          <ul class="forge-rules-list">
-            <li><strong>Requisitos mínimos:</strong> El objeto debe ser al menos de calidad <span class="q-uncommon">Poco común</span> (verde) y tener un iLvl mínimo de 130. Se aceptan objetos ligados al equipar (BoE) y ligados al alma (BoP).</li>
-            <li><strong>Protección contra accidentes:</strong> Los objetos se funden de uno en uno y requieren confirmación individual. Además, si tienes las bolsas llenas, tus materiales llegarán de forma segura por correo.</li>
-            <li><strong>Límites de uso:</strong> Existe un tiempo de reutilización de 30 segundos entre cada fundición y un límite máximo de 50 fundiciones diarias por personaje.</li>
-          </ul>
-          <p style="margin-top:1rem;"><strong>Objetos bloqueados (no fundibles):</strong></p>
-          <ul class="forge-rules-list">
-            <li>Objetos con encantamientos o gemas equipadas (para evitar que destruyas tu equipo principal por error).</li>
-            <li>Objetos fabricados por jugadores (para proteger la economía de las profesiones).</li>
-            <li>Reliquias (Heirlooms), objetos de misión, objetos conjurados, tabardos y camisas.</li>
-          </ul>
+          <div class="forge-rules-box">
+            <h2>Reglas y seguridad</h2>
+            <p>Para proteger tu inventario y mantener una economía sana en el servidor, la forja cuenta con las siguientes reglas:</p>
+            <ul class="forge-rules-list">
+              <li><strong>Requisitos mínimos:</strong> El objeto debe ser al menos de calidad <span class="q-uncommon">Poco común</span> (verde) y tener un iLvl mínimo de 130. Se aceptan objetos ligados al equipar (BoE) y ligados al alma (BoP).</li>
+              <li><strong>Protección contra accidentes:</strong> Los objetos se funden de uno en uno y requieren confirmación individual. Además, si tienes las bolsas llenas, tus materiales llegarán de forma segura por correo.</li>
+              <li><strong>Límites de uso:</strong> Existe un tiempo de reutilización de 30 segundos entre cada fundición y un límite máximo de 50 fundiciones diarias por personaje.</li>
+            </ul>
+            <p style="margin-top:1rem;"><strong>Objetos bloqueados (no fundibles):</strong></p>
+            <ul class="forge-rules-list">
+              <li>Objetos con encantamientos o gemas equipadas (para evitar que destruyas tu equipo principal por error).</li>
+              <li>Objetos fabricados por jugadores (para proteger la economía de las profesiones).</li>
+              <li>Reliquias (Heirlooms), objetos de misión, objetos conjurados, tabardos y camisas.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -852,6 +919,10 @@
       card.classList.add('forge-reveal');
       card.style.setProperty('--delay', (idx * 0.1) + 's');
       revealItems.push(card);
+    });
+    document.querySelectorAll('.forge-highlight-box, .forge-rules-box').forEach(function (box) {
+      box.classList.add('forge-reveal');
+      revealItems.push(box);
     });
     document.querySelectorAll('.forge-rules-list').forEach(function (list) {
       list.querySelectorAll('li').forEach(function (li, idx) {

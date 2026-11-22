@@ -555,17 +555,22 @@
     .forge-logo-wrap { position: relative; display: inline-block; }
     .forge-logo-wrap::before {
       content: ''; position: absolute; inset: -20px; border-radius: 20px; z-index: 0;
-      background: conic-gradient(from 0deg, rgba(77,189,232,0.15), rgba(212,175,55,0.1), rgba(77,189,232,0.15), rgba(212,240,255,0.12), rgba(77,189,232,0.15));
-      filter: blur(16px); opacity: 0.6; animation: forgeHaloRotate 10s linear infinite;
+      background: radial-gradient(circle, rgba(77,189,232,0.18) 0%, rgba(212,175,55,0.08) 50%, transparent 100%);
+      filter: blur(16px); opacity: 0.5;
+      animation: forgeHaloBreathe 5s ease-in-out infinite;
     }
     .forge-logo-wrap::after {
       content: ''; position: absolute; inset: -4px; border-radius: 16px; z-index: 0;
-      background: linear-gradient(135deg, rgba(77,189,232,0.2), rgba(212,175,55,0.15), rgba(77,189,232,0.2));
-      filter: blur(6px); animation: forgeHaloPulse 3.5s ease-in-out infinite;
+      background: radial-gradient(circle, rgba(77,189,232,0.15) 0%, rgba(212,240,255,0.06) 60%, transparent 100%);
+      filter: blur(6px); opacity: 0.4;
+      animation: forgeHaloBreathe 5s ease-in-out infinite;
+      animation-delay: 0.8s;
     }
     .forge-logo-wrap .forge-logo { position: relative; z-index: 1; }
-    @keyframes forgeHaloRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes forgeHaloPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 0.75; } }
+    @keyframes forgeHaloBreathe {
+      0%,100% { transform: scale(0.85); opacity: 0.3; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+    }
 
     .forge-panel-aura {
       position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; border-radius: 14px;

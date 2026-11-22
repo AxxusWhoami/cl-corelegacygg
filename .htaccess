@@ -103,6 +103,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^guias/([a-z0-9-]+)/?$ /guias/$1.html [L]
 
+# Clean URL: /kyra-brilloetéreo -> /kyra-brilloetéreo.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^kyra-brilloetéreo/?$ /kyra-brilloetéreo.html [L]
+
 # Deep links para abrir modales directamente -> comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

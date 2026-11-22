@@ -280,6 +280,37 @@
       width: 300px; height: 300px;
     }
 
+    .kyra-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin: 1.5rem 0 0;
+    }
+    .kyra-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #1a3a5a33;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(8,20,36,0.7) 0%, rgba(5,13,24,0.5) 100%);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .kyra-stat-item:hover {
+      border-color: #4bbde844;
+      box-shadow: 0 0 16px rgba(77,189,232,0.08);
+    }
+    .kyra-stat-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .kyra-stat-text {
+      font-size: 0.88rem;
+      line-height: 1.4;
+      color: #b8d4e8;
+    }
+
     @media (max-width: 768px) {
       .kyra-panel-body { padding: 1.5rem 1.25rem 2rem; }
       .kyra-portrait { max-height: 300px; }
@@ -351,7 +382,7 @@
 
   <!-- ===== Content ===== -->
   <section id="kyra-content" class="kyra-content-wrap relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto">
+    <div class="max-w-5xl mx-auto">
       <div class="kyra-panel reveal" style="width:100%;">
         <div class="kyra-panel-header">
           <span class="kyra-panel-title">La Ruina de Dalaran</span>
@@ -366,6 +397,19 @@
           <p>Quienes se atreven a acercarse a su mesa pueden poner a prueba su fortuna en sus dados clásicos, tentar a la avaricia llevando sus ganancias al límite con el Doble o Nada, o encomendarse al destino frente a los tres rodillos de su tragamonedas. Cada apuesta fallida alimenta su codiciada lotería progresiva, y solo los más afortunados logran arrebatarle el gran jackpot antes de que la racha se enfríe.</p>
 
           <p>Eso sí, conviene conocer su temperamento antes de jugar. Aunque a veces muestra una chispa de compasión con quienes encadenan demasiadas derrotas seguidas, Kyra detesta perder el tiempo: si osas desafiarla con la bolsa vacía, descubrirás muy rápido que su paciencia tiene un precio tan alto como el jackpot.</p>
+
+          <h2>Estadísticas e Historial</h2>
+          <p>Cada jugador puede consultar información detallada sobre su actividad en las mesas de Kyra:</p>
+          <div class="kyra-stats-grid">
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">🎯</span><span class="kyra-stat-text">Apuestas realizadas</span></div>
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">⚔️</span><span class="kyra-stat-text">Victorias y derrotas</span></div>
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">🔥</span><span class="kyra-stat-text">Mejor racha de victorias</span></div>
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">💯</span><span class="kyra-stat-text">Tirada más alta</span></div>
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">🎰</span><span class="kyra-stat-text">Jackpots obtenidos</span></div>
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">💰</span><span class="kyra-stat-text">Total ganado y perdido</span></div>
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">📜</span><span class="kyra-stat-text">Últimas diez jugadas</span></div>
+            <div class="kyra-stat-item"><span class="kyra-stat-icon">🏆</span><span class="kyra-stat-text">Ranking de mejores ganancias</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -459,29 +503,6 @@
     </div>
   </section>
 
-  <!-- ===== Stats ===== -->
-  <section class="kyra-content-wrap relative pb-16 px-4 sm:px-6 lg:px-8" style="padding-top:0;">
-    <div class="max-w-3xl mx-auto">
-      <div class="kyra-panel reveal" style="width:100%;">
-        <div class="kyra-panel-header">
-          <span class="kyra-panel-title">Estadísticas e Historial</span>
-        </div>
-        <div class="kyra-panel-body">
-          <p>Cada jugador puede consultar información detallada sobre su actividad en las mesas de Kyra:</p>
-          <ul style="list-style:none; padding:0; margin:1rem 0 0;">
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Apuestas realizadas.</li>
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Victorias y derrotas.</li>
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Mejor racha de victorias.</li>
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Tirada más alta.</li>
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Jackpots obtenidos.</li>
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Cantidad total ganada y perdida.</li>
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Historial de las últimas diez jugadas.</li>
-            <li style="position:relative; padding-left:1.25rem; margin-bottom:0.5rem; line-height:1.7; color:#b8d4e8;">Ranking de los jugadores con mejores ganancias.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
   </main>
 
   <!-- ===== CTA Final ===== -->

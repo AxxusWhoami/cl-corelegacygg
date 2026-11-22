@@ -259,6 +259,39 @@
       color: #b8d4e8;
       line-height: 1.6;
     }
+    .forge-location-card.faction-alliance {
+      border-color: rgba(64,156,255,0.35);
+    }
+    .forge-location-card.faction-alliance .forge-location-label {
+      color: #4ea8ff;
+      text-shadow: 0 0 10px rgba(64,156,255,0.4);
+    }
+    .forge-location-card.faction-alliance:hover {
+      border-color: rgba(64,156,255,0.7);
+      box-shadow: 0 0 22px rgba(64,156,255,0.2), 0 0 12px rgba(64,156,255,0.12);
+    }
+    .forge-location-card.faction-horde {
+      border-color: rgba(230,60,50,0.35);
+    }
+    .forge-location-card.faction-horde .forge-location-label {
+      color: #ff4438;
+      text-shadow: 0 0 10px rgba(230,60,50,0.4);
+    }
+    .forge-location-card.faction-horde:hover {
+      border-color: rgba(230,60,50,0.7);
+      box-shadow: 0 0 22px rgba(230,60,50,0.2), 0 0 12px rgba(230,60,50,0.12);
+    }
+    .forge-location-card.faction-neutral {
+      border-color: rgba(180,180,190,0.3);
+    }
+    .forge-location-card.faction-neutral .forge-location-label {
+      color: #c0c0c8;
+      text-shadow: 0 0 10px rgba(180,180,190,0.35);
+    }
+    .forge-location-card.faction-neutral:hover {
+      border-color: rgba(180,180,190,0.6);
+      box-shadow: 0 0 22px rgba(180,180,190,0.15), 0 0 12px rgba(180,180,190,0.1);
+    }
 
     .forge-rules-list {
       list-style: none;
@@ -389,8 +422,6 @@
     .forge-table tr:hover .gold-cell { text-shadow: 0 0 12px rgba(212,175,55,0.5); }
     .forge-location-card { transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; }
     .forge-location-card:hover {
-      border-color: #d4af3755;
-      box-shadow: 0 0 20px rgba(212,175,55,0.1), 0 0 12px rgba(77,189,232,0.08);
       transform: translateY(-2px);
     }
 
@@ -524,15 +555,15 @@
           <h2>¿Dónde encontrarla?</h2>
           <p>La Forja de Escarcha está disponible en las 10 capitales principales:</p>
           <div class="forge-locations">
-            <div class="forge-location-card">
+            <div class="forge-location-card faction-alliance">
               <div class="forge-location-label">Alianza</div>
               <div class="forge-location-cities">Ventormenta, Forjaz, Darnassus y El Exodar.</div>
             </div>
-            <div class="forge-location-card">
+            <div class="forge-location-card faction-horde">
               <div class="forge-location-label">Horda</div>
               <div class="forge-location-cities">Orgrimmar, Entrañas, Cima del Trueno y Lunargenta.</div>
             </div>
-            <div class="forge-location-card">
+            <div class="forge-location-card faction-neutral">
               <div class="forge-location-label">Neutrales</div>
               <div class="forge-location-cities">Shattrath y Dalaran.</div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 // Cron que genera el JSON completo de rankings de Challenge Modes y lo guarda en Redis.
 // - Se ejecuta via CLI o desde una IP local (programador de tareas del servidor).
-// - Consulta la base de datos de personajes (mockup: acore_characters_rpp, real: acore_characters).
+// - Consulta la base de datos de personajes (acore_characters).
 // - Guarda el resultado en Redis (socket Armory) con TTL de 2 dias (172800 segundos).
 // - La API publica /api/challenges.php solo lee de Redis, nunca toca la BD.
 // PHP 7.4 · mysqli · Redis (caché vía Unix socket)
@@ -87,7 +87,7 @@ function mapRaceClass(?int $race, ?int $class): array
 // ---- Conexión a la base de datos ----
 mysqli_report(MYSQLI_REPORT_OFF);
 
-$conn = @mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $RPP_CHAR, (int) $DB_PORT);
+$conn = @mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_CHAR, (int) $DB_PORT);
 if (!$conn) {
     // Si no podemos conectar, salir silenciosamente (es un cron).
     fwrite(STDERR, date('Y-m-d H:i:s') . " challenges cron: no se pudo conectar a la BD.\n");

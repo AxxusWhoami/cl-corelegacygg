@@ -108,6 +108,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^kyra-brilloetéreo/?$ /kyra-brilloetéreo.html [L]
 
+# Clean URL: /forja-de-escarcha -> /forja-de-escarcha.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^forja-de-escarcha/?$ /forja-de-escarcha.html [L]
+
 # Deep links para abrir modales directamente -> comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

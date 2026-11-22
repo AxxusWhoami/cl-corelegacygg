@@ -313,9 +313,102 @@
       color: #b8d4e8;
     }
 
+    .kyra-hero-particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:1; }
+    .kyra-coin {
+      position:absolute; bottom:-20px; width:6px; height:6px; border-radius:50%;
+      background:radial-gradient(circle,#ffe88a 0%,#d4a843 40%,#8a6a20 80%,transparent 100%);
+      box-shadow:0 0 8px rgba(255,200,80,.5), 0 0 3px rgba(255,180,40,.3);
+      animation: kyraCoinFloat linear infinite;
+    }
+    .kyra-coin.cyan {
+      background:radial-gradient(circle,#d4f0ff 0%,#7dd8f8 40%,#1a9fd4 80%,transparent 100%);
+      box-shadow:0 0 8px rgba(77,189,232,.5), 0 0 3px rgba(120,200,240,.3);
+    }
+    @keyframes kyraCoinFloat {
+      0% { transform:translate(0,0) rotate(0deg) scale(1); opacity:0; }
+      8% { opacity:1; }
+      50% { transform:translate(var(--drift,0px),-50vh) rotate(180deg) scale(1.1); }
+      85% { opacity:.7; }
+      100% { transform:translate(calc(var(--drift,0px)*2),-100vh) rotate(360deg) scale(.5); opacity:0; }
+    }
+
+    .kyra-title-glow {
+      position:relative;
+      filter:drop-shadow(0 0 20px rgba(77,189,232,.25)) drop-shadow(0 0 8px rgba(212,240,255,.15));
+      animation:kyraTitlePulse 4s ease-in-out infinite;
+    }
+    @keyframes kyraTitlePulse {
+      0%,100% { filter:drop-shadow(0 0 20px rgba(77,189,232,.25)) drop-shadow(0 0 8px rgba(212,240,255,.15)); }
+      50% { filter:drop-shadow(0 0 32px rgba(77,189,232,.4)) drop-shadow(0 0 14px rgba(212,240,255,.25)); }
+    }
+
+    .kyra-portrait-wrap { position:relative; display:inline-block; margin:0 auto 1.5rem; }
+    .kyra-portrait-wrap::before {
+      content:''; position:absolute; inset:-10px; border-radius:18px; z-index:0;
+      background:conic-gradient(from 0deg,rgba(255,200,80,.15),rgba(77,189,232,.15),rgba(255,200,80,.15),rgba(77,189,232,.15),rgba(255,200,80,.15));
+      filter:blur(14px); opacity:.6; animation:kyraHaloRotate 8s linear infinite;
+    }
+    .kyra-portrait-wrap::after {
+      content:''; position:absolute; inset:-2px; border-radius:16px; z-index:0;
+      background:linear-gradient(135deg,rgba(255,200,80,.2),rgba(77,189,232,.2),rgba(255,200,80,.2));
+      filter:blur(4px); animation:kyraHaloPulse 3s ease-in-out infinite;
+    }
+    .kyra-portrait-wrap .kyra-portrait { position:relative; z-index:1; margin-bottom:0; }
+    @keyframes kyraHaloRotate { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+    @keyframes kyraHaloPulse { 0%,100% { opacity:.5; } 50% { opacity:.8; } }
+
+    .kyra-panel-aura {
+      position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; border-radius:14px;
+    }
+    .kyra-sparkle {
+      position:absolute; width:3px; height:3px; border-radius:50%;
+      background:rgba(255,220,120,.7); box-shadow:0 0 4px rgba(255,200,80,.5);
+      animation:kyraSparkle 4s ease-in-out infinite;
+    }
+    .kyra-sparkle.cyan { background:rgba(180,230,255,.7); box-shadow:0 0 4px rgba(77,189,232,.5); }
+    @keyframes kyraSparkle {
+      0%,100% { opacity:0; transform:scale(0); }
+      50% { opacity:1; transform:scale(1); }
+    }
+
+    .kyra-stat-item.reveal { opacity:0; }
+    .kyra-stat-item.reveal.visible {
+      animation:fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+      animation-delay:var(--delay,0s);
+    }
+    .kyra-stat-item.visible {
+      box-shadow:0 0 12px rgba(255,200,80,.1), 0 0 6px rgba(77,189,232,.08);
+    }
+
+    .kyra-game-card { position:relative; }
+    .kyra-game-card::after {
+      content:''; position:absolute; top:0; left:-100%; width:60%; height:100%;
+      background:linear-gradient(105deg,transparent 30%,rgba(255,220,120,.12) 45%,rgba(77,189,232,.12) 55%,transparent 70%);
+      pointer-events:none; transition:left .6s ease;
+    }
+    .kyra-game-card:hover::after { left:120%; }
+    .kyra-game-icon {
+      animation:kyraIconBounce 3s ease-in-out infinite;
+    }
+    .kyra-game-card:nth-child(2) .kyra-game-icon { animation-delay:.5s; }
+    .kyra-game-card:nth-child(3) .kyra-game-icon { animation-delay:1s; }
+    .kyra-game-card:nth-child(4) .kyra-game-icon { animation-delay:1.5s; }
+    @keyframes kyraIconBounce {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-4px); }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .kyra-coin,.kyra-sparkle,.kyra-title-glow,.kyra-portrait-wrap::before,.kyra-portrait-wrap::after,
+      .kyra-game-icon,.kyra-game-card::after { animation:none !important; }
+      .kyra-hero-particles { display:none; }
+      .kyra-portrait-wrap::before,.kyra-portrait-wrap::after { opacity:.3; }
+    }
+
     @media (max-width: 768px) {
       .kyra-panel-body { padding: 1.5rem 1.25rem 2rem; }
       .kyra-portrait { max-height: 300px; }
+      .kyra-hero-particles { display:none; }
     }
   </style>
 </head>
@@ -365,13 +458,14 @@
   <!-- ===== Hero ===== -->
   <section class="kyra-hero relative flex flex-col items-center justify-center overflow-hidden" style="min-height: 50vh;">
     <div class="kyra-hero-overlay"></div>
+    <div class="kyra-hero-particles" id="kyraHeroParticles"></div>
     <div class="max-w-7xl mx-auto relative z-10 w-full" style="padding: 7rem 1rem 2.5rem;">
       <div class="text-center reveal">
-        <h1 style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:900;
+        <h1 class="kyra-title-glow" style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-weight:900;
           font-size: clamp(2rem,5.5vw,4.5rem); line-height:1.1;
           background: linear-gradient(180deg,#fff 0%,#d4f0ff 15%,#8dd6f5 30%,#4bbde8 50%,#1a9fd4 70%,#0d6ea8 85%,#063d6b 100%);
           -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
-          animation: textGlow 3s ease-in-out infinite; margin-bottom:1rem;">Kyra Brilloetéreo</h1>
+          margin-bottom:1rem;">Kyra Brilloetéreo</h1>
         <div class="frost-divider" style="width:120px; margin:0 auto 2rem;"></div>
         <div style="max-width:680px; margin:0 auto;">
           <p style="font-family:'Cinzel',Georgia,serif; font-size:0.95rem; line-height:1.85; color:#b8d4e8;">
@@ -389,8 +483,13 @@
         <div class="kyra-panel-header">
           <span class="kyra-panel-title">La Ruina de Dalaran</span>
         </div>
-        <div class="kyra-panel-body">
-          <img src="/assets/kyra_brilloetereo.jpg" alt="Kyra Brilloetéreo, La Ruina de Dalaran" class="kyra-portrait" loading="eager" decoding="async" />
+        <div class="kyra-panel-aura" id="kyraPanelAura"></div>
+        <div class="kyra-panel-body" style="position:relative;z-index:1;">
+          <div style="text-align:center;">
+            <div class="kyra-portrait-wrap">
+              <img src="/assets/kyra_brilloetereo.jpg" alt="Kyra Brilloetéreo, La Ruina de Dalaran" class="kyra-portrait" loading="eager" decoding="async" />
+            </div>
+          </div>
 
           <p>Mientras los campeones de la Alianza y la Horda marchan hacia Corona de Hielo para enfrentarse al Rey Exánime, una batalla igual de despiadada se libra lejos de la mirada del Kirin Tor. En los rincones más turbios de Dalaran, donde el tintineo de las monedas pesa más que cualquier juramento de honor, reina <strong>Kyra Brilloetéreo</strong>, conocida con respeto —y bastante temor— como <strong>La Ruina de Dalaran</strong>.</p>
 
@@ -403,14 +502,14 @@
           <h2>Estadísticas e Historial</h2>
           <p>Cada jugador puede consultar información detallada sobre su actividad en las mesas de Kyra:</p>
           <div class="kyra-stats-grid">
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">🎯</span><span class="kyra-stat-text">Apuestas realizadas</span></div>
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">⚔️</span><span class="kyra-stat-text">Victorias y derrotas</span></div>
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">🔥</span><span class="kyra-stat-text">Mejor racha de victorias</span></div>
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">💯</span><span class="kyra-stat-text">Tirada más alta</span></div>
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">🎰</span><span class="kyra-stat-text">Jackpots obtenidos</span></div>
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">💰</span><span class="kyra-stat-text">Total ganado y perdido</span></div>
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">📜</span><span class="kyra-stat-text">Últimas diez jugadas</span></div>
-            <div class="kyra-stat-item"><span class="kyra-stat-icon">🏆</span><span class="kyra-stat-text">Ranking de mejores ganancias</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:0s;"><span class="kyra-stat-icon">🎯</span><span class="kyra-stat-text">Apuestas realizadas</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:.08s;"><span class="kyra-stat-icon">⚔️</span><span class="kyra-stat-text">Victorias y derrotas</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:.16s;"><span class="kyra-stat-icon">🔥</span><span class="kyra-stat-text">Mejor racha de victorias</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:.24s;"><span class="kyra-stat-icon">💯</span><span class="kyra-stat-text">Tirada más alta</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:.32s;"><span class="kyra-stat-icon">🎰</span><span class="kyra-stat-text">Jackpots obtenidos</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:.40s;"><span class="kyra-stat-icon">💰</span><span class="kyra-stat-text">Total ganado y perdido</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:.48s;"><span class="kyra-stat-icon">📜</span><span class="kyra-stat-text">Últimas diez jugadas</span></div>
+            <div class="kyra-stat-item reveal" style="--delay:.56s;"><span class="kyra-stat-icon">🏆</span><span class="kyra-stat-text">Ranking de mejores ganancias</span></div>
           </div>
         </div>
       </div>
@@ -630,6 +729,58 @@
   <script src="/assets/core.js"></script>
   <script src="/assets/download-track.js"></script>
   <script src="/assets/download-modal.js"></script>
+  <script>
+  (function(){
+    var reduceMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduceMotion) return;
+    var heroParticles=document.getElementById('kyraHeroParticles');
+    if(heroParticles){
+      var palette=['','cyan','cyan',''];
+      for(var i=0;i<14;i++){
+        var c=document.createElement('span');
+        c.className='kyra-coin'+(palette[i%palette.length]?' '+palette[i%palette.length]:'');
+        var left=Math.random()*100;
+        var dur=7+Math.random()*6;
+        var delay=Math.random()*dur;
+        var drift=(Math.random()-0.5)*60;
+        var size=4+Math.random()*5;
+        c.style.left=left+'%';
+        c.style.width=size+'px';
+        c.style.height=size+'px';
+        c.style.animationDuration=dur+'s';
+        c.style.animationDelay=-delay+'s';
+        c.style.setProperty('--drift',drift+'px');
+        heroParticles.appendChild(c);
+      }
+    }
+    var aura=document.getElementById('kyraPanelAura');
+    if(aura){
+      for(var j=0;j<10;j++){
+        var s=document.createElement('span');
+        s.className='kyra-sparkle'+(j%2?' cyan':'');
+        s.style.left=(Math.random()*100)+'%';
+        s.style.top=(Math.random()*100)+'%';
+        s.style.animationDelay=(Math.random()*4)+'s';
+        s.style.animationDuration=(3+Math.random()*3)+'s';
+        aura.appendChild(s);
+      }
+    }
+    var statItems=document.querySelectorAll('.kyra-stat-item.reveal');
+    if('IntersectionObserver' in window && statItems.length){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      },{threshold:0.2});
+      statItems.forEach(function(el){obs.observe(el);});
+    } else {
+      statItems.forEach(function(el){el.classList.add('visible');});
+    }
+  })();
+  </script>
 
   <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 

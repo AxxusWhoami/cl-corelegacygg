@@ -309,6 +309,10 @@
     .stat-pill .stat-value { font-family:'Cinzel Decorative','Cinzel',Georgia,serif; font-size:.88rem; color:#4dd8ff; font-weight:700; text-shadow:0 0 8px rgba(77,189,232,.15); }
     .stat-pill .stat-value.gold { color:#ffd24a; text-shadow:0 0 8px rgba(255,210,80,.15); }
     .ranking-toolbar { display:flex; align-items:center; gap:.75rem; margin:1rem 0 0; flex-wrap:wrap; }
+    .alive-toggle { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:8px; border:1px solid rgba(77,189,232,.22); background:rgba(10,24,40,.6); color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.72rem; cursor:pointer; transition:all .25s ease; white-space:nowrap; }
+    .alive-toggle svg { width:14px; height:14px; }
+    .alive-toggle:hover { border-color:rgba(77,189,232,.45); color:#4dd8ff; box-shadow:0 0 10px rgba(77,189,232,.12); }
+    .alive-toggle.active { border-color:rgba(46,234,90,.5); color:#2eea5a; background:rgba(20,180,40,.08); box-shadow:0 0 10px rgba(46,234,90,.1); }
     .ranking-search { flex:1; min-width:160px; position:relative; }
     .ranking-search input { width:100%; padding:.5rem .9rem .5rem 2rem; border-radius:8px; border:1px solid rgba(77,189,232,.22); background:rgba(10,24,40,.6); color:#c8e0f0; font-family:'Cinzel',Georgia,serif; font-size:.76rem; outline:none; transition:border-color .25s ease; }
     .ranking-search input:focus { border-color:rgba(77,189,232,.5); box-shadow:0 0 10px rgba(77,189,232,.1); }
@@ -347,11 +351,11 @@
     .class-bar-count { flex-shrink:0; font-family:'Cinzel',Georgia,serif; font-size:.62rem; color:#5a8090; width:24px; text-align:right; }
     .survival-bar { display:flex; align-items:center; gap:.5rem; margin:.5rem 0 0; }
     .survival-bar-track { flex:1; height:22px; border-radius:11px; overflow:hidden; background:rgba(255,255,255,.04); display:flex; }
-    .survival-bar-alive { height:100%; background:linear-gradient(90deg,#39f05a,#16b83d); box-shadow:0 0 12px rgba(57,240,90,.35); transition:width .6s ease; }
-    .survival-bar-dead { height:100%; background:linear-gradient(90deg,#ff4d4d,#c91f2b); box-shadow:0 0 12px rgba(255,77,77,.3); transition:width .6s ease; }
+    .survival-bar-alive { height:100%; background:linear-gradient(90deg,rgba(46,234,90,.55),rgba(22,184,61,.4)); box-shadow:0 0 8px rgba(46,234,90,.15); transition:width .6s ease; }
+    .survival-bar-dead { height:100%; background:linear-gradient(90deg,rgba(255,77,77,.5),rgba(201,31,43,.35)); box-shadow:0 0 8px rgba(255,77,77,.12); transition:width .6s ease; }
     .survival-label { font-family:'Cinzel',Georgia,serif; font-size:.68rem; color:#d6eaf5; white-space:nowrap; }
-    .survival-label .alive-n { color:#52ff73; font-weight:700; text-shadow:0 0 7px rgba(82,255,115,.35); }
-    .survival-label .dead-n { color:#ff6868; font-weight:700; text-shadow:0 0 7px rgba(255,104,104,.3); }
+    .survival-label .alive-n { color:#2eea5a; font-weight:700; text-shadow:0 0 6px rgba(46,234,90,.2); }
+    .survival-label .dead-n { color:#ff5050; font-weight:700; text-shadow:0 0 6px rgba(255,80,80,.15); }
     .share-row { display:flex; gap:.4rem; margin-top:.5rem; flex-wrap:wrap; }
     .share-btn { display:inline-flex; align-items:center; gap:.3rem; padding:.3rem .7rem; border-radius:6px; border:1px solid rgba(77,189,232,.18); background:rgba(10,24,40,.5); color:#b8d4e8; font-family:'Cinzel',Georgia,serif; font-size:.62rem; cursor:pointer; transition:all .25s ease; text-decoration:none; }
     .share-btn:hover { border-color:rgba(77,189,232,.4); color:#4dd8ff; box-shadow:0 0 8px rgba(77,189,232,.1); }
@@ -510,6 +514,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
             <input type="text" id="rankingSearch" placeholder="Buscar personaje…" aria-label="Buscar personaje" />
           </div>
+          <button class="alive-toggle" id="aliveToggle" type="button" aria-pressed="false" title="Mostrar solo personajes vivos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Solo vivos
+          </button>
         </div>
 
         <!-- Content -->
@@ -586,6 +594,7 @@
       var currentRenderFn = null;
       var currentRenderOpts = null;
       var searchTerm = '';
+      var aliveOnly = false;
       var followedChars = {};
       try { var saved = localStorage.getItem('cl_followed_chars'); if (saved) followedChars = JSON.parse(saved) || {}; } catch(e) {}
 
@@ -639,18 +648,28 @@
       }
 
       function filterEntries(entries) {
-        if (!searchTerm) return entries || [];
-        var term = searchTerm.toLowerCase();
-        return (entries || []).filter(function(e) {
-          return (e.name || '').toLowerCase().indexOf(term) !== -1;
-        });
+        var result = entries || [];
+        if (aliveOnly) {
+          result = result.filter(function(e) { return e.is_alive === 1; });
+        }
+        if (searchTerm) {
+          var term = searchTerm.toLowerCase();
+          result = result.filter(function(e) {
+            return (e.name || '').toLowerCase().indexOf(term) !== -1;
+          });
+        }
+        return result;
       }
 
       function rerender() {
         if (!currentRenderFn || !currentEntries) return;
         var filtered = filterEntries(currentEntries);
-        if (filtered.length === 0 && searchTerm) {
-          showEmpty('No se encontraron personajes que coincidan con "' + escapeHtml(searchTerm) + '".');
+        if (filtered.length === 0 && (searchTerm || aliveOnly)) {
+          var msg = 'No se encontraron personajes';
+          if (searchTerm && aliveOnly) msg += ' vivos que coincidan con "' + escapeHtml(searchTerm) + '".';
+          else if (searchTerm) msg += ' que coincidan con "' + escapeHtml(searchTerm) + '".';
+          else msg += ' vivos en este ranking.';
+          showEmpty(msg);
           return;
         }
         if (currentRenderOpts) { currentRenderFn(filtered, currentRenderOpts); }
@@ -1302,10 +1321,12 @@
           }
           modeSelector.classList.add('visible');
           searchInput.parentElement.style.display = '';
+          if (aliveToggleBtn) aliveToggleBtn.style.display = '';
           loadView('mode', currentMode);
         } else if (view === 'milestones' || view === 'stats' || view === 'survival' || view === 'deathmap') {
           modeSelector.classList.remove('visible');
           searchInput.parentElement.style.display = 'none';
+          if (aliveToggleBtn) aliveToggleBtn.style.display = 'none';
           if (view === 'milestones') { renderMilestoneFilters(); loadView('milestones'); }
           else if (view === 'stats') { renderStatsControls(); loadView('stats'); }
           else if (view === 'deathmap') { loadView('deathmap'); }
@@ -1313,6 +1334,7 @@
         } else {
           modeSelector.classList.remove('visible');
           searchInput.parentElement.style.display = '';
+          if (aliveToggleBtn) aliveToggleBtn.style.display = '';
           loadView(view);
         }
         updateUrl();
@@ -1327,6 +1349,15 @@
       if (searchInput) {
         searchInput.addEventListener('input', function() {
           searchTerm = this.value.trim();
+          rerender();
+        });
+      }
+      var aliveToggleBtn = document.getElementById('aliveToggle');
+      if (aliveToggleBtn) {
+        aliveToggleBtn.addEventListener('click', function() {
+          aliveOnly = !aliveOnly;
+          this.setAttribute('aria-pressed', aliveOnly ? 'true' : 'false');
+          if (aliveOnly) this.classList.add('active'); else this.classList.remove('active');
           rerender();
         });
       }

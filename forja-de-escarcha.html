@@ -219,6 +219,10 @@
     .forge-table tr:last-child td { border-bottom: none; }
     .forge-table tr:hover td { background: rgba(77,189,232,0.05); }
     .forge-table .col-type { color: var(--frost); font-weight: 600; }
+    .q-uncommon { color: #1eff00; font-weight: 600; }
+    .q-rare { color: #0070dd; font-weight: 600; }
+    .q-epic { color: #a335ee; font-weight: 600; }
+    .q-legendary { color: #ff8000; font-weight: 600; }
 
     .forge-locations {
       display: grid;
@@ -479,10 +483,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td class="col-type">Poco común (Verde)</td><td>1.0x</td></tr>
-                <tr><td class="col-type">Raro (Azul)</td><td>1.25x</td></tr>
-                <tr><td class="col-type">Épico (Morado)</td><td>1.5x</td></tr>
-                <tr><td class="col-type">Legendario (Naranja)</td><td>2.0x</td></tr>
+                <tr><td><span class="q-uncommon">Poco común</span> (Verde)</td><td>1.0x</td></tr>
+                <tr><td><span class="q-rare">Raro</span> (Azul)</td><td>1.25x</td></tr>
+                <tr><td><span class="q-epic">Épico</span> (Morado)</td><td>1.5x</td></tr>
+                <tr><td><span class="q-legendary">Legendario</span> (Naranja)</td><td>2.0x</td></tr>
               </tbody>
             </table>
           </div>
@@ -490,7 +494,7 @@
           <h2>Reglas y seguridad</h2>
           <p>Para proteger tu inventario y mantener una economía sana en el servidor, la forja cuenta con las siguientes reglas:</p>
           <ul class="forge-rules-list">
-            <li><strong>Requisitos mínimos:</strong> El objeto debe ser al menos de calidad Poco común (verde) y tener un iLvl mínimo de 130. Se aceptan objetos ligados al equipar (BoE) y ligados al alma (BoP).</li>
+            <li><strong>Requisitos mínimos:</strong> El objeto debe ser al menos de calidad <span class="q-uncommon">Poco común</span> (verde) y tener un iLvl mínimo de 130. Se aceptan objetos ligados al equipar (BoE) y ligados al alma (BoP).</li>
             <li><strong>Protección contra accidentes:</strong> Los objetos se funden de uno en uno y requieren confirmación individual. Además, si tienes las bolsas llenas, tus materiales llegarán de forma segura por correo.</li>
             <li><strong>Límites de uso:</strong> Existe un tiempo de reutilización de 30 segundos entre cada fundición y un límite máximo de 50 fundiciones diarias por personaje.</li>
           </ul>

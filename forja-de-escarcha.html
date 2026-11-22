@@ -535,21 +535,23 @@
       position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
     }
     .forge-frost-particle {
-      position: absolute; bottom: -10px; border-radius: 50%;
+      position: absolute; top: -10px; border-radius: 50%;
       background: radial-gradient(circle, rgba(212,240,255,0.8) 0%, rgba(180,230,255,0.4) 50%, transparent 100%);
       box-shadow: 0 0 6px rgba(77,189,232,0.4);
-      animation: forgeFrostFloat linear infinite;
+      animation: forgeFrostFall linear infinite;
     }
     .forge-frost-particle.gold {
       background: radial-gradient(circle, rgba(255,235,180,0.7) 0%, rgba(212,175,55,0.3) 50%, transparent 100%);
       box-shadow: 0 0 6px rgba(212,175,55,0.4);
     }
-    @keyframes forgeFrostFloat {
+    @keyframes forgeFrostFall {
       0% { transform: translate(0,0) scale(1); opacity: 0; }
       10% { opacity: 1; }
-      50% { transform: translate(var(--drift,0px), -50vh) scale(1.2); }
+      25% { transform: translate(var(--drift,0px), 25vh) scale(1); }
+      50% { transform: translate(calc(var(--drift,0px)*-1), 50vh) scale(1.1); }
+      75% { transform: translate(var(--drift,0px), 75vh) scale(1); }
       90% { opacity: 0.6; }
-      100% { transform: translate(calc(var(--drift,0px)*2), -100vh) scale(0.5); opacity: 0; }
+      100% { transform: translate(calc(var(--drift,0px)*-0.5), 100vh) scale(0.5); opacity: 0; }
     }
 
     .forge-logo-wrap { position: relative; display: inline-block; }
@@ -1028,9 +1030,9 @@
 
     var heroParticles = document.getElementById('forgeHeroParticles');
     if (heroParticles && !reduceMotion && !isMobile) {
-      for (var i = 0; i < 18; i++) {
+      for (var i = 0; i < 24; i++) {
         var p = document.createElement('span');
-        p.className = 'forge-frost-particle' + (i % 4 === 0 ? ' gold' : '');
+        p.className = 'forge-frost-particle' + (i % 5 === 0 ? ' gold' : '');
         var dur = 8 + Math.random() * 7;
         p.style.left = (Math.random() * 100) + '%';
         var sz = 3 + Math.random() * 5;
@@ -1038,7 +1040,7 @@
         p.style.height = sz + 'px';
         p.style.animationDuration = dur + 's';
         p.style.animationDelay = -(Math.random() * dur) + 's';
-        p.style.setProperty('--drift', ((Math.random() - 0.5) * 80) + 'px');
+        p.style.setProperty('--drift', ((Math.random() - 0.5) * 120) + 'px');
         heroParticles.appendChild(p);
       }
     }

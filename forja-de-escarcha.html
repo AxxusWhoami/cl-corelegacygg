@@ -603,38 +603,41 @@
 
           <h2>Escalado por Nivel de Objeto y Calidad</h2>
           <p>Cuanto mejor sea el equipo que fundas, mayor será tu recompensa. Tanto la cantidad de materiales como la probabilidad de conseguir un Orbe Congelado se multiplican según dos factores:</p>
-          <div class="forge-table-wrap">
-            <table class="forge-table">
-              <thead>
-                <tr>
-                  <th>Nivel de Objeto (iLvl)</th>
-                  <th>Multiplicador</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td class="col-type">Menos de 200</td><td>0.75x</td></tr>
-                <tr><td class="col-type">200 – 225</td><td>1.0x (Base)</td></tr>
-                <tr><td class="col-type">226 – 250</td><td>1.25x</td></tr>
-                <tr><td class="col-type">251 o superior</td><td class="gold-cell">1.5x</td></tr>
-              </tbody>
-            </table>
+          <div class="forge-scaling-grid" style="display:grid; grid-template-columns:1fr; gap:1.5rem; margin-top:1rem;">
+            <div class="forge-table-wrap">
+              <table class="forge-table">
+                <thead>
+                  <tr>
+                    <th>Nivel de Objeto (iLvl)</th>
+                    <th>Multiplicador</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="col-type">Menos de 200</td><td>0.75x</td></tr>
+                  <tr><td class="col-type">200 – 225</td><td>1.0x (Base)</td></tr>
+                  <tr><td class="col-type">226 – 250</td><td>1.25x</td></tr>
+                  <tr><td class="col-type">251 o superior</td><td class="gold-cell">1.5x</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="forge-table-wrap">
+              <table class="forge-table">
+                <thead>
+                  <tr>
+                    <th>Calidad del objeto</th>
+                    <th>Multiplicador</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><span class="q-uncommon">Poco común</span> (Verde)</td><td>1.0x</td></tr>
+                  <tr><td><span class="q-rare">Raro</span> (Azul)</td><td>1.25x</td></tr>
+                  <tr><td><span class="q-epic">Épico</span> (Morado)</td><td>1.5x</td></tr>
+                  <tr><td><span class="q-legendary">Legendario</span> (Naranja)</td><td class="gold-cell">2.0x</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="forge-table-wrap" style="margin-top:1rem;">
-            <table class="forge-table">
-              <thead>
-                <tr>
-                  <th>Calidad del objeto</th>
-                  <th>Multiplicador</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><span class="q-uncommon">Poco común</span> (Verde)</td><td>1.0x</td></tr>
-                <tr><td><span class="q-rare">Raro</span> (Azul)</td><td>1.25x</td></tr>
-                <tr><td><span class="q-epic">Épico</span> (Morado)</td><td>1.5x</td></tr>
-                <tr><td><span class="q-legendary">Legendario</span> (Naranja)</td><td class="gold-cell">2.0x</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <style>@media(min-width:768px){.forge-scaling-grid{grid-template-columns:1fr 1fr;}}</style>
 
           <h2>Reglas y seguridad</h2>
           <p>Para proteger tu inventario y mantener una economía sana en el servidor, la forja cuenta con las siguientes reglas:</p>

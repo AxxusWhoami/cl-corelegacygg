@@ -318,6 +318,63 @@
       box-shadow: 0 0 6px rgba(77,189,232,0.4);
     }
 
+    .forge-render-showcase {
+      margin: 1.75rem 0 2rem;
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #1a3a5a55;
+      background: linear-gradient(180deg, rgba(8,20,36,0.6) 0%, rgba(3,10,20,0.8) 100%);
+      box-shadow: 0 0 24px rgba(77,189,232,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .forge-render-showcase:hover {
+      border-color: rgba(77,189,232,0.35);
+      box-shadow: 0 0 32px rgba(77,189,232,0.12), 0 8px 36px rgba(0,0,0,0.5);
+    }
+    .forge-render-img-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.5rem;
+    }
+    .forge-render-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 18px;
+      background: conic-gradient(from 0deg, rgba(77,189,232,0.1), rgba(212,175,55,0.08), rgba(77,189,232,0.1), rgba(212,240,255,0.06), rgba(77,189,232,0.1));
+      filter: blur(14px);
+      opacity: 0.5;
+      animation: forgeHaloRotate 12s linear infinite;
+      pointer-events: none;
+    }
+    .forge-render-img {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+      width: auto;
+      max-height: 420px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(77,189,232,0.2)) drop-shadow(0 8px 28px rgba(0,0,0,0.5));
+      animation: forgeRenderGlow 5s ease-in-out infinite;
+    }
+    @keyframes forgeRenderGlow {
+      0%,100% { filter: drop-shadow(0 0 20px rgba(77,189,232,0.2)) drop-shadow(0 8px 28px rgba(0,0,0,0.5)); }
+      50% { filter: drop-shadow(0 0 32px rgba(77,189,232,0.35)) drop-shadow(0 8px 28px rgba(0,0,0,0.5)); }
+    }
+    .forge-render-caption {
+      padding: 0.75rem 1.5rem 1.25rem;
+      text-align: center;
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: #8ab4c8;
+      border-top: 1px solid #1a3a5a33;
+      background: rgba(3,10,20,0.4);
+    }
+
     .forge-highlight-box {
       margin: 2rem 0 1.5rem;
       padding: 1.5rem 1.75rem;
@@ -515,7 +572,7 @@
     @media (prefers-reduced-motion:reduce) {
       .forge-logo, .forge-frost-particle, .forge-logo-wrap::before, .forge-logo-wrap::after,
       .forge-sparkle, .forge-panel-body h2, .forge-panel-body h2::after, .forge-panel-body h2.gold,
-      .forge-highlight-icon { animation: none !important; }
+      .forge-highlight-icon, .forge-render-img, .forge-render-img-wrap::before { animation: none !important; }
       .forge-hero-particles { display: none; }
       .forge-logo-wrap::before, .forge-logo-wrap::after { opacity: 0.3; }
       .forge-table tbody tr.forge-reveal, .forge-rules-list li.forge-reveal, .forge-location-card.forge-reveal,
@@ -529,6 +586,8 @@
       .forge-table th, .forge-table td { padding: 0.5rem 0.7rem; }
       .forge-hero-particles { display: none; }
       .forge-highlight-box, .forge-rules-box { padding: 1.25rem 1rem; }
+      .forge-render-img { max-height: 280px; }
+      .forge-render-img-wrap { padding: 1.25rem 1rem; }
     }
   </style>
 </head>
@@ -606,6 +665,13 @@
           <h2>Dale una segunda vida a tu equipo</h2>
           <p>Dale una segunda vida a ese equipo que ya no necesitas. En <strong>CoRe Legacy</strong>, <strong>La Forja de Escarcha</strong> te permite reciclar armaduras, armas y accesorios de Wrath of the Lich King para recuperar materiales reales de profesión y conseguir valiosos <strong>Orbes Congelados</strong>.</p>
           <p>A diferencia de otros sistemas aleatorios, la forja analiza exactamente qué tipo de objeto estás fundiendo para devolverte materias primas acordes a su fabricación (menas sin fundir, telas, cueros o gemas), junto con la posibilidad de obtener un material secundario adicional.</p>
+
+          <div class="forge-render-showcase">
+            <div class="forge-render-img-wrap">
+              <img src="/assets/render_forja_de_escarcha_512.png" alt="Render 3D de la Forja de Escarcha — vista en detalle del altar de fundición con cristales de hielo y brillo escarchado" class="forge-render-img" loading="lazy" decoding="async" width="512" height="512" />
+            </div>
+            <div class="forge-render-caption">Render 3D de la Forja de Escarcha</div>
+          </div>
 
           <h2>¿Dónde encontrarla?</h2>
           <p>La Forja de Escarcha está disponible en las 10 capitales principales:</p>
@@ -920,7 +986,7 @@
       card.style.setProperty('--delay', (idx * 0.1) + 's');
       revealItems.push(card);
     });
-    document.querySelectorAll('.forge-highlight-box, .forge-rules-box').forEach(function (box) {
+    document.querySelectorAll('.forge-highlight-box, .forge-rules-box, .forge-render-showcase').forEach(function (box) {
       box.classList.add('forge-reveal');
       revealItems.push(box);
     });

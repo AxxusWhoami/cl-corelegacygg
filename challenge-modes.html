@@ -113,6 +113,13 @@
     .compat-pair { display:inline-flex; align-items:center; gap:.4rem; margin:.3rem .6rem .3rem 0; font-family:'Cinzel',Georgia,serif; font-size:.76rem; color:#b8d4e8; }
     .compat-pair .compat-x { color:#ff5050; font-weight:700; }
     @media (max-width:600px) { .fiche-card-meta { flex-direction:column; align-items:flex-start; gap:.35rem; } }
+    .altar-thumb:hover { transform:scale(1.06); border-color:rgba(77,189,232,.5); box-shadow:0 0 20px rgba(77,189,232,.2); }
+    .altar-lightbox { position:fixed; inset:0; z-index:99999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.85); opacity:0; pointer-events:none; transition:opacity .3s ease; }
+    .altar-lightbox.open { opacity:1; pointer-events:auto; }
+    .altar-lightbox img { max-width:92vw; max-height:88vh; object-fit:contain; border-radius:12px; border:1px solid rgba(77,189,232,.3); box-shadow:0 0 40px rgba(77,189,232,.15), 0 20px 60px rgba(0,0,0,.7); transform:scale(.92); transition:transform .3s ease; }
+    .altar-lightbox.open img { transform:scale(1); }
+    .altar-lightbox-close { position:absolute; top:1.25rem; right:1.5rem; width:44px; height:44px; border:none; border-radius:50%; background:rgba(77,189,232,.15); color:#c8f0ff; font-size:1.5rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .25s ease; }
+    .altar-lightbox-close:hover { background:rgba(77,189,232,.35); }
   </style>
   <script type="application/ld+json">
   {
@@ -182,9 +189,13 @@
           <p style="margin:.5rem 0;">Hemos integrado un completo sistema de <strong style="color:#d4f0ff;">9 Modos de Desafío opcionales</strong> diseñados para poner a prueba tu habilidad, tu conocimiento del juego y tu capacidad de supervivencia desde el nivel 1 hasta el nivel 80. Consulta el <a href="/challenge-calculator" style="color:#ffd24a;text-decoration:underline;">simulador de combinaciones</a> para planificar tu reto.</p>
           <p style="margin:.5rem 0;">Tanto si buscas la adrenalina de la muerte permanente en modo Hardcore como si prefieres el purismo extremo del reto Hombre de Hierro (Iron Man) o una subida de nivel pausada al estilo clásico, podrás personalizar las reglas de tu personaje antes de dar tus primeros pasos por Azeroth. Los personajes destacados aparecen en los <a href="/challenge-tops" style="color:#8dd6f5;text-decoration:underline;">rankings en tiempo real</a> y en la <a href="/challenge-tops?view=hall" style="color:#8dd6f5;text-decoration:underline;">sala de la fama</a>.</p>
         </div>
-        <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:1.25rem; margin:1.5rem auto 0; max-width:850px;">
-          <img src="/assets/altar_de_los_desafios.png" alt="Altar de los Desafíos — emblema" loading="lazy" decoding="async" style="max-width:100%; width:auto; max-width:380px; max-height:420px; object-fit:contain; border-radius:14px; border:1px solid rgba(77,189,232,.22); box-shadow:0 0 28px rgba(77,189,232,.1), 0 12px 40px rgba(0,0,0,.5);" />
-          <img src="/assets/altar_de_los_desafios.jpg" alt="Altar de los Desafíos — captura in-game" loading="lazy" decoding="async" style="max-width:100%; width:auto; max-width:380px; max-height:420px; object-fit:contain; border-radius:14px; border:1px solid rgba(77,189,232,.22); box-shadow:0 0 28px rgba(77,189,232,.1), 0 12px 40px rgba(0,0,0,.5);" />
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:1rem; margin:1.5rem auto 0; max-width:850px;">
+          <button type="button" class="altar-thumb" data-full="/assets/altar_de_los_desafios.png" aria-label="Ver imagen grande del emblema del Altar" style="cursor:pointer; padding:0; border:1px solid rgba(77,189,232,.22); border-radius:10px; overflow:hidden; background:none; transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;">
+            <img src="/assets/altar_de_los_desafios.png" alt="Altar de los Desafíos — emblema" loading="lazy" decoding="async" style="display:block; width:140px; height:140px; object-fit:cover;" />
+          </button>
+          <button type="button" class="altar-thumb" data-full="/assets/altar_de_los_desafios.jpg" aria-label="Ver imagen grande de la captura in-game del Altar" style="cursor:pointer; padding:0; border:1px solid rgba(77,189,232,.22); border-radius:10px; overflow:hidden; background:none; transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;">
+            <img src="/assets/altar_de_los_desafios.jpg" alt="Altar de los Desafíos — captura in-game" loading="lazy" decoding="async" style="display:block; width:140px; height:140px; object-fit:cover;" />
+          </button>
         </div>
       </div>
       <section class="challenge-rules" aria-labelledby="challenge-rules-title" style="margin:1.5rem 0 2.25rem; padding:1.75rem; border:1px solid rgba(77,189,232,.34); border-radius:14px; background:linear-gradient(135deg,rgba(77,189,232,.1),rgba(4,12,22,.72) 55%,rgba(40,105,165,.1)); box-shadow:0 0 24px rgba(77,189,232,.12); display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:1.75rem; align-items:center;">
@@ -523,7 +534,19 @@
   </main>
   <button class="back-to-top" type="button" aria-label="Subir arriba" title="Subir arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
   <footer class="site-footer"><div class="site-footer-bg"><div class="site-footer-content"><p class="site-footer-disclaimer">CoRe Legacy es un servidor privado de World of Warcraft: Wrath of the Lich King 3.3.5a. Todo el contenido relacionado con WoW es propiedad de Blizzard Entertainment.</p><div class="site-footer-links"><button class="site-footer-link" data-legal="tos">Términos de Servicio</button><span class="site-footer-sep">·</span><button class="site-footer-link" data-legal="privacy">Política de Privacidad</button><span class="site-footer-sep">·</span><a class="site-footer-link" href="/sobre-nosotros">Sobre nosotros</a></div><p class="site-footer-copy">© 2026 CoRe Legacy. Todos los derechos reservados.</p></div></div></footer>
+  <div class="altar-lightbox" id="altarLightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada"><button class="altar-lightbox-close" id="altarLightboxClose" type="button" aria-label="Cerrar">&times;</button><img id="altarLightboxImg" src="" alt="" /></div>
   <script src="/assets/core.js"></script>
   <script src="/assets/legal.js"></script>
+  <script>
+    (function(){
+      var lb=document.getElementById('altarLightbox'),lbImg=document.getElementById('altarLightboxImg'),lbClose=document.getElementById('altarLightboxClose');
+      function open(src,alt){lbImg.src=src;lbImg.alt=alt;lb.classList.add('open');document.body.style.overflow='hidden';}
+      function close(){lb.classList.remove('open');document.body.style.overflow='';}
+      document.querySelectorAll('.altar-thumb').forEach(function(btn){btn.addEventListener('click',function(){open(btn.getAttribute('data-full'),btn.querySelector('img').alt);});});
+      lbClose.addEventListener('click',close);
+      lb.addEventListener('click',function(e){if(e.target===lb)close();});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))close();});
+    })();
+  </script>
 </body>
 </html>

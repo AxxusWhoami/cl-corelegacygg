@@ -229,13 +229,54 @@
       margin: 0 auto 2rem;
     }
     .tbc-trust-item {
-      padding: 1rem 1.25rem;
-      border: 1px solid #1a3a5a44;
-      border-radius: 10px;
-      background: linear-gradient(180deg, rgba(8,20,36,0.6) 0%, rgba(5,13,24,0.4) 100%);
+      position: relative;
+      min-height: 132px;
+      padding: 1.25rem 1.25rem 1.1rem 4.5rem;
+      border: 1px solid rgba(77,189,232,0.28);
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(13,39,60,0.88), rgba(5,13,24,0.72));
       text-align: left;
+      overflow: hidden;
+      animation: trustCardIn 0.7s ease both;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tbc-trust-item:nth-child(2) { animation-delay: 0.12s; }
+    .tbc-trust-item:nth-child(3) { animation-delay: 0.24s; }
+    .tbc-trust-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, rgba(255,255,255,0.08), transparent 35%);
+      pointer-events: none;
+    }
+    .tbc-trust-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(141,214,245,0.75);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.28), 0 0 20px rgba(77,189,232,0.16);
+    }
+    .tbc-trust-icon {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid rgba(141,214,245,0.6);
+      border-radius: 10px;
+      color: #d4f0ff;
+      background: linear-gradient(145deg, rgba(77,189,232,0.34), rgba(26,159,212,0.12));
+      box-shadow: 0 0 16px rgba(77,189,232,0.2);
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      z-index: 1;
     }
     .tbc-trust-item-title {
+      position: relative;
+      z-index: 1;
       font-family: 'Cinzel',Georgia,serif;
       font-weight: 700;
       font-size: 0.85rem;
@@ -244,9 +285,15 @@
       letter-spacing: 0.02em;
     }
     .tbc-trust-item-text {
+      position: relative;
+      z-index: 1;
       font-size: 0.82rem;
       color: #b8d4e8;
       line-height: 1.5;
+    }
+    @keyframes trustCardIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== CTA buttons ===== */
@@ -575,14 +622,17 @@
         </div>
         <div class="tbc-trust">
           <div class="tbc-trust-item">
+            <div class="tbc-trust-icon" aria-hidden="true">80</div>
             <div class="tbc-trust-item-title">Escalado real a nivel 80</div>
             <div class="tbc-trust-item-text">Daño, salud y armadura ajustados al endgame de WotLK.</div>
           </div>
           <div class="tbc-trust-item">
+            <div class="tbc-trust-icon" aria-hidden="true">IA</div>
             <div class="tbc-trust-item-title">Cero colas infinitas</div>
             <div class="tbc-trust-item-text">Forma tu grupo con amigos, jugadores del reino o completa los huecos al instante con Playerbots.</div>
           </div>
           <div class="tbc-trust-item">
+            <div class="tbc-trust-icon" aria-hidden="true">ICC</div>
             <div class="tbc-trust-item-title">Progresión real</div>
             <div class="tbc-trust-item-text">Emblemas, botín clásico de TBC y cofre semanal con equipo de ICC.</div>
           </div>

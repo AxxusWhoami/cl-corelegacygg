@@ -536,12 +536,22 @@
       box-shadow: 0 0 20px rgba(77,189,232,0.12);
       transform: translateY(-3px);
     }
-    .tbc-dungeon-img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      display: block;
+    .tbc-dungeon-img-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 0.5rem;
+      background: linear-gradient(180deg, rgba(3,10,20,0.6) 0%, rgba(2,8,16,0.4) 100%);
       border-bottom: 1px solid #1a3a5a33;
+    }
+    .tbc-dungeon-img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 115px;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
     }
     .tbc-dungeon-body {
       padding: 0.85rem 1rem 1rem;
@@ -615,7 +625,7 @@
       .tbc-trust { grid-template-columns: 1fr; }
       .tbc-steps { grid-template-columns: 1fr; }
       .tbc-dungeons { grid-template-columns: 1fr; }
-      .tbc-dungeon-img { height: 140px; }
+      .tbc-dungeon-img { max-height: 115px; }
       .tbc-hero-sub { font-size: 0.85rem; }
     }
   </style>
@@ -810,21 +820,21 @@
             <h3>Ciudadela del Fuego Infernal</h3>
             <div class="tbc-dungeons">
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/murallas_del_fuego_infernal.png" alt="Murallas del Fuego Infernal" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/murallas_del_fuego_infernal.png" alt="Murallas del Fuego Infernal" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Murallas del Fuego Infernal</div>
                   <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/el_horno_de_sangre.png" alt="El Horno de Sangre" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_horno_de_sangre.png" alt="El Horno de Sangre" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">El Horno de Sangre</div>
                   <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/las_salas_arrasadas.png" alt="Las Salas Arrasadas" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/las_salas_arrasadas.png" alt="Las Salas Arrasadas" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Las Salas Arrasadas</div>
                   <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
@@ -835,21 +845,21 @@
             <h3>Reserva Colmillo Torcido</h3>
             <div class="tbc-dungeons">
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/recinto_de_exclavos.png" alt="Recinto de los Esclavos" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/recinto_de_exclavos.png" alt="Recinto de los Esclavos" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Recinto de los Esclavos</div>
                   <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/la_sotienaga.png" alt="La Sotiénaga" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_sotienaga.png" alt="La Sotiénaga" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">La Sotiénaga</div>
                   <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/la_camara_de_vapor.png" alt="La Cámara de Vapor" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_camara_de_vapor.png" alt="La Cámara de Vapor" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">La Cámara de Vapor</div>
                   <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
@@ -860,28 +870,28 @@
             <h3>Auchindoun</h3>
             <div class="tbc-dungeons">
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/tumbas_de_mana.png" alt="Tumbas de Maná" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/tumbas_de_mana.png" alt="Tumbas de Maná" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Tumbas de Maná</div>
                   <div class="tbc-dungeon-zone">Auchindoun</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/criptas_auchenai.png" alt="Criptas Auchenai" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/criptas_auchenai.png" alt="Criptas Auchenai" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Criptas Auchenai</div>
                   <div class="tbc-dungeon-zone">Auchindoun</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/salas_sethekk.png" alt="Salas Sethekk" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/salas_sethekk.png" alt="Salas Sethekk" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Salas Sethekk</div>
                   <div class="tbc-dungeon-zone">Auchindoun</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/laberinto_de_las_sombras.png" alt="Laberinto de las Sombras" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/laberinto_de_las_sombras.png" alt="Laberinto de las Sombras" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Laberinto de las Sombras</div>
                   <div class="tbc-dungeon-zone">Auchindoun</div>
@@ -892,21 +902,21 @@
             <h3>El Castillo de la Tempestad</h3>
             <div class="tbc-dungeons">
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/el_mechanar.png" alt="El Mechanar" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_mechanar.png" alt="El Mechanar" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">El Mechanar</div>
                   <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/el_invernaculo.png" alt="El Invernáculo" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_invernaculo.png" alt="El Invernáculo" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">El Invernáculo</div>
                   <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/el_alcatraz.png" alt="El Alcatraz" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_alcatraz.png" alt="El Alcatraz" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">El Alcatraz</div>
                   <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
@@ -917,21 +927,21 @@
             <h3>Cavernas del Tiempo e Isla de Quel'Danas</h3>
             <div class="tbc-dungeons">
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/antiguas_laderas_de_trabalomas.png" alt="La Fuga de Durnholde — Antiguas Laderas de Trabalomas" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/antiguas_laderas_de_trabalomas.png" alt="La Fuga de Durnholde — Antiguas Laderas de Trabalomas" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">La Fuga de Durnholde</div>
                   <div class="tbc-dungeon-zone">Cavernas del Tiempo</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/la_cienaga_negra.png" alt="La Apertura del Portal Oscuro — La Ciénaga Negra" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_cienaga_negra.png" alt="La Apertura del Portal Oscuro — La Ciénaga Negra" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">La Apertura del Portal Oscuro</div>
                   <div class="tbc-dungeon-zone">Cavernas del Tiempo</div>
                 </div>
               </div>
               <div class="tbc-dungeon-card">
-                <img src="/assets/dungeons/tbc/bancal_del_magister.ong.png" alt="Bancal del Magister" class="tbc-dungeon-img" loading="lazy" />
+                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/bancal_del_magister.ong.png" alt="Bancal del Magister" class="tbc-dungeon-img" loading="lazy" /></div>
                 <div class="tbc-dungeon-body">
                   <div class="tbc-dungeon-name">Bancal del Magister</div>
                   <div class="tbc-dungeon-zone">Isla de Quel'Danas</div>

@@ -113,6 +113,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^forja-de-escarcha/?$ /forja-de-escarcha.html [L]
 
+# Clean URL: /paseo-en-el-tiempo -> /paseo-en-el-tiempo.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^paseo-en-el-tiempo/?$ /paseo-en-el-tiempo.html [L]
+
 # Deep links para abrir modales directamente -> comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

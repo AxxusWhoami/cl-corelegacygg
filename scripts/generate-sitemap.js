@@ -19,6 +19,7 @@ const pages = [
   { url: '/historia-wow-core', file: 'historia-wow-core.html', priority: '0.6', changefreq: 'monthly' },
   { url: '/kyra-brilloetéreo', file: 'kyra-brilloetéreo.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/forja-de-escarcha', file: 'forja-de-escarcha.html', priority: '0.7', changefreq: 'monthly' },
+  { url: '/paseo-en-el-tiempo', file: 'paseo-en-el-tiempo.html', priority: '0.7', changefreq: 'monthly' },
   { url: '/descargar-wow-wotlk-hd', file: 'descargar-wow-wotlk-hd.html', priority: '0.8', changefreq: 'weekly' },
   { url: '/migraciones', file: 'migraciones.html', priority: '0.6', changefreq: 'monthly' },
   { url: '/challenge-modes', file: 'challenge-modes.html', priority: '0.7', changefreq: 'weekly' },

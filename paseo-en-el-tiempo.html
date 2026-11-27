@@ -589,6 +589,30 @@
       background: rgba(77,189,232,0.3);
       border-radius: 2px;
     }
+    .tbc-intro-wrap {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .tbc-intro-text { flex: 1; min-width: 0; }
+    .tbc-intro-img {
+      flex-shrink: 0;
+      width: 220px;
+      align-self: center;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #1a3a5a44;
+      box-shadow: 0 0 20px rgba(77,189,232,0.1), 0 8px 28px rgba(0,0,0,0.4);
+    }
+    .tbc-intro-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    @media (max-width: 768px) {
+      .tbc-intro-wrap { flex-direction: column; gap: 1.25rem; }
+      .tbc-intro-img { width: 100%; max-width: 320px; align-self: center; }
+    }
     .tbc-dungeon-img-wrap {
       display: flex;
       align-items: center;
@@ -767,14 +791,21 @@
             <span class="tbc-panel-title">¿Qué es el Paseo en el Tiempo en CoRe Legacy?</span>
           </div>
           <div class="tbc-panel-body">
-            <h2>El pasado de Azeroth, adaptado al endgame de Rasganorte</h2>
-            <p>En la mayoría de los servidores privados de Wrath of the Lich King 3.3.5a, el contenido de The Burning Crusade queda obsoleto en cuanto pisas Rasganorte. En CoRe Legacy, el sistema de <strong>Paseo en el Tiempo</strong> (Timewalking) devuelve a Terrallende al centro de la progresión PvE.</p>
-            <p>Nuestra nueva mecánica reescala dinámicamente cada criatura y jefe de las mazmorras de TBC a nivel 80. No se trata de un simple paseo nostálgico: las mecánicas clásicas de control de masas, interrupciones y posicionamiento vuelven a importar, ofreciendo una alternativa fresca a las mazmorras heroicas de siempre.</p>
-            <ul>
-              <li><strong>Dificultad equilibrada para nivel 80:</strong> Estadísticas de combate ajustadas dinámicamente para poner a prueba tu equipo actual.</li>
-              <li><strong>Colas aleatorias o específicas:</strong> Elige la mazmorra que necesitas para tu colección o lánzate a la cola aleatoria para maximizar tus recompensas.</li>
-              <li><strong>Sin tiempos muertos:</strong> Totalmente integrado con nuestro sistema de IA y Playerbots. Si a tu grupo le falta un tanque, un sanador o DPS, reclútalo y entra en segundos a cualquier hora del día.</li>
-            </ul>
+            <div class="tbc-intro-wrap">
+              <div class="tbc-intro-text">
+                <h2>El pasado de Azeroth, adaptado al endgame de Rasganorte</h2>
+                <p>En la mayoría de los servidores privados de Wrath of the Lich King 3.3.5a, el contenido de The Burning Crusade queda obsoleto en cuanto pisas Rasganorte. En CoRe Legacy, el sistema de <strong>Paseo en el Tiempo</strong> (Timewalking) devuelve a Terrallende al centro de la progresión PvE.</p>
+                <p>Nuestra nueva mecánica reescala dinámicamente cada criatura y jefe de las mazmorras de TBC a nivel 80. No se trata de un simple paseo nostálgico: las mecánicas clásicas de control de masas, interrupciones y posicionamiento vuelven a importar, ofreciendo una alternativa fresca a las mazmorras heroicas de siempre.</p>
+                <ul>
+                  <li><strong>Dificultad equilibrada para nivel 80:</strong> Estadísticas de combate ajustadas dinámicamente para poner a prueba tu equipo actual.</li>
+                  <li><strong>Colas aleatorias o específicas:</strong> Elige la mazmorra que necesitas para tu colección o lánzate a la cola aleatoria para maximizar tus recompensas.</li>
+                  <li><strong>Sin tiempos muertos:</strong> Totalmente integrado con nuestro sistema de IA y Playerbots. Si a tu grupo le falta un tanque, un sanador o DPS, reclútalo y entra en segundos a cualquier hora del día.</li>
+                </ul>
+              </div>
+              <div class="tbc-intro-img">
+                <img src="/assets/vigilante_vaelen_caminasiglos.png" alt="Vigilante Vaelen Caminasiglos, NPC que gestiona el Paseo en el Tiempo" loading="lazy" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

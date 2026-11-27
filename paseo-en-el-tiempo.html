@@ -527,14 +527,69 @@
     .tbc-dungeon-card {
       border: 1px solid #1a3a5a44;
       border-radius: 12px;
-      overflow: hidden;
       background: linear-gradient(180deg, rgba(8,20,36,0.7) 0%, rgba(5,13,24,0.5) 100%);
       transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      perspective: 1000px;
     }
     .tbc-dungeon-card:hover {
       border-color: #4bbde866;
       box-shadow: 0 0 20px rgba(77,189,232,0.12);
       transform: translateY(-3px);
+    }
+    .tbc-dungeon-card.flipped {
+      border-color: #4bbde888;
+      box-shadow: 0 0 24px rgba(77,189,232,0.18);
+    }
+    .tbc-dungeon-inner {
+      position: relative;
+      width: 100%;
+      transition: transform 0.6s cubic-bezier(0.4,0.2,0.2,1);
+      transform-style: preserve-3d;
+    }
+    .tbc-dungeon-card.flipped .tbc-dungeon-inner {
+      transform: rotateY(180deg);
+    }
+    .tbc-dungeon-front {
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .tbc-dungeon-back {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(8,20,36,0.95) 0%, rgba(5,13,24,0.92) 100%);
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      overflow-y: auto;
+    }
+    .tbc-dungeon-back-name {
+      font-family: 'Cinzel','Cinzel Decorative',Georgia,serif;
+      font-weight: 700; font-size: 0.88rem;
+      color: var(--frost);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+    .tbc-dungeon-back-lore {
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: #b8d4e8;
+    }
+    .tbc-dungeon-back-hint {
+      margin-top: 0.75rem;
+      font-size: 0.68rem;
+      color: #6a8aa8;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
     .tbc-dungeon-img-wrap {
       display: flex;
@@ -627,6 +682,8 @@
       .tbc-dungeons { grid-template-columns: 1fr; }
       .tbc-dungeon-img { max-height: 115px; }
       .tbc-hero-sub { font-size: 0.85rem; }
+      .tbc-dungeon-back { padding: 1rem 0.75rem; }
+      .tbc-dungeon-back-lore { font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -819,132 +876,276 @@
 
             <h3>Ciudadela del Fuego Infernal</h3>
             <div class="tbc-dungeons">
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/murallas_del_fuego_infernal.png" alt="Murallas del Fuego Infernal" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Murallas del Fuego Infernal</div>
-                  <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
+              <div class="tbc-dungeon-card" data-dungeon="murallas">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/murallas_del_fuego_infernal.png" alt="Murallas del Fuego Infernal" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Murallas del Fuego Infernal</div>
+                      <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Murallas del Fuego Infernal</div>
+                    <div class="tbc-dungeon-back-lore">La primera línea de defensa de la Ciudadela del Fuego Infernal, fortaleza de la Horda en Terrallende. Sus murallas están custodiadas por demonios y orcos viles que protegen el corazón de la fortaleza demoníaca.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_horno_de_sangre.png" alt="El Horno de Sangre" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">El Horno de Sangre</div>
-                  <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
+              <div class="tbc-dungeon-card" data-dungeon="horno">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_horno_de_sangre.png" alt="El Horno de Sangre" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">El Horno de Sangre</div>
+                      <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">El Horno de Sangre</div>
+                    <div class="tbc-dungeon-back-lore">Las profundidades de la Ciudadela donde los orcos viles son corrompidos por sangre demoníaca. El señor malent Keli'dan el Rompedor supervisa las cámaras de sangre donde se forjan nuevos guerreros para la Legión.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/las_salas_arrasadas.png" alt="Las Salas Arrasadas" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Las Salas Arrasadas</div>
-                  <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
+              <div class="tbc-dungeon-card" data-dungeon="salas">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/las_salas_arrasadas.png" alt="Las Salas Arrasadas" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Las Salas Arrasadas</div>
+                      <div class="tbc-dungeon-zone">Ciudadela del Fuego Infernal</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Las Salas Arrasadas</div>
+                    <div class="tbc-dungeon-back-lore">La sección más profunda de la Ciudadela, arrasada por la invasión demoníaca. Aquí el maestro de guerra Nascentkrato y los restos de la Horda Vil se resisten a la avanzada de la Horda y la Alianza en Terrallende.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <h3>Reserva Colmillo Torcido</h3>
             <div class="tbc-dungeons">
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/recinto_de_exclavos.png" alt="Recinto de los Esclavos" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Recinto de los Esclavos</div>
-                  <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
+              <div class="tbc-dungeon-card" data-dungeon="recinto">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/recinto_de_exclavos.png" alt="Recinto de los Esclavos" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Recinto de los Esclavos</div>
+                      <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Recinto de los Esclavos</div>
+                    <div class="tbc-dungeon-back-lore">Las ruinas de la antigua ciudad draenei de Tuurem, ahora convertidas en escondite de los Colmillo Torcido. Naturalista Mako y sus esclavistas mantienen cautivos a los drenores bajo el yugo de la Horda Vil.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_sotienaga.png" alt="La Sotiénaga" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">La Sotiénaga</div>
-                  <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
+              <div class="tbc-dungeon-card" data-dungeon="sotienaga">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_sotienaga.png" alt="La Sotiénaga" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">La Sotiénaga</div>
+                      <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">La Sotiénaga</div>
+                    <div class="tbc-dungeon-back-lore">Un santuario druídico corrompido por la contaminación de las aguas de Zangar. Las bestias mutantes y los esporinos se disputan el control de las marismas envenenadas por la presencia de la Horda Vil.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_camara_de_vapor.png" alt="La Cámara de Vapor" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">La Cámara de Vapor</div>
-                  <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
+              <div class="tbc-dungeon-card" data-dungeon="vapor">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_camara_de_vapor.png" alt="La Cámara de Vapor" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">La Cámara de Vapor</div>
+                      <div class="tbc-dungeon-zone">Reserva Colmillo Torcido</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">La Cámara de Vapor</div>
+                    <div class="tbc-dungeon-back-lore">Las cámaras calientes de la Reserva, donde la agua hirviente alimenta las máquinas de guerra de los Colmillo Torcido. El señor del terror Kalithresh custodia los reservorios de agua corrupta que alimentan su poder.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <h3>Auchindoun</h3>
             <div class="tbc-dungeons">
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/tumbas_de_mana.png" alt="Tumbas de Maná" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Tumbas de Maná</div>
-                  <div class="tbc-dungeon-zone">Auchindoun</div>
+              <div class="tbc-dungeon-card" data-dungeon="tumbas">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/tumbas_de_mana.png" alt="Tumbas de Maná" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Tumbas de Maná</div>
+                      <div class="tbc-dungeon-zone">Auchindoun</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Tumbas de Maná</div>
+                    <div class="tbc-dungeon-back-lore">Las cámaras saqueadas de Auchindoun, invadidas por etéreos que buscan restos de poder arcano. El saqueador Pandemus Nefarius extrae energía de los restos sagrados draenei para sus propios fines mercantiles.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/criptas_auchenai.png" alt="Criptas Auchenai" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Criptas Auchenai</div>
-                  <div class="tbc-dungeon-zone">Auchindoun</div>
+              <div class="tbc-dungeon-card" data-dungeon="criptas">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/criptas_auchenai.png" alt="Criptas Auchenai" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Criptas Auchenai</div>
+                      <div class="tbc-dungeon-zone">Auchindoun</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Criptas Auchenai</div>
+                    <div class="tbc-dungeon-back-lore">Los pasadizos funerarios bajo Auchindoun, donde los Auchenai custodian las almas de los draenei difuntos. El sacerdote Shirrak el Vigía de los Muertos protege las cámaras sagradas de los intrusos y de la corrupción del Vacío.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/salas_sethekk.png" alt="Salas Sethekk" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Salas Sethekk</div>
-                  <div class="tbc-dungeon-zone">Auchindoun</div>
+              <div class="tbc-dungeon-card" data-dungeon="sethekk">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/salas_sethekk.png" alt="Salas Sethekk" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Salas Sethekk</div>
+                      <div class="tbc-dungeon-zone">Auchindoun</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Salas Sethekk</div>
+                    <div class="tbc-dungeon-back-lore">El reino subterráneo de los arakkoa desterrados, que adoran al dios cuervo Anzu. Darkweaver Syth y el rey Ikiss lideran a los Sethekk en su búsqueda de poder oscuro para reclaimar el cielo que perdieron.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/laberinto_de_las_sombras.png" alt="Laberinto de las Sombras" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Laberinto de las Sombras</div>
-                  <div class="tbc-dungeon-zone">Auchindoun</div>
+              <div class="tbc-dungeon-card" data-dungeon="laberinto">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/laberinto_de_las_sombras.png" alt="Laberinto de las Sombras" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Laberinto de las Sombras</div>
+                      <div class="tbc-dungeon-zone">Auchindoun</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Laberinto de las Sombras</div>
+                    <div class="tbc-dungeon-back-lore">Las profundidades más oscuras de Auchindoun, donde la corrupción del Vacío amenaza con consumir todo. El devorador de almas Ambajar Hearts-vang alimenta la oscuridad creciente que podría engullir Terrallende entero.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <h3>El Castillo de la Tempestad</h3>
             <div class="tbc-dungeons">
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_mechanar.png" alt="El Mechanar" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">El Mechanar</div>
-                  <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
+              <div class="tbc-dungeon-card" data-dungeon="mechanar">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_mechanar.png" alt="El Mechanar" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">El Mechanar</div>
+                      <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">El Mechanar</div>
+                    <div class="tbc-dungeon-back-lore">La fortaleza tecnológica de Kael'thas Caminante del Sol, donde los sangre-elfos construyen sus armas más poderosas. El señor de sangre Pathaleon el Calculador supervisa la producción de manás y la defensa de la fortaleza flotante.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_invernaculo.png" alt="El Invernáculo" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">El Invernáculo</div>
-                  <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
+              <div class="tbc-dungeon-card" data-dungeon="invernaculo">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_invernaculo.png" alt="El Invernáculo" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">El Invernáculo</div>
+                      <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">El Invernáculo</div>
+                    <div class="tbc-dungeon-back-lore">Un jardín botánico flotante repleto de flora exótica y criaturas elementales. Los sangre-elfos cultivan aquí especies mágicas para extraer su poder arcano, bajo la vigilancia del comandante Sarannis y los защитники de la Tempestad.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_alcatraz.png" alt="El Alcatraz" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">El Alcatraz</div>
-                  <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
+              <div class="tbc-dungeon-card" data-dungeon="alcatraz">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/el_alcatraz.png" alt="El Alcatraz" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">El Alcatraz</div>
+                      <div class="tbc-dungeon-zone">El Castillo de la Tempestad</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">El Alcatraz</div>
+                    <div class="tbc-dungeon-back-lore">La prisión de máxima seguridad de la Tempestad, donde Kael'thas encierra a sus enemigos y a los naaru corrompidos. Los presos más peligrosos, incluido el corruptor Zereketh, esperan tras los escudos arcánicos.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <h3>Cavernas del Tiempo e Isla de Quel'Danas</h3>
             <div class="tbc-dungeons">
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/antiguas_laderas_de_trabalomas.png" alt="La Fuga de Durnholde — Antiguas Laderas de Trabalomas" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">La Fuga de Durnholde</div>
-                  <div class="tbc-dungeon-zone">Cavernas del Tiempo</div>
+              <div class="tbc-dungeon-card" data-dungeon="trabalomas">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/antiguas_laderas_de_trabalomas.png" alt="La Fuga de Durnholde — Antiguas Laderas de Trabalomas" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">La Fuga de Durnholde</div>
+                      <div class="tbc-dungeon-zone">Cavernas del Tiempo</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">La Fuga de Durnholde</div>
+                    <div class="tbc-dungeon-back-lore">Un viaje en el tiempo a las Antiguas Laderas de Trabalomas, antes de la caída de Durnholde. Revive la legendaria fuga de Thrall de su cautiverio junto a Taretha y el capitán Alina Foxton en uno de los momentos clave de la historia de la Horda.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_cienaga_negra.png" alt="La Apertura del Portal Oscuro — La Ciénaga Negra" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">La Apertura del Portal Oscuro</div>
-                  <div class="tbc-dungeon-zone">Cavernas del Tiempo</div>
+              <div class="tbc-dungeon-card" data-dungeon="cienaga">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/la_cienaga_negra.png" alt="La Apertura del Portal Oscuro — La Ciénaga Negra" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">La Apertura del Portal Oscuro</div>
+                      <div class="tbc-dungeon-zone">Cavernas del Tiempo</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">La Apertura del Portal Oscuro</div>
+                    <div class="tbc-dungeon-back-lore">Viaja al momento exacto en que Medivh abrió el Portal Oscuro entre Azeroth y Draenor. Protege al joven Medivh de los infinitos dragones que intentan alterar el curso de la historia y cambiar el destino de dos mundos para siempre.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
-              <div class="tbc-dungeon-card">
-                <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/bancal_del_magister.ong.png" alt="Bancal del Magister" class="tbc-dungeon-img" loading="lazy" /></div>
-                <div class="tbc-dungeon-body">
-                  <div class="tbc-dungeon-name">Bancal del Magister</div>
-                  <div class="tbc-dungeon-zone">Isla de Quel'Danas</div>
+              <div class="tbc-dungeon-card" data-dungeon="bancal">
+                <div class="tbc-dungeon-inner">
+                  <div class="tbc-dungeon-front">
+                    <div class="tbc-dungeon-img-wrap"><img src="/assets/dungeons/tbc/bancal_del_magister.ong.png" alt="Bancal del Magister" class="tbc-dungeon-img" loading="lazy" /></div>
+                    <div class="tbc-dungeon-body">
+                      <div class="tbc-dungeon-name">Bancal del Magister</div>
+                      <div class="tbc-dungeon-zone">Isla de Quel'Danas</div>
+                    </div>
+                  </div>
+                  <div class="tbc-dungeon-back">
+                    <div class="tbc-dungeon-back-name">Bancal del Magister</div>
+                    <div class="tbc-dungeon-back-lore">El último bastión de Kael'thas en la Isla de Quel'Danas, donde los sangre-elfos extraen energía del Sol Fundido. El gran magister Rommath y las fuerzas de Kael'thas se preparan para invocar a Kil'jaeden al mundo de Azeroth.</div>
+                    <div class="tbc-dungeon-back-hint">Pulsa para volver</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1197,6 +1398,31 @@
         content.style.maxHeight = content.scrollHeight + 'px';
       }
     });
+  })();
+  </script>
+  <script>
+  (function () {
+    'use strict';
+    var cards = document.querySelectorAll('.tbc-dungeon-card');
+    for (var i = 0; i < cards.length; i++) {
+      (function (card) {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        function toggle() {
+          var wasFlipped = card.classList.contains('flipped');
+          for (var j = 0; j < cards.length; j++) {
+            cards[j].classList.remove('flipped');
+          }
+          if (!wasFlipped) {
+            card.classList.add('flipped');
+          }
+        }
+        card.addEventListener('click', toggle);
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      })(cards[i]);
+    }
   })();
   </script>
 </body>

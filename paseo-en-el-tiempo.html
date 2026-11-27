@@ -344,6 +344,58 @@
       transform: translateY(-2px);
     }
 
+    /* ===== CTA Final ===== */
+    .tbc-cta-final {
+      position: relative;
+      padding: 3rem 1.5rem 3.5rem;
+      background: linear-gradient(180deg, #020a14 0%, #050d18 60%, #020a14 100%);
+      border-top: 1px solid #1a3a5a33;
+      overflow: hidden;
+    }
+    .tbc-cta-final-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/assets/portal_oscuro.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .tbc-cta-final-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .tbc-cta-final-title {
+      font-family: 'Cinzel Decorative',Georgia,serif;
+      font-size: clamp(1.3rem,3vw,1.8rem);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      background: linear-gradient(180deg,#fff 0%,#e8d4a0 30%,#d4af37 70%,#8a6d2a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 24px rgba(212,175,55,0.15);
+      letter-spacing: 0.02em;
+    }
+    .tbc-cta-final-text {
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: #b8d4e8;
+      margin-bottom: 2rem;
+    }
+    .tbc-cta-final-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
     /* ===== Content sections ===== */
     .tbc-content-wrap {
       background: linear-gradient(180deg, #050d18 0%, #081420 50%, #050d18 100%);
@@ -976,19 +1028,17 @@
   </section>
 
   <!-- ===== Bloque 7: CTA Final ===== -->
-  <section style="padding:3rem 1.5rem 3.5rem; background:linear-gradient(180deg, #020a14 0%, #050d18 60%, #020a14 100%); border-top:1px solid #1a3a5a33;">
-    <div style="max-width:640px; margin:0 auto; text-align:center;">
+  <section class="tbc-cta-final">
+    <div class="tbc-cta-final-bg" aria-hidden="true"></div>
+    <div class="tbc-cta-final-content">
       <div class="frost-divider" style="width:120px; margin:0 auto 1.5rem;"></div>
-      <h2 style="font-family:'Cinzel Decorative',Georgia,serif; font-size:clamp(1.3rem,3vw,1.8rem); font-weight:800; line-height:1.3; margin-bottom:1rem;
-        background:linear-gradient(180deg,#fff 0%,#e8d4a0 30%,#d4af37 70%,#8a6d2a 100%);
-        -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
-        text-shadow:0 0 24px rgba(212,175,55,0.15); letter-spacing:0.02em;">
+      <h2 class="tbc-cta-final-title">
         El tiempo en Terrallende vuelve a correr
       </h2>
-      <p style="font-family:'Cinzel',Georgia,serif; font-size:0.92rem; line-height:1.8; color:#b8d4e8; margin-bottom:2rem;">
+      <p class="tbc-cta-final-text">
         Crea tu cuenta gratis, busca al Vigilante Vaelen Caminasiglos en Dalaran, Ventormenta u Orgrimmar y reclama tu primer cofre semanal de Ciudadela de la Corona de Hielo hoy mismo.
       </p>
-      <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;">
+      <div class="tbc-cta-final-buttons">
         <a href="https://accounts.corelegacy.gg/crear-cuenta" target="_blank" rel="noopener noreferrer" class="tbc-cta-primary">Crear cuenta gratis</a>
         <a href="/descargar-wow-wotlk-hd" class="tbc-cta-secondary">Descargar cliente CoRe Legacy</a>
       </div>

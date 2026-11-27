@@ -523,15 +523,12 @@
 <body>
 
   <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header"
-    style="background:rgba(5,13,24,0.85);backdrop-filter:blur(12px);border-bottom:1px solid #1a3a5a33;">
+    style="background: linear-gradient(180deg, rgba(2,14,30,0.92) 0%, rgba(2,14,30,0.6) 80%, transparent 100%); backdrop-filter: blur(6px); border-bottom: 1px solid transparent;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="/" aria-label="CoRe Legacy — Inicio" class="flex items-center gap-3" style="text-decoration:none;">
-          <img src="/assets/logotipo_corelegacy.webp" alt="Logotipo de CoRe Legacy" width="48" height="48" style="filter:drop-shadow(0 0 10px rgba(77,189,232,0.3));" />
-          <span style="font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:700;font-size:1.1rem;color:var(--frost);letter-spacing:0.04em;text-shadow:0 0 10px rgba(77,189,232,0.2);">CoRe Legacy</span>
-        </a>
+
         <nav class="hidden md:flex items-center gap-1" id="navMenu">
-          <a class="nav-link" href="/">Inicio</a>
+          <a class="nav-link" href="/" data-section="inicio">Inicio</a>
           <a class="nav-link" href="/noticias">Noticias</a>
           <a class="nav-link" href="/comunidad">Comunidad</a>
           <a class="nav-link" href="/info-changelog">Server y Changelog</a>
@@ -539,6 +536,7 @@
           <a class="nav-link" href="https://accounts.corelegacy.gg" target="_blank" rel="noopener noreferrer">Cuenta y Tienda</a>
           <a class="nav-link" href="https://armeria.corelegacy.gg" target="_blank" rel="noopener noreferrer">Armería</a>
         </nav>
+
         <div class="flex items-center gap-3">
           <button id="mobileToggle" class="md:hidden text-ice-200 p-2" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -547,6 +545,7 @@
           </button>
         </div>
       </div>
+
       <div id="mobileNav" class="md:hidden hidden pb-4 flex-col gap-1" style="display:none;">
         <a class="nav-link block" href="/">Inicio</a>
         <a class="nav-link block" href="/noticias">Noticias</a>

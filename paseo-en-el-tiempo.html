@@ -354,11 +354,16 @@
     }
     .tbc-cta-final-bg {
       position: absolute;
-      inset: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
       background-image: url('/assets/portal_oscuro.png');
-      background-size: cover;
+      background-size: contain;
       background-position: center;
-      opacity: 0.85;
+      background-repeat: no-repeat;
+      opacity: 1;
       pointer-events: none;
       z-index: 0;
     }

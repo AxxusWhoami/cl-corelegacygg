@@ -794,6 +794,73 @@
       color: #b8d4e8;
     }
 
+    /* ===== Dungeon card interaction hint ===== */
+    .tbc-dungeon-body::after {
+      content: '↻ Haz clic para ver la historia';
+      display: block;
+      margin-top: 0.5rem;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.03em;
+      color: #4bbde8;
+      opacity: 0.65;
+      transition: opacity 0.3s ease;
+    }
+    .tbc-dungeon-card:hover .tbc-dungeon-body::after,
+    .tbc-dungeon-card:focus-visible .tbc-dungeon-body::after {
+      opacity: 1;
+    }
+    .tbc-dungeon-card.flipped .tbc-dungeon-body::after {
+      opacity: 0;
+    }
+    @keyframes tbcCardNudge {
+      0%   { transform: rotateY(0deg); }
+      25%  { transform: rotateY(12deg); }
+      50%  { transform: rotateY(-4deg); }
+      75%  { transform: rotateY(8deg); }
+      100% { transform: rotateY(0deg); }
+    }
+    .tbc-dungeon-inner.tbc-nudge {
+      animation: tbcCardNudge 0.7s ease;
+    }
+
+    /* ===== Table mobile scroll hint ===== */
+    .tbc-table-hint {
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+      color: #88d068;
+      opacity: 0.8;
+    }
+    @media (max-width: 600px) {
+      .tbc-table-hint { display: flex; }
+    }
+
+    /* ===== Focus-visible accessibility ===== */
+    .tbc-intro-img-thumb:focus-visible,
+    .tbc-dungeon-card:focus-visible,
+    .tbc-faq-header:focus-visible,
+    .tbc-img-modal-close:focus-visible,
+    .tbc-cta-primary:focus-visible,
+    .tbc-cta-secondary:focus-visible,
+    .site-footer-link:focus-visible,
+    .site-footer-social-link:focus-visible,
+    .nav-link:focus-visible,
+    .tbc-step-card:focus-visible,
+    .back-to-top:focus-visible {
+      outline: 2px solid #d4af37;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .tbc-dungeon-card:focus-visible {
+      border-color: #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
       .tbc-panel-body { padding: 1.25rem 1rem 1.5rem; }
@@ -962,6 +1029,10 @@
           <div class="tbc-panel-body">
             <h2>Recompensas que impulsan tu personaje y tu colección</h2>
             <p>El Paseo en el Tiempo está diseñado para que cada carrera sea rentable, tanto si estás equipando un personaje recién llegado al nivel 80 como si buscas piezas de colección difíciles de conseguir.</p>
+            <div class="tbc-table-hint" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 15 12 9 6" transform="translate(6 0)"></polyline></svg>
+              Desliza horizontalmente para ver toda la tabla
+            </div>
             <div class="tbc-table-wrap">
             <table class="tbc-table">
               <thead>
@@ -1095,7 +1166,7 @@
                     </div>
                   </div>
                   <div class="tbc-dungeon-back">
-                    <div class="tbc-dungeon-back-lore">Las cámaras calientes de la Reserva, donde la agua hirviente alimenta las máquinas de guerra de los Colmillo Torcido. El señor del terror Kalithresh custodia los reservorios de agua corrupta que alimentan su poder.</div>
+                    <div class="tbc-dungeon-back-lore">Las cámaras calientes de la Reserva, donde el agua hirviente alimenta las máquinas de guerra de los Colmillo Torcido. El señor del terror Kalithresh custodia los reservorios de agua corrupta que alimentan su poder.</div>
                   </div>
                 </div>
               </div>
@@ -1141,7 +1212,7 @@
                     </div>
                   </div>
                   <div class="tbc-dungeon-back">
-                    <div class="tbc-dungeon-back-lore">El reino subterráneo de los arakkoa desterrados, que adoran al dios cuervo Anzu. Darkweaver Syth y el rey Ikiss lideran a los Sethekk en su búsqueda de poder oscuro para reclaimar el cielo que perdieron.</div>
+                    <div class="tbc-dungeon-back-lore">El reino subterráneo de los arakkoa desterrados, que adoran al dios cuervo Anzu. Darkweaver Syth y el rey Ikiss lideran a los Sethekk en su búsqueda de poder oscuro para recuperar el cielo que perdieron.</div>
                   </div>
                 </div>
               </div>
@@ -1527,10 +1598,27 @@
             card.classList.add('flipped');
           }
         }
+        var inner = card.querySelector('.tbc-dungeon-inner');
+        var nudged = false;
+        function nudge() {
+          if (nudged || !inner) return;
+          nudged = true;
+          inner.classList.add('tbc-nudge');
+          setTimeout(function () { inner.classList.remove('tbc-nudge'); }, 800);
+        }
         card.addEventListener('click', toggle);
+        card.addEventListener('mouseenter', nudge, { once: true });
         card.addEventListener('keydown', function (e) {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
         });
+        if ('IntersectionObserver' in window && inner) {
+          var io = new IntersectionObserver(function (entries) {
+            for (var k = 0; k < entries.length; k++) {
+              if (entries[k].isIntersecting) { nudge(); io.disconnect(); break; }
+            }
+          }, { threshold: 0.5 });
+          io.observe(card);
+        }
       })(cards[i]);
     }
   })();

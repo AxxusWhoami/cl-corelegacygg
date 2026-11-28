@@ -793,13 +793,147 @@
       border-radius: 4px;
     }
 
+    /* ===== Dungeon cards (flip, gold palette) ===== */
+    .mp-dungeons {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+    .mp-dungeon-card {
+      border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(8,20,36,0.7) 0%, rgba(5,13,24,0.5) 100%);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+    .mp-dungeon-card:hover {
+      border-color: rgba(212,175,55,0.4);
+      box-shadow: 0 0 20px rgba(212,175,55,0.12);
+      transform: translateY(-3px);
+    }
+    .mp-dungeon-card.flipped {
+      border-color: rgba(212,175,55,0.55);
+      box-shadow: 0 0 24px rgba(212,175,55,0.18);
+    }
+    .mp-dungeon-inner {
+      position: relative;
+      width: 100%;
+      transition: transform 0.6s cubic-bezier(0.4,0.2,0.2,1);
+      transform-style: preserve-3d;
+    }
+    .mp-dungeon-card.flipped .mp-dungeon-inner {
+      transform: rotateY(180deg);
+    }
+    .mp-dungeon-front {
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .mp-dungeon-back {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      padding: 1rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(8,20,36,0.95) 0%, rgba(5,13,24,0.92) 100%);
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(212,175,55,0.3) transparent;
+    }
+    .mp-dungeon-back-lore {
+      font-family: 'Cinzel',Georgia,serif;
+      font-size: 0.75rem;
+      line-height: 1.55;
+      color: #c8b070;
+    }
+    .mp-dungeon-back::-webkit-scrollbar { width: 4px; }
+    .mp-dungeon-back::-webkit-scrollbar-track { background: transparent; }
+    .mp-dungeon-back::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 2px; }
+    .mp-dungeon-img-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 0.5rem;
+      background: linear-gradient(180deg, rgba(30,26,13,0.4) 0%, rgba(2,8,16,0.4) 100%);
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+    .mp-dungeon-img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 115px;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+    }
+    .mp-dungeon-body { padding: 0.85rem 1rem 1rem; }
+    .mp-dungeon-name {
+      font-family: 'Cinzel','Cinzel Decorative',Georgia,serif;
+      font-weight: 700; font-size: 0.88rem;
+      color: #d4af37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.2);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+    .mp-dungeon-zone {
+      font-size: 0.78rem;
+      color: #8a9ab0;
+      letter-spacing: 0.01em;
+    }
+    .mp-dungeon-hint {
+      text-align: center;
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      color: #d4af37;
+      opacity: 0.7;
+    }
+    .mp-panel-body h3 {
+      font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(212,175,55,0.25);
+      letter-spacing: 0.04em;
+      margin: 1.5rem 0 0.75rem;
+    }
+    @keyframes mpCardNudge {
+      0%   { transform: rotateY(0deg); }
+      25%  { transform: rotateY(12deg); }
+      50%  { transform: rotateY(-4deg); }
+      75%  { transform: rotateY(8deg); }
+      100% { transform: rotateY(0deg); }
+    }
+    .mp-dungeon-inner.mp-nudge {
+      animation: mpCardNudge 0.7s ease;
+    }
+    .mp-dungeon-card:focus-visible {
+      outline: 2px solid #d4af37;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
       .mp-panel-body { padding: 1.25rem 1rem 1.5rem; }
       .mp-trust { grid-template-columns: 1fr; }
       .mp-steps { grid-template-columns: 1fr; }
       .mp-affix-grid { grid-template-columns: 1fr; }
+      .mp-dungeons { grid-template-columns: 1fr; }
       .mp-hud-list { grid-template-columns: 1fr; }
+      .mp-dungeon-back { padding: 1rem 0.75rem; }
+      .mp-dungeon-back-lore { font-size: 0.72rem; }
       .mp-intro-wrap { flex-direction: column; gap: 1.25rem; }
       .mp-intro-img { width: 100%; max-width: 320px; align-self: center; }
       .mp-img-modal-close { top: 1rem; right: 1rem; }
@@ -1148,7 +1282,289 @@
     </div>
   </section>
 
-  <!-- ===== Bloque 5: Interfaz Nativa (HUD) ===== -->
+  <!-- ===== Bloque 5: Mazmorras compatibles ===== -->
+  <section class="mp-content-wrap relative py-4 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="reveal">
+        <div class="mp-panel">
+          <div class="mp-panel-header">
+            <span style="font-size:1.4rem;">&#128506;</span>
+            <span class="mp-panel-title">Mazmorras compatibles con Míticas+</span>
+          </div>
+          <div class="mp-panel-body">
+            <h2>Las 16 mazmorras heroicas de Rasganorte</h2>
+            <p>Todas las mazmorras de nivel 80 de Wrath of the Lich King son compatibles con el sistema de Piedras Angulares. Haz clic en cada tarjeta para conocer su historia.</p>
+
+            <h3>Fortaleza de Utgarde y Pináculo</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="utgarde">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/fortaleza_de_utgarde.png" alt="Fortaleza de Utgarde" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Fortaleza de Utgarde</div>
+                      <div class="mp-dungeon-zone">Fiordo Aquilonal</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">La fortaleza vrykul en los acantilados del Fiordo Aquilonal. Los profanadores y los vrykul se preparan para despertar a sus antiguos maestros en las profundidades de piedra.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="pinaculo">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/pinaculo_de_utgarde.png" alt="Pináculo de Utgarde" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Pináculo de Utgarde</div>
+                      <div class="mp-dungeon-zone">Fiordo Aquilonal</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">La cima de la fortaleza vrykul, donde el rey Ymiron prepara la flota de drakkar para conquistar Rasganorte. Los protodracos custodian las salas superiores ante la llegada del Rey Exánime.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+
+            <h3>Nexo y Oculus</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="nexo">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/el_nexo.png" alt="El Nexo" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">El Nexo</div>
+                      <div class="mp-dungeon-zone">Tundra Boreal</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">El corazón del poder de Malygos, Señor de la Magia. Las cámaras arcánicas del Nexo albergan a los dracos azules en su cruzada para controlar el uso de la magia en Azeroth.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="oculus">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/el_oculus.png" alt="El Oculo" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">El Oculús</div>
+                      <div class="mp-dungeon-zone">Tundra Boreal</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">Una fortaleza flotante conectada al Nexo donde los dragones azules custodian experimentos arcánicos. Los aventureros pueden montar dracos para combatir en el aire contra el planificador crepuscular Varos.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+
+            <h3>Ahn'kahed y Azjol-Nerub</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="ahnkahed">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/ahn'kahed_el_antiguo_reino.png" alt="Ahn'kahed, el Antiguo Reino" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Ahn'kahed, el Antiguo Reino</div>
+                      <div class="mp-dungeon-zone">Cuenco de Dalaran</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">Las profundidades subterráneas de Azjol-Nerub, donde los nerubianos no infectados resisten contra el Azote. El príncipe Taldaram y los Restos Antiguos acechan entre las sombras de las salas devastadas.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="azjol">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/azjol-nerub.png" alt="Azjol-Nerub" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Azjol-Nerub</div>
+                      <div class="mp-dungeon-zone">Cuenco de Dalaran</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">El antiguo reino arácnido de los nerubianos, ahora corrompido por el Rey Exánime. Krik'thir el Guardián de la Puerta y Anub'arak, el traidor rey nerubiano convertido en no-muerto, custodian las galerías.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+
+            <h3>Fortaleza de Drak'Tharon y Gundrak</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="drak">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/fortaleza_de_drak'tharon.png" alt="Fortaleza de Drak'Tharon" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Fortaleza de Drak'Tharon</div>
+                      <div class="mp-dungeon-zone">Bosque Canto de Cristal</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">La antigua fortaleza drakkari donde el profeta Tharon'ja convirtió a los trols en no-muertos. Las salas guardan los secretos de la plaga que diezmó al imperio drakkari.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="gundrak">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/gundrak.png" alt="Gundrak" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Gundrak</div>
+                      <div class="mp-dungeon-zone">Cuenca de Sholazar</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">La capital del imperio drakkari, construida sobre los tesoros de los Loa trol. Los profetas de Akali, Gal'darah y Slad'ran custodian las cámaras rituales donde se sacrificaron a sus propios dioses por poder.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+
+            <h3>Cámaras de Relámpagos y de Piedra</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="relampagos">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/camaras_de_relampagos.png" alt="Cámaras de Relámpagos" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Cámaras de Relámpagos</div>
+                      <div class="mp-dungeon-zone">Las Cumbres Tormentosas</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">La fortaleza de hierro titaniana donde Loken, el guardian renegado, orquesta el plan para erradicar toda vida de Azeroth. Los gigantes de hierro y las hordas de hierro acechan en cada cámara reluciente.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="piedra">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/camaras_de_piedra.png" alt="Cámaras de Piedra" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Cámaras de Piedra</div>
+                      <div class="mp-dungeon-zone">Las Cumbres Tormentosas</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">Las galerías excavadas por los titanes bajo Ulduar, donde las primeras creaciones de piedra esperan órdenes. Krystallus y la Doncella de Luto vigilan los pasillos sellados tras el traidor Loken.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+
+            <h3>El Bastión Violeta y Prueba del Campeón</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="violeta">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/el_bastion_violeta.png" alt="El Bastión Violeta" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">El Bastión Violeta</div>
+                      <div class="mp-dungeon-zone">Ciudad de Dalaran</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">La prisión de máxima seguridad de Dalaran, donde los magos del Kirin Tor encierran a los criminales más peligrosos. Cyanigosa, dragón azul, lidera un motín para liberar a los presos y sembrar el caos.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="campeon">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/prueba_del_campeon.png" alt="Prueba del Campeón" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Prueba del Campeón</div>
+                      <div class="mp-dungeon-zone">Corona de Hielo</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">La arena del Cruzado Argenta donde los campeones de la Alianza y la Horda demostrar su valía ante el Gran Cruzado Tirion Vadin. El Caballero Negro, enviado por el Culto de los Malditos, intentará sabotear el torneo.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+
+            <h3>Cámaras de Reflexión, Foso de Saron y Forja de Almas</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="reflexion">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/camaras_de_reflexion.png" alt="Cámaras de Reflexión" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Cámaras de Reflexión</div>
+                      <div class="mp-dungeon-zone">Ciudadela de la Corona de Hielo</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">Las salas donde el Rey Exánime guarda las almas de los héroes caídos. El reflecting chamber revela visiones del pasado de Arthas, y la espada Frostmourne susurra a quienes se acercan demasiado al trono congelado.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="saron">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/foso_de_saron.png" alt="Foso de Saron" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">Foso de Saron</div>
+                      <div class="mp-dungeon-zone">Ciudadela de la Corona de Hielo</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">Las minas de saronita donde los esclavos del Azote cavan el mineral maligno para construir la Ciudadela. Forjajelo y el Verdugo de Korthia custodian las galerías mientras los prisioneros de la Alianza y la Horda conspiran su escape.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-dungeon-card" data-dungeon="almas">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/la_forja_de_almas.png" alt="La Forja de Almas" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">La Forja de Almas</div>
+                      <div class="mp-dungeon-zone">Ciudadela de la Corona de Hielo</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">El corazón de la forja donde el Devorador de Almas procesa las almas capturadas por Frostmourne. Las máquinas de guerra del Azote producen armas y armaduras con la energía de los caídos.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+
+            <h3>La Matanza de Stratholme</h3>
+            <div class="mp-dungeons">
+              <div class="mp-dungeon-card" data-dungeon="stratholme">
+                <div class="mp-dungeon-inner">
+                  <div class="mp-dungeon-front">
+                    <div class="mp-dungeon-img-wrap"><img src="/assets/dungeons/wotlk/la_matanza_de_stratholme.png" alt="La Matanza de Stratholme" class="mp-dungeon-img" loading="lazy" /></div>
+                    <div class="mp-dungeon-body">
+                      <div class="mp-dungeon-name">La Matanza de Stratholme</div>
+                      <div class="mp-dungeon-zone">Cavernas del Tiempo</div>
+                    </div>
+                  </div>
+                  <div class="mp-dungeon-back">
+                    <div class="mp-dungeon-back-lore">Un viaje en el tiempo al momento en que Arthas decidió purgar Stratholme. Revive la caída del paladín que se convertiría en el Rey Exánime, mientras el infinito Malygos intenta alterar los eventos decisivos de la Tercera Guerra.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mp-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Bloque 6: Interfaz Nativa (HUD) ===== -->
   <section class="mp-content-wrap relative py-4 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
       <div class="reveal">
@@ -1401,6 +1817,48 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
 
+  <script>
+  (function () {
+    'use strict';
+    var cards = document.querySelectorAll('.mp-dungeon-card');
+    for (var i = 0; i < cards.length; i++) {
+      (function (card) {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        function toggle() {
+          var wasFlipped = card.classList.contains('flipped');
+          for (var j = 0; j < cards.length; j++) {
+            cards[j].classList.remove('flipped');
+          }
+          if (!wasFlipped) {
+            card.classList.add('flipped');
+          }
+        }
+        var inner = card.querySelector('.mp-dungeon-inner');
+        var nudged = false;
+        function nudge() {
+          if (nudged || !inner) return;
+          nudged = true;
+          inner.classList.add('mp-nudge');
+          setTimeout(function () { inner.classList.remove('mp-nudge'); }, 800);
+        }
+        card.addEventListener('click', toggle);
+        card.addEventListener('mouseenter', nudge, { once: true });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+        if ('IntersectionObserver' in window && inner) {
+          var io = new IntersectionObserver(function (entries) {
+            for (var k = 0; k < entries.length; k++) {
+              if (entries[k].isIntersecting) { nudge(); io.disconnect(); break; }
+            }
+          }, { threshold: 0.5 });
+          io.observe(card);
+        }
+      })(cards[i]);
+    }
+  })();
+  </script>
   <script src="/assets/legal.js"></script>
   <script>
   (function () {

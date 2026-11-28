@@ -794,24 +794,16 @@
       color: #b8d4e8;
     }
 
-    /* ===== Dungeon card interaction hint ===== */
-    .tbc-dungeon-body::after {
-      content: '↻ Haz clic para ver la historia';
-      display: block;
-      margin-top: 0.5rem;
+    /* ===== Dungeon group hint ===== */
+    .tbc-dungeon-hint {
+      text-align: center;
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
       font-family: 'Cinzel', Georgia, serif;
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       letter-spacing: 0.03em;
       color: #4bbde8;
-      opacity: 0.65;
-      transition: opacity 0.3s ease;
-    }
-    .tbc-dungeon-card:hover .tbc-dungeon-body::after,
-    .tbc-dungeon-card:focus-visible .tbc-dungeon-body::after {
-      opacity: 1;
-    }
-    .tbc-dungeon-card.flipped .tbc-dungeon-body::after {
-      opacity: 0;
+      opacity: 0.7;
     }
     @keyframes tbcCardNudge {
       0%   { transform: rotateY(0deg); }
@@ -1125,6 +1117,7 @@
                 </div>
               </div>
             </div>
+            <div class="tbc-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
 
             <h3>Reserva Colmillo Torcido</h3>
             <div class="tbc-dungeons">
@@ -1171,6 +1164,7 @@
                 </div>
               </div>
             </div>
+            <div class="tbc-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
 
             <h3>Auchindoun</h3>
             <div class="tbc-dungeons">
@@ -1231,6 +1225,7 @@
                 </div>
               </div>
             </div>
+            <div class="tbc-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
 
             <h3>El Castillo de la Tempestad</h3>
             <div class="tbc-dungeons">
@@ -1277,6 +1272,7 @@
                 </div>
               </div>
             </div>
+            <div class="tbc-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
 
             <h3>Cavernas del Tiempo e Isla de Quel'Danas</h3>
             <div class="tbc-dungeons">
@@ -1323,6 +1319,7 @@
                 </div>
               </div>
             </div>
+            <div class="tbc-dungeon-hint">↻ Haz clic en una tarjeta para ver su historia</div>
           </div>
         </div>
       </div>

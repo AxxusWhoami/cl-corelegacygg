@@ -24,12 +24,12 @@
   <meta property="og:site_name" content="CoRe Legacy" />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:locale:alternate" content="es_419" />
-  <meta property="og:image" content="https://corelegacy.gg/assets/logo_miticas_plus_1024.png" />
+  <meta property="og:image" content="https://corelegacy.gg/assets/logo_miticas_plus_sinhielo_1024.png" />
   <meta property="og:image:alt" content="Míticas+ en CoRe Legacy - Piedras Angulares y Mazmorras Nivel 80 en WoW 3.3.5a" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Míticas+ en WotLK 3.3.5a: El Endgame Infinito | CoRe Legacy" />
   <meta name="twitter:description" content="Lleva las mazmorras de Rasganorte hasta nivel +15 con piedras angulares, afijos rotativos, HUD en tiempo real y botín filtrado por clase en CoRe Legacy." />
-  <meta name="twitter:image" content="https://corelegacy.gg/assets/logo_miticas_plus_1024.png" />
+  <meta name="twitter:image" content="https://corelegacy.gg/assets/logo_miticas_plus_sinhielo_1024.png" />
 
   <link rel="preload" as="image" href="/assets/logotipo_corelegacy.webp" fetchpriority="high" />
   <link rel="preconnect" href="https://accounts.corelegacy.gg" />
@@ -174,20 +174,6 @@
       pointer-events: none;
       background: linear-gradient(to bottom, rgba(10,5,20,0.6) 0%, rgba(5,8,15,0.4) 40%, rgba(5,13,24,0.98) 100%);
     }
-    .mp-hero-badge {
-      display: inline-block;
-      font-family: 'Cinzel', Georgia, serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #d4af37;
-      padding: 0.4rem 1rem;
-      border: 1px solid rgba(212,175,55,0.35);
-      border-radius: 20px;
-      background: rgba(212,175,55,0.06);
-      text-shadow: 0 0 8px rgba(212,175,55,0.2);
-      margin-bottom: 1.5rem;
-    }
     .mp-logo {
       display: block;
       margin: 0 auto 1.5rem;
@@ -196,23 +182,23 @@
       max-height: 320px;
       object-fit: contain;
       border-radius: 14px;
-      filter: drop-shadow(0 0 24px rgba(212,175,55,0.2)) drop-shadow(0 0 40px rgba(57,255,20,0.12)) drop-shadow(0 12px 40px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 0 24px rgba(212,175,55,0.2)) drop-shadow(0 0 40px rgba(212,175,55,0.12)) drop-shadow(0 12px 40px rgba(0,0,0,0.5));
       animation: mpLogoGlow 4s ease-in-out infinite;
     }
     @keyframes mpLogoGlow {
-      0%,100% { filter: drop-shadow(0 0 24px rgba(212,175,55,0.2)) drop-shadow(0 0 40px rgba(57,255,20,0.12)) drop-shadow(0 12px 40px rgba(0,0,0,0.5)); }
-      50% { filter: drop-shadow(0 0 36px rgba(212,175,55,0.35)) drop-shadow(0 0 60px rgba(57,255,20,0.2)) drop-shadow(0 12px 40px rgba(0,0,0,0.5)); }
+      0%,100% { filter: drop-shadow(0 0 24px rgba(212,175,55,0.2)) drop-shadow(0 0 40px rgba(212,175,55,0.12)) drop-shadow(0 12px 40px rgba(0,0,0,0.5)); }
+      50% { filter: drop-shadow(0 0 36px rgba(212,175,55,0.35)) drop-shadow(0 0 60px rgba(212,175,55,0.2)) drop-shadow(0 12px 40px rgba(0,0,0,0.5)); }
     }
     .mp-hero-title {
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
       font-weight: 900;
       font-size: clamp(1.6rem,4vw,2.8rem);
       line-height: 1.15;
-      background: linear-gradient(180deg,#d4ffd4 0%,#39ff14 50%,#2ea810 100%);
+      background: linear-gradient(180deg,#e8d4a0 0%,#d4af37 50%,#8a6d2a 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 24px rgba(57,255,20,0.45), 0 0 42px rgba(30,255,0,0.22);
+      text-shadow: 0 0 24px rgba(212,175,55,0.45), 0 0 42px rgba(212,175,55,0.22);
       letter-spacing: 0.03em;
       margin-bottom: 1.25rem;
     }
@@ -237,9 +223,9 @@
       position: relative;
       min-height: 132px;
       padding: 1.25rem 1.25rem 1.1rem 4.5rem;
-      border: 1px solid rgba(57,255,20,0.28);
+      border: 1px solid rgba(212,175,55,0.28);
       border-radius: 12px;
-      background: linear-gradient(145deg, rgba(13,39,30,0.88), rgba(5,13,24,0.72));
+      background: linear-gradient(145deg, rgba(30,26,13,0.88), rgba(5,13,24,0.72));
       text-align: left;
       overflow: hidden;
       animation: mpTrustCardIn 0.7s ease both;
@@ -256,8 +242,8 @@
     }
     .mp-trust-item:hover {
       transform: translateY(-6px);
-      border-color: rgba(57,255,20,0.6);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.28), 0 0 20px rgba(57,255,20,0.16);
+      border-color: rgba(212,175,55,0.6);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.28), 0 0 20px rgba(212,175,55,0.16);
     }
     .mp-trust-icon {
       position: absolute;
@@ -268,11 +254,11 @@
       justify-content: center;
       width: 2.5rem;
       height: 2.5rem;
-      border: 1px solid rgba(57,255,20,0.6);
+      border: 1px solid rgba(212,175,55,0.6);
       border-radius: 10px;
-      color: #d4ffd4;
-      background: linear-gradient(145deg, rgba(57,255,20,0.34), rgba(46,168,16,0.12));
-      box-shadow: 0 0 16px rgba(57,255,20,0.2);
+      color: #e8d4a0;
+      background: linear-gradient(145deg, rgba(212,175,55,0.34), rgba(138,109,42,0.12));
+      box-shadow: 0 0 16px rgba(212,175,55,0.2);
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
       font-size: 0.7rem;
       font-weight: 800;
@@ -285,8 +271,8 @@
       font-family: 'Cinzel',Georgia,serif;
       font-weight: 700;
       font-size: 0.85rem;
-      color: #39ff14;
-      text-shadow: 0 0 8px rgba(57,255,20,0.25);
+      color: #d4af37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.25);
       margin-bottom: 0.35rem;
       letter-spacing: 0.02em;
     }
@@ -294,7 +280,7 @@
       position: relative;
       z-index: 1;
       font-size: 0.82rem;
-      color: #88d068;
+      color: #c8b070;
       line-height: 1.5;
     }
     @keyframes mpTrustCardIn {
@@ -313,16 +299,16 @@
       font-weight: 800;
       letter-spacing: 0.06em;
       color: #050d18;
-      background: linear-gradient(135deg,#d4ffd4 0%,#88d068 40%,#39ff14 100%);
-      border: 1px solid #88d068;
+      background: linear-gradient(135deg,#e8d4a0 0%,#c8b070 40%,#d4af37 100%);
+      border: 1px solid #c8b070;
       border-radius: 10px;
       text-decoration: none;
       cursor: pointer;
-      box-shadow: 0 0 24px rgba(57,255,20,0.35), 0 4px 16px rgba(0,0,0,0.3);
+      box-shadow: 0 0 24px rgba(212,175,55,0.35), 0 4px 16px rgba(0,0,0,0.3);
       transition: all 0.3s ease;
     }
     .mp-cta-primary:hover {
-      box-shadow: 0 0 36px rgba(57,255,20,0.55), 0 6px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 0 36px rgba(212,175,55,0.55), 0 6px 20px rgba(0,0,0,0.4);
       transform: translateY(-2px);
     }
     .mp-cta-secondary {
@@ -334,19 +320,19 @@
       font-size: 0.95rem;
       font-weight: 800;
       letter-spacing: 0.06em;
-      color: #d4ffd4;
+      color: #e8d4a0;
       background: transparent;
-      border: 1px solid rgba(57,255,20,0.4);
+      border: 1px solid rgba(212,175,55,0.4);
       border-radius: 10px;
       text-decoration: none;
       cursor: pointer;
-      box-shadow: 0 0 16px rgba(57,255,20,0.15);
+      box-shadow: 0 0 16px rgba(212,175,55,0.15);
       transition: all 0.3s ease;
     }
     .mp-cta-secondary:hover {
-      border-color: #39ff14;
-      background: rgba(57,255,20,0.08);
-      box-shadow: 0 0 28px rgba(57,255,20,0.3);
+      border-color: #d4af37;
+      background: rgba(212,175,55,0.08);
+      box-shadow: 0 0 28px rgba(212,175,55,0.3);
       transform: translateY(-2px);
     }
 
@@ -550,7 +536,7 @@
       border-color: rgba(212,175,55,0.6);
     }
 
-    /* ===== Steps (4 cards, green palette) ===== */
+    /* ===== Steps (4 cards) ===== */
     .mp-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -559,15 +545,15 @@
     }
     .mp-step-card {
       padding: 1.5rem 1.5rem 1.75rem;
-      border: 1px solid rgba(57,255,20,0.15);
+      border: 1px solid rgba(212,175,55,0.15);
       border-radius: 12px;
       background: linear-gradient(180deg, rgba(8,20,36,0.7) 0%, rgba(5,13,24,0.5) 100%);
-      box-shadow: 0 0 16px rgba(57,255,20,0.05);
+      box-shadow: 0 0 16px rgba(212,175,55,0.05);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .mp-step-card:hover {
-      border-color: rgba(57,255,20,0.4);
-      box-shadow: 0 0 24px rgba(57,255,20,0.12);
+      border-color: rgba(212,175,55,0.4);
+      box-shadow: 0 0 24px rgba(212,175,55,0.12);
     }
     .mp-step-num {
       display: inline-flex;
@@ -578,25 +564,25 @@
       font-family: 'Cinzel Decorative','Cinzel',Georgia,serif;
       font-weight: 700; font-size: 1rem;
       color: #050d18;
-      background: linear-gradient(135deg,#d4ffd4 0%,#39ff14 100%);
-      box-shadow: 0 0 16px rgba(57,255,20,0.35);
+      background: linear-gradient(135deg,#e8d4a0 0%,#d4af37 100%);
+      box-shadow: 0 0 16px rgba(212,175,55,0.35);
       margin-bottom: 0.85rem;
     }
     .mp-step-title {
       font-family: 'Cinzel',Georgia,serif;
       font-weight: 700; font-size: 0.92rem;
-      color: #39ff14;
-      text-shadow: 0 0 8px rgba(57,255,20,0.25);
+      color: #d4af37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.25);
       margin-bottom: 0.5rem;
       letter-spacing: 0.02em;
     }
     .mp-step-text {
       font-size: 0.85rem;
-      color: #88d068;
+      color: #c8b070;
       line-height: 1.6;
     }
 
-    /* ===== Rewards table (green palette) ===== */
+    /* ===== Rewards table ===== */
     .mp-table-hint {
       display: none;
       align-items: center;
@@ -605,7 +591,7 @@
       font-family: 'Cinzel', Georgia, serif;
       font-size: 0.72rem;
       letter-spacing: 0.03em;
-      color: #88d068;
+      color: #c8b070;
       opacity: 0.8;
     }
     @media (max-width: 600px) {
@@ -615,8 +601,8 @@
       overflow-x: auto;
       margin: 1rem 0 1.5rem;
       border-radius: 10px;
-      border: 1px solid rgba(57,255,20,0.15);
-      box-shadow: 0 0 20px rgba(57,255,20,0.06), inset 0 0 12px rgba(57,255,20,0.03);
+      border: 1px solid rgba(212,175,55,0.15);
+      box-shadow: 0 0 20px rgba(212,175,55,0.06), inset 0 0 12px rgba(212,175,55,0.03);
       -webkit-overflow-scrolling: touch;
     }
     .mp-table {
@@ -630,23 +616,23 @@
       font-weight: 700;
       font-size: 0.8rem;
       letter-spacing: 0.04em;
-      color: #39ff14;
-      text-shadow: 0 0 10px rgba(57,255,20,0.4);
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(212,175,55,0.4);
       text-align: left;
       padding: 0.7rem 0.9rem;
-      background: linear-gradient(180deg, rgba(57,255,20,0.1) 0%, rgba(5,13,24,0.4) 100%);
-      border-bottom: 1px solid rgba(57,255,20,0.2);
+      background: linear-gradient(180deg, rgba(212,175,55,0.1) 0%, rgba(5,13,24,0.4) 100%);
+      border-bottom: 1px solid rgba(212,175,55,0.2);
       white-space: nowrap;
     }
     .mp-table td {
       padding: 0.7rem 0.9rem;
-      color: #88d068;
-      border-bottom: 1px solid rgba(57,255,20,0.08);
+      color: #c8b070;
+      border-bottom: 1px solid rgba(212,175,55,0.08);
       line-height: 1.55;
     }
     .mp-table tr:last-child td { border-bottom: none; }
-    .mp-table tr:hover td { background: rgba(57,255,20,0.05); }
-    .mp-table .col-type { color: #39ff14; font-weight: 600; text-shadow: 0 0 8px rgba(57,255,20,0.25); }
+    .mp-table tr:hover td { background: rgba(212,175,55,0.05); }
+    .mp-table .col-type { color: #d4af37; font-weight: 600; text-shadow: 0 0 8px rgba(212,175,55,0.25); }
 
     /* ===== Affix cards ===== */
     .mp-affix-grid {
@@ -660,21 +646,21 @@
       gap: 0.85rem;
       align-items: flex-start;
       padding: 1rem 1.1rem;
-      border: 1px solid rgba(57,255,20,0.12);
+      border: 1px solid rgba(212,175,55,0.12);
       border-radius: 10px;
       background: linear-gradient(180deg, rgba(8,20,36,0.7) 0%, rgba(5,13,24,0.5) 100%);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .mp-affix-card:hover {
-      border-color: rgba(57,255,20,0.35);
-      box-shadow: 0 0 20px rgba(57,255,20,0.1);
+      border-color: rgba(212,175,55,0.35);
+      box-shadow: 0 0 20px rgba(212,175,55,0.1);
     }
     .mp-affix-icon {
       flex-shrink: 0;
       width: 36px; height: 36px;
       border-radius: 8px;
-      border: 1px solid rgba(57,255,20,0.25);
-      background: rgba(57,255,20,0.06);
+      border: 1px solid rgba(212,175,55,0.25);
+      background: rgba(212,175,55,0.06);
       object-fit: cover;
     }
     .mp-affix-info { flex: 1; min-width: 0; }
@@ -682,13 +668,13 @@
       font-family: 'Cinzel',Georgia,serif;
       font-weight: 700;
       font-size: 0.82rem;
-      color: #39ff14;
-      text-shadow: 0 0 8px rgba(57,255,20,0.25);
+      color: #d4af37;
+      text-shadow: 0 0 8px rgba(212,175,55,0.25);
       margin-bottom: 0.25rem;
     }
     .mp-affix-desc {
       font-size: 0.76rem;
-      color: #88d068;
+      color: #c8b070;
       line-height: 1.5;
     }
     .mp-affix-tag {
@@ -878,8 +864,7 @@
     <div class="mp-hero-overlay"></div>
     <div class="max-w-7xl mx-auto relative z-10 w-full" style="padding: 8rem 1rem 3rem;">
       <div class="text-center reveal">
-        <span class="mp-hero-badge">Endgame Competitivo WotLK 3.3.5a</span>
-        <img src="/assets/logo_miticas_plus_1024.png" alt="Míticas+ en CoRe Legacy - Piedras Angulares y Mazmorras Nivel 80 en WoW 3.3.5a" class="mp-logo" />
+        <img src="/assets/logo_miticas_plus_sinhielo_1024.png" alt="Míticas+ en CoRe Legacy - Piedras Angulares y Mazmorras Nivel 80 en WoW 3.3.5a" class="mp-logo" />
         <h1 class="mp-hero-title">Míticas+ en Rasganorte: Lleva tus mazmorras hasta el límite</h1>
         <div class="frost-divider" style="width:120px; margin:0 auto 1.5rem;"></div>
         <p class="mp-hero-sub">El desafío PvE más exigente de World of Warcraft llega a Wrath of the Lich King 3.3.5a. Activa tu Piedra Angular, supera 15 niveles de dificultad creciente con afijos rotativos, sigue tu progreso con nuestro HUD en tiempo real y reclama botín filtrado por clase y recompensas en la Gran Cámara semanal.</p>

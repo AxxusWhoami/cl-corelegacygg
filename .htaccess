@@ -118,6 +118,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^paseo-en-el-tiempo/?$ /paseo-en-el-tiempo.html [L]
 
+# Clean URL: /miticas-plus -> /miticas-plus.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^miticas-plus/?$ /miticas-plus.html [L]
+
 # Deep links para abrir modales directamente -> comunidad.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

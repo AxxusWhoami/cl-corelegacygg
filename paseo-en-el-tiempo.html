@@ -490,15 +490,19 @@
     }
 
     /* ===== Rewards table ===== */
+    .tbc-table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(57,255,20,0.15);
+      box-shadow: 0 0 20px rgba(57,255,20,0.06), inset 0 0 12px rgba(57,255,20,0.03);
+      -webkit-overflow-scrolling: touch;
+    }
     .tbc-table {
       width: 100%;
+      min-width: 480px;
       border-collapse: collapse;
-      margin: 1rem 0 1.5rem;
       font-size: 0.88rem;
-      border: 1px solid rgba(57,255,20,0.15);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(57,255,20,0.06), inset 0 0 12px rgba(57,255,20,0.03);
     }
     .tbc-table th {
       font-family: 'Cinzel','Cinzel Decorative',Georgia,serif;
@@ -957,6 +961,7 @@
           <div class="tbc-panel-body">
             <h2>Recompensas que impulsan tu personaje y tu colección</h2>
             <p>El Paseo en el Tiempo está diseñado para que cada carrera sea rentable, tanto si estás equipando un personaje recién llegado al nivel 80 como si buscas piezas de colección difíciles de conseguir.</p>
+            <div class="tbc-table-wrap">
             <table class="tbc-table">
               <thead>
                 <tr>
@@ -983,6 +988,7 @@
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>
